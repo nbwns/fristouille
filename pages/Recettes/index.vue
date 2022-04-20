@@ -7,6 +7,7 @@
 		<ais-configure
 			:hits-per-page.camel="10"
 			:distinct="true"
+			:filters="filters"
 		/>
 		<ais-search-box>
 			<template>&nbsp;</template>
@@ -18,18 +19,21 @@
 		</ais-hits>
 	<ais-pagination />
     </ais-instant-search>
+	<advanced-search @filtersChanged="filters = $event"/>
   </div>
 </template>
 
 <script>
 import algoliaSearch from 'algoliasearch/lite'
 import RecipeCard from '~/components/RecipeCard.vue'
+import AdvancedSearch from '~/components/AdvancedSearch.vue'
 import { history as historyRouter } from 'instantsearch.js/es/lib/routers';
 import { singleIndex as singleIndexMapping } from 'instantsearch.js/es/lib/stateMappings';
 
 export default {
 	components: {
-		RecipeCard
+		RecipeCard,
+		AdvancedSearch
 	},
 	data(){
         return{
@@ -37,7 +41,8 @@ export default {
 			routing: {
 				router: historyRouter(),
         		stateMapping: singleIndexMapping('Recipes'),
-      		}
+      		},
+			filters:''
         }
     },
 	methods: {

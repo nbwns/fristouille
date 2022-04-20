@@ -15,6 +15,7 @@ exports.handler = async function(event, context) {
 	// connect to index
 	const index = client.initIndex(ALGOLIA_INDEX_NAME);
 
+	console.log("Fetching recipes from Airtable...");
 	//get recipes 
 	let recettes = axios({
         url: GRAPHQL_ENDPOINT,
@@ -45,7 +46,9 @@ exports.handler = async function(event, context) {
           }`,
         }
 	}).then((result) => {
-        return result.data.data.recettes.map(recette => {
+        console.log("Numbers of results", result.data.data.recettes.length)
+		
+		return result.data.data.recettes.map(recette => {
 
 			let algoliaObject = {
 				objectID: recette.recipeId,
@@ -68,6 +71,7 @@ exports.handler = async function(event, context) {
         });        
 	});
 
+	console.log("Replacing all objects from Algolia Index...");
 	//replace all objects from the index
 	recettes.then(data => {
 		index.replaceAllObjects(data).then(({ objectIDs }) => {
