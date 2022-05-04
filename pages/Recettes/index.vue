@@ -17,9 +17,9 @@
 				<RecipeCard v-for="item in items" :key="item.objectID" :searchResult="item" />
 			</template>
 		</ais-hits>
-	<ais-pagination />
+		<ais-pagination />
     </ais-instant-search>
-	<advanced-search @filtersChanged="filters = $event"/>
+	<advanced-search @filtersChanged="setFilters($event)"/>
   </div>
 </template>
 
@@ -47,9 +47,12 @@ export default {
     },
 	methods: {
 		search(helper){
-			if (helper.state.query) {
+			if (helper.state.query || (!helper.state.query && this.filters != '')) {
 				helper.search();
 			}
+		},
+		setFilters($event){
+			this.filters = $event;
 		}
 	}
 }

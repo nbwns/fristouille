@@ -34,6 +34,10 @@ exports.handler = async function(event, context) {
               preparationTime
               cookTime
               yield
+			  free
+    		  category
+    		  cuisine
+			  months
               tags{
                 name
               }
@@ -59,6 +63,10 @@ exports.handler = async function(event, context) {
 				pictureSmall: recette.pictureSmall,
 				diet: recette.diet,
 				price: recette.price,
+				free: recette.free,
+				category: recette.category,
+				cuisine: recette.cuisine,
+				months: recette.months,
 				preparationTime: recette.preparationTime/60,
 				cookTime: recette.cookTime/60,
 				yield: recette.yield
