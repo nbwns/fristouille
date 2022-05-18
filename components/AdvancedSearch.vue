@@ -69,9 +69,19 @@ export default {
 			}
 		}
 	},
+	computed:{
+		searchFilters(){
+			return this.$store.state.searchFilters;
+		}
+	},
 	methods:{
+		checked(type,value){
+			// const index = this.filters[type].indexOf(value);
+			// if (index > -1) {
+			// 	this.filters[type].splice(index, 1); 
+			// }
+		},
 		filter(type, value, event){
-			value = `${type}:${value}`;
 			if(event.target.checked){
 				this.addToFilters(type, value);
 			}
@@ -89,18 +99,8 @@ export default {
 			}
 		},
 		setFilters(){
-			let filterQuery = '';
-			for(let cat in this.filters){
-				if(this.filters[cat].length > 0){
-					if(filterQuery != ''){
-						filterQuery += " AND ";
-					}
-
-					filterQuery += `(${this.filters[cat].join(' OR ')})`;
-				}
-				
-			}
-			this.$emit("filtersChanged", filterQuery);
+			this.$store.commit('saveSearchFilters', JSON.parse(JSON.stringify(this.filters)));
+			this.$emit("filtersChanged");
 		}
 	}
 }

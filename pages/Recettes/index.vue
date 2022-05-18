@@ -1,17 +1,14 @@
 <template>
   <div class="">
-	  <form method="GET" action="/recettes">
-		<input type="search" class="border-2" name="query"/> <button class="bg-blue-900 text-white" type="submit">🔍</button>
-	</form>
-    <ais-instant-search index-name="Recipes" :search-client="searchClient" :routing="routing" :search-function="search" >		
+	<input type="search" class="border-2" v-model="queryInput"/> <button @click="query = queryInput">🔍</button>
+    <ais-instant-search :index-name="indexName" :search-client="searchClient" :search-function="search" >		
 		<ais-configure
 			:hits-per-page.camel="10"
 			:distinct="true"
-			:filters="filters"
+			:filters="filterQuery"
+			:query="query"
 		/>
-		<ais-search-box>
-			<template>&nbsp;</template>
-		</ais-search-box>
+		
 		<ais-hits>
 			<template v-slot="{ items }">
 				<RecipeCard v-for="item in items" :key="item.objectID" :searchResult="item" />
@@ -19,7 +16,7 @@
 		</ais-hits>
 		<ais-pagination />
     </ais-instant-search>
-	<advanced-search @filtersChanged="setFilters($event)"/>
+	<advanced-search @filtersChanged="setFilterQuery"/>
   </div>
 </template>
 
@@ -28,7 +25,8 @@ import algoliaSearch from 'algoliasearch/lite'
 import RecipeCard from '~/components/RecipeCard.vue'
 import AdvancedSearch from '~/components/AdvancedSearch.vue'
 import { history as historyRouter } from 'instantsearch.js/es/lib/routers';
-import { singleIndex as singleIndexMapping } from 'instantsearch.js/es/lib/stateMappings';
+
+const indexName = 'Recipes';
 
 export default {
 	components: {
@@ -37,23 +35,113 @@ export default {
 	},
 	data(){
         return{
-            searchClient: algoliaSearch(this.$config.algoliaAppId,this.$config.algoliaApiKey),
-			routing: {
-				router: historyRouter(),
-        		stateMapping: singleIndexMapping('Recipes'),
-      		},
-			filters:''
+            indexName,
+			queryInput: '',
+			query: '',
+			searchClient: algoliaSearch(this.$config.algoliaAppId,this.$config.algoliaApiKey),
+			// routing: {
+			// 	router: historyRouter(),
+        	// 	stateMapping: {
+			// 		stateToRoute(uiState) {
+			// 			const indexUiState = uiState[indexName];
+			// 			console.log("uiState",indexUiState);
+			// 			// return {
+			// 			// 	q: indexUiState.query,
+			// 			// 	page: indexUiState.page,
+			// 			// 	diet: indexUiState.refinementList &&
+			// 			// 		indexUiState.refinementList.diet,
+			// 			// };
+			// 		},
+			// 		routeToState(routeState) {
+			// 			console.log("routeState",routeState);
+			// 			//todo: set query textbox
+			// 			// return {
+			// 			// 	[indexName]: {
+			// 			// 		query: routeState.q,
+			// 			// 		page: routeState.page,
+			// 			// 		refinementList: {
+			// 			// 			diet: routeState.diet,
+			// 			// 		},
+			// 			// 		/*configuration:{
+			// 			// 			filters: routeState.filters
+			// 			// 		}*/
+			// 			// 	},
+			// 			// };
+			// 		}
+			// 	}
+      		// },
+			filterQuery:''
         }
     },
+	computed:{
+		searchFilters(){
+			return this.$store.state.searchFilters;
+		}
+	},
 	methods: {
 		search(helper){
-			if (helper.state.query || (!helper.state.query && this.filters != '')) {
+			if (helper.state.query || (!helper.state.query && this.filterQuery != '')) {
 				helper.search();
+				this.$router.push({
+					path: this.$route.path, 
+					query: { 
+						q: helper.state.query, 
+						diet: this.searchFilters.diet,
+						category: this.searchFilters.category,
+						cuisine: this.searchFilters.cuisine,
+						free: this.searchFilters.free,
+						months: this.searchFilters.months,
+					}
+				})
 			}
 		},
-		setFilters($event){
-			this.filters = $event;
+		setFilterQuery(){
+			//take searchFilters from the store, build the filter query and set it
+			this.filterQuery = this.buildFilterQuery(this.searchFilters);
+		},
+		buildFilterQuery(filters){
+			let filterQuery = '';
+		
+			for(let cat in filters){
+				if(filters[cat].length > 0){
+					//if there is already a category filter, concat AND between category filters
+					if(filterQuery != ''){
+						filterQuery += " AND ";
+					}
+
+					//prefix filter value with the category name, for instance "Végétarien" becomes "diet:Végétarien"
+					let catFilters = filters[cat].map(v => `${cat}:${v}`);
+					//join all filter of the same category with OR
+					filterQuery += `(${catFilters.join(' OR ')})`;
+				}
+					
+			}
+			console.log(filterQuery);
+			return filterQuery;
+		},
+		sanitizeQueryParameter(param){
+			if(this.$route.query[param]){
+				return Array.isArray(this.$route.query[param]) ? this.$route.query[param] : [this.$route.query[param]]
+			}
+
+			return [];
 		}
+	},
+	mounted(){
+		console.log("QS",this.$route.query);
+		
+		this.query = this.$route.query.q;
+		this.queryInput = this.query;
+
+		let searchFiltersFromUrl = {
+			diet: this.sanitizeQueryParameter("diet"),
+			category: this.sanitizeQueryParameter("category"),
+			free: this.sanitizeQueryParameter("free"),
+			cuisine: this.sanitizeQueryParameter("cuisine"),
+			months: this.sanitizeQueryParameter("months"),
+		};
+		this.$store.commit('saveSearchFilters', searchFiltersFromUrl);
+		this.filterQuery = this.buildFilterQuery(searchFiltersFromUrl);
 	}
 }
 </script>
