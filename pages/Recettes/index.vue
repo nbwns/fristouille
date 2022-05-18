@@ -7,6 +7,7 @@
 			:distinct="true"
 			:filters="filterQuery"
 			:query="query"
+			:page="page"
 		/>
 		
 		<ais-hits>
@@ -16,7 +17,7 @@
 		</ais-hits>
 		<ais-pagination />
     </ais-instant-search>
-	<advanced-search @filtersChanged="setFilterQuery"/>
+	<advanced-search @filtersChanged="setFilterQuery" :urlFilters="searchFiltersFromUrl"/>
   </div>
 </template>
 
@@ -70,7 +71,9 @@ export default {
 			// 		}
 			// 	}
       		// },
-			filterQuery:''
+			filterQuery:'',
+			searchFiltersFromUrl: null,
+			page: 0
         }
     },
 	computed:{
@@ -91,6 +94,7 @@ export default {
 						cuisine: this.searchFilters.cuisine,
 						free: this.searchFilters.free,
 						months: this.searchFilters.months,
+						page: helper.state.page
 					}
 				})
 			}
@@ -131,17 +135,18 @@ export default {
 		console.log("QS",this.$route.query);
 		
 		this.query = this.$route.query.q;
+		this.page = this.$route.query.page || 0;
 		this.queryInput = this.query;
 
-		let searchFiltersFromUrl = {
+		this.searchFiltersFromUrl = {
 			diet: this.sanitizeQueryParameter("diet"),
 			category: this.sanitizeQueryParameter("category"),
 			free: this.sanitizeQueryParameter("free"),
 			cuisine: this.sanitizeQueryParameter("cuisine"),
 			months: this.sanitizeQueryParameter("months"),
 		};
-		this.$store.commit('saveSearchFilters', searchFiltersFromUrl);
-		this.filterQuery = this.buildFilterQuery(searchFiltersFromUrl);
+		this.$store.commit('saveSearchFilters', this.searchFiltersFromUrl);
+		this.filterQuery = this.buildFilterQuery(this.searchFiltersFromUrl);
 	}
 }
 </script>
