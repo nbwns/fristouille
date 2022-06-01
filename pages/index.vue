@@ -35,6 +35,7 @@ export default {
 			// Query to get homepage content
 			const page = (await $prismic.api.getSingle('homepage')).data;
 			console.log(page)
+			console.log(page.body.items)
 			return {
 				document: page,
 				// slices: post.body,

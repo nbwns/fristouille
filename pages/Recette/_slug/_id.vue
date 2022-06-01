@@ -105,7 +105,7 @@ export default {
                 {
                     hid: `description`,
                     name: 'description',
-                    content: this.recipe.description.substring(0, 158)
+                    content: this.recipe.description
                 },
                 {
                     hid: `og:title`,
