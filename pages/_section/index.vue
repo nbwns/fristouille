@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="outer-container">
-      
+      <small>Section</small>
       <!-- Template for page title -->
-      <h1 class="text-3xl">{{ $prismic.asText(document.title) }}</h1>
+      <h1 class="text-3xl"><prismic-text :field="document.title" /></h1>
 	  <prismic-rich-text :field="document.text" />
       <!-- Template for published date -->
       <!-- <p class="blog-post-meta"><span class="created-at">{{ formattedDate }}</span></p> -->
@@ -23,13 +23,23 @@ export default {
   },
   head () {
     return {
-      title: 'Prismic Nuxt.js Blog'
+      title: this.$prismic.asText(this.document.title),
+	 //adapt meta 
+	  meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$prismic
+            .asText(this.document.title)
+            .substring(0, 158)
+        }
+      ]
     }
   },
   async asyncData({ $prismic, params, error }) {
     try{
       // Query to get post content
-      const page = (await $prismic.api.getByUID('simplepage', params.uid)).data
+      const page = (await $prismic.api.getByUID('simplepage', params.section)).data
       // Returns data to be used in template
       return {
         document: page,

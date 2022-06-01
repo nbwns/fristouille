@@ -105,7 +105,7 @@ export default {
                 {
                     hid: `description`,
                     name: 'description',
-                    content: this.recipe.description
+                    content: this.recipe.description.substring(0, 158)
                 },
                 {
                     hid: `og:title`,
@@ -115,7 +115,7 @@ export default {
                 {
                     hid: `og:url`,
                     property: 'og:url',
-                    content: `http://www.fristouille.org/${this.recipe.slug}/${this.recipe.recipeId}` 
+                    content: `https://www.fristouille.org/${this.recipe.slug}/${this.recipe.recipeId}` 
                 },
                 {
                     hid: `og:image`,

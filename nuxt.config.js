@@ -58,11 +58,21 @@ export default {
 
   prismic: {
     endpoint: "https://fristouille.cdn.prismic.io/api/v2",
-    //linkResolver: "@/plugins/link-resolver",
+    linkResolver: "@/plugins/link-resolver",
     htmlSerializer: "@/plugins/html-serializer",
 	apiOptions: {
 		routes: [
-		  { type: 'simplepage', path: '/:uid' }
+		  { type: 'homepage', path: '/' },
+		  { type: 'simplepage', path: '/:uid' },
+		  {
+			type: 'childpage',
+			path: '/:section/:uid',
+			resolvers: {
+			  // A list of "path variables" mapped to the API ID
+			  // of a Content Relationship field in the Custom Type.
+			  section: 'parent_page'
+			},
+		  }
 		]
 	  },
   },
