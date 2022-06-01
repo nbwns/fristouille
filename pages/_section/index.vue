@@ -7,6 +7,10 @@
 	  <prismic-rich-text :field="document.text" />
       <!-- Template for published date -->
       <!-- <p class="blog-post-meta"><span class="created-at">{{ formattedDate }}</span></p> -->
+	  <hr/>
+	  <div v-for="c in children" :key="c.id" >
+		  <nuxt-link :to="c.url"><h2><prismic-text :field="c.data.title" /></h2></nuxt-link>
+	  </div>
     </div>
     <!-- Slice Block Componenet tag -->
     <!-- <slices-block :slices="slices"/> -->
@@ -38,16 +42,26 @@ export default {
   },
   async asyncData({ $prismic, params, error }) {
     try{
-      // Query to get post content
-      const page = (await $prismic.api.getByUID('simplepage', params.section)).data
+	 
+	 // Query to get post content
+    	const page = (await $prismic.api.getByUID('simplepage', params.section))
+	 
+		const children = (await $prismic.api.query( 
+				$prismic.predicates.at('my.childpage.parent_page', page.id) 
+			)).results
+
+		console.log(children);
+
       // Returns data to be used in template
       return {
-        document: page,
+        document: page.data,
+		children: children
         // slices: post.body,
         // formattedDate: Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(post.date)),
       }
     } catch (e) {
       // Returns error page
+	  console.log(e)
       error({ statusCode: 404, message: 'Page not found' })
     }
   },

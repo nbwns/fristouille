@@ -19,6 +19,7 @@ export default function(type, element, content, children) {
 	  if (type === "hyperlink") {
 		// return some customized HTML.
 		//console.log(element);
+		//replace by nuxt-link
 		if (element.data.link_type === 'Document') {
 			return `<a class="underline decoration-inherit decoration-dashed text-yellow-800 cursor-pointer" href="${element.data.url}" target="${element.data.target}">${children.join("")}</a>`;
 		  }

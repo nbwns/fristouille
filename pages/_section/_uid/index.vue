@@ -40,6 +40,7 @@ export default {
     try{
       // Query to get post content
       const page = (await $prismic.api.getByUID('childpage', params.uid)).data
+
       // Returns data to be used in template
       return {
         document: page,
