@@ -45,7 +45,7 @@ export default {
 	 
 	 // Query to get post content
     	const page = (await $prismic.api.getByUID('simplepage', params.section))
-	 
+	 // Get child pages
 		const children = (await $prismic.api.query( 
 				$prismic.predicates.at('my.childpage.parent_page', page.id) 
 			)).results

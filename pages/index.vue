@@ -1,8 +1,13 @@
 <template>
   <div class="">
     <h1 class="text-3xl"><prismic-text :field="document.hero_title" /></h1>
+	<!-- get content from the searchIndex function -->
 	<horizontal-list title="Recettes du moment" query="hiver" link="hiver" />
 	<category-tags />
+	<div v-for="(item, index) in slices" :key="index">
+		<h2>{{item.featured_title[0].text}}</h2>
+		<nuxt-link :to="item.featured_page.slug">En savoir plus</nuxt-link>
+	</div>
   </div>
 </template>
 
@@ -35,10 +40,10 @@ export default {
 			// Query to get homepage content
 			const page = (await $prismic.api.getSingle('homepage')).data;
 			console.log(page)
-			console.log(page.body.items)
+			console.log(page.body[0].items)
 			return {
 				document: page,
-				// slices: post.body,
+				slices: page.body[0].items,
 				// formattedDate: Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(post.date)),
 			}
 		
