@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    
+
+    h1, h2, h3, h4, h5, p {
+        @apply text-white-200
+    }
+
+    h1{
+        @apply font-labil text-5xl font-medium;
+    }
+    
+    h2{
+        @apply font-labil text-4xl font-medium;
+    }
+    
+    h3{
+       @apply font-inter text-xl font-normal; 
+    }
+
+    h4 {
+        @apply font-medium text-lg;
+    }
+    
+    p {
+        @apply text-base font-inter font-normal;
+    }
+    
+
+}
+
+@layer components {
+
+    button {
+        @apply uppercase bg-coral-200 transition-colors duration-150 hover:bg-coral-300 text-white-200 rounded-sm py-3 px-7 max-w-fit font-inter font-semibold tracking-widest;
+    }
+
+    button.search {
+        @apply text-sm;
+    }
+
+    .card {
+
+        @apply max-w-full  rounded overflow-hidden;
+
+    }
+
+    .tag-mint, .tag-coral, .tag-gum {
+        @apply text-xs uppercase font-semibold tracking-wider text-white-300 hover:cursor-pointer py-[10px] px-[6px] rounded-[30px];
+    }
+    
+    .tag-mint {
+        @apply bg-mint-alpha hover:bg-mint-200 focus:bg-mint-300;
+    }
+
+    .tag-coral {
+        @apply bg-coral-alpha hover:bg-coral-200 focus:bg-coral-300;
+    }
+
+    .tag-gum {
+        @apply bg-gum-alpha hover:bg-gum-200 focus:bg-gum-300;
+    }
+
+    .separator {
+        @apply h-[1px] bg-reglisse-300 opacity-25 w-full my-5;
+    }
+
+    .note {
+        @apply text-xs;
+    }
+}

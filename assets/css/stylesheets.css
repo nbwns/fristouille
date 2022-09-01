@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+@font-face {
+    font-family: 'Labil Grotesk';
+    src: url('../fonts/LabilGrotesk-Light.woff2') format('woff2'),
+        url('../fonts/LabilGrotesk-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Labil Grotesk';
+    src: url('../fonts/LabilGrotesk-Regular.woff2') format('woff2'),
+        url('../fonts/LabilGrotesk-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Labil Grotesk';
+    src: url('../fonts/LabilGrotesk-Thin.woff2') format('woff2'),
+        url('../fonts/LabilGrotesk-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Labil Grotesk';
+    src: url('../fonts/LabilGrotesk-Bold.woff2') format('woff2'),
+        url('../fonts/LabilGrotesk-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Labil Grotesk';
+    src: url('../fonts/LabilGrotesk-Medium.woff2') format('woff2'),
+        url('../fonts/LabilGrotesk-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+
