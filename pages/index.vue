@@ -76,7 +76,7 @@
     </section>
 
 	<!-- featured recipes -->
-	<horizontal-list title="Recettes du moment" query="hiver" link="hiver" />
+	<horizontal-list title="Recettes du moment" :items="featuredRecipes" :query="featuredQuery" :link="featuredSeeAllLink" />
 	
 
 	<!-- featured articles -->
@@ -98,7 +98,10 @@ export default {
 	},
 	data(){
 		return {
-			query: ''
+			query: '',
+			featuredQuery: "hiver",
+			featuredSeeAllLink: "hiver",
+			featuredRecipes: []
 		}
 	},
 	methods:{
@@ -115,22 +118,36 @@ export default {
 					months: this.searchFilters.months*/
 				}
 			});
+		},
+		getFeaturedRecipes(){
+			let endpoint = this.$config.searchIndexFunction;
+			//TODO get this from prismic
+			this.$axios.get(endpoint,{ params: {
+					query: this.featuredQuery
+				}
+			})
+			.then(response => {
+				this.featuredRecipes = response.data;
+			});
 		}
 	},
 	head () {
 		return {
-		title: this.$prismic.asText(this.document.hero_title),
-		//adapt meta 
-		meta: [
-			{
-			hid: 'description',
-			name: 'description',
-			content: this.$prismic
-				.asText(this.document.hero_title)
-				.substring(0, 158)
-			}
-		]
+			title: this.$prismic.asText(this.document.hero_title),
+			//adapt meta 
+			meta: [
+				{
+					hid: 'description',
+					name: 'description',
+					content: this.$prismic
+						.asText(this.document.hero_title)
+						.substring(0, 158)
+				}
+			]
 		}
+	},
+	mounted(){
+		this.getFeaturedRecipes();
 	},
 	async asyncData({ $prismic, params, error }) {
 		try{
@@ -162,8 +179,9 @@ export default {
 				};
 
 			const page = (await $prismic.api.getSingle('homepage')).data;
-			console.log(page)
-			console.log(page.body[0].items)
+			// console.log(page)
+			// console.log(page.body[0].items)
+
 			return {
 				document: page,
 				slices: page.body[0].items

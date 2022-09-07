@@ -10,38 +10,20 @@
           <nuxt-link :to="`/Recettes?query=${link}`"
 		  			class="text-base font-inter text-coral-200 hover:cursor-pointer hover:underline focus:text-coral-300">Tout voir</nuxt-link>
         </div>
-        <!-- grid for cards 4-columns -->
-
-			<ais-instant-search index-name="Recipes" :search-client="searchClient" :search-function="search" >		
-			<ais-configure
-			:hits-per-page.camel="4"
-			:distinct="true"
-			/>
-			<ais-hits>
-				<template v-slot="{ items }">
-					<div
-          				class="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-x-4 gap-y-7  md:gap-x-7 md:gap-y-10 w-full place-items-center">
-						<RecipeCard v-for="item in items" :key="item.objectID" :searchResult="item" />
-					</div>
-				</template>
-			</ais-hits>
-		</ais-instant-search>
+			<!-- grid for cards 4-columns -->
+			<div
+				class="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-x-4 gap-y-7  md:gap-x-7 md:gap-y-10 w-full place-items-center">
+				<RecipeCard v-for="item in items" :key="item.objectID" :searchResult="item" />
+			</div>
       </div>
     </section>
 </template>
 
 <script>
-import algoliaSearch from 'algoliasearch/lite'
-
 export default {
-	props: ['title', 'query', 'link'],
+	props: ['title', 'query', 'link', 'items'],
 	methods: {
-		search(helper){
-			helper.setQuery(this.query).search();
-		}
-	},
-	created(){
-		this.searchClient = algoliaSearch(this.$config.algoliaAppId,this.$config.algoliaApiKey)
+		
 	}
 }
 </script>

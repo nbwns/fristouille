@@ -35,7 +35,8 @@ export default {
   publicRuntimeConfig: {
     graphqlEndpoint: process.env.GRAPHQL_ENDPOINT,
 	algoliaApiKey: process.env.ALGOLIA_API_KEY,
-	algoliaAppId: process.env.ALGOLIA_APP_ID
+	algoliaAppId: process.env.ALGOLIA_APP_ID,
+	searchIndexFunction: process.env.SEARCH_INDEX_FUNCTION
   },
   privateRuntimeConfig: {
 
