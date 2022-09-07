@@ -5,34 +5,34 @@
       <div class="flex justify-center items-center bg-reglisse-200">
         <div
           class="flex flex-col md:flex-row w-full md:w-9/12 lg:w-7/12 justify-center items-center h-auto mx-10 md:mx-0 my-10">
-          <div class="block z-0 items-center h-full">
-            <h1 class=" font-labil text-5xl font-medium text-white-200 pb-3 ">
-              La cuisine durable tout en <span class="text-coral-200">simplicité</span>
-			  <!-- <prismic-text :field="document.hero_title" /> -->
-            </h1>
-            <h3>
-              Découvrez les principes de bases !
-            </h3>
-            <button class="mt-10">Découvrir</button>
-          </div>
-          <div class=" flex flex-shrink-0 z-50">
-            <img class="" src="~/assets/img/Group 45.png" alt="">
-          </div>
+			<div class="block z-0 items-center h-full">
+				<h1 class=" font-labil text-5xl font-medium text-white-200 pb-3 ">
+				La cuisine durable tout en <span class="text-coral-200">simplicité</span>
+				<!-- <prismic-text :field="document.hero_title" /> -->
+				</h1>
+				<h3>
+				Découvrez les principes de bases !
+				</h3>
+				<button class="mt-10">Découvrir</button>
+			</div>
+			<!-- only displayed on desktop -->
+			<div class="hidden md:flex flex-shrink-0 z-50">
+				<img class="" src="~/assets/img/Group 45.png" alt="">
+			</div>
         </div>
       </div>
     </section>
 
-
-
-    <!-- Section recherche -->
-    <section class="py-[10vh] mx-10 md:mx-0 my-10">
+    <!-- search -->
+	<!-- only displayed on desktop -->
+    <section class="hidden md:flex py-[10vh] mx-10 md:mx-0 my-10">
       <div class="flex flex-col items-center bg-reglisse-100  w-full gap-[73px] ">
         <h2 class="text-coral-200">
           Trouver des recettes
         </h2>
         <div class="flex flex-col justify-center w-full md:w-9/12 lg:w-7/12 ">
           <!-- search bar -->
-          <form class="flex items-center gap-5">
+          <form class="flex items-center gap-5" @submit.prevent="search">
             <label for="simple-search" class="sr-only">Que souhaitez-vous cuisiner ?</label>
             <div class="relative w-full">
               <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
@@ -43,8 +43,8 @@
                     clip-rule="evenodd"></path>
                 </svg>
               </div>
-              <input type="text" id="simple-search"
-                class="bg-reglisse-300 rounded focus:outline-none focus:ring focus:ring-reglisse-200  block w-full pl-10 p-2.5 placeholder:text-white-200"
+              <input type="text" id="simple-search" v-model="query"
+                class="bg-reglisse-300 rounded focus:outline-none focus:ring focus:ring-reglisse-200  block w-full pl-10 p-2.5 placeholder:text-white-200 text-white-100"
                 placeholder="Que souhaitez-vous cuisiner ?" required="">
             </div>
             <button type="submit" class="bg-reglisse-300 search">
@@ -53,6 +53,8 @@
             </button>
           </form>
           <!-- tags and filter -->
+			<!-- <category-tags /> -->
+
           <div class="flex flex-row justify-between items-center my-2 ">
             <!-- tags -->
             <div class="flex flex-row gap-4 items-center">
@@ -73,28 +75,47 @@
       </div>
     </section>
 
-
-
-
-
-	<!-- get content from the searchIndex function -->
+	<!-- featured recipes -->
 	<horizontal-list title="Recettes du moment" query="hiver" link="hiver" />
-	<category-tags />
-	<div v-for="(item, index) in slices" :key="index">
-		<h2>{{item.featured_title[0].text}}</h2>
-		<nuxt-link :to="item.featured_page.slug">En savoir plus</nuxt-link>
-	</div>
+	
+
+	<!-- featured articles -->
+	<featured-articles :items="slices"/> 
+
   </div>
 </template>
 
 <script>
 import HorizontalList from '~/components/HorizontalList'
 import CategoryTags from '~/components/CategoryTags'
+import FeaturedArticles from '~/components/FeaturedArticles'
 
 export default {
 	components: {
 		HorizontalList,
-		CategoryTags
+		CategoryTags,
+		FeaturedArticles
+	},
+	data(){
+		return {
+			query: ''
+		}
+	},
+	methods:{
+		search(){
+			//redirect to the search page with parameters in qs
+			this.$router.push({
+				path: '/Recettes', 
+				query: { 
+					q: this.query/*, 
+					diet: this.searchFilters.diet,
+					category: this.searchFilters.category,
+					cuisine: this.searchFilters.cuisine,
+					free: this.searchFilters.free,
+					months: this.searchFilters.months*/
+				}
+			});
+		}
 	},
 	head () {
 		return {
@@ -114,18 +135,43 @@ export default {
 	async asyncData({ $prismic, params, error }) {
 		try{
 			// Query to get homepage content
+			let qraphQuery = {
+					graphQuery: `
+						{
+							homepage {
+								featured_content {
+									featured_page {
+										...on simplepage {
+											title,
+											... on cover {
+												image
+											}
+										}
+
+										...on childpage {
+											title,
+											... on cover {
+												image
+											}
+										}
+									}
+								}
+							}
+						}
+					`
+				};
+
 			const page = (await $prismic.api.getSingle('homepage')).data;
 			console.log(page)
 			console.log(page.body[0].items)
 			return {
 				document: page,
-				slices: page.body[0].items,
-				// formattedDate: Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(post.date)),
+				slices: page.body[0].items
 			}
 		
 		} catch (e) {
-		// Returns error page
-		error({ statusCode: 404, message: 'Page not found' })
+			// Returns error page
+			console.log(e)
 		}
 	}
 }

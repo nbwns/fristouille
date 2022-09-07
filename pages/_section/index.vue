@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <div class="outer-container">
+  <section class="flex py-[10vh] mx-10 md:mx-0 my-10">
       <small>Section</small>
       <!-- Template for page title -->
       <h1 class="text-3xl"><prismic-text :field="document.title" /></h1>
@@ -11,10 +10,9 @@
 	  <div v-for="c in children" :key="c.id" >
 		  <nuxt-link :to="c.url"><h2><prismic-text :field="c.data.title" /></h2></nuxt-link>
 	  </div>
-    </div>
     <!-- Slice Block Componenet tag -->
     <!-- <slices-block :slices="slices"/> -->
-  </div>
+  </section>
 </template>
 
 <script>

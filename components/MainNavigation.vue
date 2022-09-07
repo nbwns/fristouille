@@ -16,7 +16,6 @@
         </a>
       </div>
     </div>
-    <div class="md:hidden ">test</div>
   </nav>
 </template>
 

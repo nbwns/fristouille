@@ -77,14 +77,18 @@ export default {
         }
     },
 	computed:{
+		//get filters from the store
 		searchFilters(){
 			return this.$store.state.searchFilters;
 		}
 	},
 	methods: {
+		//triggered on button click
 		search(helper){
 			if (helper.state.query || (!helper.state.query && this.filterQuery != '')) {
+				//trigger search - without reloading the page
 				helper.search();
+				//put search parameters in query string
 				this.$router.push({
 					path: this.$route.path, 
 					query: { 
@@ -96,11 +100,11 @@ export default {
 						months: this.searchFilters.months,
 						page: helper.state.page
 					}
-				})
+				});
 			}
 		},
 		setFilterQuery(){
-			//take searchFilters from the store, build the filter query and set it
+			//take searchFilters from the store, build the Algolia filter query and triggers search
 			this.filterQuery = this.buildFilterQuery(this.searchFilters);
 		},
 		buildFilterQuery(filters){
@@ -132,8 +136,9 @@ export default {
 		}
 	},
 	mounted(){
-		console.log("QS",this.$route.query);
+		//hydrate objects from the query string		
 		
+		//the query used by Algolia, triggers search if non-empty
 		this.query = this.$route.query.q;
 		this.page = this.$route.query.page || 0;
 		this.queryInput = this.query;
@@ -145,7 +150,11 @@ export default {
 			cuisine: this.sanitizeQueryParameter("cuisine"),
 			months: this.sanitizeQueryParameter("months"),
 		};
+		
+		//save search filters into the store
 		this.$store.commit('saveSearchFilters', this.searchFiltersFromUrl);
+		
+		//take searchFilters from the URL, build the Algolia filter query and triggers search if non-empty
 		this.filterQuery = this.buildFilterQuery(this.searchFiltersFromUrl);
 	}
 }

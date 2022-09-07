@@ -102,7 +102,9 @@ export default {
 			}
 		},
 		setFilters(){
+			//save filters in the store
 			this.$store.commit('saveSearchFilters', JSON.parse(JSON.stringify(this.filters)));
+			//trigger parent component
 			this.$emit("filtersChanged");
 		}
 	}

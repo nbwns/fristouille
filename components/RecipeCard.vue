@@ -9,10 +9,13 @@
                 <div class="flex flex-row justify-between p-2 items-center">
                   <div
                     class="bg-mint-300 py-1 px-3 uppercase tracking-wider text-white-300 text-xs font-medium rounded-3xl">
-                    végétariens
+                    1 tag
                   </div>
-                  <div
-                    class="bg-gum-300 py-1 px-3 uppercase tracking-wider text-white-300 text-xs font-medium rounded-3xl">
+				  <div 
+				  	v-if="searchResult.diet != 'Omnivore'"
+					:title="searchResult.diet" 
+					:class="{'bg-gum-300': searchResult.diet === 'Végétalien', 'bg-mint-300': searchResult.diet === 'Végétarien'}"
+                    class="py-1 px-3 uppercase tracking-wider text-white-300 text-xs font-medium rounded-3xl">
                     <svg class="w-5 h-5 text-white-200  " fill="none" viewBox="0 0 25 25"
                       xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd"
