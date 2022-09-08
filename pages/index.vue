@@ -76,11 +76,11 @@
     </section>
 
 	<!-- featured recipes -->
-	<horizontal-list title="Recettes du moment" :items="featuredRecipes" :query="featuredQuery" :link="featuredSeeAllLink" />
+	<horizontal-list :title="horizontal_list.list_title" :items="featuredRecipes" :link="horizontal_list.see_all_query" />
 	
 
 	<!-- featured articles -->
-	<featured-articles :items="slices"/> 
+	<featured-articles :items="featured_content"/> 
 
   </div>
 </template>
@@ -100,8 +100,7 @@ export default {
 		return {
 			query: '',
 			featuredQuery: "hiver",
-			featuredSeeAllLink: "hiver",
-			featuredRecipes: []
+			featuredSeeAllLink: "hiver"
 		}
 	},
 	methods:{
@@ -117,17 +116,6 @@ export default {
 					free: this.searchFilters.free,
 					months: this.searchFilters.months*/
 				}
-			});
-		},
-		getFeaturedRecipes(){
-			let endpoint = this.$config.searchIndexFunction;
-			//TODO get this from prismic
-			this.$axios.get(endpoint,{ params: {
-					query: this.featuredQuery
-				}
-			})
-			.then(response => {
-				this.featuredRecipes = response.data;
 			});
 		}
 	},
@@ -146,10 +134,7 @@ export default {
 			]
 		}
 	},
-	mounted(){
-		this.getFeaturedRecipes();
-	},
-	async asyncData({ $prismic, params, error }) {
+	async asyncData({ $prismic, $axios, $config, params, error }) {
 		try{
 			// Query to get homepage content
 			let qraphQuery = {
@@ -179,17 +164,28 @@ export default {
 				};
 
 			const page = (await $prismic.api.getSingle('homepage')).data;
-			// console.log(page)
-			// console.log(page.body[0].items)
+			console.log("HOMEPAGE");
+			console.log(page);
+			console.log(page.body[0].primary);
+			console.log(page.body[1].items);
+
+			let horizontal_list = page.body[0].primary; //improve because I could generate a list of horizontal lists
+
+			const featuredRecipes = (await $axios.get($config.searchIndexFunction,{ params: {
+					query: horizontal_list.query_filter
+				}
+			})).data;
 
 			return {
 				document: page,
-				slices: page.body[0].items
+				horizontal_list: horizontal_list,
+				featured_content: page.body[1].items,
+				featuredRecipes: featuredRecipes
 			}
 		
 		} catch (e) {
 			// Returns error page
-			console.log(e)
+			console.log("oops",e);
 		}
 	}
 }

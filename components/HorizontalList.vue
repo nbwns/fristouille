@@ -21,7 +21,7 @@
 
 <script>
 export default {
-	props: ['title', 'query', 'link', 'items'],
+	props: ['title', 'link', 'items'],
 	methods: {
 		
 	}

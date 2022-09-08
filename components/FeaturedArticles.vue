@@ -4,7 +4,7 @@
         <!-- title row -->
         <div class="flex flex-row justify-between">
           <h3 class=" text-lg font-inter font-semibold text-white-200">
-            Quoi de neuf en cuisine éthique ?
+            Apprendre à cuisiner durable
           </h3>
           <a href="#"
             class="text-base font-inter text-coral-200 hover:cursor-pointer hover:underline focus:text-coral-300">Tout
