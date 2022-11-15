@@ -29,6 +29,7 @@ exports.handler = async function(event, context) {
 			  createdOn
               description
               pictureSmall
+			  pictureMedium
               diet
 			  price
               preparationTime
@@ -61,6 +62,7 @@ exports.handler = async function(event, context) {
 				createdOn: recette.createdOn,
 				description: recette.description,
 				pictureSmall: recette.pictureSmall,
+				pictureMedium: recette.pictureMedium,
 				diet: recette.diet,
 				price: recette.price,
 				free: recette.free,

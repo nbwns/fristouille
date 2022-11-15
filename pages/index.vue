@@ -166,16 +166,19 @@ export default {
 			const page = (await $prismic.api.getSingle('homepage')).data;
 			console.log("HOMEPAGE");
 			console.log(page);
-			console.log(page.body[0].primary);
 			console.log(page.body[1].items);
 
+			//get the horizontal list component
 			let horizontal_list = page.body[0].primary; //improve because I could generate a list of horizontal lists
+			console.log("horizontal_list",horizontal_list);
 
+			//based on the horizontal list query_filter prop, query the Algolia index to get the featured recipes
 			const featuredRecipes = (await $axios.get($config.searchIndexFunction,{ params: {
 					query: horizontal_list.query_filter
 				}
 			})).data;
 
+			//return homepage data: the page itself, featured recipes and featured content
 			return {
 				document: page,
 				horizontal_list: horizontal_list,

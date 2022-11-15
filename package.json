@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
-    "@nuxtjs/prismic": "^1.4.0",
     "@nuxtjs/pwa": "^3.3.5",
     "algoliasearch": "^4.11.0",
     "core-js": "^3.15.1",
@@ -20,10 +19,12 @@
     "nuxt": "^2.15.7",
     "nuxt-sm": "^0.0.9",
     "tailwindcss": "^3.1.8",
+    "vue-horizontal": "^0.8.12",
     "vue-instantsearch": "^4.3.0",
     "vue-slicezone": "^0.1.0"
   },
   "devDependencies": {
+    "@nuxtjs/prismic": "^1.4.2",
     "@nuxtjs/tailwindcss": "^4.2.0",
     "postcss": "^8.3.5",
     "slice-machine-ui": "^0.1.2"

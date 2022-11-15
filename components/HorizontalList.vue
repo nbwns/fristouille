@@ -10,24 +10,56 @@
           <nuxt-link :to="`/Recettes?query=${link}`"
 		  			class="text-base font-inter text-coral-200 hover:cursor-pointer hover:underline focus:text-coral-300">Tout voir</nuxt-link>
         </div>
-			<!-- grid for cards 4-columns -->
-			<div
-				class="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-x-4 gap-y-7  md:gap-x-7 md:gap-y-10 w-full place-items-center">
-				<RecipeCard v-for="item in items" :key="item.objectID" :searchResult="item" />
-			</div>
+		<vue-horizontal>			
+			<RecipeCard v-for="item in items" :key="item.objectID" :searchResult="item" />
+		</vue-horizontal>
       </div>
     </section>
 </template>
 
 <script>
+import VueHorizontal from 'vue-horizontal';
+
 export default {
 	props: ['title', 'link', 'items'],
+	components: {VueHorizontal},
 	methods: {
 		
 	}
 }
 </script>
 
-<style>
+<!-- Responsive Breakpoints -->
+<style scoped>
+.horizontal {
+  --count: 1;
+  --gap: 16px;
+  --margin: 24px;
+}
 
+@media (min-width: 640px) {
+  .horizontal {
+    --count: 2;
+  }
+}
+
+@media (min-width: 768px) {
+  .horizontal {
+    --count: 3;
+    --margin: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .horizontal {
+    --count: 4;
+  }
+}
+
+@media (min-width: 1280px) {
+  .horizontal {
+    --gap: 24px;
+    --count: 6;
+  }
+}
 </style>

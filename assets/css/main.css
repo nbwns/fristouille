@@ -43,9 +43,7 @@
     }
 
     .card {
-
         @apply max-w-full  rounded overflow-hidden;
-
     }
 
     .tag-mint, .tag-coral, .tag-gum {

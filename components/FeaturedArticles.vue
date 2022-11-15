@@ -11,16 +11,16 @@
             voir</a>
         </div>
         <!-- grid for cards 2-columns -->
-        <div
-		  class="grid grid-cols-1  md:grid-cols-2  gap-x-4 gap-y-7  md:gap-x-7 md:gap-y-10 w-full place-items-center">
+        <vue-horizontal>			
           	<div v-for="(item, index) in items" :key="index">
 				<nuxt-link :to="item.featured_page.slug">
 					<!-- card -->
-					<div class="card">
+					<!-- TODO: fix width properly -->
+					<div class="card max-w-[350px] px-3">
 						<div class="relative">
-							<img class="w-full rounded"
+							<img class="rounded"
 								src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
-								alt="#">
+								alt="#" style="width: 350px">
 						</div>
 						<div class="pt-2">
 							<h4>{{item.featured_title[0].text}}</h4>
@@ -31,17 +31,51 @@
 					</div>
 				</nuxt-link>
 			  </div>
-        </div>
+        </vue-horizontal>
       </div>
     </section>
 </template>
 
 <script>
+import VueHorizontal from 'vue-horizontal';
+
 export default {
-	props: ['items']
+	props: ['items'],
+	components: {VueHorizontal},
 }
 </script>
 
-<style>
+<!-- Responsive Breakpoints -->
+<style scoped>
+.horizontal {
+  --count: 1;
+  --gap: 16px;
+  --margin: 24px;
+}
 
+@media (min-width: 640px) {
+  .horizontal {
+    --count: 2;
+  }
+}
+
+@media (min-width: 768px) {
+  .horizontal {
+    --count: 3;
+    --margin: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .horizontal {
+    --count: 4;
+  }
+}
+
+@media (min-width: 1280px) {
+  .horizontal {
+    --gap: 24px;
+    --count: 6;
+  }
+}
 </style>

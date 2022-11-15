@@ -20,6 +20,7 @@ exports.handler = async function(event, context) {
 			'name',
 			'slug',
 			'pictureSmall',
+			'pictureMedium',
 			'diet',
 			'objectID'
 			],

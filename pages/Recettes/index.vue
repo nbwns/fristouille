@@ -1,7 +1,13 @@
 <template>
   <div class="">
 	<input type="search" class="border-2" v-model="queryInput"/> <button @click="query = queryInput">🔍</button>
-    <ais-instant-search :index-name="indexName" :search-client="searchClient" :search-function="search" >		
+    
+    
+			
+		
+	
+	
+	<ais-instant-search :index-name="indexName" :search-client="searchClient" :search-function="search" >		
 		<ais-configure
 			:hits-per-page.camel="10"
 			:distinct="true"
@@ -12,7 +18,16 @@
 		
 		<ais-hits>
 			<template v-slot="{ items }">
-				<RecipeCard v-for="item in items" :key="item.objectID" :searchResult="item" />
+				<!-- section cards 4 columns -->
+				<section class="grid place-items-center py-[10vh] space-y-10 mx-10 md:mx-0">
+					<div class="flex flex-col w-full md:w-9/12 lg:w-7/12 space-y-3">
+						<!-- grid for cards 4-columns -->
+						<div
+						class="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-x-4 gap-y-7  md:gap-x-7 md:gap-y-10 w-full place-items-center">
+							<RecipeCard v-for="item in items" :key="item.objectID" :searchResult="item" />
+						</div>
+      				</div>
+    			</section>
 			</template>
 		</ais-hits>
 		<ais-pagination />
