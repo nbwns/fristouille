@@ -91,7 +91,14 @@ export default {
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      lang: 'en'
+      name: 'Fristouille',
+      short_name: 'Fristouille',
+      description: 'La cuisine durable tout en simplicité',
+      orientation: 'portrait',
+      lang: 'fr-BE',
+      useWebmanifestExtension: false,
+      theme_color: '#FF9877',
+      background_color: '#433544',
     }
   },
 
