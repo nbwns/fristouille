@@ -72,12 +72,6 @@ import DietTag from '~/components/DietTag.vue';
 
 export default {
     components: {DietTag},
-	data () {
-        return {
-            recipe: null,
-			servings: 0
-        }
-    },
     computed:{
         procedure(){
             return (this.recipe.procedure) ? marked(this.recipe.procedure) : ""
@@ -93,7 +87,8 @@ export default {
 			return false;
 		},
 		servingsRatio(){
-            return this.servings / this.recipe.yield;
+            console.log("servingsRatio");
+			return this.servings / this.recipe.yield;
         }
     },
     methods:{
@@ -111,7 +106,9 @@ export default {
         console.log("payload",payload);
         console.log("params",params)
         if (payload){
-            return { recipe: payload };
+			let recipe = payload;
+			recipe.compositions.sort((a,b) => b.quantity - a.quantity);
+            return { recipe: recipe, servings:recipe.yield };
         }
         else {
             if(params.id){
