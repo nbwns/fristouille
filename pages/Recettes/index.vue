@@ -1,7 +1,7 @@
 <template>
   <div class="">
 	<input type="search" class="border-2" v-model="queryInput"/> <button @click="query = queryInput">🔍</button>
-	
+	<advanced-search @filtersChanged="setFilterQuery" :urlFilters="searchFiltersFromUrl"/>
 	<ais-instant-search :index-name="indexName" :search-client="searchClient" :search-function="search" >		
 		<ais-configure
 			:hits-per-page.camel="10"
@@ -27,7 +27,7 @@
 		</ais-hits>
 		<ais-pagination />
     </ais-instant-search>
-	<advanced-search @filtersChanged="setFilterQuery" :urlFilters="searchFiltersFromUrl"/>
+	
   </div>
 </template>
 

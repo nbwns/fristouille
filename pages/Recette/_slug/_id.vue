@@ -150,7 +150,7 @@ export default {
                 {
                     hid: `og:url`,
                     property: 'og:url',
-                    content: `https://www.fristouille.org/${this.recipe.slug}/${this.recipe.recipeId}` 
+                    content: `https://www.fristouille.org/Recette/${this.recipe.slug}/${this.recipe.recipeId}` 
                 },
                 {
                     hid: `og:image`,
