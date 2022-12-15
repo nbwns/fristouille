@@ -1,10 +1,13 @@
 <template>
   <div class="">
-	<input type="search" class="border-2" v-model="queryInput"/> <button @click="query = queryInput">🔍</button>
+	<!-- TODO: problem, input change triggers search -->
+	<input type="search" class="bg-reglisse-300 rounded focus:outline-none focus:ring focus:ring-reglisse-200  block w-full pl-10 p-2.5 placeholder:text-white-200 text-white-100"
+		v-model="queryInput"/> 
+	<button @click="query = queryInput">🔍</button>
 	<advanced-search @filtersChanged="setFilterQuery" :urlFilters="searchFiltersFromUrl"/>
 	<ais-instant-search :index-name="indexName" :search-client="searchClient" :search-function="search" >		
 		<ais-configure
-			:hits-per-page.camel="10"
+			:hits-per-page.camel="12"
 			:distinct="true"
 			:filters="filterQuery"
 			:query="query"
@@ -25,7 +28,84 @@
     			</section>
 			</template>
 		</ais-hits>
-		<ais-pagination />
+		<ais-pagination>
+			<template
+				v-slot="{
+				currentRefinement,
+				nbPages,
+				pages,
+				isFirstPage,
+				isLastPage,
+				refine,
+				createURL
+				}"
+			>
+				<div class="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
+					<ul class="isolate inline-flex -space-x-px rounded-md shadow-sm">
+						<li v-if="!isFirstPage">
+							<a 
+								class="relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"							
+								:href="createURL(0)" 
+								@click.prevent="refine(0)"
+							>
+								<span class="sr-only">Premier</span>
+								<!-- Heroicon name: mini/chevron-left -->
+								<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M18.75 19.5l-7.5-7.5 7.5-7.5m-6 15L5.25 12l7.5-7.5" />
+								</svg>
+							</a>
+						</li>
+						<li v-if="!isFirstPage">
+							<a
+								class="relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
+								:href="createURL(currentRefinement - 1)"
+								@click.prevent="refine(currentRefinement - 1)"
+							>
+							<span class="sr-only">Précédent</span>
+							<!-- Heroicon name: mini/chevron-left -->
+							<svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+								<path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
+							</svg>
+							</a>
+						</li>
+						<li v-for="page in pages" :key="page">
+							<a
+							class="relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
+							:href="createURL(page)"
+							:class="[page === currentRefinement ? 'font-bold' : '']"
+							@click.prevent="refine(page)"
+							>
+							{{ page + 1 }}
+							</a>
+						</li>
+						<li v-if="!isLastPage">
+							<a
+								class="relative inline-flex items-center rounded-r-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
+								:href="createURL(currentRefinement + 1)"
+								@click.prevent="refine(currentRefinement + 1)"
+							>
+								<span class="sr-only">Next</span>
+								<!-- Heroicon name: mini/chevron-right -->
+								<svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+									<path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+								</svg>
+							</a>
+						</li>
+						<li v-if="!isLastPage">
+							<a 
+								class="relative inline-flex items-center rounded-r-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
+								:href="createURL(nbPages)" 
+								@click.prevent="refine(nbPages)"
+							>
+								<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" />
+								</svg>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</template>
+		</ais-pagination>
     </ais-instant-search>
 	
   </div>
@@ -95,8 +175,10 @@ export default {
 	methods: {
 		//triggered on button click
 		search(helper){
+			console.log("search", helper.state.query);
 			if (helper.state.query || (!helper.state.query && this.filterQuery != '')) {
 				//trigger search - without reloading the page
+				console.log("trigger search");
 				helper.search();
 				//put search parameters in query string
 				this.$router.push({
@@ -134,7 +216,7 @@ export default {
 				}
 					
 			}
-			console.log(filterQuery);
+			console.log("filterQuery",filterQuery);
 			return filterQuery;
 		},
 		sanitizeQueryParameter(param){

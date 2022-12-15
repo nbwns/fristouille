@@ -50,7 +50,7 @@
 					<div class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-31">décembre <input type="checkbox" @click="filter('months','12', $event)" :checked="checked('months','12')"></div>
 				</dropdown-menu>
 
-				<button @click="setFilters">Je valide</button>
+				<button class="hidden md:flex" @click="emit('filtersChanged')">Je valide</button>
 			</div>
 		</div>
 		  
@@ -104,6 +104,8 @@ export default {
 			else{
 				this.removeFromFilters(type, value);
 			}
+
+			this.setFilters();
 		},
 		addToFilters(type, value){
 			this.filters[type].push(value);
@@ -117,8 +119,6 @@ export default {
 		setFilters(){
 			//save filters in the store
 			this.$store.commit('saveSearchFilters', JSON.parse(JSON.stringify(this.filters)));
-			//trigger parent component
-			this.$emit("filtersChanged");
 		},
 		toggleDropdown(type){
 			this.dropdowns[type] = !this.dropdowns[type];
