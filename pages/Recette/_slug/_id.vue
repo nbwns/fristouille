@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<section>
-			<div>
+			<div v-if="recipe">
 				<!-- picture -->
 				<img 
 					:src="recipe.picture"
@@ -21,11 +21,11 @@
 					auteur
 				</p> -->
 				<!-- title -->
-				<h1 v-if="recipe">{{recipe.name}}</h1>
+				<h1>{{recipe.name}}</h1>
 				<!-- description -->
 		        <p>{{recipe.description}}</p>
 				<!-- seasonality, to add in the design -->
-				<div>Saisonnalité: 
+				<div v-if="recipe.months">Saisonnalité: 
 					<div v-if="recipe.months.length < 12">
 						<span v-for="month in recipe.months" class="p-1" :key="month">{{getMonthLabel(month)}}</span>
 					</div>
@@ -49,11 +49,13 @@
 				</div>
 				<p><span itemprop="recipeYield">{{recipe.yield}}</span> couverts</p>
 				<div v-for="c in recipe.compositions" :key="c.name" class="columns-2">
-					<div class="inline-block" v-if="c.quantity > 0">
-						<span>{{computedQuantity(c.quantity)}}</span>
-						<span>{{c.units}}</span>
+					<div v-if="c.ingredient[0]">
+						<div class="inline-block" v-if="c.quantity > 0">
+							<span>{{c.quantity}}</span>
+							<span>{{c.units}}</span>
+						</div>
+						<div class="inline-block">{{c.ingredient[0].name}}</div>
 					</div>
-					<div class="inline-block">{{c.ingredient[0].name}}</div>
 				</div>
 				<!-- procedure -->
 				<!-- TODO: ol must have numbers -->
@@ -103,11 +105,13 @@ export default {
 		}
     },
     async asyncData({ params, error, payload, $axios, $config: { graphqlEndpoint } }){
-        console.log("payload",payload);
         console.log("params",params)
         if (payload){
+        	console.log("payload",payload.name);
 			let recipe = payload;
-			recipe.compositions.sort((a,b) => b.quantity - a.quantity);
+			if(recipe.compositions){
+				recipe.compositions.sort((a,b) => b.quantity - a.quantity);
+			}
             return { recipe: recipe, servings:recipe.yield };
         }
         else {
@@ -122,7 +126,9 @@ export default {
 					})
 				if(res.data.data && res.data.data.recettes[0]){
 					let recipe = res.data.data && res.data.data.recettes[0];
-					recipe.compositions.sort((a,b) => b.quantity - a.quantity);
+					if(recipe.compositions){
+						recipe.compositions.sort((a,b) => b.quantity - a.quantity);
+					}
 					return { recipe: recipe, servings:recipe.yield};
 				}
 				else{
