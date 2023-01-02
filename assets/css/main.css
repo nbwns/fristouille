@@ -42,6 +42,10 @@
         @apply text-sm;
     }
 
+	.button {
+        @apply uppercase bg-coral-200 transition-colors duration-150 hover:bg-coral-300 text-white-200 rounded-sm py-3 px-7 max-w-fit font-inter font-semibold tracking-widest;
+    }
+
     .card {
         @apply max-w-full  rounded overflow-hidden;
     }

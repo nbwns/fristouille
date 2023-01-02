@@ -7,13 +7,14 @@
           class="flex flex-col md:flex-row w-full md:w-9/12 lg:w-7/12 justify-center items-center h-auto mx-10 md:mx-0 my-10">
 			<div class="block z-0 items-center h-full">
 				<h1 class=" font-labil text-5xl font-medium text-white-200 pb-3 ">
-				La cuisine durable tout en <span class="text-coral-200">simplicité</span>
-				<!-- <prismic-text :field="document.hero_title" /> -->
+					{{$prismic.asText(document.hero_title)}} <span class="text-coral-200">{{$prismic.asText(document.hero_title_emphasis)}}</span>
 				</h1>
-				<h3>
-				Découvrez les principes de bases !
+				 <h3 class="mb-10">
+					{{$prismic.asText(document.intro_phrase)}}
 				</h3>
-				<button class="mt-10">Découvrir</button>
+				<nuxt-link :to="document.cta_page.url" class="button mt-10 uppercase">
+					{{document.cta_text}}
+				</nuxt-link>
 			</div>
 			<!-- only displayed on desktop -->
 			<div class="hidden md:flex flex-shrink-0 z-50">
@@ -72,7 +73,7 @@
     </section>
 
 	<!-- featured recipes -->
-	<horizontal-list :title="horizontal_list.list_title" :items="featuredRecipes" :link="horizontal_list.see_all_query" />
+	<horizontal-list :title="horizontal_list.list_title" :items="featuredRecipes" :link="horizontal_list.see_all_querystring" />
 
 	<!-- featured articles -->
 	<featured-articles :items="featured_content"/> 
@@ -132,10 +133,15 @@ export default {
 	async asyncData({ $prismic, $axios, $config, params, error }) {
 		try{
 			// Query to get homepage content
-			let qraphQuery = {
+			let graphQuery = {
 					graphQuery: `
 						{
 							homepage {
+								hero_title
+								hero_title_emphasis
+								intro_phrase
+								cta_text
+								cta_page
 								featured_content {
 									featured_page {
 										...on simplepage {
@@ -157,6 +163,8 @@ export default {
 						}
 					`
 				};
+			
+			//TODO: succeed to pass graphQuery parameters to get the cover pictures of the related articles
 
 			const page = (await $prismic.api.getSingle('homepage')).data;
 			console.log("HOMEPAGE");
@@ -172,7 +180,8 @@ export default {
 
 			//based on the horizontal list query_filter prop, query the Algolia index to get the featured recipes
 			const featuredRecipes = (await $axios.get($config.searchIndexFunction,{ params: {
-					query: horizontal_list.query_filter
+					query: horizontal_list.query_term,
+					filters: horizontal_list.query_filters
 				}
 			})).data;
 

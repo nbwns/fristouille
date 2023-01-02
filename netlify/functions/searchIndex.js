@@ -14,18 +14,22 @@ exports.handler = async function(event, context) {
 	const index = client.initIndex(ALGOLIA_INDEX_NAME);
 
 	//Search Algolia Index based on the query passed to the function
-	let results = await index.search(event.queryStringParameters.query, {
-		hitsPerPage: 4,
-		attributesToRetrieve: [
-			'name',
-			'slug',
-			'pictureSmall',
-			'pictureMedium',
-			'diet',
-			'objectID'
-			],
-		attributesToHighlight: []
-	});
+	let results = await index.search(
+		event.queryStringParameters.query, 
+		{
+			hitsPerPage: 4,
+			filters: event.queryStringParameters.filters,
+			attributesToRetrieve: [
+				'name',
+				'slug',
+				'pictureSmall',
+				'pictureMedium',
+				'diet',
+				'objectID'
+				],
+			attributesToHighlight: []
+		}
+	);
 
 	//add cache
 
