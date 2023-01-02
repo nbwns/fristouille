@@ -51,7 +51,7 @@
 				<div v-for="c in recipe.compositions" :key="c.name" class="columns-2">
 					<div v-if="c.ingredient[0]">
 						<div class="inline-block" v-if="c.quantity > 0">
-							<span>{{c.quantity}}</span>
+							<span>{{computedQuantity(c.quantity)}}</span>
 							<span>{{c.units}}</span>
 						</div>
 						<div class="inline-block">{{c.ingredient[0].name}}</div>
@@ -76,10 +76,10 @@ export default {
     components: {DietTag},
     computed:{
         procedure(){
-            return (this.recipe.procedure) ? marked(this.recipe.procedure) : ""
+			return (this.recipe.procedure) ? marked(this.recipe.procedure) : ""
         },
         ingredients(){
-            return (this.recipe.ingredients) ? marked(this.recipe.ingredients) : ""
+			return (this.recipe.ingredients) ? marked(this.recipe.ingredients) : ""
         },
 		inSeason(){
 			let currentMonth = DateTime.now().month;
@@ -89,7 +89,7 @@ export default {
 			return false;
 		},
 		servingsRatio(){
-            console.log("servingsRatio");
+			console.log("calling this.recipe");
 			return this.servings / this.recipe.yield;
         }
     },
@@ -110,6 +110,7 @@ export default {
         	console.log("payload",payload.name);
 			let recipe = payload;
 			if(recipe.compositions){
+				console.log(recipe.compositions);
 				recipe.compositions.sort((a,b) => b.quantity - a.quantity);
 			}
             return { recipe: recipe, servings:recipe.yield };
@@ -121,7 +122,7 @@ export default {
 						url: graphqlEndpoint,
 						method: "post",
 						data: {
-						query: queries.getRecipeDetails(params.id),
+							query: queries.getRecipeDetails(params.id),
 						},
 					})
 				if(res.data.data && res.data.data.recettes[0]){

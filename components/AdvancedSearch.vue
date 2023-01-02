@@ -50,7 +50,7 @@
 					<div class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-31">décembre <input type="checkbox" @click="filter('months','12', $event)" :checked="checked('months','12')"></div>
 				</dropdown-menu>
 
-				<button class="hidden md:flex" @click="emit('filtersChanged')">Je valide</button>
+				<!-- <button class="hidden md:flex" @click="emit('filtersChanged')">Je valide</button> -->
 			</div>
 		</div>
 		  

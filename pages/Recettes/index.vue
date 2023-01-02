@@ -2,9 +2,13 @@
   <div class="">
 	<!-- TODO: problem, input change triggers search -->
 	<input type="search" class="bg-reglisse-300 rounded focus:outline-none focus:ring focus:ring-reglisse-200  block w-full pl-10 p-2.5 placeholder:text-white-200 text-white-100"
-		v-model="queryInput"/> 
-	<button @click="query = queryInput">🔍</button>
+		:value="query"
+		ref="searchField"/> 
 	<advanced-search @filtersChanged="setFilterQuery" :urlFilters="searchFiltersFromUrl"/>
+	<button @click="updateQuery">Chercher 🔍</button>
+
+	<div v-if="noSearchParameters">Veuillez indiquer au minimum un terme de recherche ou un filtre avancé</div>
+
 	<ais-instant-search :index-name="indexName" :search-client="searchClient" :search-function="search" >		
 		<ais-configure
 			:hits-per-page.camel="12"
@@ -127,7 +131,6 @@ export default {
 	data(){
         return{
             indexName,
-			queryInput: '',
 			query: '',
 			searchClient: algoliaSearch(this.$config.algoliaAppId,this.$config.algoliaApiKey),
 			// routing: {
@@ -163,7 +166,8 @@ export default {
       		// },
 			filterQuery:'',
 			searchFiltersFromUrl: null,
-			page: 0
+			page: 0,
+			noSearchParameters: false
         }
     },
 	computed:{
@@ -175,7 +179,10 @@ export default {
 	methods: {
 		//triggered on button click
 		search(helper){
-			console.log("search", helper.state.query);
+			console.log("INIT SEARCH")
+			this.setFilterQuery();
+			console.log("search query", helper.state.query);
+			console.log("filter query", this.filterQuery);
 			if (helper.state.query || (!helper.state.query && this.filterQuery != '')) {
 				//trigger search - without reloading the page
 				console.log("trigger search");
@@ -194,9 +201,22 @@ export default {
 					}
 				});
 			}
+			
+		},
+		updateQuery(){
+			this.query = this.$refs.searchField.value;
+			this.setFilterQuery();
+
+			if (!this.query && !this.filterQuery) {
+				this.noSearchParameters = true;
+			}
+			else{
+				this.noSearchParameters = false;
+			}
 		},
 		setFilterQuery(){
 			//take searchFilters from the store, build the Algolia filter query and triggers search
+			//filterQuery is the value of the 'filters' property of Algolia
 			this.filterQuery = this.buildFilterQuery(this.searchFilters);
 		},
 		buildFilterQuery(filters){
