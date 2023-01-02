@@ -136,9 +136,8 @@ export default {
         console.log(values);
         return values[0];
       });
-      
-     
     },
-    fallback: '404.html'
+    fallback: '404.html',
+	crawler: false
   }
 }
