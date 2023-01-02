@@ -16,6 +16,7 @@ const queries = {
 			  months
               procedure
               ingredients
+			  prismicPageId
               tags{
                 name
               }
@@ -48,6 +49,7 @@ const queries = {
 				months
                 procedure
                 ingredients
+				prismicPageId
                 tags{
                   name
                 }

@@ -1,14 +1,16 @@
 <template>
-  <section class="flex py-[10vh] mx-10 md:mx-0 my-10">
-      <small>Section</small>
-      <!-- Template for page title -->
-      <h1 class="text-3xl"><prismic-text :field="document.title" /></h1>
+  <section class="py-[10vh] mx-10 md:mx-0 my-10">
+      <!--  page title -->
+      <h1><prismic-text :field="document.title" /></h1>
+	  <!-- body  -->
 	  <prismic-rich-text :field="document.text" />
-      <!-- Template for published date -->
-      <!-- <p class="blog-post-meta"><span class="created-at">{{ formattedDate }}</span></p> -->
 	  <hr/>
+	 <!-- child pages  -->
 	  <div v-for="c in children" :key="c.id" >
-		  <nuxt-link :to="c.url"><h2><prismic-text :field="c.data.title" /></h2></nuxt-link>
+		<nuxt-link :to="c.url">
+			<h2><prismic-text :field="c.data.title" /></h2>
+			<img class="rounded" :src="c.data.cover.url"/>
+		</nuxt-link>
 	  </div>
     <!-- Slice Block Componenet tag -->
     <!-- <slices-block :slices="slices"/> -->

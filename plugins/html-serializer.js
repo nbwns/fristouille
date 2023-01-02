@@ -13,7 +13,7 @@ export default function(type, element, content, children) {
 
 	if (type === "paragraph") {
 		// return some customized HTML.
-		return `<p class="">${children.join("")}</p>`;
+		return `<p class="py-1">${children.join("")}</p>`;
 	  }
 
 	  if (type === "hyperlink") {

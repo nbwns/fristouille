@@ -60,6 +60,14 @@
 				<!-- procedure -->
 				<!-- TODO: ol must have numbers -->
 				<div v-html="procedure"></div>
+				<!-- related article -->
+				<h3>Article lié</h3>
+				<div v-if="article">
+					<nuxt-link :to="article.url">
+						<h4><prismic-text :field="article.data.title" /></h4>
+						<img class="rounded" :src="article.data.cover.url"/>
+					</nuxt-link>
+				</div>
 			</div>
 			</section>
     </div>
@@ -104,16 +112,24 @@ export default {
 			return Math.round((qty * this.servingsRatio)*1000)/1000;
 		}
     },
-    async asyncData({ params, error, payload, $axios, $config: { graphqlEndpoint } }){
+    async asyncData({ params, error, payload, $axios, $config: { graphqlEndpoint }, $prismic }){
         console.log("params",params)
         if (payload){
         	console.log("payload",payload.name);
 			let recipe = payload;
+			let article = null;
+
 			if(recipe.compositions){
-				console.log(recipe.compositions);
 				recipe.compositions.sort((a,b) => b.quantity - a.quantity);
 			}
-            return { recipe: recipe, servings:recipe.yield };
+
+			//if there's an associated page in Prismic, retrieve it
+			if(recipe.prismicPageId){
+				//TODO: limit amount of data retrieved (graphQuery and fetch don't work)
+				article = (await $prismic.api.getByID(recipe.prismicPageId));
+			}
+
+			return { recipe: recipe, servings:recipe.yield, article: article};
         }
         else {
             if(params.id){
@@ -127,10 +143,19 @@ export default {
 					})
 				if(res.data.data && res.data.data.recettes[0]){
 					let recipe = res.data.data && res.data.data.recettes[0];
+					let article = null;
+
 					if(recipe.compositions){
 						recipe.compositions.sort((a,b) => b.quantity - a.quantity);
 					}
-					return { recipe: recipe, servings:recipe.yield};
+
+					//if there's an associated page in Prismic, retrieve it
+					if(recipe.prismicPageId){
+						//TODO: limit amount of data retrieved (graphQuery and fetch don't work)
+						article = (await $prismic.api.getByID(recipe.prismicPageId));
+					}
+
+					return { recipe: recipe, servings:recipe.yield, article: article};
 				}
 				else{
 					error({ statusCode: 404, message: 'Page not found' })

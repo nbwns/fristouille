@@ -1,15 +1,28 @@
 <template>
   <div>
     <div class="outer-container">
-      <small>Child page</small>
-      <!-- Template for page title -->
-      <h1 class="text-3xl"><prismic-text :field="document.title" /></h1>
-	  <prismic-rich-text :field="document.text" />
-      <!-- Template for published date -->
-      <!-- <p class="blog-post-meta"><span class="created-at">{{ formattedDate }}</span></p> -->
+		<!-- breadcrumb -->
+		<nav class="rounded-md w-full" v-if="parent">
+			<ol class="list-reset flex">
+				<li>
+					<nuxt-link :to="parent.url" class="text-base font-inter text-coral-200 hover:cursor-pointer hover:underline focus:text-coral-300">
+						<prismic-text :field="parent.data.title" />
+					</nuxt-link>
+				</li>
+				<li><span class="text-gray-500 mx-2">/</span></li>
+				<li class="text-gray-500">
+					<prismic-text :field="document.title" />
+				</li>
+			</ol>
+		</nav>
+		<!-- page title -->
+		<h1><prismic-text :field="document.title" /></h1>
+		<!-- body -->
+		<prismic-rich-text :field="document.text" />
     </div>
     <!-- Slice Block Componenet tag -->
     <!-- <slices-block :slices="slices"/> -->
+	
   </div>
 </template>
 
@@ -38,15 +51,29 @@ export default {
   },
   async asyncData({ $prismic, params, error }) {
     try{
-      // Query to get post content
-      const page = (await $prismic.api.getByUID('childpage', params.uid)).data
+		let parent = null;
+		
+		// Query to get post content
+		const page = (await $prismic.api.getByUID('childpage', params.uid)).data
 
-      // Returns data to be used in template
-      return {
-        document: page,
-        // slices: post.body,
-        // formattedDate: Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(post.date)),
-      }
+		if(page.parent_page.id){
+
+			//Get parent page in order to create a breadcrumb
+			const parents = (await $prismic.api.query( 
+					$prismic.predicates.at('document.id', page.parent_page.id) 
+				)).results;
+
+			if(parents.length > 0){
+				parent = parents[0];
+			}
+		}
+
+		// Returns data to be used in template
+		return {
+			document: page,
+			parent: parent
+			// slices: post.body,
+		}
     } catch (e) {
       // Returns error page
       error({ statusCode: 404, message: 'Page not found' })
