@@ -1,9 +1,10 @@
 <template>
   <div class="">
-	<!-- TODO: problem, input change triggers search -->
+	<!-- TODO: add loading indicator -->
 	<input type="search" class="bg-reglisse-300 rounded focus:outline-none focus:ring focus:ring-reglisse-200  block w-full pl-10 p-2.5 placeholder:text-white-200 text-white-100"
 		:value="query"
-		ref="searchField"/> 
+		ref="searchField"
+		@keyup.enter="updateQuery"/> 
 	<advanced-search @filtersChanged="setFilterQuery" :urlFilters="searchFiltersFromUrl"/>
 	<button @click="updateQuery">Chercher 🔍</button>
 
@@ -17,7 +18,6 @@
 			:query="query"
 			:page="page"
 		/>
-		
 		<ais-hits>
 			<template v-slot="{ items }">
 				<!-- section cards 4 columns -->

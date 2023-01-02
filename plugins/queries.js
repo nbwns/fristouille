@@ -26,6 +26,8 @@ const queries = {
                 }
                 quantity
                 units
+				remark
+				optional
               }
             }
           }`
@@ -57,6 +59,8 @@ const queries = {
 					}
 					quantity
 					units
+					remark
+                  	optional
 				}
             }
         }`

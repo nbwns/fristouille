@@ -54,7 +54,7 @@
 							<span>{{computedQuantity(c.quantity)}}</span>
 							<span>{{c.units}}</span>
 						</div>
-						<div class="inline-block">{{c.ingredient[0].name}}</div>
+						<div class="inline-block">{{c.ingredient[0].name}} <i>{{c.remark}}</i> <span v-if="c.optional">(facultatif)</span></div>
 					</div>
 				</div>
 				<!-- procedure -->
