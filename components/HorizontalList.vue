@@ -7,7 +7,7 @@
           <h3 class=" text-lg font-inter font-semibold text-white-200">
             {{title}}
           </h3>
-          <nuxt-link :to="`/Recettes?query=${link}`"
+          <nuxt-link :to="`/Recettes?q=${link}`"
 		  			class="text-base font-inter text-coral-200 hover:cursor-pointer hover:underline focus:text-coral-300">Tout voir</nuxt-link>
         </div>
 		<vue-horizontal>			
