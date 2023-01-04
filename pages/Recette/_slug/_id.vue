@@ -61,8 +61,9 @@
 				<!-- TODO: ol must have numbers -->
 				<div v-html="procedure"></div>
 				<!-- related article -->
-				<h3>Article lié</h3>
 				<div v-if="article">
+					<hr/>
+					<h3>En savoir plus</h3>
 					<nuxt-link :to="article.url">
 						<h4><prismic-text :field="article.data.title" /></h4>
 						<img class="rounded" :src="article.data.cover.url"/>

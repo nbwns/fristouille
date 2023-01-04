@@ -19,20 +19,24 @@
 		<h1><prismic-text :field="document.title" /></h1>
 		<!-- body -->
 		<prismic-rich-text :field="document.text" />
+		<!-- featured recipes -->
+		<horizontal-list v-if="featuredRecipes.length > 0" :title="horizontal_list.list_title" :items="featuredRecipes" :link="horizontal_list.see_all_querystring" />
     </div>
     <!-- Slice Block Componenet tag -->
     <!-- <slices-block :slices="slices"/> -->
-	
   </div>
 </template>
 
 <script>
 //Importing all the slices components
 // import SlicesBlock from '~/components/SlicesBlock.vue'
+import HorizontalList from '~/components/HorizontalList'
+
 export default {
   name: 'post',
   components: {
     // SlicesBlock
+	HorizontalList
   },
   head () {
     return {
@@ -49,7 +53,7 @@ export default {
       ]
     }
   },
-  async asyncData({ $prismic, params, error }) {
+  async asyncData({ $prismic, $axios, $config, params, error }) {
     try{
 		let parent = null;
 		
@@ -68,10 +72,22 @@ export default {
 			}
 		}
 
+		//get the horizontal list component
+		let horizontal_list = page.body[0].primary; //TODO: improve retrieving of the slice
+
+		//based on the horizontal list query_filter prop, query the Algolia index to get the featured recipes
+		const featuredRecipes = (await $axios.get($config.searchIndexFunction,{ params: {
+					query: horizontal_list.query_term,
+					filters: horizontal_list.query_filters
+				}
+			})).data;
+
 		// Returns data to be used in template
 		return {
 			document: page,
-			parent: parent
+			parent: parent,
+			horizontal_list: horizontal_list,
+			featuredRecipes: featuredRecipes
 			// slices: post.body,
 		}
     } catch (e) {
