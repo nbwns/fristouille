@@ -18,15 +18,22 @@
 			:query="query"
 			:page="page"
 		/>
+
 		<ais-hits>
 			<template v-slot="{ items }">
+				<!-- TODO: set title value based on search query -->
+				<h1>Recettes de []</h1>
 				<!-- section cards 4 columns -->
 				<section class="grid place-items-center py-[10vh] space-y-10 mx-10 md:mx-0">
 					<div class="flex flex-col w-full md:w-9/12 lg:w-7/12 space-y-3">
 						<!-- grid for cards 4-columns -->
-						<div
-						class="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-x-4 gap-y-7  md:gap-x-7 md:gap-y-10 w-full place-items-center">
+						<div v-if="items.length > 0"
+							class="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-x-4 gap-y-7  md:gap-x-7 md:gap-y-10 w-full place-items-center">
 							<recipe-card v-for="item in items" :key="item.objectID" :searchResult="item" />
+						</div>
+						<div v-else>
+							<!-- no results -->
+							Pas de résultat pour cette recherche :(
 						</div>
       				</div>
     			</section>
