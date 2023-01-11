@@ -36,7 +36,8 @@ export default {
     graphqlEndpoint: process.env.GRAPHQL_ENDPOINT,
 	algoliaApiKey: process.env.ALGOLIA_API_KEY,
 	algoliaAppId: process.env.ALGOLIA_APP_ID,
-	searchIndexFunction: process.env.SEARCH_INDEX_FUNCTION
+	searchIndexFunction: process.env.SEARCH_INDEX_FUNCTION,
+	queryFunction: process.env.QUERY_FUNCTION
   },
   privateRuntimeConfig: {
 
@@ -117,13 +118,13 @@ export default {
     routes(){
       console.log("generate")
       let recettes = axios({
-        url: process.env.GRAPHQL_ENDPOINT,
+        url: process.env.QUERY_FUNCTION,
         method: "post",
-        data: {
-          query: queries.generateRecipes(),
-        }
+        // data: {
+        //   query: queries.generateRecipes(),
+        // }
       }).then((result) => {
-        return result.data.data.recettes.map(recette => {
+        return result.data.map(recette => {
           console.log(recette)
           return {
             route: `Recette/${recette.slug}/${recette.recipeId}`,
@@ -133,7 +134,7 @@ export default {
       });
 
       return Promise.all([recettes]).then((values) => {
-        console.log(values);
+        //console.log(values);
         return values[0];
       });
     },

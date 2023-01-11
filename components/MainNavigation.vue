@@ -5,7 +5,7 @@
     </div>
     <div class="hidden md:flex flex-grow md:w-auto pt-2 ">
       <div class="flex flex-grow text-lg text-white-200 font-inter capitalize font-medium ">
-        <nuxt-link to="/" class="block md:inline-block md:mt-0  mr-7 hover:text-coral-200 focus:text-coral-300">Accueil</nuxt-link>
+        <nuxt-link to="/" :class="{'text-coral-100' : $route.name == '/'}" class="block md:inline-block md:mt-0  mr-7 hover:text-coral-200 focus:text-coral-300">Accueil</nuxt-link>
 	  	<nuxt-link to="/Recettes" class="block md:inline-block md:mt-0  mr-7 hover:text-coral-200 focus:text-coral-300">Rechercher</nuxt-link>
 	  	<nuxt-link to="/cuisine-durable" class="block md:inline-block md:mt-0 mr-7 hover:text-coral-200 focus:text-coral-300">Cuisine durable</nuxt-link>
       </div>
@@ -21,7 +21,9 @@
 
 <script>
 export default {
-
+	mounted(){
+		console.log(this.$route.path)
+	}
 }
 </script>
 

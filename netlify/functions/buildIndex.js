@@ -9,51 +9,23 @@ exports.handler = async function(event, context) {
 	const ALGOLIA_API_KEY = process.env.ALGOLIA_API_KEY;
 	const ALGOLIA_INDEX_NAME = process.env.ALGOLIA_INDEX_NAME;
 	const GRAPHQL_ENDPOINT = process.env.GRAPHQL_ENDPOINT;
+	const QUERY_FUNCTION = process.env.QUERY_FUNCTION;
+	console.log("query function", QUERY_FUNCTION);
 
 	// Start the API client
 	const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_API_KEY);
 	// connect to index
 	const index = client.initIndex(ALGOLIA_INDEX_NAME);
 
-	console.log("Fetching recipes from Airtable...");
+	console.log("Fetching recipes from query function...");
 	//get recipes 
 	let recettes = axios({
-        url: GRAPHQL_ENDPOINT,
-        method: "post",
-        data: {
-          query: `{
-            recettes(publishingStatus: "Published"){
-              name
-              recipeId
-              slug
-			  createdOn
-              description
-              pictureSmall
-			  pictureMedium
-              diet
-			  price
-              preparationTime
-              cookTime
-              yield
-			  free
-    		  category
-    		  cuisine
-			  months
-              tags{
-                name
-              }
-			  compositions{
-                ingredient{
-                  name
-                }
-              }
-            }
-          }`,
-        }
+        url: QUERY_FUNCTION,
+        method: "get"
 	}).then((result) => {
-        console.log("Numbers of results", result.data.data.recettes.length)
+		console.log("Numbers of results", result.data.length)
 		
-		return result.data.data.recettes.map(recette => {
+		return result.data.map(recette => {
 
 			let algoliaObject = {
 				objectID: recette.recipeId,
@@ -78,16 +50,26 @@ exports.handler = async function(event, context) {
 			algoliaObject.ingredients = recette.compositions.map(c => c.ingredient[0].name);
 
 			return algoliaObject;
-        });        
+		});      
 	});
 
 	console.log("Replacing all objects from Algolia Index...");
+
+	let message = "";
+
+	console.log(recettes);
 	//replace all objects from the index
-	recettes.then(data => {
-		index.replaceAllObjects(data).then(({ objectIDs }) => {
-			console.log(objectIDs);
+	if(recettes){
+		recettes.then(data => {
+			index.replaceAllObjects(data).then(({ objectIDs }) => {
+				console.log(objectIDs);
+			});
 		});
-	});
+		message = "Index updated";
+	}
+	else{
+		message = "Error, recettes is undefined"
+	}
 	
 	/*index
 	.saveObjects([newObject])/*
