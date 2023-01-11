@@ -1,7 +1,7 @@
 <template>
   <div class="grid min-h-screen  bg-reglisse-100">
     <header>
-		<MainNavigation />
+		<MainNavigation/>
     </header>
     <div class="flex flex-col justify-start min-h-screen">
         <Nuxt />

@@ -1,14 +1,39 @@
 <template>
   <div class="">
 	<!-- TODO: add loading indicator -->
+	<!-- TODO: open mobile popup based on query string param -->
+	
+	<!-- link to advanced search (mobile only) -->
+	<span class="md:hidden font-labil text-base font-medium text-coral-300 cursor-pointer" @click="mobileAdvancedSearch=true">+ de filtres</span>
+	
+	<!-- search input -->
 	<input type="search" class="bg-reglisse-300 rounded focus:outline-none focus:ring focus:ring-reglisse-200  block w-full pl-10 p-2.5 placeholder:text-white-200 text-white-100"
 		:value="query"
+		placeholder="Que souhaitez-vous cuisiner ?"
 		ref="searchField"
 		@keyup.enter="updateQuery"/> 
-	<advanced-search @filtersChanged="setFilterQuery" :urlFilters="searchFiltersFromUrl"/>
-	<button @click="updateQuery">Chercher 🔍</button>
+	<!-- advanced search for desktop and mobile, displays selected filters as tags (extract this part ?) -->
+	<client-only>
+		<advanced-search 
+			@filtersChanged="setFilterQuery" 
+			@closePopup="mobileAdvancedSearch=false"
+			@triggerSearch="updateQuery"
+			:urlFilters="searchFiltersFromUrl" 
+			:popupMobile="mobileAdvancedSearch" 
+		/>
+	</client-only>
+	<!-- search button -->
+	<button @click="updateQuery">
+		<!-- search icon -->
+		<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+			<path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+		</svg>
+	</button>
 
+	<!-- warning -->
 	<div v-if="noSearchParameters">Veuillez indiquer au minimum un terme de recherche ou un filtre avancé</div>
+
+	<client-only>
 
 	<ais-instant-search :index-name="indexName" :search-client="searchClient" :search-function="search" >		
 		<ais-configure
@@ -18,17 +43,29 @@
 			:query="query"
 			:page="page"
 		/>
-
+		<!-- title -->
+		<h1 v-if="query">Recettes de {{ query }}</h1>
+		<h1 v-else>Découvrez nos recettes</h1>
+		
+		<ais-pagination >
+			<template
+				v-slot="{
+				nbHits
+				}"
+			>
+			<!-- number of results (hidden on mobile) -->
+			<div class="hidden md:flex">{{ nbHits }} recettes</div>
+		</template>
+		</ais-pagination>
 		<ais-hits>
 			<template v-slot="{ items }">
-				<!-- TODO: set title value based on search query -->
-				<h1>Recettes de []</h1>
 				<!-- section cards 4 columns -->
 				<section class="grid place-items-center py-[10vh] space-y-10 mx-10 md:mx-0">
 					<div class="flex flex-col w-full md:w-9/12 lg:w-7/12 space-y-3">
 						<!-- grid for cards 4-columns -->
 						<div v-if="items.length > 0"
 							class="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-x-4 gap-y-7  md:gap-x-7 md:gap-y-10 w-full place-items-center">
+							<!-- recipe card -->
 							<recipe-card v-for="item in items" :key="item.objectID" :searchResult="item" />
 						</div>
 						<div v-else>
@@ -118,6 +155,7 @@
 			</template>
 		</ais-pagination>
     </ais-instant-search>
+	</client-only>
 	
   </div>
 </template>
@@ -174,7 +212,8 @@ export default {
 			filterQuery:'',
 			searchFiltersFromUrl: null,
 			page: 0,
-			noSearchParameters: false
+			noSearchParameters: false,
+			mobileAdvancedSearch: false
         }
     },
 	computed:{
@@ -258,7 +297,7 @@ export default {
 		//hydrate objects from the query string		
 		
 		//the query used by Algolia, triggers search if non-empty
-		this.query = this.$route.query.q;
+		this.query = this.$route.query.q || "";
 		this.page = this.$route.query.page || 0;
 		this.queryInput = this.query;
 
