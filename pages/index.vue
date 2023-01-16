@@ -61,7 +61,7 @@
 				<div class="flex flex-row gap-4 items-center">
 				<nuxt-link v-for="(t,index) in quick_search_tags" 
 					:key="index" 
-					:to="`/Recettes?q=${t.tag_query}`"
+					:to="`/Recettes${t.tag_query}`"
 					:class="t.tag_class"
 					>{{t.tag_title}}</nuxt-link>
 				</div>
@@ -167,10 +167,10 @@ export default {
 			//TODO: succeed to pass graphQuery parameters to get the cover pictures of the related articles
 
 			const page = (await $prismic.api.getSingle('homepage')).data;
-			console.log("HOMEPAGE");
-			console.log(page);
-			console.log("featured", page.body[1].items);
-			console.log("search tags", page.body[2].items);
+			// console.log("HOMEPAGE");
+			// console.log(page);
+			// console.log("featured", page.body[1].items);
+			// console.log("search tags", page.body[2].items);
 
 			//TODO: index in page.body is not robust enough
 

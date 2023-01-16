@@ -27,7 +27,7 @@ export default {
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/queries', '@/plugins/vue-instantsearch.js'],
+  plugins: ['~/plugins/queries', '@/plugins/vue-instantsearch.js', { src: '~/plugins/pwa-update.js', mode: 'client' }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -116,10 +116,11 @@ export default {
 
   generate: {
     routes(){
-      console.log("generate")
+      console.log("generate");
+      console.log("query function", process.env.QUERY_FUNCTION);
       let recettes = axios({
         url: process.env.QUERY_FUNCTION,
-        method: "post",
+        method: "get",
         // data: {
         //   query: queries.generateRecipes(),
         // }
@@ -134,7 +135,7 @@ export default {
       });
 
       return Promise.all([recettes]).then((values) => {
-        //console.log(values);
+        console.log(values[0]);
         return values[0];
       });
     },

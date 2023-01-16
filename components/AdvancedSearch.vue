@@ -62,7 +62,7 @@
 			<div class="flex flex-row gap-4 items-start">
 				<!-- selected filters -->
 				<!-- loop on all filter categories -->
-				<div v-for="(type, name) in filters" :key="name">
+				<div v-for="(type, name) in searchFilters" :key="name">
 					<div class="relative block" v-for="f in type" :key="f">
 						<div class="tag-gum block pr-8 w-full" @click="removeTag(name,f)">
 							{{ f.replaceAll("'","") }}
@@ -152,17 +152,6 @@ export default {
 	},
 	//urlFilters: filters from the querystring, popupMobile: if mobile advanced search should popup
 	props: ["urlFilters", "popupMobile"],
-	data(){
-		return{
-			filters:{
-				diet: [],
-				category:[],
-				free: [],
-				cuisine: [],
-				months:[]
-			}
-		}
-	},
 	computed:{
 		searchFilters(){
 			return this.$store.state.searchFilters;
@@ -170,9 +159,9 @@ export default {
 	},
 	methods:{
 		checked(type,value){
-			//to change the checked property with values from the url
-			if(this.urlFilters){
-				const index = this.urlFilters[type].indexOf(value);
+			//to change the checked property with values from the store
+			if(this.searchFilters && this.searchFilters[type]){
+				const index = this.searchFilters[type].indexOf(value);
 				if (index > -1) {
 					return true;
 				}
@@ -181,40 +170,25 @@ export default {
 		},
 		filter(type, value, event){
 			if(event.target.checked){
-				this.addToFilters(type, value);
+				this.$store.commit('addToFilters', {type, value});
 			}
 			else{
-				this.removeFromFilters(type, value);
+				this.$store.commit('removeFromFilters', {type, value});
 			}
-
-			this.setFilters();
-		},
-		addToFilters(type, value){
-			this.filters[type].push(value);
-		},
-		removeFromFilters(type, value){
-			const index = this.filters[type].indexOf(value);
-			if (index > -1) {
-				this.filters[type].splice(index, 1); 
-			}
-		},
-		setFilters(){
-			//save filters in the store everytime a checkbox is checked
-			this.$store.commit('saveSearchFilters', JSON.parse(JSON.stringify(this.filters)));
 		},
 		toggleDropdown(type){
 			this.dropdowns[type] = !this.dropdowns[type];
 		},
 		removeTag(type, value){
 			console.log(type,value);
-			this.removeFromFilters(type,value);
+			this.$store.commit('removeFromFilters', {type, value});
 			this.$refs[value].checked = false;
 		}
 	},
 	watch: {
-		//to set the internal variable with the value of the filters in the url
+		//to set the store with the value of the filters in the url
 		urlFilters(newValue, oldValue) {
-			this.filters = newValue;
+			this.$store.commit('saveSearchFilters',newValue);
 		}
 	}
 }

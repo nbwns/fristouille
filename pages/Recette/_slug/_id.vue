@@ -38,7 +38,7 @@
         		<p>Temps de cuisson: <meta itemprop="cookTime" :content="`PT${(recipe.cookTime/60)}M`"/><time>{{(recipe.cookTime/60)}}</time></p>
 				<!-- ingredients -->
 				<h2>Ingrédients</h2>
-		        <div class="inline-block">
+				<div class="inline-block">
 					<input 
 						class="max-w-[40px] bg-reglisse-300 rounded focus:outline-none focus:ring focus:ring-reglisse-200 block p-2.5 placeholder:text-white-200 text-white-100"
 						type="number" 
@@ -46,15 +46,19 @@
 						step="1" min="1" max="99">
 					<button @click="(servings > 0) ? servings-- : servings" :disabled="servings == 1">-</button>
 					<button @click="servings++">+</button>
+					<button @click="addServings">+</button>
 				</div>
 				<p><span itemprop="recipeYield">{{recipe.yield}}</span> couverts</p>
 				<div v-for="c in recipe.compositions" :key="c.name" class="columns-2">
 					<div v-if="c.ingredient[0]">
 						<div class="inline-block" v-if="c.quantity > 0">
 							<span>{{computedQuantity(c.quantity)}}</span>
-							<span>{{c.units}}</span>
+							<span v-if="c.units != 'pièce'">{{c.units}}</span>
 						</div>
-						<div class="inline-block">{{c.ingredient[0].name}} <i>{{c.remark}}</i> <span v-if="c.optional">(facultatif)</span></div>
+						<div class="inline-block">
+							{{c.ingredient[0].name}} 
+							<i>{{c.remark}}</i> <span v-if="c.quantity == 0">selon votre goût</span> <span v-if="c.optional">(facultatif)</span>
+						</div>
 					</div>
 				</div>
 				<!-- procedure -->
@@ -98,7 +102,6 @@ export default {
 			return false;
 		},
 		servingsRatio(){
-			console.log("calling this.recipe");
 			return this.servings / this.recipe.yield;
         }
     },
@@ -111,6 +114,10 @@ export default {
 		},
 		computedQuantity(qty){
 			return Math.round((qty * this.servingsRatio)*1000)/1000;
+		},
+		addServings(){
+			console.log(this.servings);
+			this.servings++;
 		}
     },
     async asyncData({ params, error, payload, $axios, $config: { graphqlEndpoint }, $prismic }){
@@ -166,38 +173,39 @@ export default {
 			error({ statusCode: 404, message: 'Page not found' })
         }
     },
-    head() {
-        return {
-            title: this.recipe.name,
-            meta: [
-                {
-                    hid: `description`,
-                    name: 'description',
-                    content: this.recipe.description
-                },
-                {
-                    hid: `og:title`,
-                    property: 'og:title',
-                    content: this.recipe.name
-                },
-                {
-                    hid: `og:url`,
-                    property: 'og:url',
-                    content: `https://www.fristouille.org/Recette/${this.recipe.slug}/${this.recipe.recipeId}` 
-                },
-                {
-                    hid: `og:image`,
-                    property: 'og:image',
-                    content: this.recipe.pictureMedium
-                },
-                {
-                    hid: `og:description`,
-                    property: 'og:description',
-                    content: this.recipe.description
-                }
-            ]
-        }
-    }
+	head () {
+		return {
+			title: this.recipe.name,
+			//adapt meta 
+			meta: [
+				{
+					hid: 'description',
+					name: 'description',
+					content: this.recipe.description
+				},
+				{
+					hid: 'og:title',
+					name: 'og:title',
+					content: this.recipe.name
+				},
+				{
+					hid: 'og:description',
+					name: 'og:description',
+					content: this.recipe.description
+				},
+				{
+					hid: 'og:image',
+					name: 'og:image',
+					content: this.recipe.pictureMedium
+				},
+				{
+					hid: 'og:url',
+					name: 'og:url',
+					content: `https://www.fristouille.org/Recette/${this.recipe.slug}/${this.recipe.recipeId}` 
+				}
+			]
+    	}
+  	}
 }
 
 </script>
