@@ -33,7 +33,7 @@
 import DietTag from './DietTag.vue';
 
 export default {
-	props: ['searchResult'],
+	props: ['searchResult', 'slug', 'recipeId', 'img', 'diet', 'title'],
 	components: {DietTag}
 }
 </script>

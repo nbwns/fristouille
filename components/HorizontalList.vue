@@ -11,7 +11,7 @@
 		  			class="text-base font-inter text-coral-200 hover:cursor-pointer hover:underline focus:text-coral-300">Tout voir</nuxt-link>
         </div>
 		<vue-horizontal>			
-			<recipe-card v-for="item in items" :key="item.objectID" :searchResult="item" />
+			<card-recipe v-for="item in items" :key="item.objectID" :searchResult="item" />
 		</vue-horizontal>
       </div>
     </section>
@@ -19,11 +19,11 @@
 
 <script>
 import VueHorizontal from 'vue-horizontal';
-import RecipeCard from './RecipeCard.vue';
+import CardRecipe from './CardRecipe.vue';
 
 export default {
 	props: ['title', 'link', 'items'],
-	components: {VueHorizontal, RecipeCard},
+	components: {VueHorizontal, CardRecipe},
 	methods: {
 		
 	}

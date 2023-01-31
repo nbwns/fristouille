@@ -78,7 +78,7 @@
 							  <div v-if="items.length > 0"
 								  class="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-x-4 gap-y-7  md:gap-x-7 md:gap-y-10 w-full place-items-center">
 								  <!-- recipe card -->
-								  <recipe-card v-for="item in items" :key="item.objectID" :searchResult="item" />
+								  <card-recipe v-for="item in items" :key="item.objectID" :searchResult="item" />
 							  </div>
 							  <div v-else>
 								  <!-- no results -->
@@ -178,13 +178,13 @@ import {
 	AisPagination,
 } from 'vue-instantsearch'; 
 import algoliaSearch from 'algoliasearch/lite'
-import RecipeCard from '~/components/RecipeCard.vue'
+import CardRecipe from '~/components/CardRecipe.vue';
 import AdvancedSearch from '~/components/AdvancedSearch.vue'
 import { history as historyRouter } from 'instantsearch.js/es/lib/routers';
 const indexName = 'Recipes';
 export default {
 	components: {
-		RecipeCard,
+		CardRecipe,
 		AdvancedSearch,
 		AisInstantSearch,
 		AisHits,

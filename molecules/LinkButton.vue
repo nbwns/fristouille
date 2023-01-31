@@ -1,5 +1,5 @@
 <template>
-  	<nuxt-link :to="url" class="button mt-10 uppercase">
+  	<nuxt-link :to="path" class="button mt-10 uppercase">
 		<slot></slot>
 	</nuxt-link>
 </template>
@@ -7,7 +7,7 @@
 <script>
 export default {
 	props: {
-		url: String,
+		path: String,
 		text: String
 	}
 }

@@ -2,7 +2,7 @@
   	<nav class="rounded-md w-full">
 		<ol class="list-reset flex">
 			<li>
-				<nuxt-link :to="parentUrl" class="text-base font-inter text-coral-200 hover:cursor-pointer hover:underline focus:text-coral-300">
+				<nuxt-link :to="parentPath" class="text-base font-inter text-coral-200 hover:cursor-pointer hover:underline focus:text-coral-300">
 					{{parentText}}
 				</nuxt-link>
 			</li>
@@ -18,7 +18,7 @@
 export default {
 	props:{
 		parentText: String,
-		parentUrl: String,
+		parentPath: String,
 		childText: String
 	}
 }

@@ -1,13 +1,11 @@
 <template>
   <nav class="flex items-center justify-between flew-wrap p-4 bg-reglisse-100">
-    <div class="flex flex-shrink-0 text-coral-200 mr-10 text-4xl font-labil font-bold">
-      Fristouille
-    </div>
+    <logo/>
     <div class="hidden md:flex flex-grow md:w-auto pt-2 ">
       <div class="flex flex-grow text-lg text-white-200 font-inter capitalize font-medium ">
-        <nuxt-link to="/" :class="{'text-coral-100' : $route.name == '/'}" class="block md:inline-block md:mt-0  mr-7 hover:text-coral-200 focus:text-coral-300">Accueil</nuxt-link>
-	  	<nuxt-link to="/Recettes" class="block md:inline-block md:mt-0  mr-7 hover:text-coral-200 focus:text-coral-300">Rechercher</nuxt-link>
-	  	<nuxt-link to="/cuisine-durable" class="block md:inline-block md:mt-0 mr-7 hover:text-coral-200 focus:text-coral-300">Cuisine durable</nuxt-link>
+        <nav-link path="/">Accueil</nav-link>
+	  	<nav-link path="/Recettes">Rechercher</nav-link>
+	  	<nav-link path="/cuisine-durable">Cuisine durable</nav-link>
       </div>
       <div>
         <a href="#"
@@ -20,7 +18,14 @@
 </template>
 
 <script>
+import Logo from '~/molecules/Logo.vue';
+import NavLink from '~/molecules/NavLink.vue';
+
 export default {
+	components:{
+		Logo,
+		NavLink
+	},
 	mounted(){
 		console.log(this.$route.path)
 	}
