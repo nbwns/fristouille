@@ -78,7 +78,12 @@
 							  <div v-if="items.length > 0"
 								  class="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-x-4 gap-y-7  md:gap-x-7 md:gap-y-10 w-full place-items-center">
 								  <!-- recipe card -->
-								  <card-recipe v-for="item in items" :key="item.objectID" :searchResult="item" />
+								  <card-recipe v-for="item in items" :key="item.objectID" 
+								  	 :diet="item.diet"
+									 :img="item.pictureMedium"
+									 :recipeID="item.objectID"
+									 :slug="item.slug"
+									 :title="item.name"/>
 							  </div>
 							  <div v-else>
 								  <!-- no results -->

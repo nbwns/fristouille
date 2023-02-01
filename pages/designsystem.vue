@@ -45,6 +45,17 @@
 			title="Cuisine durable"
 		></card-article>
 
+		<card-recipe 
+			diet="Végétarien"
+			img="https://fristouille.blob.core.windows.net/pictures/asperges-vertes-au-citron-salade-de-pommes-de-terre-et-burger-vege_428x336.jpg"
+			recipeID="7229"
+			slug="asperges-vertes-au-citron-salade-de-pommes-de-terre-et-burger-vege"
+			title="Asperges vertes au citron, salade de pommes de terre et burger végé"/>
+
+		<grid-of-cards-recipes></grid-of-cards-recipes>
+		
+		<custom-container>coucou</custom-container>
+
 		<!-- <footer-links/>
 		<mobile-navigation/> -->
 	</div>
@@ -64,9 +75,13 @@ import SearchBar from '~/components/SearchBar.vue';
 import Dropdown from '~/components/Dropdown.vue';
 import Accordion from '~/components/Accordion.vue';
 import CardArticle from '~/components/CardArticle.vue';
+import CardRecipe from '~/components/CardRecipe.vue';
 import MainNavigation from '~/components/MainNavigation.vue'
 import MobileNavigation from '~/components/MobileNavigation.vue'
 import FooterLinks from '~/components/FooterLinks.vue'
+import GridOfCardsRecipes from '~/components/GridOfCardsRecipes.vue';
+import CustomContainer from '~/components/CustomContainer.vue';
+
 
 export default {
 	components:{
@@ -85,7 +100,10 @@ export default {
 		CardArticle,
 		MainNavigation,
 	  	MobileNavigation,
-	  	FooterLinks
+	  	FooterLinks,
+		CardRecipe,
+		GridOfCardsRecipes,
+		CustomContainer
 	}
 }
 </script>

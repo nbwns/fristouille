@@ -1,7 +1,7 @@
 <template>
-	<!-- what's a filter ? -->
   <div>
-	
+	Custom container
+	<slot></slot>
   </div>
 </template>
 

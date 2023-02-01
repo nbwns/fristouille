@@ -11,7 +11,12 @@
 		  			class="text-base font-inter text-coral-200 hover:cursor-pointer hover:underline focus:text-coral-300">Tout voir</nuxt-link>
         </div>
 		<vue-horizontal>			
-			<card-recipe v-for="item in items" :key="item.objectID" :searchResult="item" />
+			<card-recipe v-for="item in items" :key="item.objectID" 
+				:diet="item.diet"
+				:img="item.pictureMedium"
+				:recipeID="item.objectID"
+				:slug="item.slug"
+				:title="item.name" />
 		</vue-horizontal>
       </div>
     </section>
