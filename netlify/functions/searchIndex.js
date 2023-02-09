@@ -32,7 +32,7 @@ exports.handler = async function(event, context) {
 	);
 
 	//add cache
-
+//TODO: remove CORS
 	return {
 		statusCode: 200,
 		headers: {

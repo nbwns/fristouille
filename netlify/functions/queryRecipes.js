@@ -57,7 +57,7 @@ exports.handler = async function(event, context) {
 	}
 
 	console.log(recipes.length);
-		
+		//TODO: remove CORS
 	return {
         statusCode: 200,
 		headers:  {

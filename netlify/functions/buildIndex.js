@@ -80,6 +80,7 @@ exports.handler = async function(event, context) {
 	// https://www.algolia.com/doc/api-reference/api-methods/search/
 	//index.search("wok").then((objects) => console.log(objects));
 		
+	//TODO: remove CORS
 	return {
         statusCode: 200,
 		headers:  {

@@ -179,11 +179,13 @@ export default {
 			console.log("horizontal_list",horizontal_list);
 
 			//based on the horizontal list query_filter prop, query the Algolia index to get the featured recipes
-			const featuredRecipes = (await $axios.get($config.searchIndexFunction,{ params: {
-					query: horizontal_list.query_term,
-					filters: horizontal_list.query_filters
-				}
-			})).data;
+			const featuredRecipes = []
+			//TODO: put this code back
+			// (await $axios.get($config.searchIndexFunction,{ params: {
+			// 		query: horizontal_list.query_term,
+			// 		filters: horizontal_list.query_filters
+			// 	}
+			// })).data;
 
 			//return homepage data: the page itself, featured recipes and featured content
 			return {
