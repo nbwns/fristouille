@@ -37,8 +37,9 @@ exports.handler = async function(event, context) {
 		statusCode: 200,
 		headers: {
 			'Access-Control-Allow-Origin': '*',
-  			'Access-Control-Allow-Headers': 'Content-Type',
-  			'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'
+  			'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+  			'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+			'Content-Type': 'application/json'
 		},
 		body: JSON.stringify(results.hits)
 	};
