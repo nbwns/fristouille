@@ -1,9 +1,9 @@
 <template>
-  <div class="grid min-h-screen  bg-reglisse-200">
+  <div class="flex flex-col min-h-screen  bg-reglisse-200">
     <header>
 		<MainNavigation/>
     </header>
-    <div class="flex flex-col justify-start min-h-screen">
+    <div class="flex-grow">
         <Nuxt />
     </div>
 	<footer-links/>
