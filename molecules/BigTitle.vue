@@ -1,6 +1,6 @@
 <template>
   	<h1 :class="classValue"
-		class="font-labil font-medium text-white-200 pb-3">
+		class="h1 text-white-200 pb-3">
 		<slot></slot> 
 		<span class="text-coral-200" v-if="emphasis">{{emphasis}}</span>
 	</h1>

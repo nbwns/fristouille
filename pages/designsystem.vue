@@ -1,6 +1,10 @@
 <template>
-	<div>
+	<div class="flex flex-col w-[1400px] min-h-screen gap-36 border-4 border-red-400 mx-auto">
+		
+		
+		
 		<logo></logo>
+		<hr>
 
 		<!-- <main-navigation/> -->
 		

@@ -1,5 +1,5 @@
 <template>
-  <div class="grid min-h-screen  bg-reglisse-100">
+  <div class="grid min-h-screen  bg-reglisse-200">
     <header>
 		<MainNavigation/>
     </header>
