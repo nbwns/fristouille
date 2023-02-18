@@ -10,7 +10,7 @@
     }
 
     h1{
-        @apply font-labil text-5xl font-medium;
+        @apply font-labil text-4xl font-medium;
     }
     
     h2{
@@ -34,6 +34,8 @@
 
 @layer components {
 
+    
+
     button {
         @apply uppercase bg-coral-200 transition-colors duration-150 hover:bg-coral-300 text-white-200 rounded-sm py-3 px-7 max-w-fit font-inter font-semibold tracking-widest;
     }
@@ -51,7 +53,7 @@
     }
 
     .tag-mint, .tag-coral, .tag-gum {
-        @apply text-xs uppercase font-semibold tracking-wider text-white-300 hover:cursor-pointer py-[10px] px-[6px] rounded-[30px];
+        @apply text-sm uppercase font-semibold tracking-wider text-white-300 hover:cursor-pointer py-[10px] px-[6px] rounded-[30px];
     }
     
     .tag-mint {
@@ -71,6 +73,6 @@
     }
 
     .note {
-        @apply text-xs;
+        @apply text-sm;
     }
 }
