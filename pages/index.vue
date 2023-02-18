@@ -12,7 +12,7 @@
 				 <h3 class="mb-10">
 					{{$prismic.asText(document.intro_phrase)}}
 				</h3>
-				<nuxt-link :to="document.cta_page.url" class="button mt-10 uppercase">
+				<nuxt-link :to="document.cta_page.url" class="btn">
 					{{document.cta_text}}
 				</nuxt-link>
 			</div>

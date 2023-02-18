@@ -10,17 +10,55 @@ module.exports = {
     "./nuxt.config.{js,ts}",
   ],
   theme: {
+    borderRadius: {
+      DEFAULT: '.31rem',
+    },
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
-      black: colors.black,
-      white: colors.white,
-      grey: colors.coolGrey,
-      red: colors.red,
-      yellow: colors.amber,
-      blue: colors.blue,
-      green: colors.green,
-      stone: colors.stone
+
+      orange: {
+        100: "#FFD9C3",
+        200: "#FFA06A",
+        300: "#FC762B",
+      },
+
+      purple: {
+        100: "#D1B9DF",
+        200: "#B390C9",
+        300: "#734490",
+      },
+
+      green: {
+        100: "#B6D9C8",
+        200: "#50A77D",
+        300: "#0C7945",
+      },
+
+      red: {
+        100: "#F9C5C6",
+        200: "#E55F5F",
+        300: "#D03030",
+      },
+
+      pink: {
+        100: "#F4D1F4",
+        200: "#EB8DED",
+        300: "#D450D7",
+      },
+
+      black: {
+        100: "#423343",
+        200: "#2D1F2E",
+        300: "#190B1A",
+      },
+
+      white: {
+        100: "#F3E9F4",
+        200: "#FCF7FB",
+        300: "#FFFFFF",
+      },
+
     },
     fontSize: {
       'sm' : '12px',
@@ -33,6 +71,7 @@ module.exports = {
     },
     extend: {
       colors: {
+
         coral: {
           alpha: "rgba(221, 117, 117, 0.5)",
           100: "#FFBBA5",
