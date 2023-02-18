@@ -12,9 +12,9 @@
 		
 		<nav-link path="/">Accueil</nav-link>
 		
-		<tag look="mint">carotte</tag>
-		<tag look="purple">céleri</tag>
-		<tag look="gum">tomate</tag>
+		<tag look="pink">végétarien</tag>
+		<tag look="red">carnivore</tag>
+		<tag look="green">omnivore</tag>
 		
 		<breadcrumb parentText="Accueil" parentPath="/" childText="Cuisine durable"></breadcrumb>
 		

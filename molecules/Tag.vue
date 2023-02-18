@@ -2,7 +2,7 @@
 	<div 
 		:class="classObject"
 		:title="title"
-		class="py-1 px-3 uppercase tracking-wider text-white-300 text-xs font-medium rounded-3xl">
+		class="tag">
 		<slot></slot>
 	</div>
 </template>
@@ -16,9 +16,9 @@ export default {
 	computed: {
 		classObject() {
 			return {
-				'bg-gum-300': this.look === 'gum',
-				'bg-mint-300': this.look === 'mint',
-				'bg-purple-300': this.look === 'purple'
+				'omnivore': this.look === 'pink',
+				'vegetarian': this.look === 'green',
+				'meat': this.look === 'red'
 			}
 		}
 	}
