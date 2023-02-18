@@ -64,6 +64,16 @@
     @apply bg-pink-300;
 }
 
+.navlink {
+    @apply text-white-300 dark:text-black-300;
+}
+.navlink:hover {
+    @apply text-green-200 dark:text-purple-200;
+}
+.navlink:focus {
+    @apply text-orange-300 dark:text-purple-300;
+}
+
 .card {
     @apply max-w-full  rounded overflow-hidden ;
 }

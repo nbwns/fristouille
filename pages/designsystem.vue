@@ -10,7 +10,7 @@
 		
 		<link-button path="/Recettes">Recettes</link-button>
 		
-		<nav-link path="/">Accueil</nav-link>
+		<nav-link path="#" >Accueil</nav-link>
 		
 		<tag look="pink">végétarien</tag>
 		<tag look="red">carnivore</tag>
@@ -19,7 +19,7 @@
 		<breadcrumb parentText="Accueil" parentPath="/" childText="Cuisine durable"></breadcrumb>
 		
 		<big-title>vive la cuisine durable</big-title>
-		<big-title size="8" emphasis="cochon">tout est bon dans le</big-title>
+		<big-title size="4" emphasis="cochon">tout est bon dans le</big-title>
 		
 		<normal-title>choucroute</normal-title>
 		<normal-title accentColor="true">garnie</normal-title>
