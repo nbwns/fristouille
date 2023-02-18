@@ -22,6 +22,15 @@ module.exports = {
       green: colors.green,
       stone: colors.stone
     },
+    fontSize: {
+      'sm' : '12px',
+      'base' : '16px',
+      'lg' : '20px',
+      'xl' : '25px',
+      '2xl' : '32px',
+      '3xl' : '40px',
+      '4xl': '48px'
+    },
     extend: {
       colors: {
         coral: {
@@ -61,6 +70,9 @@ module.exports = {
       fontFamily: {
         labil: ["Labil Grotesk", "sans-serif"],
         inter: ["Inter", "sans-serif"],
+      },
+      fontSize: {
+        'text-4xl': "41px",
       },
     },
   },
