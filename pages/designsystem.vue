@@ -35,11 +35,23 @@
 			<tag look="red">carnivore</tag>
 			<tag look="green">omnivore</tag>
 		</div>
+
+		<hr>
+
+		<!-- Breadcrumbs -->
+		<p class="ds-label">BreadCrumbs</p>		
 		
 		<breadcrumb parentText="Accueil" parentPath="/" childText="Cuisine durable"></breadcrumb>
+
+		<!-- bigTitle -->
+		<p class="ds-label">bigTitle</p>
 		
-		<big-title>vive la cuisine durable</big-title>
-		<big-title size={4} emphasis="cochon">tout est bon dans le</big-title>
+		<big-title size={4} emphasis="cochon">Vive la cuisine durable <br> tout est bon dans le</big-title>
+
+
+
+
+
 		
 		<normal-title>choucroute</normal-title>
 		<normal-title accentColor="true">garnie</normal-title>

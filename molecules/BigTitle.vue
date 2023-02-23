@@ -1,8 +1,8 @@
 <template>
   	<h1 :class="classValue"
-		class="big-title text-white-200 pb-3">
+		class="big-title">
 		<slot></slot> 
-		<span class="text-coral-200" v-if="emphasis">{{emphasis}}</span>
+		<span class="text-orange-300" v-if="emphasis">{{emphasis}}</span>
 	</h1>
 </template>
 
