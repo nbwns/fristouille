@@ -4,6 +4,7 @@ const colors = require('tailwindcss/colors')
 module.exports = {
   content: [
     "./components/**/*.{js,vue,ts}",
+    "./molecules/**/*.{js,vue,ts}",
     "./layouts/**/*.vue",
     "./pages/**/*.vue",
     "./plugins/**/*.{js,ts}",
@@ -62,13 +63,14 @@ module.exports = {
 
     },
     fontSize: {
-      'sm' : '12px',
-      'base' : '16px',
-      'lg' : '20px',
-      'xl' : '25px',
-      '2xl' : '32px',
-      '3xl' : '40px',
-      '4xl': '48px'
+      '4xl': "2.56em",
+      '3xl': '2.4em',
+      '2xl': '2em',
+      'xl': '1.56em',
+      'lg': '1.25em',
+      'base': '1em',
+      'sm': '.75em',
+      'xs': '.5em',
     },
     extend: {
       colors: {
@@ -110,9 +112,6 @@ module.exports = {
       fontFamily: {
         labil: ["Labil Grotesk", "sans-serif"],
         inter: ["Inter", "sans-serif"],
-      },
-      fontSize: {
-        'text-4xl': "41px",
       },
     },
   },
