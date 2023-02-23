@@ -1,5 +1,5 @@
 <template>
-  	<div class="flex flex-shrink-0 text-coral-200 mr-10 text-4xl font-labil font-bold">
+  	<div class="logo flex flex-shrink-0 mr-10">
 		Fristouille
 	</div>
 </template>

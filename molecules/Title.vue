@@ -1,5 +1,5 @@
 <template>
-  	<h1 :class="{'text-coral-200': accentColor}">
+  	<h1 :class="{'text-orange-200': accentColor}">
 		<slot></slot>
 	</h1>
 </template>

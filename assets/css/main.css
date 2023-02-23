@@ -4,6 +4,7 @@
 
 @layer base {
     
+    
 
     h1, .big-title {
         @apply font-labil text-4xl font-medium;
@@ -20,9 +21,21 @@
     h4, .title-paragraph {
         @apply font-labil font-medium text-xl;
     }
+
+    .text-big, .text-small {
+        @apply font-inter;
+    }
     
-    p, .text-usual {
-        @apply font-inter text-base;
+    .text-big {
+        @apply  text-lg;
+    }
+    
+    .text-small {
+        @apply text-sm;
+    }
+    
+    p, .text-usual, .navlink {
+        @apply font-inter text-base text-white-300 dark:text-black-300;
     }
     
 
@@ -30,18 +43,9 @@
 
 @layer components {
 
-.text-big, .text-small {
-    @apply font-inter;
+.logo {
+    @apply text-4xl font-labil font-bold text-orange-300; 
 }
-
-.text-big {
-    @apply  text-lg;
-}
-
-.text-small {
-    @apply text-sm;
-}
-
 
  .btn {
    @apply max-w-fit text-base text-white-300 font-inter font-bold uppercase tracking-widest py-3 px-7 bg-gradient-to-r from-orange-200 to-orange-300 rounded dark:from-purple-200 dark:to-purple-300 transition ease-in-out delay-[15] duration-300;
@@ -66,13 +70,13 @@
 }
 
 .navlink {
-    @apply text-white-300 dark:text-black-300;
+   @apply font-medium tracking-wide;
 }
 .navlink:hover {
-    @apply text-green-200 dark:text-purple-200;
+    @apply text-white-100 dark:text-purple-200;
 }
 .navlink:focus {
-    @apply text-orange-300 dark:text-purple-300;
+    @apply text-white-200 dark:text-purple-300;
 }
 
 .card {

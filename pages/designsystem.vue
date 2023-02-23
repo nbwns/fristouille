@@ -1,8 +1,7 @@
 <template>
-	<div class="flex flex-col w-[1400px] gap-12 border-4 border-red-400 mx-auto">
+	<div class="flex flex-col m-w-[1400px] gap-12 border-4 border-red-400 mx-auto">
 		
-		
-		
+		<p>test</p>
 		<logo></logo>
 		<hr>
 
