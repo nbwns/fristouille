@@ -13,7 +13,7 @@ module.exports = {
   theme: {
     borderRadius: {
       DEFAULT: '.31rem',
-      'rounded-3xl': '10rem',
+      '3xl': '10rem',
     },
     colors: {
       transparent: 'transparent',

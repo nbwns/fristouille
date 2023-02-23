@@ -31,7 +31,11 @@
     }
     
     .text-small {
-        @apply text-sm;
+        @apply font-inter text-sm text-white-300 font-normal;
+    }
+    
+    .tag {
+        @apply font-inter text-xs text-white-300 font-medium uppercase tracking-[0.4em];
     }
     
     p, .text-usual, .navlink {
@@ -73,18 +77,20 @@
  } 
 
  .tag {
-    @apply font-inter font-bold text-[8px] uppercase tracking-[0.4em] py-1 px-3 rounded-rounded-3xl max-w-fit text-white-300;
+    @apply py-1 px-3 rounded-3xl max-w-fit;
 }
 
-.tag.meat {
-    @apply bg-red-300;
-}
-.tag.vegetarian {
-    @apply bg-green-300;
-}
-.tag.omnivore {
-    @apply bg-pink-300;
-}
+.tag.meat {@apply bg-red-300;}
+.tag.meat:hover {@apply bg-red-300;}
+.tag.meat:focus {@apply bg-red-300;}
+
+.tag.vegetarian {@apply bg-green-300;}
+.tag.vegetarian:hover {@apply bg-green-300;}
+.tag.vegetarian:focus {@apply bg-green-300;}
+
+.tag.omnivore {@apply bg-pink-300;}
+.tag.omnivore:hover {@apply bg-pink-300;}
+.tag.omnivore:focus {@apply bg-pink-300;}
 
 .navlink {
    @apply font-medium tracking-wide;
@@ -96,6 +102,22 @@
     @apply text-white-200 dark:text-purple-300;
 }
 
+
+.breadcrumb-main {
+    @apply text-orange-300;
+}
+.breadcrumb-main:hover {
+    @apply hover:cursor-pointer hover:underline;
+}
+.breadcrumb-main:focus {
+    @apply focus:text-orange-100;
+}
+
+.breadcrumb-next {
+    @apply text-orange-200 ml-2;
+}
+
+
 .card {
     @apply max-w-full  rounded overflow-hidden ;
 }
@@ -103,21 +125,7 @@
 
 
 
-.tag-green, .tag-red, .tag-pink {
-    @apply text-sm uppercase font-semibold tracking-wider text-white-300 hover:cursor-pointer py-[10px] px-[6px] rounded-[30px];
-}
 
-.tag-mint {
-    @apply bg-mint-alpha hover:bg-mint-200 focus:bg-mint-300;
-}
-
-.tag-coral {
-    @apply bg-coral-alpha hover:bg-coral-200 focus:bg-coral-300;
-}
-
-.tag-gum {
-    @apply bg-gum-alpha hover:bg-gum-200 focus:bg-gum-300;
-}
 
 .separator {
     @apply h-[1px] bg-reglisse-300 opacity-25 w-full my-5;
