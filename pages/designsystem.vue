@@ -43,21 +43,18 @@
 		
 		<breadcrumb parentText="Accueil" parentPath="/" childText="Cuisine durable"></breadcrumb>
 
-		<!-- bigTitle -->
-		<p class="ds-label">bigTitle</p>
+		<hr>
+
+		<!-- Text variation {BigTitle, Title, TitleArticle, TitleParagraph } -->
+		<p class="ds-label">BigTitle, Title, TitleArticle, TitleParagraph || h1, h2, h3, h4</p>		
+		<big-title size={4} emphasis="ready">The fox is</big-title>	
+		<normal-title>The fox is ready</normal-title>
+		<title-article>The fox is ready</title-article>
+		<title-paragraph>The fox is ready</title-paragraph>
 		
-		<big-title size={4} emphasis="cochon">Vive la cuisine durable <br> tout est bon dans le</big-title>
+		<hr>
 
 
-
-
-
-		
-		<normal-title>choucroute</normal-title>
-		<normal-title accentColor="true">garnie</normal-title>
-		
-		<subtitle>c'est bon ça</subtitle>
-		
 		<filter></filter>
 		
 		<search-bar value="courgette" placeholder="Que voulez-vous cuisiner ?"></search-bar>
@@ -105,7 +102,8 @@ import Tag from '~/molecules/Tag.vue';
 import Breadcrumb from '~/molecules/Breadcrumb.vue';
 import BigTitle from '~/molecules/BigTitle.vue';
 import NormalTitle from '~/molecules/Title.vue';
-import Subtitle from '~/molecules/Subtitle.vue';
+import TitleArticle from '~/molecules/TitleArticle.vue';
+import TitleParagraph from '~/molecules/TitleParagraph.vue';
 import Filter from '~/molecules/Filter.vue';
 import SearchBar from '~/components/SearchBar.vue';
 import Dropdown from '~/components/Dropdown.vue';
@@ -128,7 +126,8 @@ export default {
 		Breadcrumb,
 		BigTitle,
 		NormalTitle,
-		Subtitle,
+		TitleArticle,
+		TitleParagraph,
 		Filter,
 		SearchBar,
 		Dropdown,

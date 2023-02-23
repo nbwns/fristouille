@@ -63,8 +63,8 @@ module.exports = {
 
     },
     fontSize: {
-      '4xl': "2.56em",
-      '3xl': '2.4em',
+      '4xl': "3em",
+      '3xl': '2.5em',
       '2xl': '2em',
       'xl': '1.56em',
       'lg': '1.25em',

@@ -4,22 +4,24 @@
 
 @layer base {
     
-    
+    h1, h2, h3, h4, p, .bigtitle, .title, .title-article, .title-paragraph, .text-small, .text-big, .text-usual, .text-small, .navlink { 
+        @apply text-white-300 dark:text-black-300;
+    }
 
     h1, .big-title {
-        @apply font-labil text-4xl font-medium text-white-300 dark:text-black-300;
+        @apply font-labil text-4xl font-medium  leading-[1.08];
     }
      
     h2, .title {
-        @apply font-labil text-3xl font-medium;
+        @apply font-labil text-3xl font-medium ;
     }
     
     h3, .title-article {
-       @apply font-inter text-2xl font-medium; 
+       @apply font-inter text-2xl font-medium ; 
     }
 
     h4, .title-paragraph {
-        @apply font-labil font-medium text-xl;
+        @apply font-labil font-medium text-xl ;
     }
 
     .text-big, .text-small {
@@ -31,7 +33,7 @@
     }
     
     .text-small {
-        @apply font-inter text-sm text-white-300 font-normal;
+        @apply font-inter text-sm font-normal;
     }
     
     .tag {
@@ -39,7 +41,7 @@
     }
     
     p, .text-usual, .navlink {
-        @apply font-inter text-base text-white-300 dark:text-black-300;
+        @apply font-inter text-base;
     }
     
 
