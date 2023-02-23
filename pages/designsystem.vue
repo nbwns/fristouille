@@ -1,19 +1,40 @@
 <template>
-	<div class="flex flex-col m-w-[1400px] gap-12 border-4 border-red-400 mx-auto">
+	<div class="flex flex-col m-w-[1400px] gap-12 border-4 border-red-400 mx-auto p-4">
 		
-		<p>test</p>
+<!-- M O L E C U L E S -->
+
+		<!-- Logo -->
+		<p class="ds-label">logo</p>
+		
 		<logo></logo>
+		
 		<hr>
 
-		<!-- <main-navigation/> -->
+		<!-- Button -->
+		<p class="ds-label">Bouton principal</p>
+	
+		<link-button path="#" class="sm"> click me</link-button>
+		<link-button path="#" class="md"> click me</link-button>
+		<link-button path="#" class="lg"> click me</link-button>
+		<link-button path="#" class="xl"> click me</link-button>
 		
-		<link-button path="/Recettes">Recettes</link-button>
+		<hr>
+
+		<!-- Navlink -->
+		<p class="ds-label">Navlink</p>
+
+		<nav-link path="#" >Navlink</nav-link>
 		
-		<nav-link path="#" >Accueil</nav-link>
-		
-		<tag look="pink">végétarien</tag>
-		<tag look="red">carnivore</tag>
-		<tag look="green">omnivore</tag>
+		<hr>
+
+		<!-- Tag -->
+		<p class="ds-label">Tag</p>
+
+		<div class="flex flex-row space-x-5">
+			<tag look="pink">végétarien</tag>
+			<tag look="red">carnivore</tag>
+			<tag look="green">omnivore</tag>
+		</div>
 		
 		<breadcrumb parentText="Accueil" parentPath="/" childText="Cuisine durable"></breadcrumb>
 		

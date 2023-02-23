@@ -43,12 +43,29 @@
 
 @layer components {
 
+
+.sm {
+@apply px-2;
+}
+
+.md {
+@apply px-4;
+}
+
+.lg {
+@apply px-8;
+}
+
+.xl {
+@apply px-16;
+}
+
 .logo {
     @apply text-4xl font-labil font-bold text-orange-300; 
 }
 
  .btn {
-   @apply max-w-fit text-base text-white-300 font-inter font-bold uppercase tracking-widest py-3 px-7 bg-gradient-to-r from-orange-200 to-orange-300 rounded dark:from-purple-200 dark:to-purple-300 transition ease-in-out delay-[15] duration-300;
+   @apply max-w-fit text-base text-white-300 font-inter font-bold uppercase tracking-widest py-3 bg-gradient-to-r from-orange-200 to-orange-300 rounded dark:from-purple-200 dark:to-purple-300 transition ease-in-out delay-[15] duration-300;
  } 
 
  .btn:hover {
@@ -108,5 +125,9 @@
 
 .note {
     @apply text-sm;
+}
+
+.ds-label {
+    @apply text-white-100 text-small uppercase tracking-wider;
 }
 }
