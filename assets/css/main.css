@@ -162,5 +162,8 @@
     .shadow input[type="text"]:focus {
         outline: none;
      }
+     input::placeholder, textarea::placeholder {
+        @apply text-white-100;
+     }
 
 }
