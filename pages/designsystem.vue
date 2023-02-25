@@ -63,6 +63,16 @@
 		<p class="ds-label">search bar</p>		
 		<search-bar value="courgette" placeholder="Que voulez-vous cuisiner ?"></search-bar>
 		
+
+		<hr>
+		<!-- accordéon -->
+		<p class="ds-label">accordéon</p>	
+		<accordion title="Régime alimentaire">
+			coucou
+		</accordion>
+
+		<hr>
+		
 		<dropdown title="Liste">
 			<ul>
 				<li>bière</li>
@@ -70,10 +80,6 @@
 				<li>fromage</li>
 			</ul>
 		</dropdown>
-		
-		<accordion title="Régime alimentaire">
-			coucou
-		</accordion>
 
 		<card-article 
 			path="/cuisine-durable"

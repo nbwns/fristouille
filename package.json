@@ -12,7 +12,6 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/pwa": "^3.3.5",
-    "@vueuse/motion": "*",
     "algoliasearch": "^4.11.0",
     "core-js": "^3.15.1",
     "luxon": "^2.3.0",
