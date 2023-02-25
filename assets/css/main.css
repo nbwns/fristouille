@@ -129,15 +129,24 @@
 }
 
 .checkbox {
-    @apply w-4 h-4 bg-black-100 border-black-300 rounded dark:ring-offset-black-200  dark:bg-black-100 dark:border-black-300 appearance-none checked:bg-orange-300;
+    @apply w-4 h-4 bg-black-50 border-black-300 rounded-xs appearance-none checked:bg-orange-300;
 }
 
 .checkbox:focus {
-    @apply ring-orange-200 dark:ring-orange-300 ring-2 ;
+    @apply ring-orange-200 dark:ring-orange-300 ring-2;
 }
 
+.icon-search {
+    @apply absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none;
+}
 
+.icon-search > svg {
+    @apply w-5 h-5 text-white-300 dark:text-black-300;
+}
 
+.input-search {
+    @apply block w-full p-4 pl-10 rounded bg-black-100 border-transparent focus:border-transparent focus:ring-0;
+}
 
 
 .separator {

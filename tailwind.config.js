@@ -14,6 +14,7 @@ module.exports = {
     borderRadius: {
       DEFAULT: '.31rem',
       '3xl': '10rem',
+      'xs': '0.1rem',
     },
     colors: {
       transparent: 'transparent',
@@ -50,6 +51,7 @@ module.exports = {
       },
 
       black: {
+        50: "#6C5C6D",
         100: "#423343",
         200: "#2D1F2E",
         300: "#190B1A",
