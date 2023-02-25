@@ -124,6 +124,17 @@
     @apply max-w-full  rounded overflow-hidden ;
 }
 
+.label-checkbox {
+    @apply ml-2 ;
+}
+
+.checkbox {
+    @apply w-4 h-4 bg-black-100 border-black-300 rounded dark:ring-offset-black-200  dark:bg-black-100 dark:border-black-300 appearance-none checked:bg-orange-300;
+}
+
+.checkbox:focus {
+    @apply ring-orange-200 dark:ring-orange-300 ring-2 ;
+}
 
 
 
