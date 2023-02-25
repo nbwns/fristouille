@@ -58,6 +58,9 @@
 		<p class="ds-label">Checkbox filter</p>		
 		<checkbox-filter>Checkbox filter</checkbox-filter>
 
+		<hr>
+		<!-- search bar -->
+		<p class="ds-label">search bar</p>		
 		<search-bar value="courgette" placeholder="Que voulez-vous cuisiner ?"></search-bar>
 		
 		<dropdown title="Liste">
@@ -105,6 +108,7 @@ import BigTitle from '~/molecules/BigTitle.vue';
 import NormalTitle from '~/molecules/Title.vue';
 import TitleArticle from '~/molecules/TitleArticle.vue';
 import TitleParagraph from '~/molecules/TitleParagraph.vue';
+import CheckboxFilter from '~/molecules/CheckboxFilter.vue';
 import SearchBar from '~/components/SearchBar.vue';
 import Dropdown from '~/components/Dropdown.vue';
 import Accordion from '~/components/Accordion.vue';
@@ -115,7 +119,7 @@ import MobileNavigation from '~/components/MobileNavigation.vue'
 import FooterLinks from '~/components/FooterLinks.vue'
 import GridOfCardsRecipes from '~/components/GridOfCardsRecipes.vue';
 import CustomContainer from '~/components/CustomContainer.vue';
-import CheckboxFilter from '~/molecules/CheckboxFilter.vue';
+
 
 
 export default {

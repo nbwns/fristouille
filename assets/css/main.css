@@ -151,4 +151,16 @@
 .ds-label {
     @apply text-white-100 text-small uppercase tracking-wider;
 }
+
+
+}
+
+
+@layer utilities {
+
+    /* hide border blue generate by vue on input element */
+    .shadow input[type="text"]:focus {
+        outline: none;
+     }
+
 }
