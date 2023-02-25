@@ -1,6 +1,6 @@
 <template>
-  <div class="text-left w-screen">
-		<div class="bg-reglisse-200">
+  <div class="text-left w-full">
+		<div class="bg-black-100">
 			<span @click="visible = !visible">
 				<strong>{{title}}</strong>
 
@@ -15,13 +15,19 @@
 			</span>
 		</div>
 		<!-- TODO: CSS transition j'y arrive pas -->
-		<div class="bg-reglisse-100" v-show="visible">
+
+		<CheckboxFilter class="bg-black-50"  v-show="visible"><slot></slot></CheckboxFilter>
+
+		<!-- <div class="bg-reglisse-100" v-show="visible">
 			<slot></slot>
-		</div>
+		</div> -->
   </div>
 </template>
 
 <script>
+
+import CheckboxFilter from "~/molecules/CheckboxFilter.vue"
+
 export default {
 	props:['title'],
 	data(){
@@ -44,7 +50,8 @@ export default {
 	},
 	beforeDestroy () {
 		document.removeEventListener('click',this.close)
-	}
+	},
+	components: {CheckboxFilter}
 }
 </script>
 
