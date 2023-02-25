@@ -1,39 +1,39 @@
 <template>
-	<div class="text-left w-full ">
-		<div class="bg-black-100 p-4">
+	<div class="text-left w-full">
+		<div class="bg-black-100 p-4 hover:cursor-pointer">
 			<span @click="visible = !visible">
 				
-				<div class="flex justify-between items-center">
-					<div class="text-big">
+				<div class="flex justify-between items-center cursor:pointer">
+					<div class="text-big  ">
 						{{ title }}
 					</div>
-					<div class=" fill-white-300">
+					<div class=" fill-white-300 stroke-white-300 ">
 						<!-- plus small -->
-						<svg v-if="!visible" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-							stroke="currentColor" class="w-6 h-6">
+						<svg v-if="!visible" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3"
+							 class="w-6 h-6">
 							<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
 						</svg>
 						<!-- minus small -->
-						<svg v-if="visible" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-							stroke="currentColor" class="w-6 h-6">
+						<svg v-if="visible" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3"
+							 class="w-6 h-6">
 							<path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6" />
 						</svg>
 					</div>
 				</div>
 			</span>
-
-		</div>
-		<transition 
-				enter-active-class="transition ease-out duration-100" 
-				enter-class="opacity-0 scale-95" 
+			<transition 
+				enter-active-class="transition ease-out duration-150" 
+				enter-class="opacity-0 scale-100 -translate-y-4" 
 				enter-to-class="opacity-100 scale-100"
 				leave-active-class="transition ease-in duration-75" 
-				leave-class=" opacity-100 scale-100"
-				leave-to-class="opacity-0 scale-95">
-			<CheckboxFilter class="bg-black-300 p-4 mt-2" v-show="visible">
+				leave-class=" opacity-100 scale-100 translate-y-4"
+				leave-to-class="opacity-0 scale-100">
+			<CheckboxFilter class="pt-5 pr-1" v-show="visible">
 				<slot></slot>
 			</CheckboxFilter>
 		</transition>
+		</div>
+
 
 	</div>
 </template>

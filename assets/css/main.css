@@ -124,12 +124,13 @@
     @apply max-w-full  rounded overflow-hidden ;
 }
 
-.label-checkbox {
-    @apply ml-2 ;
-}
+
 
 .checkbox {
     @apply w-4 h-4 bg-black-50 border-black-300 rounded-xs appearance-none checked:bg-orange-300;
+}
+.checkbox {
+    @apply cursor-pointer;
 }
 
 .checkbox:focus {
