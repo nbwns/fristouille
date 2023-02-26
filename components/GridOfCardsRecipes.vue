@@ -1,5 +1,5 @@
 <template>
-   <div class="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-x-4 gap-y-7  md:gap-x-7 md:gap-y-10 w-full place-items-center">
+   <div class="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-x-4 gap-y-7  md:gap-x-7 md:gap-y-10 w-full ">
 		<card-recipe 
 			diet="Végétarien"
 			img="https://fristouille.blob.core.windows.net/pictures/asperges-vertes-au-citron-salade-de-pommes-de-terre-et-burger-vege_428x336.jpg"
@@ -31,8 +31,9 @@
 </template>
 
 <script>
+import CardRecipe from './CardRecipe.vue';
 export default {
-
+	components: {CardRecipe}
 }
 </script>
 
