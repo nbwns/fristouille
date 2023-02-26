@@ -88,23 +88,23 @@
 		
 		<!-- width props only for the example on design system — leave usually undefined (default behavior is set to width full
 			The size of the card should be define by the row and number or element in there ... ) -->
-		<div class="flex flex-wrap gap-10">
+		<div class="flex gap-10">
 			<card-article
-				width="max-w-[450px]"
+				width="max-w-full min-w-[200px]"
 				path="/cuisine-durable"
 				img="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
 				imgAlt="miam"
 				title="Cuisine durable"
 			></card-article>
 			<card-article
-				width="max-w-[450px]"
+				width="max-w-full"
 				path="/cuisine-durable"
 				img="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
 				imgAlt="miam"
 				title="Cuisine durable"
 			></card-article>
 			<card-article
-				width="max-w-[450px]"
+				width="max-w-full"
 				path="/cuisine-durable"
 				img="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
 				imgAlt="miam"

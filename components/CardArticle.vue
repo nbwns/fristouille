@@ -1,15 +1,14 @@
 <template>
-	<div>
+	<div class="card">
 		<nuxt-link :to="path">
 			<!-- card -->
 			<!-- TODO: fix width properly -->
-			<div class="card" :class="width">
-				
-				<div class="card-image">
+				<div class="h-40 bg-center bg-cover" :class="width" :style="{backgroundImage: 'url(' + img + ')'}" ></div>
+				<!-- <div class="card-image">
 					<img class="rounded"
 						:src="img"
 						:alt="imgAlt" >
-				</div>
+				</div> -->
 
 
 				<div class="pt-4">
@@ -19,7 +18,6 @@
 						auteur
 					</p> -->
 				</div>
-			</div>
 		</nuxt-link>
 	</div>
 </template>
