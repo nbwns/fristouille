@@ -3,180 +3,246 @@
 @tailwind utilities;
 
 @layer base {
-    
-    h1, h2, h3, h4, p, .bigtitle, .title, .title-article, .title-paragraph, .text-small, .text-big, .text-usual, .text-small, .navlink { 
+
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    .bigtitle,
+    .title,
+    .title-article,
+    .title-paragraph,
+    .text-small,
+    .text-big,
+    .text-usual,
+    .text-small,
+    .navlink {
         @apply text-white-300 dark:text-black-300;
     }
 
-    h1, .big-title {
-        @apply font-labil text-4xl font-medium  leading-[1.08];
-    }
-     
-    h2, .title {
-        @apply font-labil text-3xl font-medium ;
-    }
-    
-    h3, .title-article {
-       @apply font-inter text-2xl font-medium ; 
+    h1,
+    .big-title {
+        @apply font-labil text-4xl font-medium leading-[1.08];
     }
 
-    h4, .title-paragraph {
-        @apply font-labil font-medium text-xl ;
+    h2,
+    .title {
+        @apply font-labil text-3xl font-medium;
     }
 
-    .text-big, .text-small {
+    h3,
+    .title-article {
+        @apply font-inter text-2xl font-medium;
+    }
+
+    h4,
+    .title-paragraph {
+        @apply font-labil font-medium text-xl;
+    }
+
+    .text-big,
+    .text-small {
         @apply font-inter;
     }
-    
+
     .text-big {
-        @apply  text-lg;
+        @apply text-lg;
     }
-    
+
     .text-small {
         @apply font-inter text-sm font-normal;
     }
-    
+
     .tag {
         @apply font-inter text-xs text-white-300 font-medium uppercase tracking-[0.4em];
     }
-    
-    p, .text-usual, .navlink {
+
+    p,
+    .text-usual,
+    .navlink {
         @apply font-inter text-base;
     }
-    
+
+    .sm {
+        @apply px-2;
+    }
+
+    .md {
+        @apply px-4;
+    }
+
+    .lg {
+        @apply px-8;
+    }
+
+    .xl {
+        @apply px-16;
+    }
+
 
 }
 
 @layer components {
 
 
-.sm {
-@apply px-2;
-}
-
-.md {
-@apply px-4;
-}
-
-.lg {
-@apply px-8;
-}
-
-.xl {
-@apply px-16;
-}
-
-.logo {
-    @apply text-4xl font-labil font-bold text-orange-300; 
-}
-
- .btn {
-   @apply max-w-fit text-base text-white-300 font-inter font-bold uppercase tracking-widest py-3 bg-gradient-to-r from-orange-200 to-orange-300 rounded dark:from-purple-200 dark:to-purple-300 transition ease-in-out delay-[15] duration-300;
- } 
-
- .btn:hover {
-    @apply bg-gradient-to-l from-orange-300 to-orange-300 dark:from-purple-300 dark:to-purple-300 hover:-translate-y-1 hover:scale-110;
- } 
-
- .tag {
-    @apply py-1 px-3 rounded-3xl max-w-fit;
-}
-
-.tag.meat {@apply bg-red-300;}
-.tag.meat:hover {@apply bg-red-300;}
-.tag.meat:focus {@apply bg-red-300;}
-
-.tag.vegetarian {@apply bg-green-300;}
-.tag.vegetarian:hover {@apply bg-green-300;}
-.tag.vegetarian:focus {@apply bg-green-300;}
-
-.tag.omnivore {@apply bg-pink-300;}
-.tag.omnivore:hover {@apply bg-pink-300;}
-.tag.omnivore:focus {@apply bg-pink-300;}
-
-.navlink {
-   @apply font-medium tracking-wide;
-}
-.navlink:hover {
-    @apply text-white-100 dark:text-purple-200;
-}
-.navlink:focus {
-    @apply text-white-200 dark:text-purple-300;
-}
 
 
-.breadcrumb-main {
-    @apply text-orange-300;
-}
-.breadcrumb-main:hover {
-    @apply hover:cursor-pointer hover:underline;
-}
-.breadcrumb-main:focus {
-    @apply focus:text-orange-100;
-}
+    .logo {
+        @apply text-4xl font-labil font-bold text-orange-300;
+    }
 
-.breadcrumb-next {
-    @apply text-orange-200 ml-2;
-}
+    .btn {
+        @apply max-w-fit text-base text-white-300 font-inter font-bold uppercase tracking-widest py-3 bg-gradient-to-r from-orange-200 to-orange-300 rounded dark:from-purple-200 dark:to-purple-300 transition ease-in-out delay-[15] duration-300;
+    }
 
-.card {
-    @apply max-w-full  rounded overflow-hidden ;
-}
+    .btn:hover {
+        @apply bg-gradient-to-l from-orange-300 to-orange-300 dark:from-purple-300 dark:to-purple-300 hover:-translate-y-1 hover:scale-110;
+    }
 
-.checkbox {
-    @apply w-4 h-4 bg-black-50 border-black-300 rounded-xs appearance-none checked:bg-orange-300;
-}
-.checkbox {
-    @apply cursor-pointer;
-}
+    .tag {
+        @apply py-1 px-3 rounded-3xl max-w-fit;
+    }
 
-.checkbox:focus {
-    @apply ring-orange-200 dark:ring-orange-300 ring-2;
-}
+    .tag.meat {
+        @apply bg-red-300;
+    }
 
-.icon-search {
-    @apply absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none;
-}
+    .tag.meat:hover {
+        @apply bg-red-300;
+    }
 
-.icon-search > svg {
-    @apply w-5 h-5 text-white-300 dark:text-black-300;
-}
+    .tag.meat:focus {
+        @apply bg-red-300;
+    }
 
-.input-search {
-    @apply block w-full p-4 pl-10 rounded bg-black-100 border-transparent focus:border-transparent focus:ring-0;
-}
+    .tag.vegetarian {
+        @apply bg-green-300;
+    }
+
+    .tag.vegetarian:hover {
+        @apply bg-green-300;
+    }
+
+    .tag.vegetarian:focus {
+        @apply bg-green-300;
+    }
+
+    .tag.omnivore {
+        @apply bg-pink-300;
+    }
+
+    .tag.omnivore:hover {
+        @apply bg-pink-300;
+    }
+
+    .tag.omnivore:focus {
+        @apply bg-pink-300;
+    }
+
+    .navlink {
+        @apply font-medium tracking-wide;
+    }
+
+    .navlink:hover {
+        @apply text-white-100 dark:text-purple-200;
+    }
+
+    .navlink:focus {
+        @apply text-white-200 dark:text-purple-300;
+    }
 
 
-.accordion {
-    @apply text-left w-full bg-black-100;
-}
+    .breadcrumb-main {
+        @apply text-orange-300;
+    }
 
-.accordion-wrap {
-    @apply p-4 hover:cursor-pointer;
-}
+    .breadcrumb-main:hover {
+        @apply hover:cursor-pointer hover:underline;
+    }
 
-.accordion-wrap-content {
-    @apply flex justify-between items-center cursor-pointer;
-}
+    .breadcrumb-main:focus {
+        @apply focus:text-orange-100;
+    }
 
-.accordion-icon {
-    @apply fill-white-300 stroke-white-300;
-}
+    .breadcrumb-next {
+        @apply text-orange-200 ml-2;
+    }
+
+    .card {
+        @apply w-full rounded  ;
+    }
+   
+    .card-image {
+        @apply relative transition-all ease-out duration-300;
+    }
+    .card-image:hover {
+        @apply -translate-y-2;
+    }
+
+    .checkbox {
+        @apply w-4 h-4 bg-black-50 border-black-300 rounded-xs appearance-none checked:bg-orange-300;
+    }
+
+    .checkbox {
+        @apply cursor-pointer;
+    }
+
+    .checkbox:focus {
+        @apply ring-orange-200 dark:ring-orange-300 ring-2;
+    }
+
+    .icon-search {
+        @apply absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none;
+    }
+
+    .icon-search>svg {
+        @apply w-5 h-5 text-white-300 dark:text-black-300;
+    }
+
+    .input-search {
+        @apply block w-full p-4 pl-10 rounded bg-black-100 border-transparent focus:border-transparent focus:ring-0;
+    }
+
+
+    .accordion {
+        @apply text-left w-full bg-black-100;
+    }
+
+    .accordion-wrap {
+        @apply p-4 hover:cursor-pointer;
+    }
+
+    .accordion-wrap-content {
+        @apply flex justify-between items-center cursor-pointer;
+    }
+
+    .accordion-icon {
+        @apply fill-white-300 stroke-white-300;
+    }
+
+    .dropdown {
+        @apply bg-black-100 relative;
+    }
+
+    .dropdown-wrap {
+        @apply w-full p-4;
+    }
+
+    .dropdown-wrap > :first-child {
+        @apply flex justify-between;
+    }
+
+    .dropdown-wrap-content {
+        @apply bg-black-100 absolute z-50 p-4 w-full text-white-300;
+    }
+
+    .dropdown-wrap-content-inner {
+        @apply py-4 space-y-2;
+    }
 
 
 
-
-.separator {
-    @apply h-[1px] bg-black-300 opacity-25 w-full my-5;
-}
-
-.note {
-    @apply text-sm;
-}
-
-.ds-label {
-    @apply text-white-100 text-small uppercase tracking-wider;
-}
 
 
 }
@@ -187,9 +253,23 @@
     /* hide border blue generate by vue on input element */
     .shadow input[type="text"]:focus {
         outline: none;
-     }
-     input::placeholder, textarea::placeholder {
+    }
+
+    input::placeholder,
+    textarea::placeholder {
         @apply text-white-100;
-     }
+    }
+
+    .separator {
+        @apply h-[1px] bg-black-300 opacity-25 w-full my-5;
+    }
+
+    .note {
+        @apply text-sm;
+    }
+
+    .ds-label {
+        @apply text-white-100 text-small uppercase tracking-wider;
+    }
 
 }

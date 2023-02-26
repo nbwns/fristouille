@@ -72,21 +72,45 @@
 		</accordion>
 
 		<hr>
+		<!-- Dropdown with list -->
+		<p class="ds-label">Dropdown with list</p>
 		
 		<dropdown title="Liste">
-			<ul>
-				<li>bière</li>
-				<li>vin</li>
-				<li>fromage</li>
-			</ul>
+			<!-- you can map aroun an ul and li element if needed -->
+			<checkbox-filter>Bières</checkbox-filter>
+			<checkbox-filter>Vins</checkbox-filter>
+			<checkbox-filter>Fromage</checkbox-filter>
 		</dropdown>
 
-		<card-article 
-			path="/cuisine-durable"
-			img="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
-			imgAlt="miam"
-			title="Cuisine durable"
-		></card-article>
+		<hr>
+		<!-- Card Article -->
+		<p class="ds-label">Card Article</p>
+		
+		<!-- width props only for the example on design system — leave usually undefined (default behavior is set to width full
+			The size of the card should be define by the row and number or element in there ... ) -->
+		<div class="flex flex-wrap gap-10">
+			<card-article
+				width="max-w-[450px]"
+				path="/cuisine-durable"
+				img="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
+				imgAlt="miam"
+				title="Cuisine durable"
+			></card-article>
+			<card-article
+				width="max-w-[450px]"
+				path="/cuisine-durable"
+				img="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
+				imgAlt="miam"
+				title="Cuisine durable"
+			></card-article>
+			<card-article
+				width="max-w-[450px]"
+				path="/cuisine-durable"
+				img="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
+				imgAlt="miam"
+				title="Cuisine durable"
+			></card-article>
+		</div>
 
 		<card-recipe 
 			diet="Végétarien"
