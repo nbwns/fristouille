@@ -64,22 +64,6 @@
         @apply font-inter text-base;
     }
 
-    .sm {
-        @apply px-2;
-    }
-
-    .md {
-        @apply px-4;
-    }
-
-    .lg {
-        @apply px-8;
-    }
-
-    .xl {
-        @apply px-16;
-    }
-
 
 }
 
@@ -258,14 +242,23 @@
 
 
 @layer utilities {
-    /* body > div > div {
-        min-height: 0;
-      }
-      
-      img {
-        width: 100%;
-        object-fit: cover;
-      } */
+   
+    .sm {
+        @apply px-2;
+    }
+
+    .md {
+        @apply px-4;
+    }
+
+    .lg {
+        @apply px-8;
+    }
+
+    .xl {
+        @apply px-16;
+    }
+
     /* hide border blue generate by vue on input element */
     .shadow input[type="text"]:focus {
         outline: none;
