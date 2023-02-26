@@ -1,13 +1,13 @@
 <template>
-	<div class="text-left w-full">
-		<div class="bg-black-100 p-4 hover:cursor-pointer">
+	<div class="accordion">
+		<div class="accordion-wrap">
 			<span @click="visible = !visible">
 				
-				<div class="flex justify-between items-center cursor:pointer">
-					<div class="text-big  ">
+				<div class="accordion-wrap-content">
+					<div class="text-big ">
 						{{ title }}
 					</div>
-					<div class=" fill-white-300 stroke-white-300 ">
+					<div class="accordion-icon">
 						<!-- plus small -->
 						<svg v-if="!visible" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3"
 							 class="w-6 h-6">

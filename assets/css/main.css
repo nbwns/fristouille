@@ -119,12 +119,9 @@
     @apply text-orange-200 ml-2;
 }
 
-
 .card {
     @apply max-w-full  rounded overflow-hidden ;
 }
-
-
 
 .checkbox {
     @apply w-4 h-4 bg-black-50 border-black-300 rounded-xs appearance-none checked:bg-orange-300;
@@ -148,6 +145,25 @@
 .input-search {
     @apply block w-full p-4 pl-10 rounded bg-black-100 border-transparent focus:border-transparent focus:ring-0;
 }
+
+
+.accordion {
+    @apply text-left w-full bg-black-100;
+}
+
+.accordion-wrap {
+    @apply p-4 hover:cursor-pointer;
+}
+
+.accordion-wrap-content {
+    @apply flex justify-between items-center cursor-pointer;
+}
+
+.accordion-icon {
+    @apply fill-white-300 stroke-white-300;
+}
+
+
 
 
 .separator {
