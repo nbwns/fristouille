@@ -104,6 +104,14 @@
         @apply py-1 px-3 rounded-3xl max-w-fit;
     }
 
+    .tag.default {
+        @apply bg-purple-300;
+    }
+
+    .tag.default:hover {
+        @apply bg-purple-300;
+    }
+
     .tag.meat {
         @apply bg-red-300;
     }
@@ -170,15 +178,16 @@
     }
 
     .card {
-        @apply w-full rounded  ;
+        @apply w-full rounded;
     }
    
     .card-image {
-        @apply relative transition-all ease-out duration-300;
+        @apply transition-all ease-out duration-300;
     }
     .card-image:hover {
         @apply -translate-y-2;
     }
+
 
     .checkbox {
         @apply w-4 h-4 bg-black-50 border-black-300 rounded-xs appearance-none checked:bg-orange-300;
@@ -249,7 +258,14 @@
 
 
 @layer utilities {
-
+    /* body > div > div {
+        min-height: 0;
+      }
+      
+      img {
+        width: 100%;
+        object-fit: cover;
+      } */
     /* hide border blue generate by vue on input element */
     .shadow input[type="text"]:focus {
         outline: none;

@@ -18,7 +18,8 @@ export default {
 			return {
 				'omnivore': this.look === 'pink',
 				'vegetarian': this.look === 'green',
-				'meat': this.look === 'red'
+				'meat': this.look === 'red',
+				'default': this.look === 'primary'
 			}
 		}
 	}

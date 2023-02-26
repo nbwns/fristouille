@@ -112,9 +112,14 @@
 			></card-article>
 		</div>
 
+		<hr>
+		<!-- Card Recipe -->
+		<p class="ds-label">Card Recipe</p>
+
 		<card-recipe 
+			width="max-w-full"
 			diet="Végétarien"
-			img="https://fristouille.blob.core.windows.net/pictures/asperges-vertes-au-citron-salade-de-pommes-de-terre-et-burger-vege_428x336.jpg"
+			img="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
 			recipeID="7229"
 			slug="asperges-vertes-au-citron-salade-de-pommes-de-terre-et-burger-vege"
 			title="Asperges vertes au citron, salade de pommes de terre et burger végé"/>
