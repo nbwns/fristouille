@@ -77,7 +77,7 @@
     }
 
     .btn {
-        @apply max-w-fit text-base text-white-300 font-inter font-bold uppercase tracking-widest py-3 bg-gradient-to-r from-orange-200 to-orange-300 rounded dark:from-purple-200 dark:to-purple-300 transition ease-in-out delay-[15] duration-300;
+        @apply max-w-fit text-base text-white-300 font-inter font-bold uppercase tracking-widest py-3 px-3 bg-gradient-to-r from-orange-200 to-orange-300 rounded dark:from-purple-200 dark:to-purple-300 transition ease-in-out delay-[15] duration-300;
     }
 
     .btn:hover {
@@ -120,15 +120,15 @@
         @apply bg-green-300;
     }
 
-    .tag.omnivore {
+    .tag.vegan {
         @apply bg-pink-300;
     }
 
-    .tag.omnivore:hover {
+    .tag.vegan:hover {
         @apply bg-pink-300;
     }
 
-    .tag.omnivore:focus {
+    .tag.vegan:focus {
         @apply bg-pink-300;
     }
 

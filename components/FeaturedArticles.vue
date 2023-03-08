@@ -3,12 +3,11 @@
       <div	class="flex flex-col w-full md:w-9/12 lg:w-7/12 space-y-3">
         <!-- title row -->
         <div class="flex flex-row justify-between">
-          <h3 class=" text-lg font-inter font-semibold text-white-200">
+		  <title-paragraph>
             Apprendre à cuisiner durable
-          </h3>
-          <a href="#"
-            class="text-base font-inter text-coral-200 hover:cursor-pointer hover:underline focus:text-coral-300">Tout
-            voir</a>
+		  </title-paragraph>
+
+		  <hyper-link path="/cuisine-durable">Tout voir</hyper-link>
         </div>
         <!-- grid for cards 2-columns -->
         <vue-horizontal>			
@@ -38,10 +37,12 @@
 
 <script>
 import VueHorizontal from 'vue-horizontal';
+import TitleParagraph from '~/molecules/TitleParagraph.vue';
+import HyperLink from '~/molecules/HyperLink.vue';
 
 export default {
 	props: ['items'],
-	components: {VueHorizontal},
+	components: {VueHorizontal, TitleParagraph, HyperLink},
 }
 </script>
 

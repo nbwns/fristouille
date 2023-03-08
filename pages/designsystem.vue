@@ -47,7 +47,7 @@
 
 		<!-- Text variation {BigTitle, Title, TitleArticle, TitleParagraph } -->
 		<p class="ds-label">BigTitle, Title, TitleArticle, TitleParagraph || h1, h2, h3, h4</p>		
-		<big-title size={4} emphasis="ready">The fox is</big-title>	
+		<big-title size=4 emphasis="ready">The fox is</big-title>	
 		<normal-title>The fox is ready</normal-title>
 		<title-article>The fox is ready</title-article>
 		<title-paragraph>The fox is ready</title-paragraph>

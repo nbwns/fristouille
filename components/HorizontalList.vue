@@ -4,11 +4,10 @@
       <div class="flex flex-col w-full md:w-9/12 lg:w-7/12 space-y-3">
         <!-- title row -->
         <div class="flex flex-row justify-between">
-          <h3 class=" text-lg font-inter font-semibold text-white-200">
-            {{title}}
-          </h3>
-          <nuxt-link :to="`/Recettes${link}`"
-		  			class="text-base font-inter text-coral-200 hover:cursor-pointer hover:underline focus:text-coral-300">Tout voir</nuxt-link>
+			<title-paragraph>{{title}}</title-paragraph>
+
+			<hyper-link :path="`/Recettes${link}`">Tout voir</hyper-link>
+         
         </div>
 		<vue-horizontal>			
 			<card-recipe v-for="item in items" :key="item.objectID" 
@@ -25,10 +24,12 @@
 <script>
 import VueHorizontal from 'vue-horizontal';
 import CardRecipe from './CardRecipe.vue';
+import TitleParagraph from '~/molecules/TitleParagraph.vue';
+import HyperLink from '~/molecules/HyperLink.vue';
 
 export default {
 	props: ['title', 'link', 'items'],
-	components: {VueHorizontal, CardRecipe},
+	components: {VueHorizontal, CardRecipe, TitleParagraph, HyperLink},
 	methods: {
 		
 	}
