@@ -4,32 +4,14 @@
         <!-- title row -->
         <div class="flex flex-row justify-between">
 		  <title-paragraph>
-            Apprendre à cuisiner durable
+            {{title}}
 		  </title-paragraph>
 
 		  <hyper-link path="/cuisine-durable">Tout voir</hyper-link>
         </div>
         <!-- grid for cards 2-columns -->
-        <vue-horizontal>			
-          	<div v-for="(item, index) in items" :key="index">
-				<nuxt-link :to="item.featured_page.slug">
-					<!-- card -->
-					<!-- TODO: fix width properly -->
-					<div class="card max-w-[350px] px-3">
-						<div class="relative">
-							<img class="rounded"
-								src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
-								alt="#" style="width: 350px">
-						</div>
-						<div class="pt-2">
-							<h4>{{item.featured_title[0].text}}</h4>
-							<!-- <p>
-								auteur
-							</p> -->
-						</div>
-					</div>
-				</nuxt-link>
-			  </div>
+        <vue-horizontal>	
+			<grid-of-cards-articles :articles="items"/>
         </vue-horizontal>
       </div>
     </section>
@@ -39,10 +21,11 @@
 import VueHorizontal from 'vue-horizontal';
 import TitleParagraph from '~/molecules/TitleParagraph.vue';
 import HyperLink from '~/molecules/HyperLink.vue';
+import GridOfCardsArticles from './GridOfCardsArticles.vue';
 
 export default {
-	props: ['items'],
-	components: {VueHorizontal, TitleParagraph, HyperLink},
+	props: ['title','items'],
+	components: {VueHorizontal, TitleParagraph, HyperLink, GridOfCardsArticles},
 }
 </script>
 

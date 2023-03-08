@@ -17,7 +17,6 @@
 			  @filtersChanged="setFilterQuery" 
 			  @closePopup="mobileAdvancedSearch=false"
 			  @triggerSearch="mobileAdvancedSearch=false, updateQuery()"
-			  :urlFilters="searchFiltersFromUrl" 
 			  :popupMobile="mobileAdvancedSearch" 
 		  />
 	  <!-- search button -->
@@ -28,6 +27,8 @@
 		  </svg>
 	  </button>
   
+	  <selected-filters/>
+
 	  <!-- warning -->
 	  <div v-if="noSearchParameters">Veuillez indiquer au minimum un terme de recherche ou un filtre avancé</div>
   
@@ -71,26 +72,11 @@
   
 			  <ais-hits>
 				  <template v-slot="{ items }">
-					  <!-- section cards 4 columns -->
-					  <section class="grid place-items-center py-[10vh] space-y-10 mx-10 md:mx-0">
-						  <div class="flex flex-col w-full md:w-9/12 lg:w-7/12 space-y-3">
-							  <!-- grid for cards 4-columns -->
-							  <div v-if="items.length > 0"
-								  class="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-x-4 gap-y-7  md:gap-x-7 md:gap-y-10 w-full place-items-center">
-								  <!-- recipe card -->
-								  <card-recipe v-for="item in items" :key="item.objectID" 
-								  	 :diet="item.diet"
-									 :img="item.pictureMedium"
-									 :recipeID="item.objectID"
-									 :slug="item.slug"
-									 :title="item.name"/>
-							  </div>
-							  <div v-else>
-								  <!-- no results -->
-								  Pas de résultat pour cette recherche :(
-							  </div>
-						  </div>
-					  </section>
+					<grid-of-cards-recipes :recipes="items" v-if="items.length > 0"/>  
+					<div v-else>
+						<!-- no results -->
+						Pas de résultat pour cette recherche :(
+					</div>
 				  </template>
 			  </ais-hits>
 			  <ais-pagination>
@@ -186,6 +172,8 @@ import algoliaSearch from 'algoliasearch/lite'
 import CardRecipe from '~/components/CardRecipe.vue';
 import AdvancedSearch from '~/components/AdvancedSearch.vue'
 import NormalTitle from '~/molecules/Title.vue';
+import SelectedFilters from '~/components/SelectedFilters.vue';
+import GridOfCardsRecipes from '~/components/GridOfCardsRecipes.vue';
 
 import { history as historyRouter } from 'instantsearch.js/es/lib/routers';
 const indexName = 'Recipes';
@@ -196,7 +184,9 @@ export default {
 		AisInstantSearch,
 		AisHits,
 		AisPagination,
-		NormalTitle
+		NormalTitle,
+		SelectedFilters,
+		GridOfCardsRecipes
 	},
 	data(){
 		return{

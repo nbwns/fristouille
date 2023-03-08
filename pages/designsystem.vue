@@ -41,7 +41,7 @@
 		<!-- Breadcrumbs -->
 		<p class="ds-label">BreadCrumbs</p>		
 		
-		<breadcrumb parentText="Accueil" parentPath="/" childText="Cuisine durable"></breadcrumb>
+		<breadcrumb parentText="Accueil" parentPath="/">Cuisine durable</breadcrumb>
 
 		<hr>
 

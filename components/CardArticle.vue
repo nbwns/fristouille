@@ -22,7 +22,7 @@
 				</div>
 				<div class="pt-4">	
 					<h4 class="text-big">{{title}}</h4>
-					<p class="text-usual">auteur</p>
+					<!-- <p class="text-usual">auteur</p> -->
 				</div>
 		</nuxt-link>
 	</div>

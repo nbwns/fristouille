@@ -6,13 +6,13 @@
         <div
           class="flex flex-col md:flex-row w-full md:w-9/12 lg:w-7/12 justify-center items-center h-auto mx-10 md:mx-0 my-10">
 			<div class="block z-0 items-center h-full">
-				<big-title :emphasis="$prismic.asText(document.hero_title_emphasis)">{{$prismic.asText(document.hero_title)}}</big-title>
+				<big-title :emphasis="$prismic.asText(document.data.hero_title_emphasis)">{{$prismic.asText(document.data.hero_title)}}</big-title>
 				
-				<title-article>{{$prismic.asText(document.intro_phrase)}}</title-article>
+				<title-article>{{$prismic.asText(document.data.intro_phrase)}}</title-article>
 				 
-				<div v-if="document.cta_page.type !== 'broken_type'" class="mt-10">
-					<link-button :path="document.cta_page.url">
-						{{document.cta_text}}
+				<div v-if="document.data.cta_page.type !== 'broken_type'" class="mt-10">
+					<link-button :path="document.data.cta_page.url">
+						{{document.data.cta_text}}
 					</link-button>
 				</div>
 			</div>
@@ -35,17 +35,6 @@
 			<!-- search bar -->
 			<form class="flex items-center gap-5" action="/Recettes">
 				<div class="relative w-full">
-					<!-- <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-					<svg aria-hidden="true" class="w-5 h-5 text-white-200" fill="currentColor" viewBox="0 0 20 20"
-						xmlns="http://www.w3.org/2000/svg">
-						<path fill-rule="evenodd"
-						d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-						clip-rule="evenodd"></path>
-					</svg>
-					</div>
-					<input type="text" id="simple-search" v-model="query"
-					class="bg-reglisse-300 rounded focus:outline-none focus:ring focus:ring-reglisse-200  block w-full pl-10 p-2.5 placeholder:text-white-200 text-white-100"
-					placeholder="Que souhaitez-vous cuisiner ?" required=""> -->
 					<search-bar value="" placeholder="Que voulez-vous cuisiner ?" required="true"></search-bar>
 				</div>
 				<submit-button>Rechercher</submit-button>
@@ -74,7 +63,7 @@
 	<horizontal-list :title="horizontal_list.list_title" :items="featuredRecipes" :link="horizontal_list.see_all_querystring" />
 
 	<!-- featured articles -->
-	<featured-articles :items="featured_content"/> 
+	<featured-articles :title="featured_content.title" :items="featured_content.items"/> 
 
   </div>
 </template>
@@ -104,9 +93,9 @@ export default {
 	},
 	data(){
 		return {
-			query: '',
-			featuredQuery: "hiver",
-			featuredSeeAllLink: "hiver"
+			query: "",
+			featuredQuery: "",
+			featuredSeeAllLink: ""
 		}
 	},
 	methods:{
@@ -127,66 +116,59 @@ export default {
 	},
 	head () {
 		return {
-			title: this.$prismic.asText(this.document.hero_title),
-			//adapt meta 
+			title: this.document.data.meta_title,
 			meta: [
-				{
-					hid: 'description',
-					name: 'description',
-					content: this.$prismic
-						.asText(this.document.hero_title)
-						.substring(0, 158)
-				}
-			]
+					{
+						hid: 'description',
+						name: 'description',
+						content: this.document.data.meta_description
+					},
+					{
+						hid: 'og:title',
+						name: 'og:title',
+						content: this.document.data.meta_title
+					},
+					{
+						hid: 'og:description',
+						name: 'og:description',
+						content: this.document.data.meta_description
+					},
+					{
+						hid: 'og:image',
+						name: 'og:image',
+						content: this.document.data.facebook_image.url
+					},
+					{
+						hid: 'og:url',
+						name: 'og:url',
+						content: `https://www.fristouille.org${this.document.url}` 
+					}
+				]
 		}
 	},
 	async asyncData({ $prismic, $axios, $config, params, error }) {
-		try{
-			// Query to get homepage content
-			let graphQuery = {
-					graphQuery: `
-						{
-							homepage {
-								hero_title
-								hero_title_emphasis
-								intro_phrase
-								cta_text
-								cta_page
-								featured_content {
-									featured_page {
-										...on simplepage {
-											title,
-											... on cover {
-												image
-											}
-										}
+		try{			
+			const document =  (await $prismic.api.getSingle('homepage'));
+			const page = document.data;
+			// console.log("HOMEPAGE");
+			// console.log(page);
+			//console.log("featured", page.body[1]);
 
-										...on childpage {
-											title,
-											... on cover {
-												image
-											}
-										}
-									}
-								}
-							}
-						}
-					`
-				};
-			
-			//TODO: succeed to pass graphQuery parameters to get the cover pictures of the related articles
+			//get the documents of the related articles 
+			let featured_ids = page.body[1].items.map(i =>  i.featured_page.id );
+			const featured_documents = (await $prismic.api.query( 
+				$prismic.predicates.any('document.id', featured_ids) 
+			)).results
 
-			const page = (await $prismic.api.getSingle('homepage')).data;
-			console.log("HOMEPAGE");
-			console.log(page);
-			// console.log("featured", page.body[1].items);
-			// console.log("search tags", page.body[2].items);
+			//title + articles of the featured content
+			let featured_content = {title: page.body[1].primary.featured_title, items: featured_documents};
+			console.log(featured_content);
 
 			//TODO: index in page.body is not robust enough
 
 			//get the horizontal list component
 			let horizontal_list = page.body[0].primary; //TODO: improve because I could generate a list of horizontal lists
-			console.log("horizontal_list",horizontal_list);
+			// console.log("horizontal_list",horizontal_list);
 
 			//based on the horizontal list query_filter prop, query the Algolia index to get the featured recipes
 			const featuredRecipes = (await $axios.get($config.searchIndexFunction,{ params: {
@@ -197,9 +179,9 @@ export default {
 
 			//return homepage data: the page itself, featured recipes and featured content
 			return {
-				document: page,
+				document: document,
 				horizontal_list: horizontal_list,
-				featured_content: page.body[1].items,
+				featured_content: featured_content,
 				quick_search_tags: page.body[2].items,
 				featuredRecipes: featuredRecipes
 			}

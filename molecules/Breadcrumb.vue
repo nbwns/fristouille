@@ -3,7 +3,8 @@
 		<ol class="flex items-center">
 			<li>
 				<nuxt-link :to="parentPath" class="breadcrumb-main text-usual">
-					{{ parentText }}
+					<prismic-text v-if="typeof(parentText) !== 'string'" :field="parentText" />
+					<span v-else>{{ parentText }}</span>
 				</nuxt-link>
 			</li>
 			<li>
@@ -20,7 +21,7 @@
 					</svg>
 			</li>
 			<li class="breadcrumb-next">
-				{{ childText }}
+				<slot></slot>
 			</li>
 		</ol>
 	</nav>
@@ -28,11 +29,7 @@
 
 <script>
 export default {
-	props: {
-		parentText: String,
-		parentPath: String,
-		childText: String
-	}
+	props: ["parentText", "parentPath"]
 }
 </script>
 

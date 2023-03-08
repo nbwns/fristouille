@@ -15,7 +15,7 @@ export default {
 	computed: {
 		classValue(){
 			if(!this.size){
-				this.size = 4;
+				return `text-4xl`
 			}
 			return `text-${this.size}xl`
 		}

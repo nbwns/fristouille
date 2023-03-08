@@ -9,24 +9,22 @@ export default function(type, element, content, children) {
 	if (type === "group-list-item") {
 		// return some customized HTML.
 		return `<ul class="list-disc list-inside">${children.join("")}</ul>`;
-	  }
+	}
 
 	if (type === "paragraph") {
 		// return some customized HTML.
 		return `<p class="py-1">${children.join("")}</p>`;
-	  }
+	}
 
-	  if (type === "hyperlink") {
-		// return some customized HTML.
-		//console.log(element);
+	if(type === "heading2"){
+		return `<h2 class='title-paragraph'>${children.join("")}</h2>`;
+	}
+
+	if (type === "hyperlink") {
 		//replace by nuxt-link
-		if (element.data.link_type === 'Document') {
-			return `<a class="underline decoration-inherit decoration-dashed text-yellow-800 cursor-pointer" href="${element.data.url}" target="${element.data.target}">${children.join("")}</a>`;
-		  }
-		  else if (element.data.link_type === 'Web'){
-			return `<a class="underline decoration-inherit decoration-dashed text-yellow-600 cursor-pointer" href="${element.data.url}" target="${element.data.target}">${children.join("")}</a>`;
-		  }
-	  }
+		//element.data.link_type can be either Document or Web
+		return `<a class="text-base font-inter text-coral-200 hover:cursor-pointer hover:underline focus:text-coral-300"" href="${element.data.url}" target="${element.data.target}">${children.join("")}</a>`;
+	}
 	// Otherwise, return null.
 	return null;
   }

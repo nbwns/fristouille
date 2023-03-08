@@ -2,7 +2,7 @@
 
 <div class="card">
 	<nuxt-link :to='`/Recette/${slug}/${recipeID}`'>
-			<div class="h-40 bg-center bg-cover" :class="width" :style="{backgroundImage: 'url(' + img + ')'}">			
+			<div class="h-40 bg-center bg-cover" :class="width" :style="{backgroundImage: backgroundImage}">			
 				<div class="relative">
 					<div class="absolute w-full left-0 top-0 flex flex-row justify-between p-2 items-center">
 							<tag look="primary" title="facile">facile</tag>
@@ -48,6 +48,16 @@ export default {
 		'title': String,
 		width: String,
 	},
-	components: {Tag}
+	components: {Tag},
+	computed:{
+		backgroundImage(){
+			if(this.img){
+				return 'url(' + this.img + ')';
+			}
+			else{
+				return '';
+			}
+		}
+	}
 }
 </script>

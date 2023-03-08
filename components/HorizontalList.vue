@@ -10,6 +10,8 @@
          
         </div>
 		<vue-horizontal>			
+			<!-- the grid does not work with vue horizontal -->
+			<!-- <grid-of-cards-recipes :recipes="items"/> -->
 			<card-recipe v-for="item in items" :key="item.objectID" 
 				:diet="item.diet"
 				:img="item.pictureMedium"
@@ -26,10 +28,11 @@ import VueHorizontal from 'vue-horizontal';
 import CardRecipe from './CardRecipe.vue';
 import TitleParagraph from '~/molecules/TitleParagraph.vue';
 import HyperLink from '~/molecules/HyperLink.vue';
+import GridOfCardsRecipes from './GridOfCardsRecipes.vue';
 
 export default {
 	props: ['title', 'link', 'items'],
-	components: {VueHorizontal, CardRecipe, TitleParagraph, HyperLink},
+	components: {VueHorizontal, CardRecipe, TitleParagraph, HyperLink, GridOfCardsRecipes},
 	methods: {
 		
 	}

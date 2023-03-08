@@ -19,7 +19,7 @@ export default {
 	props: {
 		value: String,
 		placeholder: String,
-		required: Boolean
+		required: String
 	}
 }
 </script>
