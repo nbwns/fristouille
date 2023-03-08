@@ -15,10 +15,6 @@
 		<transition enter-active-class="transition ease-out duration-250" enter-class="opacity-0 scale-100 -translate-y-4"
 			enter-to-class="opacity-100 scale-100" leave-active-class="transition ease-in duration-75"
 			leave-class=" opacity-100 scale-100 translate-y-4" leave-to-class="opacity-0 scale-100">
-
-
-
-
 			<div v-show="visible" class="dropdown-wrap-content" role="menu" aria-orientation="vertical"
 				aria-labelledby="menu-button" tabindex="-1">
 				<div class="dropdown-wrap-content-inner" role="none">
@@ -26,12 +22,9 @@
 				</div>
 			</div>
 		</transition>
-
-		
 	</div>
 </template>
 <script>
-import CheckboxFilter from "~/molecules/CheckboxFilter.vue"
 export default {
 	props: ['title'],
 	data() {
@@ -55,7 +48,6 @@ export default {
 	beforeDestroy() {
 		document.removeEventListener('click', this.close)
 	},
-	components: {CheckboxFilter},
 
 }
 </script>

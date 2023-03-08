@@ -28,9 +28,9 @@
 				leave-active-class="transition ease-in duration-75" 
 				leave-class=" opacity-100 scale-100 translate-y-4"
 				leave-to-class="opacity-0 scale-100">
-			<CheckboxFilter class="pt-5 pr-1" v-show="visible">
+			<div v-if="visible">
 				<slot></slot>
-			</CheckboxFilter>
+			</div>
 		</transition>
 		</div>
 
@@ -39,9 +39,6 @@
 </template>
 
 <script>
-
-import CheckboxFilter from "~/molecules/CheckboxFilter.vue"
-
 export default {
 
 	props: ['title'],
@@ -65,8 +62,7 @@ export default {
 	},
 	beforeDestroy() {
 		document.removeEventListener('click', this.close)
-	},
-	components: { CheckboxFilter }
+	}
 }
 </script>
 

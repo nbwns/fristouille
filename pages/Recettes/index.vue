@@ -7,7 +7,7 @@
 	  <span class="md:hidden font-labil text-base font-medium text-coral-300 cursor-pointer" @click="mobileAdvancedSearch=true">+ de filtres</span>
 	  
 	  <!-- search input -->
-	  <input type="search" class="bg-reglisse-300 rounded focus:outline-none focus:ring focus:ring-reglisse-200  block w-full pl-10 p-2.5 placeholder:text-white-200 text-white-100"
+	  <input type="search" class="input-search text-usual"
 		  :value="query"
 		  placeholder="Que souhaitez-vous cuisiner ?"
 		  ref="searchField"
@@ -21,7 +21,7 @@
 			  :popupMobile="mobileAdvancedSearch" 
 		  />
 	  <!-- search button -->
-	  <button @click="updateQuery">
+	  <button @click="updateQuery" class="btn" aria-label="Rechercher">
 		  <!-- search icon -->
 		  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
 			  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
@@ -50,8 +50,8 @@
 			  </ais-state-results>
   
 			  <div v-if="searchPerformed">
-				  <h1 v-if="query">Recettes de {{ query }}</h1>
-				  <h1 v-else>Découvrez nos recettes</h1>
+				  <normal-title v-if="query">Résultats pour '{{ query }}'</normal-title>
+				  <normal-title v-else>Découvrez nos recettes</normal-title>
 			  </div>
 			  <div v-else>
 				  <!-- here we can show suggestions on the default state of the page -->
@@ -185,6 +185,8 @@ import {
 import algoliaSearch from 'algoliasearch/lite'
 import CardRecipe from '~/components/CardRecipe.vue';
 import AdvancedSearch from '~/components/AdvancedSearch.vue'
+import NormalTitle from '~/molecules/Title.vue';
+
 import { history as historyRouter } from 'instantsearch.js/es/lib/routers';
 const indexName = 'Recipes';
 export default {
@@ -194,6 +196,7 @@ export default {
 		AisInstantSearch,
 		AisHits,
 		AisPagination,
+		NormalTitle
 	},
 	data(){
 		return{

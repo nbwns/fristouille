@@ -1,5 +1,5 @@
 <template>
-	<div 
+	<div @click="$emit('click', $event)"
 		:class="classObject"
 		:title="title"
 		class="tag">
