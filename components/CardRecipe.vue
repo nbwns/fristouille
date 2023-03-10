@@ -1,7 +1,7 @@
 <template>
 
 <div class="card">
-	<nuxt-link :to='`/Recette/${slug}/${recipeID}`'>
+	<nuxt-link :to='`/Recette/${slug}/${recipeID}`' no-prefetch>
 			<div class="h-40 bg-center bg-cover" :class="width" :style="{backgroundImage: backgroundImage}">			
 				<div class="relative">
 					<div class="absolute w-full left-0 top-0 flex flex-row justify-between p-2 items-center">
