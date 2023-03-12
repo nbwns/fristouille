@@ -3,6 +3,7 @@ const colors = require('tailwindcss/colors')
 
 module.exports = {
   content: [
+    "./safelist.txt",
     "./components/**/*.{js,vue,ts}",
     "./molecules/**/*.{js,vue,ts}",
     "./layouts/**/*.vue",

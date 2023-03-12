@@ -22,8 +22,8 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    'assets/css/stylesheets.css',
-    'assets/css/main.css'
+    '@/assets/css/stylesheets.css',
+    '@/assets/css/main.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -47,7 +47,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
-	'@nuxt/postcss8',
+	  '@nuxt/postcss8',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -108,9 +108,11 @@ export default {
   build: {
 	transpile: ["vue-slicezone", "nuxt-sm", 'vue-instantsearch', 'instantsearch.js/es'],
   postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {},
+    postcssOptions: {
+      plugins: {
+        tailwindcss: {},
+        autoprefixer: {},
+      },
     },
   },
   },

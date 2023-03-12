@@ -3,7 +3,7 @@
 		<ol class="flex items-center">
 			<li>
 				<nuxt-link :to="parentPath" class="breadcrumb-main text-usual">
-					<prismic-text v-if="typeof(parentText) !== 'string'" :field="parentText" />
+					<prismic-text v-if="(typeof(parentText)) !== 'string'" :field="parentText" />
 					<span v-else>{{ parentText }}</span>
 				</nuxt-link>
 			</li>

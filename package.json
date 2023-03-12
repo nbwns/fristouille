@@ -16,7 +16,7 @@
     "core-js": "^3.15.1",
     "luxon": "^2.3.0",
     "marked": "^4.0.7",
-    "nuxt": "^2.16.1",
+    "nuxt": "^2.16.2",
     "nuxt-sm": "^0.1.6",
     "vue-horizontal": "^0.8.12",
     "vue-instantsearch": "^4.3.0",
