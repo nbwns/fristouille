@@ -1,8 +1,7 @@
 <template>
-	<!-- what's a filter ? -->
-  <div>
-	
-  </div>
+	<button type="submit" class="btn">
+	  <slot></slot>
+  </button>
 </template>
 
 <script>

@@ -1,15 +1,15 @@
 <template>
-  <nav class="flex items-center justify-between flew-wrap p-4 bg-reglisse-100">
+  <nav class="flex items-center justify-between flew-wrap p-4 bg-black-300 dark:bg-white-300">
     <logo/>
     <div class="hidden md:flex flex-grow md:w-auto pt-2 ">
-      <div class="flex flex-grow text-lg text-white-200 font-inter capitalize font-medium ">
-        <nav-link path="/">Accueil</nav-link>
+      <div class="flex flex-grow space-x-5">
+      <nav-link path="/">Accueil</nav-link>
 	  	<nav-link path="/Recettes">Rechercher</nav-link>
 	  	<nav-link path="/cuisine-durable">Cuisine durable</nav-link>
       </div>
       <div>
         <a href="#"
-          class="inline-block text-lg leading-none text-white-200 font-inter capitalize font-bold hover:text-coral-200 lg:-mr-7-0">
+          class="navlink">
           Connexion
         </a>
       </div>

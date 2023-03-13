@@ -7,8 +7,7 @@
 <script>
 export default {
 	props: {
-		path: String,
-		text: String,
+		path: String
 	}
 }
 </script>

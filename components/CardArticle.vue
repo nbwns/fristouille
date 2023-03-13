@@ -1,32 +1,47 @@
 <template>
+	<!-- MODEL AS BG IMAGE LIKE CARD RECIPE -->
+
+	<!-- <div class="card">
+		<nuxt-link :to="path">
+				<div  class="bg-center bg-cover" :class="imageSize" :style="{backgroundImage: 'url(' + img + ')'}" ></div>
+				<div class="pt-4">	
+					<h4 class="text-big">{{title}}</h4>
+					<p class="text-usual">auteur</p>
+				</div>
+		</nuxt-link>
+	</div> -->
+
+	<!-- model with img box constrain differently on flex-container depends on situation -->
 	<div>
 		<nuxt-link :to="path">
-			<!-- card -->
-			<!-- TODO: fix width properly -->
-			<div class="card max-w-[350px] px-3">
-				<div class="relative">
+			<div class="card"></div>		
+				<div class="card-image">
 					<img class="rounded"
 						:src="img"
-						:alt="imgAlt" style="width: 350px">
+						:alt="imgAlt" >
 				</div>
-				<div class="pt-2">
-					<h4>{{title}}</h4>
-					<!-- <p>
-						auteur
-					</p> -->
+				<div class="pt-4">	
+					<h4 class="text-big">{{title}}</h4>
+					<!-- <p class="text-usual">auteur</p> -->
 				</div>
-			</div>
 		</nuxt-link>
 	</div>
 </template>
 
 <script>
+
+
+
+
+
+
 export default {
 	props:{
 		path: String,
 		img: String,
 		imgAlt: String,
-		title: String
+		title: String,
+		imageSize: String,
 	}
 }
 </script>

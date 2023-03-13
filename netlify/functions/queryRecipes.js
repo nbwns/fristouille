@@ -25,29 +25,33 @@ exports.handler = async function(event, context) {
 						_eq: "Published"
 					  }
 				  }){
-					name
 					recipeId
-					slug
-					createdOn
+					name
 					description
+					picture
 					pictureSmall
 					pictureMedium
 					diet
-					price
 					preparationTime
 					cookTime
 					yield
-					free
-					category
-					cuisine
 					months
+					procedure
+					ingredients
+					prismicPageId
 					tags{
-						name
+					name
 					}
+					slug
 					compositions{
+						name
 						ingredient{
 							name
 						}
+						quantity
+						units
+						remark
+						optional
 					}
 				}
 			}`,
