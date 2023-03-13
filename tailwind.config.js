@@ -3,7 +3,9 @@ const colors = require('tailwindcss/colors')
 
 module.exports = {
   content: [
+    "./safelist.txt",
     "./components/**/*.{js,vue,ts}",
+    "./molecules/**/*.{js,vue,ts}",
     "./layouts/**/*.vue",
     "./pages/**/*.vue",
     "./plugins/**/*.{js,ts}",
@@ -12,7 +14,8 @@ module.exports = {
   theme: {
     borderRadius: {
       DEFAULT: '.31rem',
-      'rounded-3xl': '10rem',
+      '3xl': '10rem',
+      'xs': '0.1rem',
     },
     colors: {
       transparent: 'transparent',
@@ -49,6 +52,7 @@ module.exports = {
       },
 
       black: {
+        50: "#6C5C6D",
         100: "#423343",
         200: "#2D1F2E",
         300: "#190B1A",
@@ -62,13 +66,14 @@ module.exports = {
 
     },
     fontSize: {
-      'sm' : '12px',
-      'base' : '16px',
-      'lg' : '20px',
-      'xl' : '25px',
-      '2xl' : '32px',
-      '3xl' : '40px',
-      '4xl': '48px'
+      '4xl': "3em",
+      '3xl': '2.5em',
+      '2xl': '2em',
+      'xl': '1.56em',
+      'lg': '1.25em',
+      'base': '1em',
+      'sm': '.75em',
+      'xs': '.5em',
     },
     extend: {
       colors: {
@@ -83,11 +88,6 @@ module.exports = {
           100: "#514351",
           200: "#433544",
           300: "#352835",
-        },
-        white: {
-          100: "#FFFFFF",
-          200: "#F3EEE6",
-          300: "#DFD7CA",
         },
         mint: {
           alpha: "rgba(133, 174, 105, 0.5)",
@@ -110,9 +110,6 @@ module.exports = {
       fontFamily: {
         labil: ["Labil Grotesk", "sans-serif"],
         inter: ["Inter", "sans-serif"],
-      },
-      fontSize: {
-        'text-4xl': "41px",
       },
     },
   },

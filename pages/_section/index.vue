@@ -1,51 +1,62 @@
 <template>
-  <section class="py-[10vh] mx-10 md:mx-0 my-10">
+  <section class="flex flex-col m-w-[1400px] gap-12 border-4 border-red-400 mx-auto p-4">
       <!--  page title -->
-      <h1><prismic-text :field="document.title" /></h1>
+      <h1><prismic-text :field="document.data.title" /></h1>
 	  <!-- body  -->
-	  <prismic-rich-text :field="document.text" />
+	  <prismic-rich-text :field="document.data.text" />
 	  <hr/>
 	 <!-- child pages  -->
-	  <div v-for="c in children" :key="c.id" >
-		<nuxt-link :to="c.url">
-			<h2><prismic-text :field="c.data.title" /></h2>
-			<img class="rounded" :src="c.data.cover.url"/>
-		</nuxt-link>
-	  </div>
-    <!-- Slice Block Componenet tag -->
-    <!-- <slices-block :slices="slices"/> -->
+	 <grid-of-cards-articles :articles="children"/>
+
   </section>
 </template>
 
 <script>
-//Importing all the slices components
-// import SlicesBlock from '~/components/SlicesBlock.vue'
+import GridOfCardsArticles from '~/components/GridOfCardsArticles.vue'
+
 export default {
   name: 'post',
   components: {
-    // SlicesBlock
+	GridOfCardsArticles
   },
   head () {
     return {
-      title: this.$prismic.asText(this.document.title),
-	 //adapt meta 
-	  meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$prismic
-            .asText(this.document.title)
-            .substring(0, 158)
-        }
-      ]
+		title: this.document.data.meta_title,
+		meta: [
+					{
+						hid: 'description',
+						name: 'description',
+						content: this.document.data.meta_description
+					},
+					{
+						hid: 'og:title',
+						name: 'og:title',
+						content: this.document.data.meta_title
+					},
+					{
+						hid: 'og:description',
+						name: 'og:description',
+						content: this.document.data.meta_description
+					},
+					{
+						hid: 'og:image',
+						name: 'og:image',
+						content: this.document.data.facebook_image.url
+					},
+					{
+						hid: 'og:url',
+						name: 'og:url',
+						content: `https://www.fristouille.org${this.document.url}` 
+					}
+				]
     }
   },
   async asyncData({ $prismic, params, error }) {
     try{
 	 
-	 // Query to get post content
+	 	// Query to get post content
     	const page = (await $prismic.api.getByUID('simplepage', params.section))
-	 // Get child pages
+	 	// Get child pages
 		const children = (await $prismic.api.query( 
 				$prismic.predicates.at('my.childpage.parent_page', page.id) 
 			)).results
@@ -54,10 +65,8 @@ export default {
 
       // Returns data to be used in template
       return {
-        document: page.data,
+        document: page,
 		children: children
-        // slices: post.body,
-        // formattedDate: Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(post.date)),
       }
     } catch (e) {
       // Returns error page

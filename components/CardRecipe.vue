@@ -1,21 +1,16 @@
 <template>
-	<div class="item">
-		<a :href='`/Recette/${slug}/${recipeID}`'>
-			<!-- TODO: fix width properly -->
-			<div class="card max-w-[250px] px-3">
+
+<div class="card">
+	<nuxt-link :to='`/Recette/${slug}/${recipeID}`' no-prefetch>
+			<div class="h-40 bg-center bg-cover" :class="width" :style="{backgroundImage: backgroundImage}">			
 				<div class="relative">
-					<!-- TODO: default image when no picture -->
-					<img class="rounded"
-						:src="img"
-						alt="#" style="width: 250px">
-					<div class="absolute left-0 top-0">
-						<div class="flex flex-row justify-between p-2 items-center">
-							<tag look="mint" title="facile">facile</tag>
+					<div class="absolute w-full left-0 top-0 flex flex-row justify-between p-2 items-center">
+							<tag look="primary" title="facile">facile</tag>
 							<tag
 								v-if="diet != 'Omnivore'"
 								:title="diet" 
-								:look="(diet === 'Végétalien' ? 'gum' : (diet === 'Végétarien' ? 'mint': ''))">
-							<svg class="w-5 h-5 text-white-200  " fill="none" viewBox="0 0 25 25"
+								:look="(diet === 'Végétalien' ? 'pink' : (diet === 'Végétarien' ? 'green': ''))">
+							<svg class="w-5 h-5 text-white-200" stroke="3" fill="none" viewBox="0 0 25 25"
 								xmlns="http://www.w3.org/2000/svg">
 								<path fill-rule="evenodd"
 									d="M15.625 11.524C13.0521 14.2187 10.4781 20.8333 10.4781 20.8333C10.4781 20.8333 6.80104 11.5229 3.125 9.375"
@@ -25,18 +20,20 @@
 									stroke="currentColor" stroke-width="1.5625" stroke-linecap="round" stroke-linejoin="round" />
 								</svg>
 							</tag>
-						</div>
 					</div>
 				</div>
-				<div class="break-words pt-2">
-				<h4>{{ title }}</h4>
-				<!-- <p>
-					auteur
-				</p> -->
-				</div>
 			</div>
-		</a>
+
+				<div class="pt-4">
+					<h4 class="text-big">{{title}}</h4>
+					<p class="text-usual">auteur</p>
+					<!-- <p>
+						auteur
+					</p> -->
+				</div>
+		</nuxt-link>
 	</div>
+
 </template>
 
 <script>
@@ -48,8 +45,19 @@ export default {
 		'recipeID': String,
 		'img': String,
 		'diet': String,
-		'title': String
+		'title': String,
+		width: String,
 	},
-	components: {Tag}
+	components: {Tag},
+	computed:{
+		backgroundImage(){
+			if(this.img){
+				return 'url(' + this.img + ')';
+			}
+			else{
+				return '';
+			}
+		}
+	}
 }
 </script>

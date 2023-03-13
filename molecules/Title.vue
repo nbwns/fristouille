@@ -1,7 +1,8 @@
 <template>
-  	<h1 :class="{'text-coral-200': accentColor}">
+  	<h2 :class="{'text-orange-300': accentColor}"
+		class="title">
 		<slot></slot>
-	</h1>
+	</h2>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col min-h-screen  bg-reglisse-200">
+  <div class="flex flex-col min-h-screen bg-black-200 dark:bg-white-200">
     <header>
 		<MainNavigation/>
     </header>
@@ -21,7 +21,7 @@ import FooterLinks from '~/components/FooterLinks.vue'
 
 export default {
 	components: {
-      MainNavigation,
+    MainNavigation,
 	  MobileNavigation,
 	  FooterLinks
     }

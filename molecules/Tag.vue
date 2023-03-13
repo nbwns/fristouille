@@ -1,5 +1,5 @@
 <template>
-	<div 
+	<div @click="$emit('click', $event)"
 		:class="classObject"
 		:title="title"
 		class="tag">
@@ -16,9 +16,10 @@ export default {
 	computed: {
 		classObject() {
 			return {
-				'omnivore': this.look === 'pink',
+				'vegan': this.look === 'pink',
 				'vegetarian': this.look === 'green',
-				'meat': this.look === 'red'
+				'meat': this.look === 'red',
+				'default': this.look === 'primary'
 			}
 		}
 	}

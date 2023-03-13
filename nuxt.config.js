@@ -22,8 +22,8 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    'assets/css/stylesheets.css',
-    'assets/css/main.css'
+    '@/assets/css/stylesheets.css',
+    '@/assets/css/main.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -46,7 +46,8 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
-    '@nuxt/postcss8',
+    '@nuxtjs/tailwindcss',
+	  '@nuxt/postcss8',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -107,9 +108,11 @@ export default {
   build: {
 	transpile: ["vue-slicezone", "nuxt-sm", 'vue-instantsearch', 'instantsearch.js/es'],
   postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {},
+    postcssOptions: {
+      plugins: {
+        tailwindcss: {},
+        autoprefixer: {},
+      },
     },
   },
   },
@@ -119,6 +122,11 @@ export default {
   },
   // This is a bug with `getStoriesPaths` and Nuxt that is awaiting to be fixed
   ignore: [...getStoriesPaths().map(path => path.replace("../", "~/"))],
+
+  
+ router: {
+    prefetchLinks: false
+  },
 
   generate: {
     routes(){

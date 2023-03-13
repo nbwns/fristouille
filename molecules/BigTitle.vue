@@ -1,8 +1,8 @@
 <template>
   	<h1 :class="classValue"
-		class="h1 text-white-200 pb-3">
+		class="big-title">
 		<slot></slot> 
-		<span class="text-coral-200" v-if="emphasis">{{emphasis}}</span>
+		<span class="text-orange-300" v-if="emphasis">{{emphasis}}</span>
 	</h1>
 </template>
 
@@ -15,7 +15,7 @@ export default {
 	computed: {
 		classValue(){
 			if(!this.size){
-				this.size = 4;
+				return `text-4xl`
 			}
 			return `text-${this.size}xl`
 		}

@@ -1,7 +1,7 @@
 <template>
-  <h2>
+  <h3 class="title-article">
 	<slot></slot>
-  </h2>
+  </h3>
 </template>
 
 <script>
