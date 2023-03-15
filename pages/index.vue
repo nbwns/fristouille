@@ -45,10 +45,10 @@
 			<div class="flex flex-row justify-between items-center my-2 ">
 				<!-- tags -->
 				<div class="flex flex-row gap-4 items-center">
-				<nuxt-link v-for="(t,index) in quick_search_tags" 
-					:key="index" 
-					:to="`/Recettes${t.tag_query}`"
-					>
+					<nuxt-link v-for="(t,index) in quickSearchTags" 
+						:key="index" 
+						:to="`/Recettes${t.tag_query}`"
+						>
 						<tag :look="t.tag_class">{{t.tag_title}}</tag>
 					</nuxt-link>
 				</div>
@@ -60,10 +60,10 @@
     </section>
 
 	<!-- featured recipes -->
-	<horizontal-list :title="horizontal_list.list_title" :items="featuredRecipes" :link="horizontal_list.see_all_querystring" />
+	<horizontal-list v-for="(list, index) in horizontalLists" :key="index" :title="list.title" :items="list.recipes" :link="list.seeAllQuery" />
 
 	<!-- featured articles -->
-	<featured-articles :title="featured_content.title" :items="featured_content.items"/> 
+	<featured-articles v-for="(list, index) in articlesLists"  :key="index" :title="list.title" :items="list.items" :link="list.seeAllLink"/>
 
   </div>
 </template>
@@ -99,20 +99,15 @@ export default {
 		}
 	},
 	methods:{
-		search(){
-			//redirect to the search page with parameters in qs
-			this.$router.push({
-				path: '/Recettes', 
-				query: { 
-					q: this.query/*, 
-					diet: this.searchFilters.diet,
-					category: this.searchFilters.category,
-					cuisine: this.searchFilters.cuisine,
-					free: this.searchFilters.free,
-					months: this.searchFilters.months*/
-				}
-			});
+		//TODO: finish this
+		getCurrentSeasons(){
+			let month= new Date().getMonth();
+			let winter = [11, 0,1,2];
+			let spring = [2, 3, 4, 5]
+			let summer = [5,6,7,8];
+			let autumn = [8, 9, 10,11]
 		}
+
 	},
 	head () {
 		return {
@@ -151,39 +146,53 @@ export default {
 			const document =  (await $prismic.api.getSingle('homepage'));
 			const page = document.data;
 			// console.log("HOMEPAGE");
-			// console.log(page);
-			//console.log("featured", page.body[1]);
 
-			//get the documents of the related articles 
-			let featured_ids = page.body[1].items.map(i =>  i.featured_page.id );
-			const featured_documents = (await $prismic.api.query( 
-				$prismic.predicates.any('document.id', featured_ids) 
-			)).results
+			let horizontalListsSlices = page.body.filter(s => s.slice_type === 'horizontal_list');
+			let featuredContentsSlices = page.body.filter(s => s.slice_type === 'featured_content');
+			let quickSearchTagsSlices = page.body.filter(s => s.slice_type === 'quick_search_tags');
 
-			//title + articles of the featured content
-			let featured_content = {title: page.body[1].primary.featured_title, items: featured_documents};
-			console.log(featured_content);
+			//horizontal lists of recipes
+			let horizontalLists = await Promise.all(
+				horizontalListsSlices.map(async (hl) => {
+					//based on the horizontal list query_filter prop, query the Algolia index to get the featured recipes
+					const featuredRecipes = (await $axios.get($config.searchIndexFunction,{
+						params: {
+							query: hl.primary.query_term,
+							filters: hl.primary.query_filters
+						}
+					}
+					)).data;
 
-			//TODO: index in page.body is not robust enough
+					return {
+						title: hl.primary.list_title,
+						seeAllQuery: hl.primary.see_all_querystring,
+						recipes: featuredRecipes
+					}
+				})
+			);
 
-			//get the horizontal list component
-			let horizontal_list = page.body[0].primary; //TODO: improve because I could generate a list of horizontal lists
-			// console.log("horizontal_list",horizontal_list);
+			let articlesLists = await Promise.all(
+				featuredContentsSlices.map(async (fc) =>{
+					//get the documents of the related articles
+					let featured_ids = fc.items.map(i =>  i.featured_page.id );
+					const featured_documents = (await $prismic.api.query( 
+						$prismic.predicates.any('document.id', featured_ids) 
+					)).results
 
-			//based on the horizontal list query_filter prop, query the Algolia index to get the featured recipes
-			const featuredRecipes = (await $axios.get($config.searchIndexFunction,{ params: {
-					query: horizontal_list.query_term,
-					filters: horizontal_list.query_filters
-				}
-			})).data;
+					return {
+						title: fc.primary.featured_title, 
+						seeAllLink: '/cuisine-durable',
+						items: featured_documents
+					};
+				})
+			);
 
 			//return homepage data: the page itself, featured recipes and featured content
 			return {
 				document: document,
-				horizontal_list: horizontal_list,
-				featured_content: featured_content,
-				quick_search_tags: page.body[2].items,
-				featuredRecipes: featuredRecipes
+				horizontalLists: horizontalLists,
+				articlesLists: articlesLists,
+				quickSearchTags: quickSearchTagsSlices[0].items,
 			}
 		
 		} catch (e) {

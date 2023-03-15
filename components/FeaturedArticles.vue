@@ -7,7 +7,7 @@
             {{title}}
 		  </title-paragraph>
 
-		  <hyper-link path="/cuisine-durable">Tout voir</hyper-link>
+		  <hyper-link :path="link">Tout voir</hyper-link>
         </div>
         <!-- grid for cards 2-columns -->
         <vue-horizontal>	
@@ -24,7 +24,7 @@ import HyperLink from '~/molecules/HyperLink.vue';
 import GridOfCardsArticles from './GridOfCardsArticles.vue';
 
 export default {
-	props: ['title','items'],
+	props: ['title','items', 'link'],
 	components: {VueHorizontal, TitleParagraph, HyperLink, GridOfCardsArticles},
 }
 </script>
