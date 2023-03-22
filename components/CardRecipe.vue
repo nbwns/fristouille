@@ -58,7 +58,7 @@ export default {
 			}
 		},
 		tag(){
-			if(this.tags.length > 0){
+			if(this.tags && this.tags.length > 0){
 				return this.tags[0];
 			}
 			else{
