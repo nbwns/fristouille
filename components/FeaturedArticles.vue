@@ -7,7 +7,7 @@
             {{title}}
 		  </title-paragraph>
 
-		  <hyper-link :path="link">Tout voir</hyper-link>
+		  <hyper-link v-if="link" :path="link">Tout voir</hyper-link>
         </div>
         <!-- grid for cards 2-columns -->
         <vue-horizontal>	

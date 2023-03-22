@@ -60,7 +60,7 @@
     </section>
 
 	<!-- featured recipes -->
-	<horizontal-list v-for="(list, index) in horizontalLists" :key="index" :title="list.title" :items="list.recipes" :link="list.seeAllQuery" />
+	<featured-recipes v-for="(list, index) in horizontalLists" :key="index" :title="list.title" :items="list.recipes" :link="list.seeAllQuery" />
 
 	<!-- featured articles -->
 	<featured-articles v-for="(list, index) in articlesLists"  :key="index" :title="list.title" :items="list.items" :link="list.seeAllLink"/>
@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import HorizontalList from '~/components/HorizontalList'
+import FeaturedRecipes from '~/components/FeaturedRecipes'
 import CategoryTags from '~/components/CategoryTags'
 import FeaturedArticles from '~/components/FeaturedArticles'
 import SearchBar from '~/components/SearchBar.vue'
@@ -81,7 +81,7 @@ import LinkButton from '~/molecules/LinkButton.vue'
 
 export default {
 	components: {
-		HorizontalList,
+		FeaturedRecipes,
 		CategoryTags,
 		FeaturedArticles,
 		SearchBar,

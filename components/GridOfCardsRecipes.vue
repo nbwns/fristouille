@@ -5,6 +5,8 @@
 			:img="item.pictureMedium"
 			:recipeID="item.objectID"
 			:slug="item.slug"
+			:tags="item.tags"
+			:author="item.authorName"
 			:title="item.name" />
 	</div>
 </template>

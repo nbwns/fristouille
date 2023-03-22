@@ -9,6 +9,7 @@
     h3,
     h4,
     p,
+	li,
     .bigtitle,
     .title,
     .title-article,
@@ -30,6 +31,18 @@
     .title {
         @apply font-labil text-3xl font-medium;
     }
+
+	ul, ol {
+		@apply list-inside
+	}
+
+	ol {
+		@apply list-decimal
+	}
+
+	ul {
+		@apply list-disc
+	}
 
     h3,
     .title-article {

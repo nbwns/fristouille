@@ -1,68 +1,40 @@
 const queries = {
-    generateRecipes(){
-        return `{
-            recettes(publishingStatus: "Published"){
-              name
-              recipeId
-              slug
-              description
-              picture
-              pictureSmall
-              pictureMedium
-              diet
-              preparationTime
-              cookTime
-              yield
-			  months
-              procedure
-              ingredients
-			  prismicPageId
-              tags{
-                name
-              }
-			  compositions{
-				name
-                ingredient{
-                  name
-                }
-                quantity
-                units
-				remark
-				optional
-              }
-            }
-          }`
-    },
     getRecipeDetails(id){
         return `{
             recettes(recipeId: ${id}) {
                 recipeId
-                name
-                description
-                picture
-                pictureSmall
-                pictureMedium
-                diet
-                preparationTime
-                cookTime
-                yield
+				name
+				description
+				picture
+				pictureSmall
+				pictureMedium
+				diet
+				preparationTime
+				cookTime
+				yield
+				procedure
+				ingredients
 				months
-                procedure
-                ingredients
+				category
+				cuisine
+				free
+				baseRecipe
+				createdOn
 				prismicPageId
-                tags{
-                  name
-                }
-                slug
+				slug
+				authorName
+				tags{
+					name
+				}
 				compositions{
 					name
 					ingredient{
-					  name
+						name
 					}
 					quantity
 					units
 					remark
-                  	optional
+					optional
 				}
             }
         }`

@@ -4,7 +4,8 @@
     <div class="hidden md:flex flex-grow md:w-auto pt-2 ">
       <div class="flex flex-grow space-x-5">
       <nav-link path="/">Accueil</nav-link>
-	  	<nav-link path="/Recettes">Rechercher</nav-link>
+	  	<nav-link path="/recettes">Recettes</nav-link>
+	  	<nav-link path="/recettes-de-base">Recettes de base</nav-link>
 	  	<nav-link path="/cuisine-durable">Cuisine durable</nav-link>
       </div>
       <div>

@@ -25,6 +25,8 @@ exports.handler = async function(event, context) {
 				'pictureSmall',
 				'pictureMedium',
 				'diet',
+				'tags',
+				'authorName',
 				'objectID'
 				],
 			attributesToHighlight: []

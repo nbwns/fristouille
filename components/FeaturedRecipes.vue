@@ -6,7 +6,7 @@
         <div class="flex flex-row justify-between">
 			<title-paragraph>{{title}}</title-paragraph>
 
-			<hyper-link :path="`/Recettes${link}`">Tout voir</hyper-link>
+			<hyper-link v-if="link" :path="`/Recettes${link}`">Tout voir</hyper-link>
          
         </div>
 		<vue-horizontal>			
@@ -17,6 +17,8 @@
 				:img="item.pictureMedium"
 				:recipeID="item.objectID"
 				:slug="item.slug"
+				:tags="item.tags"
+				:author="item.authorName"
 				:title="item.name" />
 		</vue-horizontal>
       </div>

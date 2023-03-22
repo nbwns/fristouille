@@ -5,7 +5,7 @@
 			<div class="h-40 bg-center bg-cover" :class="width" :style="{backgroundImage: backgroundImage}">			
 				<div class="relative">
 					<div class="absolute w-full left-0 top-0 flex flex-row justify-between p-2 items-center">
-							<tag look="primary" title="facile">facile</tag>
+							<tag v-if="tag" look="primary" :title="tag">{{tag}}</tag>
 							<tag
 								v-if="diet != 'Omnivore'"
 								:title="diet" 
@@ -26,10 +26,7 @@
 
 				<div class="pt-4">
 					<h4 class="text-big">{{title}}</h4>
-					<p class="text-usual">auteur</p>
-					<!-- <p>
-						auteur
-					</p> -->
+					<p class="text-usual">{{author}}</p>
 				</div>
 		</nuxt-link>
 	</div>
@@ -46,13 +43,23 @@ export default {
 		'img': String,
 		'diet': String,
 		'title': String,
-		width: String,
+		'tags': Array,
+		'author': String,
+		'width': String,
 	},
 	components: {Tag},
 	computed:{
 		backgroundImage(){
 			if(this.img){
 				return 'url(' + this.img + ')';
+			}
+			else{
+				return '';
+			}
+		},
+		tag(){
+			if(this.tags.length > 0){
+				return this.tags[0];
 			}
 			else{
 				return '';

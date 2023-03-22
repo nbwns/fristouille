@@ -35,14 +35,20 @@ exports.handler = async function(event, context) {
 					preparationTime
 					cookTime
 					yield
-					months
 					procedure
 					ingredients
+					months
+					category
+					cuisine
+					free
+					baseRecipe
+					createdOn
 					prismicPageId
-					tags{
-					name
-					}
 					slug
+					authorName
+					tags{
+						name
+					}
 					compositions{
 						name
 						ingredient{

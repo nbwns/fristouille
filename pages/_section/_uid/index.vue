@@ -8,41 +8,22 @@
 		<!-- body -->
 		<prismic-rich-text :field="document.data.text" />
 		<!-- featured recipes -->
-		<horizontal-list v-if="horizontal_list && featuredRecipes.length > 0" v-bind="propsToPass()" />
+		<featured-recipes v-for="(list, index) in horizontalLists" :key="index" :title="list.title" :items="list.recipes" :link="list.seeAllQuery" />
     </div>
   </div>
 </template>
 
 <script>
-import HorizontalList from '~/components/HorizontalList'
+import FeaturedRecipes from '~/components/FeaturedRecipes'
 import Breadcrumb from '~/molecules/Breadcrumb.vue';
 import TitleArticle from '~/molecules/TitleArticle.vue';
 
 export default {
   name: 'post',
   components: {
-	HorizontalList,
+	FeaturedRecipes,
 	Breadcrumb,
 	TitleArticle
-  },
-  data(){
-	return {
-		passHorizontalList: false
-	}
-  },
-  methods:{
-	propsToPass() {
-      const result = {};
-
-      if (this.passHorizontalList) {
-        result.title = this.horizontal_list.list_title
-		result.items = this.featuredRecipes;
-		result.link = this.horizontal_list.see_all_querystring;
-      }
-
-	  	console.log("props to pass", result)
-      return result
-    }
   },
   head () {
     return {
@@ -96,29 +77,38 @@ export default {
 			}
 		}
 
-		let horizontal_list = null;
-		let featuredRecipes = [];
+		let horizontalLists = [];
 
 		if(page.body && page.body.length > 0){
-			//get the horizontal list component
-			horizontal_list = page.body[0].primary; //TODO: improve retrieving of the slice
+			
+			let horizontalListsSlices = page.body.filter(s => s.slice_type === 'horizontal_list');
 
-			//based on the horizontal list query_filter prop, query the Algolia index to get the featured recipes
-			featuredRecipes = (await $axios.get($config.searchIndexFunction,{ params: {
-						query: horizontal_list.query_term,
-						filters: horizontal_list.query_filters
+			//horizontal lists of recipes
+			horizontalLists = await Promise.all(
+				horizontalListsSlices.map(async (hl) => {
+					//based on the horizontal list query_filter prop, query the Algolia index to get the featured recipes
+					const featuredRecipes = (await $axios.get($config.searchIndexFunction,{
+						params: {
+							query: hl.primary.query_term,
+							filters: hl.primary.query_filters
+						}
 					}
-				})).data;
+					)).data;
 
-			this.passHorizontalList = true;
+					return {
+						title: hl.primary.list_title,
+						seeAllQuery: hl.primary.see_all_querystring,
+						recipes: featuredRecipes
+					}
+				})
+			);
 		}
 
 		// Returns data to be used in template
 		return {
 			document: document,
 			parent: parent,
-			horizontal_list: horizontal_list,
-			featuredRecipes: featuredRecipes
+			horizontalLists: horizontalLists,
 		}
     } catch (e) {
       // Returns error page

@@ -43,7 +43,10 @@ exports.handler = async function(event, context) {
 				months: recette.months,
 				preparationTime: recette.preparationTime/60,
 				cookTime: recette.cookTime/60,
-				yield: recette.yield
+				yield: recette.yield,
+				baseRecipe: recette.baseRecipe,
+				authorName: recette.authorName[0],
+				createdOn: new Date(recette.createdOn).getTime()
 			}
 
 			algoliaObject.tags = recette.tags.map(t => t.name);

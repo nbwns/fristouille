@@ -1,6 +1,6 @@
 <template>
 	<nav>
-		<ol class="flex items-center">
+		<ol class="flex items-center list-none">
 			<li>
 				<nuxt-link :to="parentPath" class="breadcrumb-main text-usual">
 					<prismic-text v-if="(typeof(parentText)) !== 'string'" :field="parentText" />
