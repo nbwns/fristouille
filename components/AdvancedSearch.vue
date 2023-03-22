@@ -11,8 +11,8 @@
 				<!-- dropdown menus -->
 				<dropdown title="Régime alimentaire">
 					<checkbox-filter uid="Végétalien" ref="Végétalien" @check="filter('diet','Végétalien', $event)" :checked="checked('diet','Végétalien')">végétalien</checkbox-filter>
-					<checkbox-filter uid="Végétarien" ref="Végétarien" @check="filter('diet','Végétarien', $event)" :checked="checked('diet','Végétarien')">végétarien</checkbox-filter>
-					<checkbox-filter uid="Omnivore" ref="Omnivore" @check="filter('diet','Omnivore', $event)" :checked="checked('diet','Omnivore')">omnivore</checkbox-filter>
+					<checkbox-filter uid="Végétarien" ref="Végétarien" @check="filter('diet','Végétarien', $event, ['Végétalien'])" :checked="checked('diet','Végétarien')">végétarien</checkbox-filter>
+					<checkbox-filter uid="Omnivore" ref="Omnivore" @check="filter('diet','Omnivore', $event, ['Végétalien', 'Végétarien'])" :checked="checked('diet','Omnivore')">omnivore</checkbox-filter>
 				</dropdown>
 
 				<dropdown title="Type de plat">
@@ -43,18 +43,18 @@
 				</dropdown>
 
 				<dropdown title="Saison">
-					<checkbox-filter uid="1" ref="1" @check="filter('months','1', $event)" :checked="checked('months','1')">janvier</checkbox-filter>
-					<checkbox-filter uid="2" ref="2" @check="filter('months','2', $event)" :checked="checked('months','2')">février</checkbox-filter>
-					<checkbox-filter uid="3" ref="3" @check="filter('months','3', $event)" :checked="checked('months','3')">mars</checkbox-filter>
-					<checkbox-filter uid="4" ref="4" @check="filter('months','4', $event)" :checked="checked('months','4')">avril</checkbox-filter>
-					<checkbox-filter uid="5" ref="5" @check="filter('months','5', $event)" :checked="checked('months','5')">mai</checkbox-filter>
-					<checkbox-filter uid="6" ref="6" @check="filter('months','6', $event)" :checked="checked('months','6')">juin</checkbox-filter>
-					<checkbox-filter uid="7" ref="7" @check="filter('months','7', $event)" :checked="checked('months','7')">juillet</checkbox-filter>
-					<checkbox-filter uid="8" ref="8" @check="filter('months','8', $event)" :checked="checked('months','8')">août</checkbox-filter>
-					<checkbox-filter uid="9" ref="9" @check="filter('months','9', $event)" :checked="checked('months','9')">septembre</checkbox-filter>
-					<checkbox-filter uid="10" ref="10" @check="filter('months','10', $event)" :checked="checked('months','10')">octobre</checkbox-filter>
-					<checkbox-filter uid="11" ref="11" @check="filter('months','11', $event)" :checked="checked('months','11')">novembre</checkbox-filter>
-					<checkbox-filter uid="12" ref="12" @check="filter('months','12', $event)" :checked="checked('months','12')">décembre</checkbox-filter>
+					<checkbox-filter uid="1-a" @check="filter('months','Janvier', $event)" :checked="checked('months','Janvier')">janvier</checkbox-filter>
+					<checkbox-filter uid="2-a" @check="filter('months','Février', $event)" :checked="checked('months','Février')">février</checkbox-filter>
+					<checkbox-filter uid="3-a" @check="filter('months','Mars', $event)" :checked="checked('months','Mars')">mars</checkbox-filter>
+					<checkbox-filter uid="4-a" @check="filter('months','Avril', $event)" :checked="checked('months','Avril')">avril</checkbox-filter>
+					<checkbox-filter uid="5-a" @check="filter('months','Mai', $event)" :checked="checked('months','Mai')">mai</checkbox-filter>
+					<checkbox-filter uid="6-a" @check="filter('months','Juin', $event)" :checked="checked('months','Juin')">juin</checkbox-filter>
+					<checkbox-filter uid="7-a" @check="filter('months','Juillet', $event)" :checked="checked('months','Juillet')">juillet</checkbox-filter>
+					<checkbox-filter uid="8-a" @check="filter('months','Août', $event)" :checked="checked('months','Août')">août</checkbox-filter>
+					<checkbox-filter uid="9-a" @check="filter('months','Septembre', $event)" :checked="checked('months','Septembre')">septembre</checkbox-filter>
+					<checkbox-filter uid="10-a" @check="filter('months','Octobre', $event)" :checked="checked('months','Octobre')">octobre</checkbox-filter>
+					<checkbox-filter uid="11-a" @check="filter('months','Novembre', $event)" :checked="checked('months','Novembre')">novembre</checkbox-filter>
+					<checkbox-filter uid="12-a" @check="filter('months','Décembre', $event)" :checked="checked('months','Décembre')">décembre</checkbox-filter>
 				</dropdown>
 			</div>
 			
@@ -104,18 +104,18 @@
 					</accordion>
 
 					<accordion title="Saison" key="season">
-						<checkbox-filter uid="1-a" @check="filter('months','1', $event)" :checked="checked('months','1')">janvier</checkbox-filter>
-						<checkbox-filter uid="2-a" @check="filter('months','2', $event)" :checked="checked('months','2')">février</checkbox-filter>
-						<checkbox-filter uid="3-a" @check="filter('months','3', $event)" :checked="checked('months','3')">mars</checkbox-filter>
-						<checkbox-filter uid="4-a" @check="filter('months','4', $event)" :checked="checked('months','4')">avril</checkbox-filter>
-						<checkbox-filter uid="5-a" @check="filter('months','5', $event)" :checked="checked('months','5')">mai</checkbox-filter>
-						<checkbox-filter uid="6-a" @check="filter('months','6', $event)" :checked="checked('months','6')">juin</checkbox-filter>
-						<checkbox-filter uid="7-a" @check="filter('months','7', $event)" :checked="checked('months','7')">juillet</checkbox-filter>
-						<checkbox-filter uid="8-a" @check="filter('months','8', $event)" :checked="checked('months','8')">août</checkbox-filter>
-						<checkbox-filter uid="9-a" @check="filter('months','9', $event)" :checked="checked('months','9')">septembre</checkbox-filter>
-						<checkbox-filter uid="10-a" @check="filter('months','10', $event)" :checked="checked('months','10')">octobre</checkbox-filter>
-						<checkbox-filter uid="11-a" @check="filter('months','11', $event)" :checked="checked('months','11')">novembre</checkbox-filter>
-						<checkbox-filter uid="12-a" @check="filter('months','12', $event)" :checked="checked('months','12')">décembre</checkbox-filter>
+						<checkbox-filter uid="1-a" @check="filter('months','Janvier', $event)" :checked="checked('months','Janvier')">janvier</checkbox-filter>
+						<checkbox-filter uid="2-a" @check="filter('months','Février', $event)" :checked="checked('months','Février')">février</checkbox-filter>
+						<checkbox-filter uid="3-a" @check="filter('months','Mars', $event)" :checked="checked('months','Mars')">mars</checkbox-filter>
+						<checkbox-filter uid="4-a" @check="filter('months','Avril', $event)" :checked="checked('months','Avril')">avril</checkbox-filter>
+						<checkbox-filter uid="5-a" @check="filter('months','Mai', $event)" :checked="checked('months','Mai')">mai</checkbox-filter>
+						<checkbox-filter uid="6-a" @check="filter('months','Juin', $event)" :checked="checked('months','Juin')">juin</checkbox-filter>
+						<checkbox-filter uid="7-a" @check="filter('months','Juillet', $event)" :checked="checked('months','Juillet')">juillet</checkbox-filter>
+						<checkbox-filter uid="8-a" @check="filter('months','Août', $event)" :checked="checked('months','Août')">août</checkbox-filter>
+						<checkbox-filter uid="9-a" @check="filter('months','Septembre', $event)" :checked="checked('months','Septembre')">septembre</checkbox-filter>
+						<checkbox-filter uid="10-a" @check="filter('months','Octobre', $event)" :checked="checked('months','Octobre')">octobre</checkbox-filter>
+						<checkbox-filter uid="11-a" @check="filter('months','Novembre', $event)" :checked="checked('months','Novembre')">novembre</checkbox-filter>
+						<checkbox-filter uid="12-a" @check="filter('months','Décembre', $event)" :checked="checked('months','Décembre')">décembre</checkbox-filter>
 					</accordion>
 			</div>
 		</div>
@@ -150,9 +150,12 @@ export default {
 				return false;
 			}
 		},
-		filter(type, value, event){
+		filter(type, value, event, moreValues = []){
 			if(event.target.checked){
 				this.$store.commit('addToFilters', {type, value});
+				moreValues.forEach(v => {
+					this.$store.commit('addToFilters', {type: type, value: v})
+				});
 			}
 			else{
 				this.$store.commit('removeFromFilters', {type, value});

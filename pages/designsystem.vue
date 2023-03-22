@@ -47,7 +47,7 @@
 
 		<!-- Text variation {BigTitle, Title, TitleArticle, TitleParagraph } -->
 		<p class="ds-label">BigTitle, Title, TitleArticle, TitleParagraph || h1, h2, h3, h4</p>		
-		<big-title size=4 emphasis="ready">The fox is</big-title>	
+		<big-title :size="4" emphasis="ready">The fox is</big-title>	
 		<normal-title>The fox is ready</normal-title>
 		<title-article>The fox is ready</title-article>
 		<title-paragraph>The fox is ready</title-paragraph>
@@ -122,7 +122,10 @@
 			img="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
 			recipeID="7229"
 			slug="asperges-vertes-au-citron-salade-de-pommes-de-terre-et-burger-vege"
-			title="Asperges vertes au citron, salade de pommes de terre et burger végé"/>
+			title="Asperges vertes au citron, salade de pommes de terre et burger végé"
+			author="Nicolas"
+			:tags="['facile', 'rapide']"
+			/>
 
 		<grid-of-cards-recipes></grid-of-cards-recipes>
 		

@@ -40,11 +40,17 @@
 				<submit-button>Rechercher</submit-button>
 			</form>
 
-          	<!-- tags and filter -->
-			<!-- <category-tags /> -->
+          	<!-- tags -->
 			<div class="flex flex-row justify-between items-center my-2 ">
-				<!-- tags -->
 				<div class="flex flex-row gap-4 items-center">
+					<!-- seasons tags -->
+					<nuxt-link v-for="s in currentSeasons" 
+						:key="s" 
+						:to="`/Recettes?${getSeasonQuery(s)}`"
+						>
+						<tag look="primary">{{s}}</tag>
+					</nuxt-link>
+					<!-- quick search tags -->
 					<nuxt-link v-for="(t,index) in quickSearchTags" 
 						:key="index" 
 						:to="`/Recettes${t.tag_query}`"
@@ -60,10 +66,10 @@
     </section>
 
 	<!-- featured recipes -->
-	<featured-recipes v-for="(list, index) in horizontalLists" :key="index" :title="list.title" :items="list.recipes" :link="list.seeAllQuery" />
+	<featured-recipes v-for="(list, index) in horizontalLists" :key="'r'+index" :title="list.title" :items="list.recipes" :link="list.seeAllQuery" />
 
 	<!-- featured articles -->
-	<featured-articles v-for="(list, index) in articlesLists"  :key="index" :title="list.title" :items="list.items" :link="list.seeAllLink"/>
+	<featured-articles v-for="(list, index) in articlesLists"  :key="'a'+index" :title="list.title" :items="list.items" :link="list.seeAllLink"/>
 
   </div>
 </template>
@@ -95,19 +101,60 @@ export default {
 		return {
 			query: "",
 			featuredQuery: "",
-			featuredSeeAllLink: ""
+			featuredSeeAllLink: "",
+			seasonsAndMonths:{
+				winter: {11: "Décembre", 0: "Janvier",1:"Février",2:"Mars"},
+				spring: {2: "Mars", 3:"Avril", 4:"Mai", 5:"Juin"},
+				summer: {5: "Juin",6: "Juillet",7: "Août",8: "Septembre"},
+				autumn: {8: "Septembre", 9: "Octobre", 10: "Novembre",11: "Décembre"}
+			}
+		}
+	},
+	computed:{
+		currentSeasons(){
+			let month= new Date().getMonth();
+
+			let seasons = [];
+			if(month in this.seasonsAndMonths.winter){
+				seasons.push("hiver");
+			}
+			if(month in this.seasonsAndMonths.spring){
+				seasons.push("printemps");
+			}
+			if(month in this.seasonsAndMonths.summer){
+				seasons.push("été");
+			}
+			if(month in this.seasonsAndMonths.autumn){
+				seasons.push("automne");
+			}
+
+			return seasons;
 		}
 	},
 	methods:{
-		//TODO: finish this
-		getCurrentSeasons(){
-			let month= new Date().getMonth();
-			let winter = [11, 0,1,2];
-			let spring = [2, 3, 4, 5]
-			let summer = [5,6,7,8];
-			let autumn = [8, 9, 10,11]
-		}
+		getSeasonQuery(s){
+			let months;
+			switch(s){
+				case "hiver":
+					months = Object.values(this.seasonsAndMonths.winter);
+					break;
 
+				case "printemps":
+					months = Object.values(this.seasonsAndMonths.spring);
+					break;
+
+				case "été":
+					months = Object.values(this.seasonsAndMonths.summer);
+					break;
+
+				case "automne":
+					months = Object.values(this.seasonsAndMonths.autumn);
+					break;
+
+			}
+
+			return months.map((m) => `months=${m}`).join('&'); 
+		}
 	},
 	head () {
 		return {
@@ -181,7 +228,7 @@ export default {
 
 					return {
 						title: fc.primary.featured_title, 
-						seeAllLink: '/cuisine-durable',
+						seeAllLink: fc.primary.see_all_link.url,
 						items: featured_documents
 					};
 				})

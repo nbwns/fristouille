@@ -1,6 +1,6 @@
 <template>
   	<div class="logo flex flex-shrink-0 mr-10">
-		Fristouille
+		<nuxt-link to="/">Fristouille</nuxt-link>
 	</div>
 </template>
 

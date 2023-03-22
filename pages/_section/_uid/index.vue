@@ -75,6 +75,13 @@ export default {
 			if(parents.length > 0){
 				parent = parents[0];
 			}
+
+			// Get siblings pages
+			// const siblings = (await $prismic.api.query( 
+			// 	$prismic.predicates.at('my.childpage.parent_page', page.parent_page.id) 
+			// )).results;
+
+			// console.log("siblings", siblings.filter(i => i.uid != params.uid));
 		}
 
 		let horizontalLists = [];

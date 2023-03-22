@@ -66,7 +66,7 @@
 					</svg>
 					<!-- link -->
 					<span class="text-sm text-white-200 font-inter font-medium">
-						durable
+						apprendre
 					</span>
 				</nuxt-link>
 			</div>
