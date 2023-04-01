@@ -55,12 +55,17 @@
     }
 
     .text-big,
-    .text-small {
+    .text-small
+    .text-medium {
         @apply font-inter;
     }
 
     .text-big {
         @apply text-lg;
+    }
+
+    .text-medium {
+        @apply text-base;
     }
 
     .text-small {
@@ -228,23 +233,23 @@
     }
 
     .dropdown {
-        @apply bg-black-200 relative flex flex-grow;
+        @apply relative flex justify-between;
     }
 
     .dropdown-wrap {
-        @apply w-full p-4;
+        @apply w-full py-4;
     }
 
     .dropdown-wrap > :first-child {
-        @apply flex justify-between;
+        @apply flex justify-start items-center gap-1;
     }
 
     .dropdown-wrap-content {
-        @apply bg-black-200 absolute z-50 p-4 w-full text-white-300;
+        @apply absolute z-50 p-4 w-full text-white-300;
     }
 
     .dropdown-wrap-content-inner {
-        @apply py-4 space-y-2;
+        @apply py-4 space-y-2   ;
     }
 
 
