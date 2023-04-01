@@ -1,7 +1,6 @@
 <template>
 	<div class="grid place-items-center">
-
-					<!-- advanced search for desktop and mobile, displays selected filters as tags (extract this part ?) -->
+		<!-- advanced search for desktop and mobile, displays selected filters as tags (extract this part ?) -->
 					<advanced-search 
 							@filtersChanged="setFilterQuery" 
 							@closePopup="mobileAdvancedSearch=false"
@@ -13,27 +12,37 @@
 			<!-- TODO: open mobile popup based on query string param -->
 			
 			<!-- link to advanced search (mobile only) -->
-			<span class="md:hidden font-labil text-base font-medium text-coral-300 cursor-pointer" @click="mobileAdvancedSearch=true">+ de filtres</span>
+			<span class="md:hidden font-labil text-base font-medium text-coral-300 cursor-pointer" @click="mobileAdvancedSearch=true">
+				+ de filtres
+			</span>
 			
 
 
 
-			<!-- search input -->
-			<input type="search" class="input-search text-usual"
-			:value="query"
-			placeholder="Que souhaitez-vous cuisiner ?"
-			ref="searchField"
-			@keyup.enter="updateQuery"/>
-			<!-- search button -->
-			<button @click="updateQuery" class="btn" aria-label="Rechercher">
-						<!-- search icon -->
-						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-							<path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-						</svg>
-			</button>
+			<div class="flex flex-col md:flex-row gap-4">
+				<!-- search input -->
+				<input type="search" class="input-search text-usual"
+				:value="query"
+				placeholder="Que souhaitez-vous cuisiner ?"
+				ref="searchField"
+				@keyup.enter="updateQuery"/>
+				<div class="flex flex-row">
+					<!-- search button -->
+					<button @click="updateQuery" class="btn w-max" aria-label="Rechercher">
+						je recherche
+											<!-- search icon -->
+					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+					</svg>
+					</button>
+
+				</div>
+			</div>
 			<selected-filters/>
 			<!-- warning -->
-			<div v-if="noSearchParameters">Veuillez indiquer au minimum un terme de recherche ou un filtre avancé</div>
+			<div v-if="noSearchParameters">
+				Veuillez indiquer au minimum un terme de recherche ou un filtre avancé
+			</div>
 				
 						<ais-instant-search :index-name="indexName" :search-client="searchClient" :search-function="search" >		
 							<ais-configure
@@ -54,8 +63,12 @@
 							</ais-state-results>
 				
 							<div v-if="searchPerformed">
-								<normal-title v-if="query">Résultats pour '{{ query }}'</normal-title>
-								<normal-title v-else>Découvrez nos recettes</normal-title>
+								<normal-title v-if="query">
+									Résultats pour '{{ query }}'
+								</normal-title>
+								<normal-title v-else>
+									Découvrez nos recettes
+								</normal-title>
 							</div>
 							<div v-else>
 								<!-- here we can show suggestions on the default state of the page -->
@@ -69,7 +82,9 @@
 									}"
 								>
 									<!-- number of results (hidden on mobile) -->
-									<div class="hidden md:flex">{{ nbHits }} recettes</div>
+									<div class="hidden md:flex">
+										{{ nbHits }} recettes
+									</div>
 								</template>
 							</ais-pagination>
 				

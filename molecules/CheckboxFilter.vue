@@ -1,6 +1,6 @@
 <template>
 <div class="flex justify-between w-full items-center">  
-    <label :for="uid" class="label-checkbox text-usual cursor-pointer select-none">	
+    <label :for="uid" class="label-checkbox text-usual cursor-pointer select-none pr-8 w-max">	
 		<slot></slot> 
 	</label>
 	<input :id="uid" type="checkbox" value="" class="checkbox select-none" :checked="checked" @click="$emit('check', $event)">

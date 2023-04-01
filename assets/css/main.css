@@ -245,11 +245,11 @@
     }
 
     .dropdown-wrap-content {
-        @apply absolute z-50 p-4 w-full text-white-300;
+        @apply absolute bg-black-200 z-50 p-4 w-auto text-white-300;
     }
 
     .dropdown-wrap-content-inner {
-        @apply py-4 space-y-2   ;
+        @apply py-4 space-y-2 bg-black-200 ;
     }
 
 
