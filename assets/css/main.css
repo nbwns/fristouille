@@ -228,7 +228,7 @@
     }
 
     .dropdown {
-        @apply bg-black-100 relative;
+        @apply bg-black-200 relative flex flex-grow;
     }
 
     .dropdown-wrap {
@@ -240,7 +240,7 @@
     }
 
     .dropdown-wrap-content {
-        @apply bg-black-100 absolute z-50 p-4 w-full text-white-300;
+        @apply bg-black-200 absolute z-50 p-4 w-full text-white-300;
     }
 
     .dropdown-wrap-content-inner {
@@ -270,6 +270,13 @@
 
     .xl {
         @apply px-16;
+    }
+
+    .layer__xl {
+        @apply max-w-[60em] w-full;
+    }
+    .layer__md {
+        @apply max-w-[37.5em] w-full;
     }
 
     /* hide border blue generate by vue on input element */

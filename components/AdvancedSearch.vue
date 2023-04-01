@@ -1,13 +1,13 @@
 <template>
-  <div>
+  <div class="layer__xl">
 		<!-- TODO: 
 		- only save filters in store on search button click ? -> would allow to close the mobile popup without saving the filters
 		- synchronise checkboxes between desktop and mobile -> for instance if screen is rotated
 		-->
 
 	  	<!-- desktop advanced search -->
-		<div class="hidden md:flex flex-grow md:w-auto pt-2 ">
-			<div class="flex flex-grow text-lg text-white-200 font-inter capitalize font-medium ">
+		<div class="hidden md:flex flex-grow md:w-auto pt-2 justify-between ">
+			<div class="flex flex-grow text-lg text-white-200 rounded-xs font-inter capitalize font-medium justify-between ">
 				<!-- dropdown menus -->
 				<dropdown title="Régime alimentaire">
 					<checkbox-filter uid="Végétalien" ref="Végétalien" @check="filter('diet','Végétalien', $event)" :checked="checked('diet','Végétalien')">végétalien</checkbox-filter>
