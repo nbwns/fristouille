@@ -103,7 +103,7 @@
     }
 
     .tag {
-        @apply py-1 px-3 rounded-3xl max-w-fit;
+        @apply flex items-center py-1 px-3 rounded-3xl max-w-fit;
     }
 
     .tag.default {
