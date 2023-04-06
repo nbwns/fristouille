@@ -1,23 +1,30 @@
 <template>
-  <section class="flex flex-col m-w-[1400px] gap-12 border-4 border-red-400 mx-auto p-4">
-      <!--  page title -->
-      <h1><prismic-text :field="document.data.title" /></h1>
-	  <!-- body  -->
-	  <prismic-rich-text :field="document.data.text" />
-	  <hr/>
-	 <!-- child pages  -->
-	 <grid-of-cards-articles :articles="children"/>
-
+  <section class="flex flex-col justify-center items-center layer__xl  border-4 mx-auto">
+	<spacer h="75"></spacer>
+	<div class="layer__lg items-center flex flex-col">
+		<!--  page title -->
+		<h1 class="max-w-md text-center">
+			<prismic-text :field="document.data.title" />
+		 </h1>
+			<spacer h="75"></spacer>
+				<!-- body  -->
+			<prismic-rich-text :field="document.data.text" class=" text-left" />
+		<spacer h="75"></spacer>
+	</div>			
+		<!-- child pages  -->
+	 		<grid-of-cards-articles :articles="children"/>
+	 <spacer h="175"></spacer>
   </section>
 </template>
 
 <script>
 import GridOfCardsArticles from '~/components/GridOfCardsArticles.vue'
-
+import Spacer from '~/molecules/Spacer.vue'
 export default {
   name: 'post',
   components: {
-	GridOfCardsArticles
+	GridOfCardsArticles,
+	Spacer
   },
   head () {
     return {

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-wrap md:flex-nowrap gap-10">
+  <div class="flex flex-wrap md:flex-nowrap gap-10 w-full">
 	<card-article v-for="c in articles" :key="c.id"
 		image-size=""
 		:path="c.url"

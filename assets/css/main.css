@@ -79,7 +79,7 @@
     p,
     .text-usual,
     .navlink {
-        @apply font-inter text-base;
+        @apply font-inter text-base leading-relaxed;
     }
 
 
@@ -279,6 +279,9 @@
 
     .layer__xl {
         @apply max-w-[60em] w-full;
+    }
+    .layer__lg {
+        @apply max-w-[45em] w-full;
     }
     .layer__md {
         @apply max-w-[37.5em] w-full;
