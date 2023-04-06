@@ -278,16 +278,16 @@
     }
 
     .layer__2xl {
-        @apply max-w-[80em] w-full;
+        @apply max-w-[80em] w-full px-5 xl:px-0;
     }
     .layer__xl {
-        @apply max-w-[60em] w-full;
+        @apply max-w-[60em] w-full px-5 xl:px-0;
     }
     .layer__lg {
-        @apply max-w-[45em] w-full;
+        @apply max-w-[45em] w-full px-5 xl:px-0;
     }
     .layer__md {
-        @apply max-w-[37.5em] w-full;
+        @apply max-w-[37.5em] w-full px-5 xl:px-0;
     }
 
     /* hide border blue generate by vue on input element */
