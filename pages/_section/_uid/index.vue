@@ -1,29 +1,38 @@
 <template>
-  <div class="flex flex-col m-w-[1400px] gap-12 border-4 border-red-400 mx-auto p-4">
-    <div class="outer-container">
+  <section class="flex flex-col justify-center layer__2xl mx-auto">
+	<spacer class=" h-24 lg:h-28 "></spacer>
 		<!-- breadcrumb -->
-		<breadcrumb :parentText="$prismic.asText(parent.data.title)" :parentPath="parent.url"><prismic-text :field="document.data.title"/></breadcrumb>
-		<!-- page title -->
-		<h1 class="title-article">{{$prismic.asText(document.data.title)}}</h1>
+		<breadcrumb :parentText="$prismic.asText(parent.data.title)" :parentPath="parent.url"><prismic-text :field="document.data.title"/>
+	</breadcrumb>
+	<spacer class="h-10"></spacer>
+	
+	<!-- page title -->
+	<h1 class="max-w-lg">{{$prismic.asText(document.data.title)}}</h1>
+	<spacer class="h-10"></spacer>
+	
+    <div class="layer__xl">
 		<!-- body -->
 		<prismic-rich-text :field="document.data.text" />
-		<!-- featured recipes -->
-		<featured-recipes v-for="(list, index) in horizontalLists" :key="index" :title="list.title" :items="list.recipes" :link="list.seeAllQuery" />
+			<!-- featured recipes -->
+			<featured-recipes v-for="(list, index) in horizontalLists" :key="index" :title="list.title" :items="list.recipes" :link="list.seeAllQuery" />
     </div>
-  </div>
+	<spacer h="275"></spacer>
+</section>
 </template>
 
-<script>
+<script>	
 import FeaturedRecipes from '~/components/FeaturedRecipes'
 import Breadcrumb from '~/molecules/Breadcrumb.vue';
 import TitleArticle from '~/molecules/TitleArticle.vue';
+import Spacer from '~/molecules/Spacer.vue';
 
 export default {
   name: 'post',
   components: {
 	FeaturedRecipes,
 	Breadcrumb,
-	TitleArticle
+	TitleArticle,
+	Spacer
   },
   head () {
     return {
