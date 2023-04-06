@@ -277,6 +277,9 @@
         @apply px-16;
     }
 
+    .layer__2xl {
+        @apply max-w-[80em] w-full;
+    }
     .layer__xl {
         @apply max-w-[60em] w-full;
     }
