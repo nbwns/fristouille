@@ -1,7 +1,7 @@
 <template>
 	<!-- TODO: center and padding of elements -->
-   <div class="bg-reglisse-100 w-full px-15 py-15 flex flex-col space-y-5 fixed bottom-0 md:hidden">
-		<div class="flex flex-row gap-5">
+   <div class="bg-black-300 w-full px-15 py-15 flex flex-col space-y-5 fixed bottom-0 md:hidden">
+		<div class="flex flex-row gap-5 items-center justify-between p-5">
 			<div class="flex flex-col items-center gap-3">
 			<nuxt-link to="/">
 				<!-- svg -->
