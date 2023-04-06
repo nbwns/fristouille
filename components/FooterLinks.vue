@@ -2,7 +2,7 @@
   <footer>
     
 	<div class="hidden md:flex mx-10 md:mx-0 mb-10 ">
-      <div class="flex flex-col w-full md:w-9/12 lg:w-7/12 space-y-[63px]  items-center mx-auto justify-center">
+      <div class="flex flex-col layer__xl space-y-[63px]  items-center mx-auto justify-center">
         <div class="w-full sm:w-1/3">
           <h2 class="font-bold text-[48px] text-white-200 font-labil text-center pb-2">
             <a href="#" class="hover:cursor-pointer hover:text-white-100">
@@ -36,7 +36,7 @@
               <input type="email" name="email" id="email"
                 class="grow  py-3 px-3 focus:border-reglisse-100 focus:outline-none bg-reglisse-300 placeholder:text-white-200 rounded"
                 placeholder="Adresse email" />
-              <button type="submit bg-coral-200">Je m'inscris</button>
+              <button type="submit" class="btn">Je m'inscris</button>
             </form>
           </div>
           <div class="flex flex-col justify-end  w-full">
@@ -55,7 +55,7 @@
               </svg>
               <a href="#" class="font-labil font-semibold !text-xl text-white-200 uppercase hover:underline">faq</a>
             </div>
-            <p class="note text-right">copyright ©fristouille {{currentYear}}</p>
+            <p class="note text-right pt-3">copyright ©fristouille {{currentYear}}</p>
           </div>
         </div>
       </div>

@@ -72,7 +72,7 @@ module.exports = {
       'xl': '1.56em',
       'lg': '1.25em',
       'base': '1em',
-      'sm': '.75em',
+      'sm': '.85em',
       'xs': '.5em',
     },
     extend: {
