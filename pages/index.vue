@@ -244,7 +244,8 @@ export default {
 		
 		} catch (e) {
 			// Returns error page
-			console.log("oops",e);
+			console.log("error in homepage",e);
+			error({ statusCode: 404, message: 'Page not found' })
 		}
 	}
 }

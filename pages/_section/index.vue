@@ -153,7 +153,7 @@ export default {
       }
     } catch (e) {
       // Returns error page
-	  console.log(e)
+	  console.log("error in top page",e);
       error({ statusCode: 404, message: 'Page not found' })
     }
   },

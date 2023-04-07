@@ -11,10 +11,12 @@
 	<spacer class="h-10"></spacer>
 	
     <div class="layer__xl">
+		<!-- intro -->
+		<prismic-rich-text :field="document.data.introduction" />
 		<!-- body -->
 		<prismic-rich-text :field="document.data.text" />
-			<!-- featured recipes -->
-			<featured-recipes v-for="(list, index) in horizontalLists" :key="index" :title="list.title" :items="list.recipes" :link="list.seeAllQuery" />
+		<!-- featured recipes -->
+		<featured-recipes v-for="(list, index) in horizontalLists" :key="index" :title="list.title" :items="list.recipes" :link="list.seeAllQuery" />
     </div>
 	<spacer h="275"></spacer>
 </section>
@@ -127,8 +129,9 @@ export default {
 			horizontalLists: horizontalLists,
 		}
     } catch (e) {
-      // Returns error page
-      error({ statusCode: 404, message: 'Page not found' })
+      	// Returns error page
+		console.log("error in child page",e);
+	  	error({ statusCode: 404, message: 'Page not found' })
     }
   },
 }

@@ -19,7 +19,9 @@ export const mutations = {
 		state.searchFilters = value;
 	},
 	addToFilters(state, filter){
-		state.searchFilters[filter.type].push(filter.value);
+		if(!state.searchFilters[filter.type].includes(filter.value)){
+			state.searchFilters[filter.type].push(filter.value);
+		}
 	},
 	removeFromFilters(state, filter){
 		const index = state.searchFilters[filter.type].indexOf(filter.value);
