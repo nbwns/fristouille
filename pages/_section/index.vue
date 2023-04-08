@@ -1,6 +1,6 @@
 <template>
   <section class="flex flex-col justify-center items-center layer__2xl mx-auto">
-	<spacer class=" h-24 lg:h-28 "></spacer>
+	<spacer size="xl"></spacer>
 	<div class="flex flex-col layer__xl !p-0 w-full">
 		<div class=" w-full block md:hidden absolute top-16 right-5">
 			<div class="w-36 ml-auto -rotate-6">
@@ -42,7 +42,7 @@
 		<h1 class="max-w-md">
 			<prismic-text :field="document.data.title" />
 		 </h1>
-		 <spacer class="h-10"></spacer>
+		 <spacer class="sm"></spacer>
 				<!-- body  -->
 			<div class="flex flex-grow flex-col md:flex-row-reverse justify-center">
 				<div class=" w-full lg:w-1/2 lg:-mt-16 hidden md:block">
@@ -85,11 +85,11 @@
 					<prismic-rich-text :field="document.data.text"/>
 				</div>
 			</div>
-		<spacer h="125"></spacer>
+		<spacer h="xl"></spacer>
 	</div>			
 		<!-- child pages  -->
 	 		<grid-of-cards-articles :articles="children"/>
-	 <spacer h="275"></spacer>
+	 <spacer h="xxl"></spacer>
   </section>
 </template>
 

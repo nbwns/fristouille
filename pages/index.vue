@@ -2,11 +2,11 @@
   <div>
 	<!-- Hero introduction -->
     <section>
-      <div class="flex justify-center items-center bg-reglisse-200">
-        <div
-          class="flex flex-col md:flex-row w-full md:w-9/12 lg:w-7/12 justify-center items-center h-auto mx-10 md:mx-0 my-10">
+      <div class="flex flex-col justify-center items-center bg-black-200">
+		<spacer size="xl"></spacer>
+        <div class="flex flex-col md:flex-row layer__xl justify-between items-center h-auto mx-auto">
 			<div class="block z-0 items-center h-full">
-				<big-title :emphasis="$prismic.asText(document.data.hero_title_emphasis)">{{$prismic.asText(document.data.hero_title)}}</big-title>
+				<big-title :emphasis="$prismic.asText(document.data.hero_title_emphasis)" class="max-w-md ">{{$prismic.asText(document.data.hero_title)}}</big-title>
 				
 				<title-article>{{$prismic.asText(document.data.intro_phrase)}}</title-article>
 				 
@@ -27,11 +27,11 @@
     <!-- search -->
 	<!-- only displayed on desktop -->
     <section class="hidden md:flex py-[10vh] mx-10 md:mx-0 my-10">
-      <div class="flex flex-col items-center bg-reglisse-100  w-full gap-[73px] ">
+      <div class="flex flex-col items-center bg-black-200  w-full gap-[73px] ">
 		<h2 class="text-coral-200">
 		Trouver des recettes
 		</h2>
-        <div class="flex flex-col justify-center w-full md:w-9/12 lg:w-7/12 ">
+        <div class="flex flex-col justify-center layer__xl">
 			<!-- search bar -->
 			<form class="flex items-center gap-5" action="/Recettes">
 				<div class="relative w-full">
@@ -84,6 +84,8 @@ import Tag from '~/molecules/Tag.vue'
 import BigTitle from '~/molecules/BigTitle.vue'
 import TitleArticle from '~/molecules/TitleArticle.vue'
 import LinkButton from '~/molecules/LinkButton.vue'
+import Spacer from '~/molecules/Spacer.vue'
+
 
 export default {
 	components: {
@@ -95,7 +97,9 @@ export default {
 		Tag,
 		BigTitle,
 		TitleArticle,
-		LinkButton
+		LinkButton,
+		Spacer
+
 	},
 	data(){
 		return {
