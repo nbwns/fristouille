@@ -8,7 +8,7 @@
 			<div class="block z-0 items-center h-full">
 				<big-title :emphasis="$prismic.asText(document.data.hero_title_emphasis)" class="max-w-md ">{{$prismic.asText(document.data.hero_title)}}</big-title>
 				
-				<title-article>{{$prismic.asText(document.data.intro_phrase)}}</title-article>
+				<p class="text-big py-5">{{$prismic.asText(document.data.intro_phrase)}}</p>
 				 
 				<div v-if="document.data.cta_page.type !== 'broken_type'" class="mt-10">
 					<link-button :path="document.data.cta_page.url">
@@ -83,7 +83,6 @@ import SearchBar from '~/components/SearchBar.vue'
 import SubmitButton from '~/molecules/SubmitButton.vue'
 import Tag from '~/molecules/Tag.vue'
 import BigTitle from '~/molecules/BigTitle.vue'
-import TitleArticle from '~/molecules/TitleArticle.vue'
 import LinkButton from '~/molecules/LinkButton.vue'
 import Spacer from '~/molecules/Spacer.vue'
 
@@ -97,7 +96,6 @@ export default {
 		SubmitButton,
 		Tag,
 		BigTitle,
-		TitleArticle,
 		LinkButton,
 		Spacer
 
