@@ -180,7 +180,7 @@
     }
 
     .card {
-        @apply w-full rounded;
+        @apply max-w-xs w-[350px] rounded;
     }
    
     .card-image {
@@ -188,6 +188,10 @@
     }
     .card-image:hover {
         @apply -translate-y-2;
+    }
+
+    .v-hl-container.v-hl-snap-start {
+        @apply !gap-8 
     }
 
 

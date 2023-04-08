@@ -1,7 +1,7 @@
 <template>
 	<!-- section cards 4 columns -->
     <section class="grid place-items-center py-[10vh] space-y-10 mx-10 md:mx-0 ">
-      <div class="flex flex-col w-full md:w-9/12 lg:w-7/12 space-y-3">
+      <div class="flex flex-col w-full md:w-9/12 lg:w-7/12 space-y-3 ">
         <!-- title row -->
         <div class="flex flex-row justify-between">
 			<title-paragraph>{{title}}</title-paragraph>
@@ -9,17 +9,21 @@
 			<hyper-link v-if="link" :path="`/Recettes${link}`">Tout voir</hyper-link>
          
         </div>
-		<vue-horizontal>			
+		<vue-horizontal class="border border-y-white-300  ">			
 			<!-- the grid does not work with vue horizontal -->
 			<!-- <grid-of-cards-recipes :recipes="items"/> -->
-			<card-recipe v-for="item in items" :key="item.objectID" 
-				:diet="item.diet"
-				:img="item.pictureMedium"
-				:recipeID="item.objectID"
-				:slug="item.slug"
-				:tags="item.tags"
-				:author="item.authorName"
-				:title="item.name" />
+			<section v-for="item in items" :key="item.objectID" class="flex flex-row pr-6">
+        <card-recipe 
+          :diet="item.diet"
+          :img="item.pictureMedium"
+          :recipeID="item.objectID"
+          :slug="item.slug"
+          :tags="item.tags"
+          :author="item.authorName"
+          :title="item.name"
+          
+                />
+      </section>
 		</vue-horizontal>
       </div>
     </section>
