@@ -1,16 +1,14 @@
 <template>
 	<!-- section cards 4 columns -->
     <section class="flex w-full items-center mx-auto justify-center py-10">
-      <div class="flex flex-col layer__2xl space-y-3 ">
+      <div class="flex flex-col layer__xl space-y-3 ">
         <!-- title row -->
         <div class="flex flex-row justify-between">
 			<title-paragraph>{{title}}</title-paragraph>
 			<hyper-link v-if="link" :path="`/Recettes${link}`">Tout voir</hyper-link>
         </div>
 
-
         <!-- le nouveau carousel ici :  -->
-
         <ssr-carousel
             loop
             :slides-per-page='3' 
@@ -44,26 +42,10 @@
                 :author="item.authorName"
                 :title="item.name"
                 
-                        />
-                
+                        />                
             </slide>
-
         </ssr-carousel>
-<!-- 
-		<vue-horizontal>			
-            <section v-for="item in items" :key="item.objectID" class="flex flex-row pr-6">
-                <card-recipe 
-                :diet="item.diet"
-                :img="item.pictureMedium"
-                :recipeID="item.objectID"
-                :slug="item.slug"
-                :tags="item.tags"
-                :author="item.authorName"
-                :title="item.name"
-                
-                        />
-            </section>
-		</vue-horizontal> -->
+
       </div>
     </section>
 </template>
@@ -90,23 +72,15 @@ export default {
 
 <style>
   .ssr-carousel-back-icon, .ssr-carousel-next-icon {
-    display: inline-block;
-    width: 42px;
-    height: 42px;
-    background-color: rgba(252, 118, 43, 1);
-    border-radius: 21px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.2s;
-}
-:not([aria-disabled]) > .ssr-carousel-back-icon, :not([aria-disabled]) > .ssr-carousel-next-icon {
-    opacity: 0.75;
-}
-.ssr-carousel-next-button {
-    right: -1vw;
-}
-.ssr-carousel-back-button {
-    left: -1vw;
-}
+    @apply !bg-black-300
+  }
+  :not([aria-disabled]) > .ssr-carousel-back-icon, :not([aria-disabled]) > .ssr-carousel-next-icon {
+    @apply opacity-75
+  }
+  .ssr-carousel-next-button {
+    @apply -right-6
+  }
+  .ssr-carousel-back-button {
+    @apply -left-6
+  }
 </style>

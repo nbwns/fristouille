@@ -34,6 +34,7 @@
 			<tag look="pink">végétarien</tag>
 			<tag look="red">carnivore</tag>
 			<tag look="green">omnivore</tag>
+			<tag look="primary">omnivore</tag>
 		</div>
 
 		<hr>

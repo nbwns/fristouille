@@ -20,7 +20,7 @@
 						:src="img"
 						:alt="imgAlt" >
 				</div>
-				<div class="pt-4">	
+				<div class="p-3">	
 					<h4 class="text-big">{{title}}</h4>
 					<!-- <p class="text-usual">auteur</p> -->
 				</div>

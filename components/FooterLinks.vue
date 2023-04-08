@@ -1,7 +1,7 @@
 <template>
-  <footer>
-    
-	<div class="hidden md:flex mx-10 md:mx-0 mb-10 ">
+
+  <footer class="bg-black-300 pt-16 mt-36">
+	<div class="hidden md:flex mx-10 md:mx-0 mb-10">
       <div class="flex flex-col layer__xl space-y-[63px]  items-center mx-auto justify-center">
         <div class="w-full sm:w-1/3">
           <h2 class="font-bold text-[48px] text-white-200 font-labil text-center pb-2">
@@ -64,7 +64,9 @@
 </template>
 
 <script>
+
 export default {
+
 	computed: {
 		currentYear(){
 			return new Date().getFullYear();

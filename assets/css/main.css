@@ -107,11 +107,11 @@
     }
 
     .tag.default {
-        @apply bg-purple-300;
+        @apply bg-orange-300;
     }
 
     .tag.default:hover {
-        @apply bg-purple-300;
+        @apply bg-orange-300;
     }
 
     .tag.meat {

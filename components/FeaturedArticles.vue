@@ -1,6 +1,6 @@
 <template>
-  <section class="grid place-items-center py-[10vh] space-y-10 mx-10 md:mx-0">
-      <div	class="flex flex-col w-full md:w-9/12 lg:w-7/12 space-y-3">
+  <section class="flex w-full items-center mx-auto justify-center py-10">
+      <div	class="flex flex-col layer__xl space-y-3">
         <!-- title row -->
         <div class="flex flex-row justify-between">
 		  <title-paragraph>

@@ -7,9 +7,8 @@
         {'h-16 lg:h-20': md},
         {'h-10 lg:h-14': sm},
     ]"
-    >
+    />
     
-    </component>
 </template>
 
 <script> 
