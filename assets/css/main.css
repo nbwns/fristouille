@@ -61,7 +61,7 @@
     }
 
     .text-big {
-        @apply text-lg;
+        @apply text-lg leading-snug ;
     }
 
     .text-medium {
@@ -180,7 +180,7 @@
     }
 
     .card {
-        @apply max-w-xs w-[350px] rounded;
+        @apply flex flex-col flex-grow justify-between w-full rounded bg-black-100;
     }
    
     .card-image {
@@ -255,6 +255,8 @@
     .dropdown-wrap-content-inner {
         @apply py-4 space-y-2 bg-black-200 ;
     }
+
+
 
 
 

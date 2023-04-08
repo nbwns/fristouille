@@ -70,7 +70,7 @@ module.exports = {
       '3xl': '2.5em',
       '2xl': '2em',
       'xl': '1.56em',
-      'lg': '1.25em',
+      'lg': '1.18em',
       'base': '1em',
       'sm': '.85em',
       'xs': '.5em',

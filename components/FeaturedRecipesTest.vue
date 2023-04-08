@@ -11,9 +11,8 @@
 
         <!-- le nouveau carousel ici :  -->
 
-        <ssr-carousel
-            loop
-            :slides-per-page='3' 
+        <ssr-carousel 
+            :slides-per-page='4' 
             :gutter='30' 
             show-arrows
             :responsive='[
@@ -39,7 +38,7 @@
                 :diet="item.diet"
                 :img="item.pictureMedium"
                 :recipeID="item.objectID"
-                :slug="item.slug" 
+                :slug="item.slug"
                 :tags="item.tags"
                 :author="item.authorName"
                 :title="item.name"
@@ -76,7 +75,7 @@ import HyperLink from '~/molecules/HyperLink.vue';
 import GridOfCardsRecipes from './GridOfCardsRecipes.vue';
 import Spacer from '~/molecules/Spacer.vue';
 import SsrCarousel from 'vue-ssr-carousel';
-import ssrCarouselCss from 'vue-ssr-carousel/index.css'
+import ssrCarouselCss from 'vue-ssr-carousel/index.css';
 
 
 export default {
@@ -88,25 +87,6 @@ export default {
 }
 </script>
 
-<style>
-  .ssr-carousel-back-icon, .ssr-carousel-next-icon {
-    display: inline-block;
-    width: 42px;
-    height: 42px;
-    background-color: rgba(252, 118, 43, 1);
-    border-radius: 21px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.2s;
-}
-:not([aria-disabled]) > .ssr-carousel-back-icon, :not([aria-disabled]) > .ssr-carousel-next-icon {
-    opacity: 0.75;
-}
-.ssr-carousel-next-button {
-    right: -1vw;
-}
-.ssr-carousel-back-button {
-    left: -1vw;
-}
+<style >
+
 </style>

@@ -67,6 +67,7 @@
 
 	<!-- featured recipes -->
 	<featured-recipes v-for="(list, index) in horizontalLists" :key="'r'+index" :title="list.title" :items="list.recipes" :link="list.seeAllQuery" />
+	<!-- <FeaturedRecipesTest v-for="(list, index) in horizontalLists" :key="'r'+index" :title="list.title" :items="list.recipes" :link="list.seeAllQuery" /> -->
 
 	<!-- featured articles -->
 	<featured-articles v-for="(list, index) in articlesLists"  :key="'a'+index" :title="list.title" :items="list.items" :link="list.seeAllLink"/>
@@ -85,10 +86,12 @@ import BigTitle from '~/molecules/BigTitle.vue'
 import TitleArticle from '~/molecules/TitleArticle.vue'
 import LinkButton from '~/molecules/LinkButton.vue'
 import Spacer from '~/molecules/Spacer.vue'
+import FeaturedRecipesTest from '~/components/FeaturedRecipesTest.vue'
 
 
 export default {
 	components: {
+		FeaturedRecipesTest,
 		FeaturedRecipes,
 		CategoryTags,
 		FeaturedArticles,
