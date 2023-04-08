@@ -180,7 +180,7 @@
     }
 
     .card {
-        @apply w-full rounded;
+        @apply flex flex-col flex-grow justify-between w-full rounded bg-black-100;
     }
    
     .card-image {

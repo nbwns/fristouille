@@ -1,7 +1,7 @@
 <template>
 	<!-- section cards 4 columns -->
-    <section class="flex w-full items-center mx-auto justify-center ">
-      <div class="flex flex-col layer__xl space-y-3 ">
+    <section class="flex w-full items-center mx-auto justify-center py-10">
+      <div class="flex flex-col layer__2xl space-y-3 ">
         <!-- title row -->
         <div class="flex flex-row justify-between">
 			<title-paragraph>{{title}}</title-paragraph>
@@ -9,7 +9,7 @@
         </div>
 
 
-        <!-- Mettre le nouveau carousel ici :  -->
+        <!-- le nouveau carousel ici :  -->
 
         <ssr-carousel 
             :slides-per-page='4' 

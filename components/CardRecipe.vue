@@ -1,7 +1,7 @@
 <template>
 
-<div class="card">
-	<nuxt-link :to='`/Recette/${slug}/${recipeID}`' no-prefetch>
+<div class="card h-full">
+	<nuxt-link class="flex-1" :to='`/Recette/${slug}/${recipeID}`' no-prefetch>
 			<div class="h-40 bg-center bg-cover" :class="width" :style="{backgroundImage: backgroundImage}">			
 				<div class="relative">
 					<div class="absolute w-full left-0 top-0 flex flex-row justify-between p-2 items-center">
@@ -24,11 +24,11 @@
 				</div>
 			</div>
 
-				<div class="pt-4">
-					<h4 class="text-big">{{title}}</h4>
-					<!-- <p class="text-small">{{author}}</p> -->
+				<div class="p-3">
+					<h4 class="text-usual font-demi ">{{title}}</h4>
 				</div>
-		</nuxt-link>
+			</nuxt-link>
+			<p class="text-small p-3">{{author}}</p>
 	</div>
 
 </template>
