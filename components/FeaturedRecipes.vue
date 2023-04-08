@@ -1,31 +1,69 @@
 <template>
 	<!-- section cards 4 columns -->
-    <section class="grid place-items-center py-[10vh] space-y-10 mx-10 md:mx-0 ">
-      <div class="flex flex-col layer__xl space-y-3 ">
+    <section class="flex w-full items-center mx-auto justify-center py-10">
+      <div class="flex flex-col layer__2xl space-y-3 ">
         <!-- title row -->
         <div class="flex flex-row justify-between">
 			<title-paragraph>{{title}}</title-paragraph>
-
 			<hyper-link v-if="link" :path="`/Recettes${link}`">Tout voir</hyper-link>
-   
-
         </div>
+
+
+        <!-- le nouveau carousel ici :  -->
+
+        <ssr-carousel
+            loop
+            :slides-per-page='3' 
+            :gutter='30' 
+            show-arrows
+            :responsive='[
+                {
+                maxWidth: 1280,
+                slidesPerPage: 3,
+                gutter: 20,
+                },
+                {
+                maxWidth: 1024,
+                slidesPerPage: 2,
+                gutter: 10,
+                },
+                {
+                maxWidth: 640,
+                slidesPerPage: 1,
+                gutter: 0,
+                }
+            ]'             
+            >
+            <slide v-for="item in items" :key="item.objectID">
+                <card-recipe 
+                :diet="item.diet"
+                :img="item.pictureMedium"
+                :recipeID="item.objectID"
+                :slug="item.slug" 
+                :tags="item.tags"
+                :author="item.authorName"
+                :title="item.name"
+                
+                        />
+                
+            </slide>
+
+        </ssr-carousel>
+<!-- 
 		<vue-horizontal>			
-			<!-- the grid does not work with vue horizontal -->
-			<!-- <grid-of-cards-recipes :recipes="items"/> -->
-			<section v-for="item in items" :key="item.objectID" class="flex flex-row pr-6">
-        <card-recipe 
-          :diet="item.diet"
-          :img="item.pictureMedium"
-          :recipeID="item.objectID"
-          :slug="item.slug"
-          :tags="item.tags"
-          :author="item.authorName"
-          :title="item.name"
-          
-                />
-      </section>
-		</vue-horizontal>
+            <section v-for="item in items" :key="item.objectID" class="flex flex-row pr-6">
+                <card-recipe 
+                :diet="item.diet"
+                :img="item.pictureMedium"
+                :recipeID="item.objectID"
+                :slug="item.slug"
+                :tags="item.tags"
+                :author="item.authorName"
+                :title="item.name"
+                
+                        />
+            </section>
+		</vue-horizontal> -->
       </div>
     </section>
 </template>
@@ -38,7 +76,7 @@ import HyperLink from '~/molecules/HyperLink.vue';
 import GridOfCardsRecipes from './GridOfCardsRecipes.vue';
 import Spacer from '~/molecules/Spacer.vue';
 import SsrCarousel from 'vue-ssr-carousel';
-import ssrCarouselCss from 'vue-ssr-carousel/index.css';
+import ssrCarouselCss from 'vue-ssr-carousel/index.css'
 
 
 export default {
@@ -50,37 +88,25 @@ export default {
 }
 </script>
 
-<!-- Responsive Breakpoints -->
-<style scoped>
-.horizontal {
-  --count: 1;
-  --gap: 16px;
-  --margin: 24px;
+<style>
+  .ssr-carousel-back-icon, .ssr-carousel-next-icon {
+    display: inline-block;
+    width: 42px;
+    height: 42px;
+    background-color: rgba(252, 118, 43, 1);
+    border-radius: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s;
 }
-
-@media (min-width: 640px) {
-  .horizontal {
-    --count: 2;
-  }
+:not([aria-disabled]) > .ssr-carousel-back-icon, :not([aria-disabled]) > .ssr-carousel-next-icon {
+    opacity: 0.75;
 }
-
-@media (min-width: 768px) {
-  .horizontal {
-    --count: 3;
-    --margin: 0;
-  }
+.ssr-carousel-next-button {
+    right: -1vw;
 }
-
-@media (min-width: 1024px) {
-  .horizontal {
-    --count: 4;
-  }
-}
-
-@media (min-width: 1280px) {
-  .horizontal {
-    --gap: 24px;
-    --count: 6;
-  }
+.ssr-carousel-back-button {
+    left: -1vw;
 }
 </style>

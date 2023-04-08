@@ -66,8 +66,8 @@
     </section>
 
 	<!-- featured recipes -->
-	<!-- <featured-recipes v-for="(list, index) in horizontalLists" :key="'r'+index" :title="list.title" :items="list.recipes" :link="list.seeAllQuery" /> -->
-	<FeaturedRecipesTest v-for="(list, index) in horizontalLists" :key="'r'+index" :title="list.title" :items="list.recipes" :link="list.seeAllQuery" />
+	<featured-recipes v-for="(list, index) in horizontalLists" :key="'r'+index" :title="list.title" :items="list.recipes" :link="list.seeAllQuery" />
+	<!-- <FeaturedRecipesTest v-for="(list, index) in horizontalLists" :key="'r'+index" :title="list.title" :items="list.recipes" :link="list.seeAllQuery" /> -->
 
 	<!-- featured articles -->
 	<featured-articles v-for="(list, index) in articlesLists"  :key="'a'+index" :title="list.title" :items="list.items" :link="list.seeAllLink"/>
