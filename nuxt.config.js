@@ -48,6 +48,7 @@ export default {
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
 	  '@nuxt/postcss8',
+    'vue-ssr-carousel/nuxt'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

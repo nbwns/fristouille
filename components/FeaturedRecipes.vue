@@ -7,7 +7,8 @@
 			<title-paragraph>{{title}}</title-paragraph>
 
 			<hyper-link v-if="link" :path="`/Recettes${link}`">Tout voir</hyper-link>
-         
+   
+
         </div>
 		<vue-horizontal>			
 			<!-- the grid does not work with vue horizontal -->
@@ -35,10 +36,14 @@ import CardRecipe from './CardRecipe.vue';
 import TitleParagraph from '~/molecules/TitleParagraph.vue';
 import HyperLink from '~/molecules/HyperLink.vue';
 import GridOfCardsRecipes from './GridOfCardsRecipes.vue';
+import Spacer from '~/molecules/Spacer.vue';
+import SsrCarousel from 'vue-ssr-carousel';
+import ssrCarouselCss from 'vue-ssr-carousel/index.css';
+
 
 export default {
 	props: ['title', 'link', 'items'],
-	components: {VueHorizontal, CardRecipe, TitleParagraph, HyperLink, GridOfCardsRecipes},
+	components: {VueHorizontal, CardRecipe, TitleParagraph, HyperLink, GridOfCardsRecipes, SsrCarousel, Spacer},
 	methods: {
 		
 	}

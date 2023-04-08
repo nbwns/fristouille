@@ -26,7 +26,7 @@
 
 				<div class="pt-4">
 					<h4 class="text-big">{{title}}</h4>
-					<p class="text-usual">{{author}}</p>
+					<!-- <p class="text-small">{{author}}</p> -->
 				</div>
 		</nuxt-link>
 	</div>

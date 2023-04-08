@@ -61,7 +61,7 @@
     }
 
     .text-big {
-        @apply text-lg;
+        @apply text-lg leading-snug ;
     }
 
     .text-medium {
@@ -180,7 +180,7 @@
     }
 
     .card {
-        @apply max-w-xs w-[350px] rounded;
+        @apply w-full rounded;
     }
    
     .card-image {
