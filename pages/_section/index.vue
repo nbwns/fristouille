@@ -87,9 +87,9 @@
 			</div>
 		<spacer h="xl"></spacer>
 	</div>			
-		<!-- child pages  -->
-	 		<grid-of-cards-articles :articles="children"/>
-	 <spacer h="xxl"></spacer>
+	<!-- child pages  -->
+	<grid-of-cards-articles :articles="children"/>
+	<spacer h="xxl"></spacer>
   </section>
 </template>
 

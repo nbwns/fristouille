@@ -1,5 +1,5 @@
 <template>
-  	<nuxt-link :to="path" class="btn">
+  	<nuxt-link :to="path" class="btn" :target="target">
 		<slot></slot>
 	</nuxt-link>
 </template>
@@ -7,7 +7,8 @@
 <script>
 export default {
 	props: {
-		path: String
+		path: String,
+		target: String
 	}
 }
 </script>

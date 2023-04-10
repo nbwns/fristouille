@@ -16,23 +16,23 @@
             show-arrows
             :responsive='[
                 {
-                maxWidth: 1280,
-                slidesPerPage: 3,
-                gutter: 20,
+					maxWidth: 1280,
+					slidesPerPage: 3,
+					gutter: 20,
                 },
                 {
-                maxWidth: 1024,
-                slidesPerPage: 2,
-                gutter: 10,
+					maxWidth: 1024,
+					slidesPerPage: 2,
+					gutter: 10,
                 },
                 {
-                maxWidth: 640,
-                slidesPerPage: 1,
-                gutter: 0,
+					maxWidth: 640,
+					slidesPerPage: 1,
+					gutter: 0,
                 }
             ]'             
             >
-            <slide v-for="item in items" :key="item.objectID">
+            <div class="slide" v-for="item in items" :key="item.objectID">
                 <card-recipe 
                 :diet="item.diet"
                 :img="item.pictureMedium"
@@ -40,10 +40,8 @@
                 :slug="item.slug" 
                 :tags="item.tags"
                 :author="item.authorName"
-                :title="item.name"
-                
-                        />                
-            </slide>
+                :title="item.name"/>                
+            </div>
         </ssr-carousel>
 
       </div>
@@ -51,19 +49,17 @@
 </template>
 
 <script>
-import VueHorizontal from 'vue-horizontal';
 import CardRecipe from './CardRecipe.vue';
 import TitleParagraph from '~/molecules/TitleParagraph.vue';
 import HyperLink from '~/molecules/HyperLink.vue';
 import GridOfCardsRecipes from './GridOfCardsRecipes.vue';
 import Spacer from '~/molecules/Spacer.vue';
 import SsrCarousel from 'vue-ssr-carousel';
-import ssrCarouselCss from 'vue-ssr-carousel/index.css'
 
 
 export default {
 	props: ['title', 'link', 'items'],
-	components: {VueHorizontal, CardRecipe, TitleParagraph, HyperLink, GridOfCardsRecipes, SsrCarousel, Spacer},
+	components: {CardRecipe, TitleParagraph, HyperLink, GridOfCardsRecipes, SsrCarousel, Spacer},
 	methods: {
 		
 	}

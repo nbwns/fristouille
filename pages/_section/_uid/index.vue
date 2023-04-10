@@ -1,5 +1,9 @@
 <template>
   <section class="flex flex-col justify-center layer__2xl mx-auto">
+	<!-- TODO: sibling pages -->
+	<!-- <div class="h-16 lg:h-20">
+		<grid-of-cards-articles :articles="siblings"/>
+	</div> -->
 	<spacer class=" h-24 lg:h-28 "></spacer>
 		<!-- breadcrumb -->
 		<breadcrumb :parentText="$prismic.asText(parent.data.title)" :parentPath="parent.url"><prismic-text :field="document.data.title"/>
@@ -10,13 +14,16 @@
 	<h1 class="max-w-lg">{{$prismic.asText(document.data.title)}}</h1>
 	<spacer class="h-10"></spacer>
 	
-    <div class="layer__xl">
+    <div class="layer__2xl">
 		<!-- intro -->
 		<prismic-rich-text :field="document.data.introduction" />
-		<!-- body -->
-		<prismic-rich-text :field="document.data.text" />
+		<!-- content blocks -->
+		<content-block v-for="block in contentBlocks" :key="block.id" 
+			:content="block.primary.content" :image="block.primary.image" 
+			:ctaUrl="block.primary.cta_url" :ctaText="block.primary.cta_text" :ctaHeader="block.primary.interest_header"
+			:reverse="block.primary.reverse_display"  />
 		<!-- featured recipes -->
-		<featured-recipes v-for="(list, index) in horizontalLists" :key="index" :title="list.title" :items="list.recipes" :link="list.seeAllQuery" />
+		<featured-recipes v-for="(list, index) in horizontalLists" :key="`recipes-${index}`" :title="list.title" :items="list.recipes" :link="list.seeAllQuery" />
     </div>
 	<spacer h="275"></spacer>
 </section>
@@ -24,6 +31,7 @@
 
 <script>	
 import FeaturedRecipes from '~/components/FeaturedRecipes'
+import ContentBlock from '~/components/ContentBlock'
 import Breadcrumb from '~/molecules/Breadcrumb.vue';
 import TitleArticle from '~/molecules/TitleArticle.vue';
 import Spacer from '~/molecules/Spacer.vue';
@@ -32,6 +40,7 @@ export default {
   name: 'post',
   components: {
 	FeaturedRecipes,
+	ContentBlock,
 	Breadcrumb,
 	TitleArticle,
 	Spacer
@@ -71,6 +80,7 @@ export default {
   async asyncData({ $prismic, $axios, $config, params, error }) {
     try{
 		let parent = null;
+		let siblings = [];
 
 		// Query to get post content
 		const document = (await $prismic.api.getByUID('childpage', params.uid));
@@ -88,20 +98,21 @@ export default {
 			}
 
 			// Get siblings pages
-			// const siblings = (await $prismic.api.query( 
-			// 	$prismic.predicates.at('my.childpage.parent_page', page.parent_page.id) 
-			// )).results;
+			siblings = (await $prismic.api.query( 
+				$prismic.predicates.at('my.childpage.parent_page', page.parent_page.id) 
+			)).results.filter(i => i.uid != params.uid);
 
-			// console.log("siblings", siblings.filter(i => i.uid != params.uid));
 		}
 
 		let horizontalLists = [];
+		let contentBlocks = [];
 
 		if(page.body && page.body.length > 0){
 			
 			let horizontalListsSlices = page.body.filter(s => s.slice_type === 'horizontal_list');
+			contentBlocks = page.body.filter(s => s.slice_type === 'content_and_call_to_action');
 
-			//horizontal lists of recipes
+			//horizontal lists of recipes - get content from Algolia
 			horizontalLists = await Promise.all(
 				horizontalListsSlices.map(async (hl) => {
 					//based on the horizontal list query_filter prop, query the Algolia index to get the featured recipes
@@ -125,13 +136,15 @@ export default {
 		// Returns data to be used in template
 		return {
 			document: document,
+			siblings: siblings,
 			parent: parent,
 			horizontalLists: horizontalLists,
+			contentBlocks: contentBlocks
 		}
     } catch (e) {
       	// Returns error page
 		console.log("error in child page",e);
-	  	error({ statusCode: 404, message: 'Page not found' })
+	  	error({ statusCode: 500, message: 'Error' })
     }
   },
 }

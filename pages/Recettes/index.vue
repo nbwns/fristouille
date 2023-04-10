@@ -12,13 +12,10 @@
 			<!-- TODO: open mobile popup based on query string param -->
 			
 			<!-- link to advanced search (mobile only) -->
-			<span class="md:hidden font-labil text-base font-medium text-coral-300 cursor-pointer" @click="mobileAdvancedSearch=true">
-				+ de filtres
+			<span class="md:hidden font-labil text-base font-medium text-coral-300 cursor-pointer" @click="mobileAdvancedSearch=!mobileAdvancedSearch">
+				{{ mobileAdvancedSearch ? '- de filtres' : '+ de filtres' }}
 			</span>
 			
-
-
-
 			<div class="flex flex-col md:flex-row gap-4">
 				<!-- search input -->
 				<input type="search" class="input-search text-usual"
@@ -276,6 +273,7 @@ export default {
 						cuisine: this.searchFilters.cuisine,
 						free: this.searchFilters.free,
 						months: this.searchFilters.months,
+						baseRecipe: this.searchFilters.baseRecipe,
 						page: helper.state.page
 					}
 				});
@@ -337,6 +335,7 @@ export default {
 			free: this.sanitizeQueryParameter("free"),
 			cuisine: this.sanitizeQueryParameter("cuisine"),
 			months: this.sanitizeQueryParameter("months"),
+			baseRecipe: this.sanitizeQueryParameter("baseRecipe"),
 		};
 		
 		//save search filters into the store

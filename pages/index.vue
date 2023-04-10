@@ -77,7 +77,6 @@
 
 <script>
 import FeaturedRecipes from '~/components/FeaturedRecipes'
-import CategoryTags from '~/components/CategoryTags'
 import FeaturedArticles from '~/components/FeaturedArticles'
 import SearchBar from '~/components/SearchBar.vue'
 import SubmitButton from '~/molecules/SubmitButton.vue'
@@ -90,7 +89,6 @@ import Spacer from '~/molecules/Spacer.vue'
 export default {
 	components: {
 		FeaturedRecipes,
-		CategoryTags,
 		FeaturedArticles,
 		SearchBar,
 		SubmitButton,

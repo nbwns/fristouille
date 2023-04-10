@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<section>
+		<section class="flex flex-col justify-center layer__2xl mx-auto">
 			<div v-if="recipe">
 				<!-- picture -->
 				<img 
@@ -9,81 +9,87 @@
 					sizes="428px"
 					alt="">
 				<!-- tags -->
-				<div class="">
-					<div class="flex flex-row p-2 items-center">
-						<tag v-for="t in recipe.tags" :key="t.name" :title="t.name">{{t.name}}</tag>
-						<tag
-							v-if="recipe.diet != 'Omnivore'"
-							:title="recipe.diet" 
-							:look="(recipe.diet === 'Végétalien' ? 'gum' : (recipe.diet === 'Végétarien' ? 'mint': ''))">
-						<svg class="w-5 h-5 text-white-200  " fill="none" viewBox="0 0 25 25"
-							xmlns="http://www.w3.org/2000/svg">
-							<path fill-rule="evenodd"
-								d="M15.625 11.524C13.0521 14.2187 10.4781 20.8333 10.4781 20.8333C10.4781 20.8333 6.80104 11.5229 3.125 9.375"
-								stroke="currentColor" stroke-width="1.5625" stroke-linecap="round" stroke-linejoin="round" />
-							<path fill-rule="evenodd"
-								d="M21.3501 5.80948L21.7939 10.4178C22.0814 13.4074 19.8407 16.0689 16.8512 16.3574C13.9178 16.6386 11.2605 14.4949 10.9782 11.5616C10.911 10.864 10.9818 10.1601 11.1867 9.48994C11.3915 8.81979 11.7263 8.19655 12.1721 7.65583C12.6178 7.1151 13.1657 6.66748 13.7845 6.33853C14.4032 6.00957 15.0807 5.80573 15.7782 5.73864L20.6907 5.26573C20.7697 5.25811 20.8495 5.26614 20.9254 5.28935C21.0013 5.31256 21.0719 5.35049 21.1331 5.40099C21.1943 5.45148 21.245 5.51355 21.2822 5.58364C21.3195 5.65373 21.3425 5.73047 21.3501 5.80948V5.80948Z"
-								stroke="currentColor" stroke-width="1.5625" stroke-linecap="round" stroke-linejoin="round" />
-							</svg>
-						</tag>
-					</div>
+				<div class="flex flex-row justify-between items-center my-2 ">
+					<nuxt-link v-for="t in recipe.tags" 
+						:key="t.name" 
+						:to="`/Recettes?q=${t.name}`"
+						>
+						<tag look="primary">{{t.name}}</tag>
+					</nuxt-link>
 				</div>
 				<!-- author -->
-				<!-- <p>
-					auteur
-				</p> -->
+				<p>
+					{{recipe.authorName[0]}}
+				</p>
 				<!-- title -->
 				<h1>{{recipe.name}}</h1>
 				<!-- description -->
 		        <p>{{recipe.description}}</p>
-				<!-- seasonality, to add in the design -->
-				<div v-if="recipe.months">Saisonnalité: 
+				<!-- seasonality (a list of months) -->
+				<div class="flex flex-row justify-between items-center my-2 " v-if="recipe.months">
+					<p>Saisonnalité:</p>
 					<div v-if="recipe.months.length < 12">
-						<span v-for="month in recipe.months" class="p-1" :key="month">{{getMonthLabel(month)}}</span>
+						<nuxt-link v-for="month in recipe.months" 
+							:key="month" 
+							:to="`/Recettes?months=${month}`"
+							>
+							<tag look="primary">{{month}}</tag>
+						</nuxt-link>
 					</div>
 					<div v-else>
-						{{label('allYearLong')}}
+						<p>{{label('allYearLong')}}</p>
 					</div>
+					
 				</div>
 				<!-- prep time and cook time -->
 				<p>Temps de préparation: <meta itemprop="prepTime" :content="`PT${(recipe.preparationTime/60)}M`"/> <time>{{(recipe.preparationTime/60)}}</time></p>
         		<p>Temps de cuisson: <meta itemprop="cookTime" :content="`PT${(recipe.cookTime/60)}M`"/><time>{{(recipe.cookTime/60)}}</time></p>
 				<!-- ingredients -->
 				<h2>Ingrédients</h2>
+				<!-- change number of plates -->
 				<div class="inline-block">
 					<input 
 						class="max-w-[40px] bg-reglisse-300 rounded focus:outline-none focus:ring focus:ring-reglisse-200 block p-2.5 placeholder:text-white-200 text-white-100"
 						type="number" 
 						v-model="servings"
 						step="1" min="1" max="99">
-					<button @click="(servings > 0) ? servings-- : servings" :disabled="servings == 1">-</button>
-					<button @click="servings++">+</button>
-					<button @click="addServings">+</button>
+					<button class="btn" @click="(servings > 0) ? servings-- : servings" :disabled="servings == 1">-</button>
+					<button class="btn" @click="servings++">+</button>
 				</div>
+				<!-- yield -->
 				<p><span itemprop="recipeYield">{{recipe.yield}}</span> couverts</p>
+				<!-- list of compositions: quantity / units / ingredient name / remark / optional -->
 				<div v-for="c in recipe.compositions" :key="c.name" class="columns-2">
 					<div v-if="c.ingredient[0]">
 						<div class="inline-block" v-if="c.quantity > 0">
+							<!-- quantity -->
 							<span>{{computedQuantity(c.quantity)}}</span>
+							<!-- units -->
 							<span v-if="c.units != 'pièce'">{{c.units}}</span>
 						</div>
 						<div class="inline-block">
-							{{c.ingredient[0].name}} 
-							<i>{{c.remark}}</i> <span v-if="c.quantity == 0">selon votre goût</span> <span v-if="c.optional">(facultatif)</span>
+							<!-- ingredient -->
+							<span>{{c.ingredient[0].name}}</span>
+							<!-- remark -->
+							<i>{{c.remark}}</i> 
+							<!-- if no quantity -->
+							<span v-if="c.quantity == 0">selon votre goût</span> 
+							<!-- optional -->
+							<span v-if="c.optional">(facultatif)</span>
 						</div>
 					</div>
 				</div>
 				<!-- procedure -->
-				<!-- TODO: ol must have numbers -->
 				<div v-html="procedure"></div>
 				<!-- related article -->
 				<div v-if="article">
 					<hr/>
 					<h3>En savoir plus</h3>
-					<nuxt-link :to="article.url">
-						<h4><prismic-text :field="article.data.title" /></h4>
-						<img class="rounded" :src="article.data.cover.url"/>
-					</nuxt-link>
+					<card-article 
+						:img="article.data.cover.url" 
+						:imgAlt="article.data.cover.alt" 
+						:path="article.url" 
+						:title="$prismic.asText(article.data.title)"/>
 				</div>
 			</div>
 			</section>
@@ -96,10 +102,11 @@ import queries from '~/plugins/queries'
 import labels from '~/plugins/labels'
 import { DateTime } from "luxon";
 import Tag from '~/molecules/Tag.vue';
+import CardArticle from	'~/components/CardArticle.vue';
 
 
 export default {
-    components: {Tag},
+    components: {Tag, CardArticle},
     computed:{
         procedure(){
 			return (this.recipe.procedure) ? marked(this.recipe.procedure) : ""
@@ -119,9 +126,6 @@ export default {
         }
     },
     methods:{
-        getMonthLabel(index){
-			return labels.months[index-1];
-		},
 		label(key){
 			return labels[key];
 		},
@@ -164,6 +168,7 @@ export default {
 					})
 				if(res.data.data && res.data.data.recettes[0]){
 					let recipe = res.data.data && res.data.data.recettes[0];
+					console.log(recipe);
 					let article = null;
 
 					if(recipe.compositions){

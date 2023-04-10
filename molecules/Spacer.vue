@@ -1,5 +1,5 @@
 <template>
-    <component class="w-full" 
+    <div class="w-full" 
     :class="[
         {'h-44 lg:h-52': xxl},
         {'h-24 lg:h-28': xl},

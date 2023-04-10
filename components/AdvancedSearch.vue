@@ -9,13 +9,13 @@
 		<div class="hidden md:flex flex-grow md:w-auto pt-2 justify-between ">
 			<div class="flex flex-grow text-lg text-white-200 rounded-xs font-inter capitalize font-medium justify-between ">
 				<!-- dropdown menus -->
-				<dropdown title="Régime alimentaire">
+				<dropdown title="Choix alimentaire">
 					<checkbox-filter uid="Végétalien" ref="Végétalien" @check="filter('diet','Végétalien', $event)" :checked="checked('diet','Végétalien')">végétalien</checkbox-filter>
 					<checkbox-filter uid="Végétarien" ref="Végétarien" @check="filter('diet','Végétarien', $event, ['Végétalien'])" :checked="checked('diet','Végétarien')">végétarien</checkbox-filter>
 					<checkbox-filter uid="Omnivore" ref="Omnivore" @check="filter('diet','Omnivore', $event, ['Végétalien', 'Végétarien'])" :checked="checked('diet','Omnivore')">omnivore</checkbox-filter>
 				</dropdown>
 
-				<dropdown title="Type de plat">
+				<dropdown title="Catégorie">
 					<checkbox-filter uid="Entrée" ref="Entrée" @check="filter('category','Entrée', $event)" :checked="checked('category','Entrée')">entrée</checkbox-filter>
 					<checkbox-filter uid="Plat" ref="Plat" @check="filter('category','Plat', $event)" :checked="checked('category','Plat')">plat</checkbox-filter>
 					<checkbox-filter uid="Accompagnement" ref="Accompagnement" @check="filter('category','Accompagnement', $event)" :checked="checked('category','Accompagnement')">accompagnement</checkbox-filter>
@@ -24,7 +24,7 @@
 					<checkbox-filter uid="Petit déjeuner" ref="'Petit déjeuner'" @check="filter('category','\'Petit déjeuner\'', $event)" :checked="checked('category','\'Petit déjeuner\'')">petit déjeuner</checkbox-filter>
 				</dropdown>
 
-				<dropdown title="Allergies">
+				<dropdown title="Allergie">
 					<checkbox-filter uid="Arachide" ref="Arachide" @check="filter('free','Arachide', $event)" :checked="checked('free','Arachide')">arachide</checkbox-filter>
 					<checkbox-filter uid="Gluten" ref="Gluten" @check="filter('free','Gluten', $event)" :checked="checked('free','Gluten')">gluten</checkbox-filter>
 					<checkbox-filter uid="'Fruit à coque'" ref="'Fruit à coque'" @check="filter('free','\'Fruit à coque\'', $event)" :checked="checked('free','\'Fruit à coque\'')">fruit à coque</checkbox-filter>
@@ -56,6 +56,15 @@
 					<checkbox-filter uid="11-a" @check="filter('months','Novembre', $event)" :checked="checked('months','Novembre')">novembre</checkbox-filter>
 					<checkbox-filter uid="12-a" @check="filter('months','Décembre', $event)" :checked="checked('months','Décembre')">décembre</checkbox-filter>
 				</dropdown>
+
+				<dropdown title="Recette de base">
+					<checkbox-filter uid="légumineuse-en-sauce" ref="légumineuse-en-sauce" @check="filter('baseRecipe','légumineuse-en-sauce', $event)" :checked="checked('baseRecipe','légumineuse-en-sauce')">Légumineuse en sauce</checkbox-filter>
+					<checkbox-filter uid="tartinade-végétale" ref="tartinade-végétale" @check="filter('baseRecipe','tartinade-végétale', $event)" :checked="checked('baseRecipe','tartinade-végétale')">Tartinade végétale</checkbox-filter>
+					<checkbox-filter uid="risotto" ref="risotto" @check="filter('baseRecipe','risotto', $event)" :checked="checked('baseRecipe','risotto')">Risotto</checkbox-filter>
+					<checkbox-filter uid="salade-de-céréale" ref="salade-de-céréale" @check="filter('baseRecipe','salade-de-céréale', $event)" :checked="checked('baseRecipe','salade-de-céréale')">Salade de céréale</checkbox-filter>
+					<checkbox-filter uid="tarte-aux-légumes" ref="tarte-aux-légumes" @check="filter('baseRecipe','tarte-aux-légumes', $event)" :checked="checked('baseRecipe','tarte-aux-légumes')">Tarte aux légumes</checkbox-filter>
+					<checkbox-filter uid="légume-braisé" ref="légume-braisé" @check="filter('baseRecipe','légume-braisé', $event)" :checked="checked('baseRecipe','légume-braisé')">Légume braisé</checkbox-filter>
+				</dropdown>
 			</div>
 			
 		</div>
@@ -63,20 +72,20 @@
 		<!-- TODO: make popup -->
 		<div class="md:hidden flex flex-grow flex-col w-auto pt-2" v-show="popupMobile">
 			<!-- header -->
-			<div class="inline-block">
+			<!-- <div class="inline-block">
 				<div @click="$emit('closePopup')">fermer</div>
 				<div><strong>filtres</strong></div>
 				<div @click="$emit('triggerSearch')">OK</div>
-			</div>
+			</div> -->
 			<!-- accordions -->
 			<div class="flex-col">
-					<accordion title="Régime alimentaire" key="diet">
+					<accordion title="Choix alimentaire" key="diet">
 						<checkbox-filter uid="Végétalien-a" @check="filter('diet','Végétalien', $event)" :checked="checked('diet','Végétalien')">végétalien</checkbox-filter>
 						<checkbox-filter uid="Végétarien-a" @check="filter('diet','Végétarien', $event)" :checked="checked('diet','Végétarien')">végétarien</checkbox-filter>
 						<checkbox-filter uid="Omnivore-a" @check="filter('diet','Omnivore', $event)" :checked="checked('diet','Omnivore')">omnivore</checkbox-filter>
 					</accordion>
 
-					<accordion title="Type de plat" key="category">
+					<accordion title="Catégorie" key="category">
 						<checkbox-filter uid="Entrée-a" @check="filter('category','Entrée', $event)" :checked="checked('category','Entrée')">entrée</checkbox-filter>
 						<checkbox-filter uid="Plat-a" @check="filter('category','Plat', $event)" :checked="checked('category','Plat')">plat</checkbox-filter>
 						<checkbox-filter uid="Accompagnement-a" @check="filter('category','Accompagnement', $event)" :checked="checked('category','Accompagnement')">accompagnement</checkbox-filter>
@@ -116,6 +125,15 @@
 						<checkbox-filter uid="10-a" @check="filter('months','Octobre', $event)" :checked="checked('months','Octobre')">octobre</checkbox-filter>
 						<checkbox-filter uid="11-a" @check="filter('months','Novembre', $event)" :checked="checked('months','Novembre')">novembre</checkbox-filter>
 						<checkbox-filter uid="12-a" @check="filter('months','Décembre', $event)" :checked="checked('months','Décembre')">décembre</checkbox-filter>
+					</accordion>
+
+					<accordion title="Recette de base" key="baseRecipe">
+						<checkbox-filter uid="légumineuse-en-sauce-a" @check="filter('baseRecipe','légumineuse-en-sauce', $event)" :checked="checked('baseRecipe','légumineuse-en-sauce')">Légumineuse en sauce</checkbox-filter>
+						<checkbox-filter uid="tartinade-végétale-a"  @check="filter('baseRecipe','tartinade-végétale', $event)" :checked="checked('baseRecipe','tartinade-végétale')">Tartinade végétale</checkbox-filter>
+						<checkbox-filter uid="risotto-a"  @check="filter('baseRecipe','risotto', $event)" :checked="checked('baseRecipe','risotto')">Risotto</checkbox-filter>
+						<checkbox-filter uid="salade-de-céréale-a"  @check="filter('baseRecipe','salade-de-céréale', $event)" :checked="checked('baseRecipe','salade-de-céréale')">Salade de céréale</checkbox-filter>
+						<checkbox-filter uid="tarte-aux-légumes-a"  @check="filter('baseRecipe','tarte-aux-légumes', $event)" :checked="checked('baseRecipe','tarte-aux-légumes')">Tarte aux légumes</checkbox-filter>
+						<checkbox-filter uid="légume-braisé-a" @check="filter('baseRecipe','légume-braisé', $event)" :checked="checked('baseRecipe','légume-braisé')">Légume braisé</checkbox-filter>
 					</accordion>
 			</div>
 		</div>

@@ -10,7 +10,8 @@ export const state = () => ({
 		category:[],
 		free: [],
 		cuisine: [],
-		months:[]
+		months: [],
+		baseRecipe: []
 	}
 });
 
