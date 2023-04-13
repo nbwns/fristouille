@@ -1,6 +1,5 @@
 <template>
-	<div class="grid place-items-center">
-	  <div class="layer__xl justify-start">
+	<section class="flex flex-col justify-start items-start layer__xl mx-auto">
 		<!-- link to advanced search (mobile only) -->
 		<div class="pb-1 pt-5">
 			<span class="md:hidden font-labil text-base font-medium text-orange-300 cursor-pointer"  	@click="mobileAdvancedSearch=!mobileAdvancedSearch">
@@ -9,7 +8,7 @@
 		</div>
 			<!-- TODO: add loading indicator -->
 			<!-- TODO: open mobile popup based on query string param -->				
-			<div class="flex flex-col md:flex-row gap-4">
+			<div class="flex flex-col md:flex-col-reverse gap-4 w-full">
 				<!-- search input -->
 				<input type="search" class="input-search text-usual"
 				:value="query"
@@ -35,149 +34,126 @@
 				</div>
 
 
-			<!-- warning -->
-			<div v-if="noSearchParameters">
-				Veuillez indiquer au minimum un terme de recherche ou un filtre avancé
-			</div>
-				
-						<ais-instant-search :index-name="indexName" :search-client="searchClient" :search-function="search" class="w-[90vw]">		
-							<ais-configure
-								:hits-per-page.camel="12"
-								:distinct="true"
-								:filters="filterQuery"
-								:query="query"
-								:page="page"
-							/>
-				
-							<!-- check if that works... -->
-							<ais-state-results>
-								<template v-slot="{ status }">
-								<p v-show="status === 'stalled'">
-									Loading search results
-								</p>
-								</template>
-							</ais-state-results>
-				
-							<div v-if="searchPerformed" class="pt-10"> 
-								<normal-title v-if="query">
-									Résultats pour '{{ query }}'
-								</normal-title>
-								<normal-title v-else>
-									Découvrez nos recettes
-								</normal-title>
-							</div>
-							<div class="w-full h-96 flex items-center justify-center" v-else>
-								<div class=" font-labil font-light p-14 text-black-50  text-xl text-center " >
-									<!-- here we can show suggestions on the default state of the page -->
-									Pas d'idées ? <br /> Essayez avec ces mots clés: "végétarien"
-								</div>
-							</div>
-				
-							<ais-pagination >
-								<template
-									v-slot="{
-									nbHits
-									}"
-								>
-									<!-- number of results (hidden on mobile) -->
-									<div class="hidden md:flex">
-										{{ nbHits }} recettes
-									</div>
-								</template>
-							</ais-pagination>
-				
-							<ais-hits>
-								<template v-slot="{ items }">
-								<grid-of-cards-recipes :recipes="items" v-if="items.length > 0"/>  
-								<div v-else>
-									<!-- no results -->
-									Pas de résultat pour cette recherche :(
-								</div>
-								</template>
-							</ais-hits>
-							<ais-pagination>
-								<template
-									v-slot="{
-									currentRefinement,
-									nbPages,
-									pages,
-									isFirstPage,
-									isLastPage,
-									refine,
-									createURL
-									}"
-								>
-									<div class="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
-										<ul class="isolate inline-flex -space-x-px rounded-md shadow-sm">
-											<li v-if="!isFirstPage">
-												<a 
-													class="relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"							
-													:href="createURL(0)" 
-													@click.prevent="refine(0)"
-												>
-													<span class="sr-only">Premier</span>
-													<!-- Heroicon name: mini/chevron-left -->
-													<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-														<path stroke-linecap="round" stroke-linejoin="round" d="M18.75 19.5l-7.5-7.5 7.5-7.5m-6 15L5.25 12l7.5-7.5" />
-													</svg>
-												</a>
-											</li>
-											<li v-if="!isFirstPage">
-												<a
-													class="relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
-													:href="createURL(currentRefinement - 1)"
-													@click.prevent="refine(currentRefinement - 1)"
-												>
-												<span class="sr-only">Précédent</span>
-												<!-- Heroicon name: mini/chevron-left -->
-												<svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-													<path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
-												</svg>
-												</a>
-											</li>
-											<li v-for="page in pages" :key="page">
-												<a
-												class="relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
-												:href="createURL(page)"
-												:class="[page === currentRefinement ? 'font-bold' : '']"
-												@click.prevent="refine(page)"
-												>
-												{{ page + 1 }}
-												</a>
-											</li>
-											<li v-if="!isLastPage">
-												<a
-													class="relative inline-flex items-center rounded-r-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
-													:href="createURL(currentRefinement + 1)"
-													@click.prevent="refine(currentRefinement + 1)"
-												>
-													<span class="sr-only">Next</span>
-													<!-- Heroicon name: mini/chevron-right -->
-													<svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-														<path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-													</svg>
-												</a>
-											</li>
-											<li v-if="!isLastPage">
-												<a 
-													class="relative inline-flex items-center rounded-r-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
-													:href="createURL(nbPages)" 
-													@click.prevent="refine(nbPages)"
-												>
-													<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-														<path stroke-linecap="round" stroke-linejoin="round" d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" />
-													</svg>
-												</a>
-											</li>
-										</ul>
-									</div>
-								</template>
-							</ais-pagination>
-						</ais-instant-search>
+		<!-- warning -->
+		<div v-if="noSearchParameters">
+			Veuillez indiquer au minimum un terme de recherche ou un filtre avancé
 		</div>
-	  
-	</div>
-  </template>
+			
+						<ais-instant-search 
+							:index-name="indexName" 
+							:search-client="searchClient" 
+							:search-function="search" 
+							class="w-full">		
+						<ais-configure
+							:hits-per-page.camel="12"
+							:distinct="true"
+							:filters="filterQuery"
+							:query="query"
+							:page="page"
+						/>
+			
+						<!-- check if that works... -->
+						<ais-state-results>
+							<template v-slot="{ status }">
+							<p v-show="status === 'stalled'">
+								Loading search results
+							</p>
+							</template>
+						</ais-state-results>
+			
+						<div v-if="searchPerformed" class="pt-10"> 
+							<normal-title v-if="query">
+								Résultats pour '{{ query }}'
+							</normal-title>
+							<normal-title v-else>
+								Découvrez nos recettes
+							</normal-title>
+						</div>
+						<div class="w-full h-96 flex items-center justify-center" v-else>
+							<div class=" font-labil font-light p-14 text-black-50  text-xl text-center " >
+								<!-- here we can show suggestions on the default state of the page -->
+								Pas d'idées ? <br /> Essayez avec ces mots clés: "végétarien"
+							</div>
+						</div>
+			
+						<ais-pagination >
+							<template
+								v-slot="{
+								nbHits
+								}"
+							>
+								<!-- number of results (hidden on mobile) -->
+								<div class="hidden md:flex">
+									{{ nbHits }} recettes
+								</div>
+							</template>
+						</ais-pagination>
+			
+						<ais-hits>
+							<template v-slot="{ items }">
+							<grid-of-cards-recipes :recipes="items" v-if="items.length > 0"/>  
+							<div v-else>
+								<!-- no results -->
+								Pas de résultat pour cette recherche :(
+							</div>
+							</template>
+						</ais-hits>
+						<ais-pagination>
+							<template
+								v-slot="{
+								currentRefinement,
+								nbPages,
+								pages,
+								isFirstPage,
+								isLastPage,
+								refine,
+								createURL
+								}"
+							>
+								<div class="w-full py-10">
+									<ul class="pagination">
+										<li v-if="!isFirstPage">
+											<a
+												:href="createURL(currentRefinement - 1)"
+												@click.prevent="refine(currentRefinement - 1)"
+											>
+											<span class="sr-only">Précédent</span>
+											<!-- Heroicon name: mini/chevron-left -->
+											<svg class="w-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M14 7L9 12L14 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+											</svg>
+
+											</a>
+										</li>
+										<li v-for="page in pages" :key="page">
+											<a
+											class=""
+											:href="createURL(page)"
+											:class="[page === currentRefinement ? 'text-pink-200' : '']"
+											@click.prevent="refine(page)"
+											>
+											{{ page + 1 }}
+											</a>
+										</li>
+										<li v-if="!isLastPage">
+											<a
+												:href="createURL(currentRefinement + 1)"
+												@click.prevent="refine(currentRefinement + 1)"
+											>
+												<span class="sr-only">Next</span>
+												<!-- Heroicon name: mini/chevron-right -->
+												<svg class="w-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M10 7L15 12L10 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+												</svg>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</template>
+						</ais-pagination>
+					</ais-instant-search>
+				</section>
+ 		 </template>
   
   <script>
 import {

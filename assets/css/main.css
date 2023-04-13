@@ -263,6 +263,23 @@
         @apply flex flex-row flex-grow gap-4 items-start max-w-[90vw] overflow-auto gap-0;
     }
 
+    .pagination {
+        @apply flex flex-row isolate justify-center items-center list-none title-paragraph space-x-5;
+    }
+
+    ul.pagination > li{
+        @apply text-black-50
+    }
+    ul.pagination > li:hover{
+        @apply text-white-300
+    }
+    ul.pagination > li:active{
+        @apply text-pink-200
+    }
+
+
+
+
 
 
 
