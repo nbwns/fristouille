@@ -1,26 +1,30 @@
 <template>
-	<div>
-		<section class="flex flex-col justify-center layer__2xl mx-auto">
+		<section class="flex flex-col justify-center layer__xl mx-auto">
+			<spacer size="md"></spacer>
 			<div v-if="recipe">
-				<!-- picture -->
-				<img 
-					:src="recipe.picture"
-					:srcset="recipe.pictureSmall +' 164w,'+recipe.pictureMedium+' 428w'"
-					sizes="428px"
-					alt="">
-				<!-- tags -->
-				<div class="flex flex-row justify-between items-center my-2 ">
-					<nuxt-link v-for="t in recipe.tags" 
-						:key="t.name" 
-						:to="`/Recettes?q=${t.name}`"
-						>
-						<tag look="primary">{{t.name}}</tag>
-					</nuxt-link>
+				<div class="layer__lg items-center justify-center mx-auto">
+					<!-- picture -->
+					<div class="w-full ">
+						<img
+							class="object-cover max-h-56 md:max-h-64 lg:max-h-72 xl:max-h-96 w-full rounded-lg"
+							:src="recipe.picture"
+							:srcset="recipe.pictureSmall +' 164w,'+recipe.pictureMedium+' 428w'"
+							alt="">
+					</div>
+					<!-- tags -->
+					<div class="flex flex-row justify-between items-center my-2 ">
+						<nuxt-link v-for="t in recipe.tags"
+							:key="t.name"
+							:to="`/Recettes?q=${t.name}`"
+							>
+							<tag look="primary">{{t.name}}</tag>
+						</nuxt-link>
+					</div>
+					<!-- author -->
+					<p>
+						{{recipe.authorName[0]}}
+					</p>
 				</div>
-				<!-- author -->
-				<p>
-					{{recipe.authorName[0]}}
-				</p>
 				<!-- title -->
 				<h1>{{recipe.name}}</h1>
 				<!-- description -->
@@ -92,9 +96,8 @@
 						:title="$prismic.asText(article.data.title)"/>
 				</div>
 			</div>
-			</section>
-    </div>
-</template>
+	</section>
+	</template>
 
 <script>
 import {marked} from 'marked'
@@ -103,10 +106,11 @@ import labels from '~/plugins/labels'
 import { DateTime } from "luxon";
 import Tag from '~/molecules/Tag.vue';
 import CardArticle from	'~/components/CardArticle.vue';
+import Spacer from '~/molecules/Spacer.vue';
 
 
 export default {
-    components: {Tag, CardArticle},
+    components: {Tag, CardArticle, Spacer},
     computed:{
         procedure(){
 			return (this.recipe.procedure) ? marked(this.recipe.procedure) : ""

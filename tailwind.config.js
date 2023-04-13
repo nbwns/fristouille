@@ -15,6 +15,7 @@ module.exports = {
     borderRadius: {
       DEFAULT: '.31rem',
       '3xl': '10rem',
+      'lg': '2.75rem',
       'xs': '0.1rem',
     },
     colors: {
