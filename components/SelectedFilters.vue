@@ -1,9 +1,8 @@
 <template>
-	<div class="flex flex-row flex-grow gap-4 items-start ">
+	<div class="wrap_mobile_filters">
 		<!-- selected filters -->
 		<!-- loop on all filter categories -->
-		<div v-for="(type, name) in searchFilters" :key="name">
-			<div class="flex flex-row my-5 gap-3">
+			<div v-for="(type, name) in searchFilters" :key="name" class="flex flex-row my-5 gap-3">
 				<tag v-for="f in type" :key="f" look="primary" @click="removeTag(name,f)">
 					{{ f.replaceAll("'","").replaceAll("-", " ") }}
 					<span class="inset-y-0 right-0 flex items-center pr-2 flex-1">
@@ -14,7 +13,6 @@
 						</svg>
 					</span>
 				</tag>
-			</div>
 		</div>
 	</div>
 </template>

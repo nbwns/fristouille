@@ -1,5 +1,5 @@
 <template>
-  <div class="layer__xl">
+  <div class="md:layer__xl">
 		<!-- TODO: 
 		- only save filters in store on search button click ? -> would allow to close the mobile popup without saving the filters
 		- synchronise checkboxes between desktop and mobile -> for instance if screen is rotated

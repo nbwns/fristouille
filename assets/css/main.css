@@ -106,7 +106,7 @@
     }
 
     .tag {
-        @apply flex items-center py-1 px-3 rounded-3xl max-w-fit;
+        @apply flex items-center py-1 px-3 rounded-3xl max-w-fit w-max;
     }
 
     .tag.default {
@@ -259,7 +259,9 @@
         @apply py-4 space-y-2 bg-black-200 ;
     }
 
-
+    .wrap_mobile_filters {
+        @apply flex flex-row flex-grow gap-4 items-start max-w-[90vw] overflow-auto gap-0;
+    }
 
 
 

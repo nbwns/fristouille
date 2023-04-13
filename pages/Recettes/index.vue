@@ -1,21 +1,14 @@
 <template>
 	<div class="grid place-items-center">
-		<!-- advanced search for desktop and mobile, displays selected filters as tags (extract this part ?) -->
-					<advanced-search 
-							@filtersChanged="setFilterQuery" 
-							@closePopup="mobileAdvancedSearch=false"
-							@triggerSearch="mobileAdvancedSearch=false, updateQuery()"
-							:popupMobile="mobileAdvancedSearch" 
-						/>
-	  <div class="layer__xl">
-			<!-- TODO: add loading indicator -->
-			<!-- TODO: open mobile popup based on query string param -->
-			
-			<!-- link to advanced search (mobile only) -->
-			<span class="md:hidden font-labil text-base font-medium text-coral-300 cursor-pointer" @click="mobileAdvancedSearch=!mobileAdvancedSearch">
+	  <div class="layer__xl justify-start">
+		<!-- link to advanced search (mobile only) -->
+		<div class="pb-1 pt-5">
+			<span class="md:hidden font-labil text-base font-medium text-orange-300 cursor-pointer"  	@click="mobileAdvancedSearch=!mobileAdvancedSearch">
 				{{ mobileAdvancedSearch ? '- de filtres' : '+ de filtres' }}
 			</span>
-			
+		</div>
+			<!-- TODO: add loading indicator -->
+			<!-- TODO: open mobile popup based on query string param -->				
 			<div class="flex flex-col md:flex-row gap-4">
 				<!-- search input -->
 				<input type="search" class="input-search text-usual"
@@ -23,21 +16,31 @@
 				placeholder="Que souhaitez-vous cuisiner ?"
 				ref="searchField"
 				@keyup.enter="updateQuery"/>
-				<div class="flex flex-row">
+
+			<!-- advanced search for desktop and mobile, displays selected filters as tags (extract this part ?) -->
+			<advanced-search 
+						@filtersChanged="setFilterQuery" 
+						@closePopup="mobileAdvancedSearch=false"
+						@triggerSearch="mobileAdvancedSearch=false, updateQuery()"
+						:popupMobile="mobileAdvancedSearch" 
+					/>
+			</div>
+			<selected-filters/>
+			<div class="flex flex-row my-7">
 					<!-- search button -->
 					<button @click="updateQuery" class="btn w-max" aria-label="Rechercher">
 						je recherche
 					</button>
 
 				</div>
-			</div>
-			<selected-filters/>
+
+
 			<!-- warning -->
 			<div v-if="noSearchParameters">
 				Veuillez indiquer au minimum un terme de recherche ou un filtre avancé
 			</div>
 				
-						<ais-instant-search :index-name="indexName" :search-client="searchClient" :search-function="search" >		
+						<ais-instant-search :index-name="indexName" :search-client="searchClient" :search-function="search" class="w-[90vw]">		
 							<ais-configure
 								:hits-per-page.camel="12"
 								:distinct="true"
