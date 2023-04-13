@@ -6,6 +6,8 @@
         {'h-20 lg:h-24': lg},
         {'h-16 lg:h-20': md},
         {'h-10 lg:h-14': sm},
+        {'h-5 lg:h-8': xs},
+        {'h-2 lg:h-5': xxs},
     ]"
     />
     
@@ -23,6 +25,12 @@ export default {
     },
 
     computed: {
+        xxs() {
+            return this.size === 'xxs';
+        },
+        xs() {
+            return this.size === 'xs';
+        },
         sm() {
             return this.size === 'sm';
         },

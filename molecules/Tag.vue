@@ -19,7 +19,8 @@ export default {
 				'vegan': this.look === 'pink',
 				'vegetarian': this.look === 'green',
 				'meat': this.look === 'red',
-				'default': this.look === 'primary'
+				'default': this.look === 'primary',
+				'light': this.look === 'light'
 			}
 		}
 	}

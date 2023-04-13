@@ -1,68 +1,92 @@
 <template>
 		<section class="flex flex-col justify-center layer__xl mx-auto">
-			<spacer size="md"></spacer>
+			<spacer size="md"></spacer>	
 			<div v-if="recipe">
-				<div class="layer__lg items-center justify-center mx-auto">
+				<div class="items-start justify-start mx-auto">
+					<!-- author -->
+					<p class="text-white-300 text-usual mb-3">
+						{{recipe.authorName[0]}}
+					</p>	
+					<!-- title -->
+					<h1>{{recipe.name}}</h1>
+					<spacer size="xxs"></spacer>
+						<!-- description -->
+						<p class="text-big">{{recipe.description}}</p>
+					<spacer size="xs"></spacer>
 					<!-- picture -->
-					<div class="w-full ">
+					<div class="w-full">
 						<img
-							class="object-cover max-h-56 md:max-h-64 lg:max-h-72 xl:max-h-96 w-full rounded-lg"
+							class="object-cover max-h-56 md:max-h-64 lg:max-h-72 xl:max-h-96 w-full rounded-md"
 							:src="recipe.picture"
 							:srcset="recipe.pictureSmall +' 164w,'+recipe.pictureMedium+' 428w'"
 							alt="">
 					</div>
+					<spacer size="xs"></spacer>
 					<!-- tags -->
-					<div class="flex flex-row justify-between items-center my-2 ">
+					<div class="flex flex-row flex-wrap justify-start items-start  gap-2 ">
 						<nuxt-link v-for="t in recipe.tags"
 							:key="t.name"
 							:to="`/Recettes?q=${t.name}`"
 							>
-							<tag look="primary">{{t.name}}</tag>
+							<tag look="light">{{t.name}}</tag>
 						</nuxt-link>
 					</div>
-					<!-- author -->
-					<p>
-						{{recipe.authorName[0]}}
-					</p>
+
 				</div>
-				<!-- title -->
-				<h1>{{recipe.name}}</h1>
-				<!-- description -->
-		        <p>{{recipe.description}}</p>
-				<!-- seasonality (a list of months) -->
-				<div class="flex flex-row justify-between items-center my-2 " v-if="recipe.months">
-					<p>Saisonnalité:</p>
-					<div v-if="recipe.months.length < 12">
-						<nuxt-link v-for="month in recipe.months" 
-							:key="month" 
-							:to="`/Recettes?months=${month}`"
-							>
-							<tag look="primary">{{month}}</tag>
-						</nuxt-link>
-					</div>
-					<div v-else>
-						<p>{{label('allYearLong')}}</p>
-					</div>
+
+				<spacer size="md"></spacer>
+
+				<div class="block p-5 rounded-md bg-black-100 w-fit">
+					<!-- seasonality (a list of months) -->
+					<div class="flex flex-row justify-start items-start text-big gap-2" v-if="recipe.months">
+						<p class="font-bold text-pink-100">Saisonnalité:</p>
+						<div v-if="recipe.months.length < 12">
+							<nuxt-link v-for="month in recipe.months"
+								:key="month"
+								:to="`/Recettes?months=${month}`"
+								>
+								<tag look="primary">{{month}}</tag>
+							</nuxt-link>
+						</div>
+						<div v-else>
+							<p>{{label('allYearLong')}}</p>
+						</div>
 					
+					</div>
+					<!-- prep time and cook time -->
+					<div class="flex flex-row justify-start items-center text-big gap-2">
+						<p class="font-bold text-pink-100">Temps de préparation:</p>
+						<meta itemprop="prepTime" :content="`PT${(recipe.preparationTime/60)}M`"/> <time>{{(recipe.preparationTime/60)}} min</time>
+					</div>
+					<div class="flex flex-row justify-start items-center text-big gap-2">
+						<p class="font-bold text-pink-100">Temps de cuisson:</p>
+						<meta itemprop="cookTime" :content="`PT${(recipe.cookTime/60)}M`"/><time>{{(recipe.cookTime/60)}} min</time>
+					</div>
 				</div>
-				<!-- prep time and cook time -->
-				<p>Temps de préparation: <meta itemprop="prepTime" :content="`PT${(recipe.preparationTime/60)}M`"/> <time>{{(recipe.preparationTime/60)}}</time></p>
-        		<p>Temps de cuisson: <meta itemprop="cookTime" :content="`PT${(recipe.cookTime/60)}M`"/><time>{{(recipe.cookTime/60)}}</time></p>
+
+				<spacer size="md"></spacer>
+
 				<!-- ingredients -->
 				<h2>Ingrédients</h2>
+				<spacer size="xs"></spacer>
 				<!-- change number of plates -->
-				<div class="inline-block">
+				<div class="flex flex-row items-center gap-2 bg-black-300 w-fit border-black-200">
+					<button class="title-article border-r-2 border-r-black-200 text-center px-4" @click="(servings > 0) ? servings-- : servings" :disabled="servings == 1">-</button>
 					<input 
-						class="max-w-[40px] bg-reglisse-300 rounded focus:outline-none focus:ring focus:ring-reglisse-200 block p-2.5 placeholder:text-white-200 text-white-100"
+						class="max-w-[40px] bg-black-300 rounded focus:outline-none focus:ring focus:ring-black-200 block p-2.5 placeholder:text-white-200 text-white-100 title-paragraph text-center"
 						type="number" 
 						v-model="servings"
-						step="1" min="1" max="99">
-					<button class="btn" @click="(servings > 0) ? servings-- : servings" :disabled="servings == 1">-</button>
-					<button class="btn" @click="servings++">+</button>
+						step="1" min="1" max="99"
+						>
+					<button class="title-article border-l-2 border-l-black-200 text-center px-4" @click="servings++">+</button>
 				</div>
 				<!-- yield -->
-				<p><span itemprop="recipeYield">{{recipe.yield}}</span> couverts</p>
+				<!-- rajouter directement le mot "personnes" à la suite du nombre dans l'input -->
+				<!-- <p><span itemprop="recipeYield"> Pour {{recipe.yield}}</span> personnes</p> -->
 				<!-- list of compositions: quantity / units / ingredient name / remark / optional -->
+
+				<spacer size="sm"></spacer>
+
 				<div v-for="c in recipe.compositions" :key="c.name" class="columns-2">
 					<div v-if="c.ingredient[0]">
 						<div class="inline-block" v-if="c.quantity > 0">

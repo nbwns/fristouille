@@ -117,6 +117,14 @@
         @apply bg-orange-300;
     }
 
+    .tag.light {
+        @apply bg-black-100 text-pink-100;
+    }
+
+    .tag.light:hover {
+        @apply bg-black-100;
+    }
+
     .tag.meat {
         @apply bg-red-300;
     }
