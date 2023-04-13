@@ -127,7 +127,6 @@
 										</li>
 										<li v-for="page in pages" :key="page">
 											<a
-											class=""
 											:href="createURL(page)"
 											:class="[page === currentRefinement ? 'text-pink-200' : '']"
 											@click.prevent="refine(page)"
