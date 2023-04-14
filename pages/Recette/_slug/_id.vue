@@ -87,17 +87,17 @@
 
 				<spacer size="sm"></spacer>
 
-				<div v-for="c in recipe.compositions" :key="c.name" class="columns-2">
-					<div v-if="c.ingredient[0]">
-						<div class="inline-block" v-if="c.quantity > 0">
+				<div v-for="c in recipe.compositions" :key="c.name">
+					<div v-if="c.ingredient[0]" class="text-usual font-light flex">
+						<div class="font-bold" v-if="c.quantity > 0">
 							<!-- quantity -->
-							<span>{{computedQuantity(c.quantity)}}</span>
+							<span class="">{{computedQuantity(c.quantity)}}&nbsp;</span>
 							<!-- units -->
-							<span v-if="c.units != 'pièce'">{{c.units}}</span>
+							<span v-if="c.units != 'pièce'">{{c.units}} <span class="font-light">de &nbsp;</span> </span>
 						</div>
-						<div class="inline-block">
+						<div class="">
 							<!-- ingredient -->
-							<span>{{c.ingredient[0].name}}</span>
+							<span class="text-pink-100">{{c.ingredient[0].name}}</span>
 							<!-- remark -->
 							<i>{{c.remark}}</i> 
 							<!-- if no quantity -->
@@ -107,12 +107,18 @@
 						</div>
 					</div>
 				</div>
+
+				<spacer size="sm"></spacer>
+
 				<!-- procedure -->
-				<div v-html="procedure"></div>
+				<div v-html="procedure" class="text-big"></div>
+
+
+				<spacer size="sm"></spacer>
+
 				<!-- related article -->
-				<div v-if="article">
-					<hr/>
-					<h3>En savoir plus</h3>
+				<div v-if="article" class="w-fit">
+					<h3 class="title">En savoir plus</h3>
 					<card-article 
 						:img="article.data.cover.url" 
 						:imgAlt="article.data.cover.alt" 
