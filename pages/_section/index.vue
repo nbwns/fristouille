@@ -1,7 +1,7 @@
 <template>
-  <section class="flex flex-col justify-center items-center layer__2xl mx-auto">
+  <section class="flex flex-col justify-center items-center layer__xl mx-auto">
 	<spacer size="xl"></spacer>
-	<div class="flex flex-col layer__xl !p-0 w-full">
+	<!-- <div class="flex flex-col layer__xl !p-0 w-full">
 		<div class=" w-full block md:hidden absolute top-16 right-5">
 			<div class="w-36 ml-auto -rotate-6">
 				<svg width="100%" height="100%" viewBox="0 0 200 307" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -37,14 +37,12 @@
 				</defs>
 				</svg>
 			</div>
-		</div>
-		<!--  page title -->
-		<h1 class="max-w-md">
-			<prismic-text :field="document.data.title" />
-		 </h1>
-		 <spacer class="sm"></spacer>
+		</div> -->
+
+		 <!-- <spacer class="sm"></spacer> -->
 				<!-- body  -->
 			<div class="flex flex-grow flex-col md:flex-row-reverse justify-center">
+						<!--  page title -->
 				<div class=" w-full lg:w-1/2 lg:-mt-16 hidden md:block">
 					<div class="w-48 md:w-72 mx-auto">
 						<svg width="100%" height="100%" viewBox="0 0 200 307" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -81,15 +79,18 @@
 						</svg>
 					</div>
 				</div>
-				<div class="text-left w-full lg:w-1/2 self-center">
+				<div class="text-left w-full lg:w-1/2">
+					<h1 class="max-w-sm">
+						<prismic-text :field="document.data.title" />
+		 			</h1>
+					 <spacer size="xxs"></spacer>	
 					<prismic-rich-text :field="document.data.text"/>
 				</div>
 			</div>
-		<spacer h="xl"></spacer>
-	</div>			
+		<spacer size="xl"></spacer>		
 	<!-- child pages  -->
 	<grid-of-cards-articles :articles="children"/>
-	<spacer h="xxl"></spacer>
+	<spacer size="xxl"></spacer>
   </section>
 </template>
 
