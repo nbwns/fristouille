@@ -35,7 +35,7 @@
 					<spacer size="xs"></spacer>
 						<div class="flex flex-col md:flex-row justify-between w-full">
 							<!-- description -->
-							<div class="flex flex-col w-2/3">
+							<div class="flex flex-col md:w-2/3">
 								<p class="text-big ">{{recipe.description}}</p>
 								<spacer size="xs"></spacer>
 								<div class="block p-5 rounded-md bg-black-100 w-fit">
@@ -98,19 +98,19 @@
 
 				<spacer size="xl"></spacer>
 					<div class="w-full bg-black-100 py-20 rounded-md">
-						<div class="flex mx-auto space-x-7 items-center justify-center md:justify-between w-full md:w-3/5">
+						<div class="flex mx-auto space-x-7 items-center justify-center md:justify-between w-full md:w-3/5 gap-5 md:gap-36">
 							<!-- prep time and cook time -->
 							<div class="flex flex-col justify-center items-center text-big gap-2">
 								<meta itemprop="prepTime" :content="`PT${(recipe.preparationTime/60)}M`"/>
-								<div class="flex flex-col justify-center items-center px-24">
+								<div class="flex flex-col justify-between md:justify-center items-center">
 									<time class="big-title">{{(recipe.preparationTime/60)}}</time>
 									<p>min</p>
 								</div>
 								<p>Préparation</p>
 							</div>
-							<div class="flex flex-col justify-center items-center text-big gap-2 testouille">
+							<div class="flex flex-col justify-center items-center text-big gap-2">
 								<meta itemprop="cookTime" :content="`PT${(recipe.cookTime/60)}M`"/>
-								<div class="flex flex-col justify-center items-center px-24">
+								<div class="flex flex-col justify-center items-center">
 									<time class="big-title">{{(recipe.cookTime/60)}}</time>
 									<p>min</p>
 								</div>
