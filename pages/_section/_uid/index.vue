@@ -1,22 +1,26 @@
 <template>
-  <section class="flex flex-col justify-center layer__2xl mx-auto">
+  <section class="flex flex-col justify-center layer__xl mx-auto">
 	<!-- TODO: sibling pages -->
 	<!-- <div class="h-16 lg:h-20">
 		<grid-of-cards-articles :articles="siblings"/>
 	</div> -->
-	<spacer class=" h-24 lg:h-28 "></spacer>
+	<spacer size="sm"></spacer>
 		<!-- breadcrumb -->
 		<breadcrumb :parentText="$prismic.asText(parent.data.title)" :parentPath="parent.url"><prismic-text :field="document.data.title"/>
 	</breadcrumb>
-	<spacer class="h-10"></spacer>
+	<spacer size="xxs"></spacer>
 	
 	<!-- page title -->
 	<h1 class="max-w-lg">{{$prismic.asText(document.data.title)}}</h1>
-	<spacer class="h-10"></spacer>
 	
-    <div class="layer__2xl">
+	<spacer size="xs"></spacer>
+	
+    <div>
 		<!-- intro -->
-		<prismic-rich-text :field="document.data.introduction" />
+		<prismic-rich-text :field="document.data.introduction" class="text-big" />
+
+		<spacer size="md"></spacer>
+
 		<!-- content blocks -->
 		<content-block v-for="block in contentBlocks" :key="block.id" 
 			:content="block.primary.content" :image="block.primary.image" 
@@ -25,7 +29,7 @@
 		<!-- featured recipes -->
 		<featured-recipes v-for="(list, index) in horizontalLists" :key="`recipes-${index}`" :title="list.title" :items="list.recipes" :link="list.seeAllQuery" />
     </div>
-	<spacer h="275"></spacer>
+	<spacer size="md"></spacer>
 </section>
 </template>
 
