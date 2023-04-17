@@ -286,6 +286,9 @@
     }
 
 
+    .testouille > time {
+        @apply text-coral-300
+    }
 
 
 
