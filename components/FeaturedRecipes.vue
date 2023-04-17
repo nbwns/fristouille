@@ -3,7 +3,7 @@
     <section class="flex w-full items-center mx-auto justify-center py-10">
       <div class="flex flex-col layer__xl space-y-3 ">
         <!-- title row -->
-        <div class="flex flex-row justify-between">
+        <div class="flex flex-row justify-between items-center">
 			<title-paragraph>{{title}}</title-paragraph>
 			<hyper-link v-if="link" :path="`/Recettes${link}`">Tout voir</hyper-link>
         </div>

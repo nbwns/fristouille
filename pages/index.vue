@@ -4,9 +4,9 @@
     <section>
       <div class="flex flex-col justify-center items-center bg-black-200">
 		<spacer size="xl"></spacer>
-        <div class="flex flex-col md:flex-row layer__xl justify-between items-center h-auto mx-auto">
+        <div class="flex flex-col md:flex-row layer__xl justify-between xl:items-center h-auto mx-auto">
 			<div class="block z-0 items-center h-full">
-				<big-title :emphasis="$prismic.asText(document.data.hero_title_emphasis)" class="max-w-md ">{{$prismic.asText(document.data.hero_title)}}</big-title>
+				<big-title :emphasis="$prismic.asText(document.data.hero_title_emphasis)" class="max-w-md">{{$prismic.asText(document.data.hero_title)}}</big-title>
 				
 				<p class="text-big py-5">{{$prismic.asText(document.data.intro_phrase)}}</p>
 				 
@@ -15,6 +15,7 @@
 						{{document.data.cta_text}}
 					</link-button>
 				</div>
+				<spacer size="sm"></spacer>
 			</div>
 			<!-- only displayed on desktop -->
 			<div class="hidden md:flex flex-shrink-0 z-50">
