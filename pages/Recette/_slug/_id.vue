@@ -3,32 +3,22 @@
 			<spacer size="md"></spacer>	
 			<div v-if="recipe">
 				<div class="items-start justify-start mx-auto">
-				
 					<!-- picture -->
+					<!-- TODO: check correct sizes for viewports -->
 					<div class="w-full">
-						<img
+						<nuxt-img 
 							class="object-cover max-h-56 md:max-h-64 lg:max-h-72 xl:max-h-96 w-full rounded-md"
+							fit="cover"
 							:src="recipe.picture"
-							:srcset="recipe.pictureSmall +' 164w,'+recipe.pictureMedium+' 428w'"
-							alt="">
+							quality="80"
+							sizes="sm:100vw md:50vw lg:960px"
+							placeholder
+							:alt="`Photo d'un plat de ${recipe.name}`" />
+						
 					</div>
 					<spacer size="xs"></spacer>
-					<div class="flex flex-row justify-between">
-						<!-- tags -->
-						<div class="flex flex-row flex-wrap justify-start items-start  gap-2 w-2/3">
-							<nuxt-link v-for="t in recipe.tags"
-								:key="t.name"
-								:to="`/Recettes?q=${t.name}`"
-								>
-								<tag look="light">{{t.name}}</tag>
-							</nuxt-link>
-						</div>
-					<!-- author -->
-					<p class="text-white-300 text-usual mb-3">
-						{{recipe.authorName[0]}}
-					</p>	
-					</div>
-					<spacer size="xs"></spacer>
+
+					{{ recipe.diet }}
 	
 					<!-- title -->
 					<h1>{{recipe.name}}</h1>
@@ -36,8 +26,17 @@
 						<div class="flex flex-col md:flex-row justify-between w-full">
 							<!-- description -->
 							<div class="flex flex-col md:w-2/3">
+								
 								<p class="text-big ">{{recipe.description}}</p>
+								
 								<spacer size="xs"></spacer>
+								
+								<p class="text-white-300 text-usual mb-3">
+									{{recipe.authorName[0]}}
+								</p>	
+
+								<spacer size="xs"></spacer>
+
 								<div class="block p-5 rounded-md bg-black-100 w-fit">
 								<!-- seasonality (a list of months) -->
 								<div class="flex flex-row justify-start items-start text-big gap-2" v-if="recipe.months">
@@ -94,6 +93,16 @@
 
 						</div>
 
+				</div>
+
+				<div class="flex flex-row justify-start items-start text-big gap-2">
+					<p class="font-bold text-pink-100">Difficulté</p>
+					<div>{{ difficultyText }}</div>			
+				</div>
+
+				<div class="flex flex-row justify-start items-start text-big gap-2">
+					<p class="font-bold text-pink-100">Prix</p>
+					<div>{{ priceText }}</div>			
 				</div>
 
 				<spacer size="xl"></spacer>
@@ -167,8 +176,21 @@
 				<spacer size="sm"></spacer>
 
 				<!-- procedure -->
+				<h2>Procédure</h2>
 				<div v-html="procedure" class="text-big"></div>
 
+				<spacer size="sm"></spacer>
+
+				<h2>Tags</h2>
+				<!-- tags -->
+				<div class="flex flex-row flex-wrap justify-start items-start  gap-2">
+					<nuxt-link v-for="t in recipe.tags"
+						:key="t.name"
+						:to="`/Recettes?q=${t.name}`"
+						>
+						<tag look="light">{{t.name}}</tag>
+					</nuxt-link>
+				</div>
 
 				<spacer size="sm"></spacer>
 
@@ -213,14 +235,36 @@ export default {
 		},
 		servingsRatio(){
 			return this.servings / this.recipe.yield;
-        }
+        },
+		difficultyText(){
+			switch(this.recipe.difficulty){
+				case 1:
+					return 'Facile';
+				case 2: 
+					return 'Moyenne';
+				case 3:
+					return 'Difficile';
+					
+			}
+		},
+		priceText(){
+			switch(this.recipe.price){
+				case '€':
+					return 'Bon marché';
+				case '€€': 
+					return 'Abordable';
+				case '€€€':
+					return 'On se fait plaisir';
+					
+			}
+		}
     },
     methods:{
 		label(key){
 			return labels[key];
 		},
 		computedQuantity(qty){
-			return Math.round((qty * this.servingsRatio)*1000)/1000;
+			return Math.round((qty * this.servingsRatio)*2)/2;
 		},
 		addServings(){
 			console.log(this.servings);

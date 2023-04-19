@@ -37,6 +37,8 @@ exports.handler = async function(event, context) {
 					yield
 					procedure
 					ingredients
+					price
+					difficulty
 					months
 					category
 					cuisine

@@ -48,7 +48,8 @@ export default {
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
 	  '@nuxt/postcss8',
-    'vue-ssr-carousel/nuxt'
+    'vue-ssr-carousel/nuxt',
+	'@nuxt/image'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -81,6 +82,10 @@ export default {
 		  }
 		]
 	  },
+  },
+
+  image: {    
+	domains: ['fristouille.blob.core.windows.net']
   },
 
   eslint: {

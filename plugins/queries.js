@@ -15,6 +15,8 @@ const queries = {
 				procedure
 				ingredients
 				months
+				price
+				difficulty
 				category
 				cuisine
 				free
