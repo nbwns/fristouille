@@ -12,8 +12,14 @@ export const state = () => ({
 		cuisine: [],
 		months: [],
 		baseRecipe: []
-	}
+	},
+	dark: false
 });
+
+export const getters = {
+	dark: (state) => state.dark
+  };
+  
 
 export const mutations = {
 	saveSearchFilters(state, value){
@@ -29,5 +35,8 @@ export const mutations = {
 		if (index > -1) {
 			state.searchFilters[filter.type].splice(index, 1); 
 		}
-	}
+	},
+	SET_DARK: (state, bool) => {
+		state.dark = bool;
+	  }
 }

@@ -8,6 +8,7 @@
             <nav-link path="/recettes">Rechercher</nav-link>
             <nav-link path="/recettes-de-base">Recettes de base</nav-link>
             <nav-link path="/cuisine-durable">Cuisine durable</nav-link>
+            <dark-mode-toggle/>
         </div>
         <!-- <div>
           <a href="#"
@@ -23,11 +24,13 @@
 <script>
 import Logo from '~/molecules/Logo.vue';
 import NavLink from '~/molecules/NavLink.vue';
+import DarkModeToggle from './DarkModeToggle.vue';
 
 export default {
 	components:{
 		Logo,
-		NavLink
+		NavLink,
+    DarkModeToggle
 	},
 	mounted(){
 		console.log(this.$route.path)

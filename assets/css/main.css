@@ -82,7 +82,11 @@
     p,
     .text-usual,
     .navlink {
-        @apply font-inter text-base leading-relaxed;
+        @apply font-inter text-base leading-relaxed dark:placeholder:text-black-100;
+    }
+
+    #app {
+        @apply flex flex-col min-h-screen;
     }
 
 
@@ -227,7 +231,7 @@
     }
 
     .input-search {
-        @apply block w-full p-4 pl-10 rounded bg-black-100 border-transparent focus:border-transparent focus:ring-0;
+        @apply block w-full p-4 pl-10 rounded bg-black-100 dark:bg-white-100 border-transparent focus:border-transparent focus:ring-0;
     }
 
 

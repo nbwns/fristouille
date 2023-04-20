@@ -1,9 +1,9 @@
 <template>
-  <div class="flex flex-col min-h-screen bg-black-200 dark:bg-white-200">
+  <div id="app" :class="dark ? 'dark' : 'light'">
     <header>
 		<MainNavigation/>
     </header>
-    <div class="flex-grow">
+    <div class="flex-grow bg-black-200 dark:bg-white-200">
         <Nuxt />
     </div>
 	<footer-links/>
@@ -18,12 +18,17 @@
 import MainNavigation from '~/components/MainNavigation.vue'
 import MobileNavigation from '~/components/MobileNavigation.vue'
 import FooterLinks from '~/components/FooterLinks.vue'
+import { mapGetters } from 'vuex';
+
 
 export default {
 	components: {
     MainNavigation,
 	  MobileNavigation,
 	  FooterLinks
+    },
+    computed: {
+      ...mapGetters(['dark'])
     }
 }
 </script>
