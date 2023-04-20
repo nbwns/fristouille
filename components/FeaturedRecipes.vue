@@ -1,6 +1,6 @@
 <template>
 	<!-- section cards 4 columns -->
-    <section class="flex w-full items-center mx-auto justify-center py-10">
+    <section class="flex w-full items-center mx-auto justify-start py-10">
       <div class="flex flex-col layer__xl space-y-3 ">
         <!-- title row -->
         <div class="flex flex-row justify-between items-center">
@@ -67,6 +67,7 @@ export default {
 </script>
 
 <style>
+  .ssr-carousel-track { @apply justify-start }
   .ssr-carousel-back-icon, .ssr-carousel-next-icon {
     @apply !bg-black-300
   }

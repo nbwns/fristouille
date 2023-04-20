@@ -17,9 +17,9 @@
 						
 					</div>
 					<spacer size="xs"></spacer>
-
-					{{ recipe.diet }}
-	
+					<p class="text-white-300 text-usual mb-3">
+						{{recipe.authorName[0]}}
+					</p>	
 					<!-- title -->
 					<h1>{{recipe.name}}</h1>
 					<spacer size="xs"></spacer>
@@ -31,31 +31,12 @@
 								
 								<spacer size="xs"></spacer>
 								
-								<p class="text-white-300 text-usual mb-3">
-									{{recipe.authorName[0]}}
-								</p>	
+	
 
 								<spacer size="xs"></spacer>
 
-								<div class="block p-5 rounded-md bg-black-100 dark:bg-white-100 w-fit">
-								<!-- seasonality (a list of months) -->
-								<div class="flex flex-row justify-start items-start text-big gap-2" v-if="recipe.months">
-									<p class="font-bold text-pink-100 dark:text-black-300">Saisonnalité:</p>
-									<div v-if="recipe.months.length < 12">
-										<nuxt-link v-for="month in recipe.months"
-											:key="month"
-											:to="`/Recettes?months=${month}`"
-											>
-											<tag look="primary">{{month}}</tag>
-										</nuxt-link>
-									</div>
-									<div v-else>
-										<p>{{label('allYearLong')}}</p>
-									</div>					
-								</div>
 							</div>
-							</div>
-							<svg class="w-64" viewBox="0 0 152 141" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<!-- <svg class="w-64" viewBox="0 0 152 141" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M106.445 56.5139C106.445 56.5139 94.2322 42.1628 102.388 27.6228C110.544 13.0829 119.255 13.1676 121.21 7.18088C121.21 7.18088 132.474 17.2715 127.204 32.0118C121.934 46.7521 111.418 50.9282 106.445 56.5139Z" fill="url(#paint0_linear_1013_1558)"/>
 							<path d="M95.4306 36.451C95.4306 36.451 109.444 37.7419 114.463 26.3062C119.482 14.8705 115.536 9.50035 118.23 5.6626C118.23 5.6626 107.18 3.09299 100.751 12.8251C94.3226 22.5571 96.5357 30.9155 95.4306 36.451Z" fill="url(#paint1_linear_1013_1558)"/>
 							<path d="M99.8466 42.8741C99.8466 42.8741 112.044 35.7481 109.681 23.4598C107.317 11.1715 101.05 9.08063 101.083 4.36738C101.083 4.36738 90.5865 8.71685 90.8325 20.4342C91.0785 32.1516 97.6189 37.699 99.8466 42.8741Z" fill="url(#paint2_linear_1013_1558)"/>
@@ -89,61 +70,75 @@
 							<stop offset="1" stop-color="#FFF0DC"/>
 							</linearGradient>
 							</defs>
-							</svg>
+							</svg> -->
 
 						</div>
 
 				</div>
 
-				<div class="flex flex-row justify-start items-start text-big gap-2">
-					<p class="font-bold text-pink-100 dark:text-black-300">Difficulté</p>
-					<div>{{ difficultyText }}</div>			
-				</div>
 
-				<div class="flex flex-row justify-start items-start text-big gap-2">
-					<p class="font-bold text-pink-100 dark:text-black-300">Prix</p>
-					<div>{{ priceText }}</div>			
-				</div>
-
-				<spacer size="xl"></spacer>
-					<div class="w-full bg-black-100 dark:bg-white-100 py-20 rounded-md">
-						<div class="flex mx-auto space-x-7 items-center justify-center md:justify-between w-full md:w-3/5 gap-5 md:gap-36">
-							<!-- prep time and cook time -->
-							<div class="flex flex-col justify-center items-center text-big gap-2">
-								<meta itemprop="prepTime" :content="`PT${(recipe.preparationTime/60)}M`"/>
-								<div class="flex flex-col justify-between md:justify-center items-center">
-									<time class="big-title">{{(recipe.preparationTime/60)}}</time>
-									<p>min</p>
+				<spacer size="md"></spacer>
+					<div class="flex w-full justify-between gap-5">
+						
+								<!-- prep time and cook time -->
+								<div class="w-full bg-black-100 dark:bg-white-100 py-5 rounded-md text-center">
+									<meta itemprop="prepTime" :content="`PT${(recipe.preparationTime/60)}M`"/>
+									<p>Préparation</p>
+									<time class="title-paragraph">{{(recipe.preparationTime/60)}} min</time>
 								</div>
-								<p>Préparation</p>
-							</div>
-							<div class="flex flex-col justify-center items-center text-big gap-2">
-								<meta itemprop="cookTime" :content="`PT${(recipe.cookTime/60)}M`"/>
-								<div class="flex flex-col justify-center items-center">
-									<time class="big-title">{{(recipe.cookTime/60)}}</time>
-									<p>min</p>
+						
+								<div class="w-full bg-black-100 dark:bg-white-100 py-5 rounded-md text-center">
+									<meta itemprop="cookTime" :content="`PT${(recipe.cookTime/60)}M`"/>
+									<p>Cuisson</p>
+									<time class="title-paragraph">{{(recipe.cookTime/60)}}min</time>
 								</div>
-								<p>Cuisson</p>
-							</div>
-						</div>
+						
+								<div class="w-full bg-black-100 dark:bg-white-100 py-5 rounded-md text-center">
+									<meta itemprop="prepTime" :content="`PT${(recipe.preparationTime/60)}M`"/>
+									<p>Difficulté</p>
+									<div class="title-paragraph">{{ difficultyText }}</div>
+								</div>
+						
+								<div class="w-full bg-black-100 dark:bg-white-100 py-5 rounded-md text-center">
+									<meta itemprop="prepTime" :content="`PT${(recipe.preparationTime/60)}M`"/>
+									<p>Prix</p>
+									<div class="title-paragraph">{{ priceText }}</div>
+								</div>
 					</div>
 
-				<spacer size="sm"></spacer>
+					<spacer size="xs"></spacer>
+
+					<!-- seasonality (a list of months) -->
+					<div class="flex flex-row justify-start items-start text-big gap-2" v-if="recipe.months">
+						<p class="font-bold text-pink-100 dark:text-black-300">Saisonnalité:</p>
+						<div v-if="recipe.months.length < 12" class="flex flex-wrap gap-2">
+							<nuxt-link v-for="month in recipe.months"
+								:key="month"
+								:to="`/Recettes?months=${month}`"
+								>
+								<tag look="light">{{month}}</tag>
+							</nuxt-link>
+						</div>
+						<div v-else>
+							<p>{{label('allYearLong')}}</p>
+						</div>					
+					</div>
+
 				<spacer size="sm"></spacer>
 
 				<!-- ingredients -->
 				<h2>Ingrédients</h2>
 				<spacer size="xs"></spacer>
 				<!-- change number of plates -->
-				<div class="flex flex-row items-center gap-2 bg-black-300 dark:bg-white-300 w-fit border-black-200 dark:border-white-200">
-					<button class="title-article border-r-2 border-r-black-200 dark:border-r-white-200 text-center px-4" @click="(servings > 0) ? servings-- : servings" :disabled="servings == 1">-</button>
+				<div class="flex flex-row items-center gap-2 bg-black-300 dark:bg-purple-100 00 w-fit border-black-200 dark:border-purple-200 ">
+					<button class="title-article border-r-2 border-r-black-200 dark:border-r-purple-200 dark:hover:border-r-purple-200 text-center px-4 dark:hover:bg-purple-200" @click="(servings > 0) ? servings-- : servings" :disabled="servings == 1">-</button>
 					<input 
-						class="max-w-[40px] bg-black-300 dark:bg-white-300 rounded focus:outline-none focus:ring focus:ring-black-200 block p-2.5 placeholder:text-white-200 text-white-100 title-paragraph text-center"
+						class="max-w-[40px] bg-black-300 dark:bg-purple-100 rounded focus:outline-none focus:ring focus:ring-black-200 block p-2.5 placeholder:text-white-200 text-white-100 title-paragraph text-center"
 						type="number" 
 						v-model="servings"
 						step="1" min="1" max="99"
 						>
-					<button class="title-article border-l-2 border-l-black-200 dark:border-l-white-200 text-center px-4" @click="servings++">+</button>
+					<button class="title-article border-l-2 border-l-black-200 dark:border-l-purple-200 dark:hover:border-l-purple-200 dark:hover:bg-purple-200 text-center px-4" @click="servings++">+</button>
 				</div>
 				<!-- yield -->
 				<!-- rajouter directement le mot "personnes" à la suite du nombre dans l'input -->
