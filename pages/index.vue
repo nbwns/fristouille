@@ -29,7 +29,7 @@
 	<!-- only displayed on desktop -->
     <section class="hidden md:flex py-[10vh] mx-10 md:mx-0 my-10">
       <div class="flex flex-col items-center bg-black-200  w-full gap-[73px] ">
-		<h2 class="text-coral-200">
+		<h2 class="text-orange-200">
 		Trouver des recettes
 		</h2>
         <div class="flex flex-col justify-center layer__xl">

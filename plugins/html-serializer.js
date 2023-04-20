@@ -20,7 +20,7 @@ export default function(type, element, content, children) {
 	if (type === "hyperlink") {
 		//replace by nuxt-link
 		//element.data.link_type can be either Document or Web
-		return `<a class="text-base font-inter text-coral-200 hover:cursor-pointer hover:underline focus:text-coral-300"" href="${element.data.url}" target="${element.data.target}">${children.join("")}</a>`;
+		return `<a class="text-base font-inter text-orange-200 hover:cursor-pointer hover:underline focus:text-orange-300"" href="${element.data.url}" target="${element.data.target}">${children.join("")}</a>`;
 	}
 	// Otherwise, return null.
 	return null;

@@ -34,7 +34,7 @@
             <h4>Inscrivez-vous à notre newsletter</h4>
             <form action="" class=" mt-4 flex w-full max-w-md flex-col gap-3 sm:flex-row">
               <input type="email" name="email" id="email"
-                class="grow  py-3 px-3 focus:border-reglisse-100 focus:outline-none bg-reglisse-300 placeholder:text-white-200 rounded"
+                class="grow  py-3 px-3 focus:border-black-100 focus:outline-none bg-black-300 placeholder:text-white-200 rounded"
                 placeholder="Adresse email" />
               <button type="submit" class="btn">Je m'inscris</button>
             </form>
