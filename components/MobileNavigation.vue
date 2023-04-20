@@ -1,6 +1,6 @@
 <template>
 	<!-- TODO: center and padding of elements -->
-   <div class="bg-black-300 w-full px-15 py-15 flex flex-col space-y-5 fixed bottom-0 md:hidden">
+   <div class="bg-black-300 dark:bg-black-300 bg-opacity-75 dark:bg-opacity-75 w-full px-15 py-15 flex flex-col space-y-5 fixed bottom-0 md:hidden">
 		<div class="flex flex-row gap-5 items-center justify-between p-5">
 			<div class="flex flex-col items-center gap-3">
 			<nuxt-link to="/">
@@ -11,7 +11,7 @@
 					fill="#F3EEE6" />
 				</svg>
 				<!-- link -->
-				<span class="text-sm text-white-200 font-inter font-medium">
+				<span class="text-sm text-white-200 dark:!text-white-200 font-inter font-medium">
 					accueil
 				</span>
 			</nuxt-link>
@@ -35,7 +35,7 @@
 						</defs>
 					</svg>
 					<!-- link -->
-					<span class="text-sm text-white-200 font-inter font-medium">
+					<span class="text-sm text-white-200 dark:!text-white-200 font-inter font-medium">
 						rechercher
 					</span>
 				</nuxt-link>
@@ -65,7 +65,7 @@
 						fill="#F3EEE6" />
 					</svg>
 					<!-- link -->
-					<span class="text-sm text-white-200 font-inter font-medium">
+					<span class="text-sm text-white-200 dark:!text-white-200 font-inter font-medium">
 						apprendre
 					</span>
 				</nuxt-link>
@@ -80,7 +80,7 @@
 						fill="#F3EEE6" />
 					</svg>
 					<!-- link -->
-					<span class="text-sm text-white-200 font-inter font-medium">
+					<span class="text-sm text-white-200 dark:!text-white-200 font-inter font-medium">
 						autres
 					</span>
 				</nuxt-link>

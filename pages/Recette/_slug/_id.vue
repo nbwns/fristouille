@@ -37,10 +37,10 @@
 
 								<spacer size="xs"></spacer>
 
-								<div class="block p-5 rounded-md bg-black-100 w-fit">
+								<div class="block p-5 rounded-md bg-black-100 dark:bg-white-100 w-fit">
 								<!-- seasonality (a list of months) -->
 								<div class="flex flex-row justify-start items-start text-big gap-2" v-if="recipe.months">
-									<p class="font-bold text-pink-100">Saisonnalité:</p>
+									<p class="font-bold text-pink-100 dark:text-black-300">Saisonnalité:</p>
 									<div v-if="recipe.months.length < 12">
 										<nuxt-link v-for="month in recipe.months"
 											:key="month"
@@ -96,17 +96,17 @@
 				</div>
 
 				<div class="flex flex-row justify-start items-start text-big gap-2">
-					<p class="font-bold text-pink-100">Difficulté</p>
+					<p class="font-bold text-pink-100 dark:text-black-300">Difficulté</p>
 					<div>{{ difficultyText }}</div>			
 				</div>
 
 				<div class="flex flex-row justify-start items-start text-big gap-2">
-					<p class="font-bold text-pink-100">Prix</p>
+					<p class="font-bold text-pink-100 dark:text-black-300">Prix</p>
 					<div>{{ priceText }}</div>			
 				</div>
 
 				<spacer size="xl"></spacer>
-					<div class="w-full bg-black-100 py-20 rounded-md">
+					<div class="w-full bg-black-100 dark:bg-white-100 py-20 rounded-md">
 						<div class="flex mx-auto space-x-7 items-center justify-center md:justify-between w-full md:w-3/5 gap-5 md:gap-36">
 							<!-- prep time and cook time -->
 							<div class="flex flex-col justify-center items-center text-big gap-2">
@@ -135,15 +135,15 @@
 				<h2>Ingrédients</h2>
 				<spacer size="xs"></spacer>
 				<!-- change number of plates -->
-				<div class="flex flex-row items-center gap-2 bg-black-300 w-fit border-black-200">
-					<button class="title-article border-r-2 border-r-black-200 text-center px-4" @click="(servings > 0) ? servings-- : servings" :disabled="servings == 1">-</button>
+				<div class="flex flex-row items-center gap-2 bg-black-300 dark:bg-white-300 w-fit border-black-200 dark:border-white-200">
+					<button class="title-article border-r-2 border-r-black-200 dark:border-r-white-200 text-center px-4" @click="(servings > 0) ? servings-- : servings" :disabled="servings == 1">-</button>
 					<input 
-						class="max-w-[40px] bg-black-300 rounded focus:outline-none focus:ring focus:ring-black-200 block p-2.5 placeholder:text-white-200 text-white-100 title-paragraph text-center"
+						class="max-w-[40px] bg-black-300 dark:bg-white-300 rounded focus:outline-none focus:ring focus:ring-black-200 block p-2.5 placeholder:text-white-200 text-white-100 title-paragraph text-center"
 						type="number" 
 						v-model="servings"
 						step="1" min="1" max="99"
 						>
-					<button class="title-article border-l-2 border-l-black-200 text-center px-4" @click="servings++">+</button>
+					<button class="title-article border-l-2 border-l-black-200 dark:border-l-white-200 text-center px-4" @click="servings++">+</button>
 				</div>
 				<!-- yield -->
 				<!-- rajouter directement le mot "personnes" à la suite du nombre dans l'input -->
@@ -162,7 +162,7 @@
 						</div>
 						<div class="">
 							<!-- ingredient -->
-							<span class="text-pink-100">{{c.ingredient[0].name}}</span>
+							<span class="text-pink-100 dark:text-black-300 ">{{c.ingredient[0].name}}</span>
 							<!-- remark -->
 							<i>{{c.remark}}</i> 
 							<!-- if no quantity -->
@@ -203,6 +203,8 @@
 						:path="article.url" 
 						:title="$prismic.asText(article.data.title)"/>
 				</div>
+				<spacer size="lg"></spacer>
+
 			</div>
 	</section>
 	</template>

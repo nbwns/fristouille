@@ -20,8 +20,7 @@
     .text-small,
     .text-big,
     .text-usual,
-    .text-small,
-    .navlink {
+    .text-small{
         @apply text-white-300 dark:text-black-300;
     }
 
@@ -76,13 +75,20 @@
     }
 
     .tag {
-        @apply font-inter text-xs text-white-300 font-medium uppercase tracking-[0.4em];
+        @apply font-inter text-sm text-white-300 font-medium capitalize tracking-[0.1em];
     }
 
     p,
     .text-usual,
     .navlink {
         @apply font-inter text-base leading-relaxed dark:placeholder:text-black-100;
+    }
+
+    .navlink {
+        @apply text-white-300 dark:text-black-300;
+    }
+    .navlink:hover {
+        @apply !text-orange-200 dark:!text-purple-200;
     }
 
     #app {
@@ -98,7 +104,7 @@
 
 
     .logo {
-        @apply text-4xl font-labil font-bold text-orange-300;
+        @apply text-4xl font-labil font-bold text-orange-300 dark:text-purple-300;
     }
 
     .btn {
@@ -195,7 +201,7 @@
     }
 
     .card {
-        @apply flex flex-col flex-grow justify-between w-full rounded bg-black-100;
+        @apply flex flex-col flex-grow justify-between w-full rounded bg-black-100 dark:bg-white-100;
     }
    
     .card-image {
@@ -211,7 +217,7 @@
 
 
     .checkbox {
-        @apply w-4 h-4 bg-black-50 border-black-300 rounded-xs appearance-none checked:bg-orange-300;
+        @apply w-4 h-4 bg-black-50 dark:bg-purple-100 border-black-300 rounded-xs appearance-none checked:bg-orange-300 dark:checked:bg-purple-300;
     }
 
     .checkbox {
@@ -219,7 +225,7 @@
     }
 
     .checkbox:focus {
-        @apply ring-orange-200 dark:ring-orange-300 ring-2;
+        @apply ring-orange-200 dark:ring-purple-200 ring-2;
     }
 
     .icon-search {
@@ -264,11 +270,11 @@
     }
 
     .dropdown-wrap-content {
-        @apply absolute bg-black-200 z-50 p-4 w-auto text-white-300;
+        @apply absolute bg-black-200 dark:bg-white-300 z-50 p-4 w-auto text-white-300;
     }
 
     .dropdown-wrap-content-inner {
-        @apply py-4 space-y-2 bg-black-200 ;
+        @apply py-4 space-y-2 bg-black-200 dark:bg-white-300 ;
     }
 
     .wrap_mobile_filters {
@@ -288,12 +294,6 @@
     ul.pagination > li:active{
         @apply text-pink-200
     }
-
-
-    .testouille > time {
-        @apply text-orange-300
-    }
-
 
 
 

@@ -1,9 +1,8 @@
 <template>
     <button @click="toggleDarkMode"  class="
-      p-2
-      text-slate-600 hover:text-slate-800
-      dark:text-slate-300 dark:hover:text-slate-100
-      focus-visible:ring-2 focus-visible:ring-green-400
+      text-white-300 hover:text-orange-200
+      dark:text-purple-300 dark:hover:text-purple-100
+      focus-visible:ring-2 focus-visible:ring-pink-300
       rounded-lg
     ">
       <svg

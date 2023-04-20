@@ -90,8 +90,9 @@
 								nbHits
 								}"
 							>
+							
 								<!-- number of results (hidden on mobile) -->
-								<div class="hidden md:flex">
+								<div class="hidden md:flex text-usual pt-4 pb-2" >
 									{{ nbHits }} recettes
 								</div>
 							</template>
