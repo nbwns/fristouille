@@ -9,12 +9,20 @@
 			<!-- TODO: add loading indicator -->
 			<!-- TODO: open mobile popup based on query string param -->				
 			<div class="flex flex-col md:flex-col-reverse gap-4 w-full">
-				<!-- search input -->
-				<input type="search" class="input-search text-usual"
-				:value="query"
-				placeholder="Que souhaitez-vous cuisiner ?"
-				ref="searchField"
-				@keyup.enter="updateQuery"/>
+				<div class=" md:flex md:flex-row justify-between gap-2">
+					<!-- search input -->
+					<input type="search" class="input-search text-usual"
+					:value="query"
+					placeholder="Que souhaitez-vous cuisiner ?"
+					ref="searchField"
+					@keyup.enter="updateQuery"/>
+
+					<!-- search button -->
+					<button @click="updateQuery" class="btn min-w-max hidden md:block" aria-label="Rechercher">
+						je recherche
+					</button>		
+
+				</div>
 
 			<!-- advanced search for desktop and mobile, displays selected filters as tags (extract this part ?) -->
 			<advanced-search 
@@ -25,7 +33,7 @@
 					/>
 			</div>
 			<selected-filters/>
-			<div class="flex flex-row my-7">
+			<div class="flex flex-row my-4 md:hidden">
 					<!-- search button -->
 					<button @click="updateQuery" class="btn w-max" aria-label="Rechercher">
 						je recherche
@@ -35,7 +43,7 @@
 
 
 		<!-- warning -->
-		<div v-if="noSearchParameters">
+		<div v-if="noSearchParameters" class="text-usual">
 			Veuillez indiquer au minimum un terme de recherche ou un filtre avancé
 		</div>
 			
