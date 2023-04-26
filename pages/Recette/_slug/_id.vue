@@ -6,7 +6,7 @@
 					<!-- picture -->
 					<!-- TODO: check correct sizes for viewports -->
 					<div class="w-full">
-						<nuxt-img 
+						<nuxt-img v-if="recipe.picture"
 							class="object-cover max-h-56 md:max-h-64 lg:max-h-72 xl:max-h-96 w-full rounded-md"
 							fit="cover"
 							:src="recipe.picture"
