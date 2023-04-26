@@ -96,6 +96,11 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
 
+  loading: {
+    color: '#F4D1F4',
+    height: '5px'
+  },
+
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
@@ -105,8 +110,8 @@ export default {
       orientation: 'portrait',
       lang: 'fr-BE',
       useWebmanifestExtension: false,
-      theme_color: '#FF9877',
-      background_color: '#433544',
+      theme_color: '#FC762B',
+      background_color: '#2D1F2E',
     }
   },
 
