@@ -25,7 +25,7 @@ exports.handler = async function(event, context) {
 				'pictureSmall',
 				'pictureMedium',
 				'diet',
-				'tags',
+				'totalTime',
 				'authorName',
 				'objectID'
 				],

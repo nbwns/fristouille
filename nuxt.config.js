@@ -37,7 +37,8 @@ export default {
 	algoliaApiKey: process.env.ALGOLIA_API_KEY,
 	algoliaAppId: process.env.ALGOLIA_APP_ID,
 	searchIndexFunction: process.env.SEARCH_INDEX_FUNCTION,
-	queryFunction: process.env.QUERY_FUNCTION
+	queryFunction: process.env.QUERY_FUNCTION,
+	baseUrl: process.env.BASE_URL
   },
   privateRuntimeConfig: {
 

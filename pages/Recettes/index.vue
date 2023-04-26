@@ -24,146 +24,145 @@
 
 				</div>
 
-			<!-- advanced search for desktop and mobile, displays selected filters as tags (extract this part ?) -->
-			<advanced-search 
-						@filtersChanged="setFilterQuery" 
-						@closePopup="mobileAdvancedSearch=false"
-						@triggerSearch="mobileAdvancedSearch=false, updateQuery()"
-						:popupMobile="mobileAdvancedSearch" 
-					/>
+				<!-- advanced search for desktop and mobile, displays selected filters as tags (extract this part ?) -->
+				<advanced-search 
+							@filtersChanged="setFilterQuery" 
+							@closePopup="mobileAdvancedSearch=false"
+							@triggerSearch="mobileAdvancedSearch=false, updateQuery()"
+							:popupMobile="mobileAdvancedSearch" 
+						/>
 			</div>
 			<selected-filters/>
 			<div class="flex flex-row my-4 md:hidden">
-					<!-- search button -->
-					<button @click="updateQuery" class="btn w-max" aria-label="Rechercher">
-						je recherche
-					</button>
+				<!-- search button -->
+				<button @click="updateQuery" class="btn w-max" aria-label="Rechercher">
+					je recherche
+				</button>
+			</div>
 
+			<!-- warning -->
+			<div v-if="noSearchParameters" class="text-usual">
+				Veuillez indiquer au minimum un terme de recherche ou un filtre avancé
+			</div>
+
+			<ais-instant-search 
+				:index-name="indexName" 
+				:search-client="searchClient" 
+				:search-function="search" 
+				class="w-full">		
+				<ais-configure
+					:hits-per-page.camel="12"
+					:distinct="true"
+					:filters="filterQuery"
+					:query="query"
+					:page="page"
+				/>
+			
+				<!-- check if that works... -->
+				<ais-state-results>
+					<template v-slot="{ status }">
+					<p v-show="status === 'stalled'">
+						Loading search results
+					</p>
+					</template>
+				</ais-state-results>
+
+				<div v-if="searchPerformed" class="pt-10"> 
+					<normal-title v-if="query">
+						Résultats pour '{{ query }}'
+					</normal-title>
+					<normal-title v-else>
+						Découvrez nos recettes
+					</normal-title>
 				</div>
-
-
-		<!-- warning -->
-		<div v-if="noSearchParameters" class="text-usual">
-			Veuillez indiquer au minimum un terme de recherche ou un filtre avancé
-		</div>
+				<div class="w-full h-96 flex items-center justify-center" v-else>
+					<div class=" font-labil font-light p-14 text-black-50  text-xl text-center " >
+						<!-- here we can show suggestions on the default state of the page -->
+						Pas d'idées ? <br /> Essayez avec ces mots clés: "végétarien"
+					</div>
+				</div>
 			
-						<ais-instant-search 
-							:index-name="indexName" 
-							:search-client="searchClient" 
-							:search-function="search" 
-							class="w-full">		
-						<ais-configure
-							:hits-per-page.camel="12"
-							:distinct="true"
-							:filters="filterQuery"
-							:query="query"
-							:page="page"
-						/>
-			
-						<!-- check if that works... -->
-						<ais-state-results>
-							<template v-slot="{ status }">
-							<p v-show="status === 'stalled'">
-								Loading search results
-							</p>
-							</template>
-						</ais-state-results>
-			
-						<div v-if="searchPerformed" class="pt-10"> 
-							<normal-title v-if="query">
-								Résultats pour '{{ query }}'
-							</normal-title>
-							<normal-title v-else>
-								Découvrez nos recettes
-							</normal-title>
+				<ais-pagination >
+					<template
+						v-slot="{
+						nbHits
+						}"
+					>
+					
+						<!-- number of results (hidden on mobile) -->
+						<div class="hidden md:flex text-usual pt-4 pb-2" >
+							{{ nbHits }} recettes
 						</div>
-						<div class="w-full h-96 flex items-center justify-center" v-else>
-							<div class=" font-labil font-light p-14 text-black-50  text-xl text-center " >
-								<!-- here we can show suggestions on the default state of the page -->
-								Pas d'idées ? <br /> Essayez avec ces mots clés: "végétarien"
-							</div>
+					</template>
+				</ais-pagination>
+			
+				<ais-hits>
+					<template v-slot="{ items }">
+					<grid-of-cards-recipes :recipes="items" v-if="items.length > 0"/>  
+					<div v-else>
+						<!-- no results -->
+						<div class="text-usual">
+							Pas de résultat pour cette recherche
 						</div>
-			
-						<ais-pagination >
-							<template
-								v-slot="{
-								nbHits
-								}"
-							>
-							
-								<!-- number of results (hidden on mobile) -->
-								<div class="hidden md:flex text-usual pt-4 pb-2" >
-									{{ nbHits }} recettes
-								</div>
-							</template>
-						</ais-pagination>
-			
-						<ais-hits>
-							<template v-slot="{ items }">
-							<grid-of-cards-recipes :recipes="items" v-if="items.length > 0"/>  
-							<div v-else>
-								<!-- no results -->
-								Pas de résultat pour cette recherche :(
-							</div>
-							</template>
-						</ais-hits>
-						<ais-pagination>
-							<template
-								v-slot="{
-								currentRefinement,
-								nbPages,
-								pages,
-								isFirstPage,
-								isLastPage,
-								refine,
-								createURL
-								}"
-							>
-								<div class="w-full py-10">
-									<ul class="pagination">
-										<li v-if="!isFirstPage">
-											<a
-												:href="createURL(currentRefinement - 1)"
-												@click.prevent="refine(currentRefinement - 1)"
-											>
-											<span class="sr-only">Précédent</span>
-											<!-- Heroicon name: mini/chevron-left -->
-											<svg class="w-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<path d="M14 7L9 12L14 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-											</svg>
+					</div>
+					</template>
+				</ais-hits>
+				<ais-pagination>
+					<template
+						v-slot="{
+						currentRefinement,
+						nbPages,
+						pages,
+						isFirstPage,
+						isLastPage,
+						refine,
+						createURL
+						}"
+					>
+						<div class="w-full py-10">
+							<ul class="pagination">
+								<li v-if="!isFirstPage">
+									<a
+										:href="createURL(currentRefinement - 1)"
+										@click.prevent="refine(currentRefinement - 1)"
+									>
+									<span class="sr-only">Précédent</span>
+									<!-- Heroicon name: mini/chevron-left -->
+									<svg class="w-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M14 7L9 12L14 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+									</svg>
 
-											</a>
-										</li>
-										<li v-for="page in pages" :key="page">
-											<a
-											:href="createURL(page)"
-											:class="[page === currentRefinement ? 'text-pink-200' : '']"
-											@click.prevent="refine(page)"
-											>
-											{{ page + 1 }}
-											</a>
-										</li>
-										<li v-if="!isLastPage">
-											<a
-												:href="createURL(currentRefinement + 1)"
-												@click.prevent="refine(currentRefinement + 1)"
-											>
-												<span class="sr-only">Next</span>
-												<!-- Heroicon name: mini/chevron-right -->
-												<svg class="w-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<path d="M10 7L15 12L10 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-												</svg>
-											</a>
-										</li>
-									</ul>
-								</div>
-							</template>
-						</ais-pagination>
-					</ais-instant-search>
-				</section>
- 		 </template>
-  
-  <script>
+									</a>
+								</li>
+								<li v-for="page in pages" :key="page">
+									<a
+									:href="createURL(page)"
+									:class="[page === currentRefinement ? 'text-pink-200' : '']"
+									@click.prevent="refine(page)"
+									>
+									{{ page + 1 }}
+									</a>
+								</li>
+								<li v-if="!isLastPage">
+									<a
+										:href="createURL(currentRefinement + 1)"
+										@click.prevent="refine(currentRefinement + 1)"
+									>
+										<span class="sr-only">Next</span>
+										<!-- Heroicon name: mini/chevron-right -->
+										<svg class="w-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M10 7L15 12L10 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+										</svg>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</template>
+				</ais-pagination>
+			</ais-instant-search>
+		</section>
+	</template>
+<script>
 import {
 	AisInstantSearch,
 	AisHits,

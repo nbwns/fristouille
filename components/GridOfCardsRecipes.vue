@@ -5,7 +5,7 @@
 			:img="item.pictureMedium"
 			:recipeID="item.objectID"
 			:slug="item.slug"
-			:tags="item.tags"
+			:totalTime="item.totalTime"
 			:author="item.authorName"
 			:title="item.name" />
 	</div>

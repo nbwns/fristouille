@@ -43,6 +43,7 @@ exports.handler = async function(event, context) {
 				months: recette.months,
 				preparationTime: recette.preparationTime/60,
 				cookTime: recette.cookTime/60,
+				totalTime: (parseInt(recette.cookTime) + parseInt(recette.preparationTime))/60,
 				yield: recette.yield,
 				baseRecipe: recette.baseRecipe,
 				authorName: recette.authorName[0],

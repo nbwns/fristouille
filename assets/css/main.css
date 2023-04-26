@@ -75,7 +75,7 @@
     }
 
     .tag {
-        @apply font-inter text-sm text-white-300 font-medium capitalize tracking-[0.1em];
+        @apply font-inter text-sm text-white-300 font-medium tracking-[0.1em];
     }
 
     p,

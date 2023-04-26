@@ -26,15 +26,9 @@
 						<div class="flex flex-col md:flex-row justify-between w-full">
 							<!-- description -->
 							<div class="flex flex-col md:w-2/3">
-								
 								<p class="text-big ">{{recipe.description}}</p>
 								
-								<spacer size="xs"></spacer>
-								
 	
-
-								<spacer size="xs"></spacer>
-
 							</div>
 							<!-- <svg class="w-64" viewBox="0 0 152 141" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M106.445 56.5139C106.445 56.5139 94.2322 42.1628 102.388 27.6228C110.544 13.0829 119.255 13.1676 121.21 7.18088C121.21 7.18088 132.474 17.2715 127.204 32.0118C121.934 46.7521 111.418 50.9282 106.445 56.5139Z" fill="url(#paint0_linear_1013_1558)"/>
@@ -71,58 +65,60 @@
 							</linearGradient>
 							</defs>
 							</svg> -->
-
 						</div>
+				</div>
+				<spacer size="md"></spacer>
 
+				<div class="flex w-full justify-between gap-5">
+					<!-- prep time and cook time -->
+					<div class="w-full bg-black-100 dark:bg-white-100 py-5 rounded-md text-center">
+						<meta itemprop="prepTime" :content="`PT${(recipe.preparationTime/60)}M`"/>
+						<p>Préparation</p>
+						<time class="title-paragraph">{{(recipe.preparationTime/60)}} min</time>
+					</div>
+			
+					<div class="w-full bg-black-100 dark:bg-white-100 py-5 rounded-md text-center">
+						<meta itemprop="cookTime" :content="`PT${(recipe.cookTime/60)}M`"/>
+						<p>Cuisson</p>
+						<time class="title-paragraph">{{(recipe.cookTime/60)}}min</time>
+					</div>
+			
+					
 				</div>
 
+				<spacer size="xs"></spacer>
 
-				<spacer size="md"></spacer>
-					<div class="flex w-full justify-between gap-5">
-						
-								<!-- prep time and cook time -->
-								<div class="w-full bg-black-100 dark:bg-white-100 py-5 rounded-md text-center">
-									<meta itemprop="prepTime" :content="`PT${(recipe.preparationTime/60)}M`"/>
-									<p>Préparation</p>
-									<time class="title-paragraph">{{(recipe.preparationTime/60)}} min</time>
-								</div>
-						
-								<div class="w-full bg-black-100 dark:bg-white-100 py-5 rounded-md text-center">
-									<meta itemprop="cookTime" :content="`PT${(recipe.cookTime/60)}M`"/>
-									<p>Cuisson</p>
-									<time class="title-paragraph">{{(recipe.cookTime/60)}}min</time>
-								</div>
-						
-								<div class="w-full bg-black-100 dark:bg-white-100 py-5 rounded-md text-center">
-									<meta itemprop="prepTime" :content="`PT${(recipe.preparationTime/60)}M`"/>
-									<p>Difficulté</p>
-									<div class="title-paragraph">{{ difficultyText }}</div>
-								</div>
-						
-								<div class="w-full bg-black-100 dark:bg-white-100 py-5 rounded-md text-center">
-									<meta itemprop="prepTime" :content="`PT${(recipe.preparationTime/60)}M`"/>
-									<p>Prix</p>
-									<div class="title-paragraph">{{ priceText }}</div>
-								</div>
+				<div class="flex w-full justify-between gap-5">
+					<div class="w-full bg-black-100 dark:bg-white-100 py-5 rounded-md text-center">
+						<meta itemprop="prepTime" :content="`PT${(recipe.preparationTime/60)}M`"/>
+						<p>Difficulté</p>
+						<div class="title-paragraph">{{ difficultyText }}</div>
 					</div>
-
-					<spacer size="xs"></spacer>
-
-					<!-- seasonality (a list of months) -->
-					<div class="flex flex-row justify-start items-start text-big gap-2" v-if="recipe.months">
-						<p class="font-bold text-pink-100 dark:text-black-300">Saisonnalité:</p>
-						<div v-if="recipe.months.length < 12" class="flex flex-wrap gap-2">
-							<nuxt-link v-for="month in recipe.months"
-								:key="month"
-								:to="`/Recettes?months=${month}`"
-								>
-								<tag look="light">{{month}}</tag>
-							</nuxt-link>
-						</div>
-						<div v-else>
-							<p>{{label('allYearLong')}}</p>
-						</div>					
+			
+					<div class="w-full bg-black-100 dark:bg-white-100 py-5 rounded-md text-center">
+						<meta itemprop="prepTime" :content="`PT${(recipe.preparationTime/60)}M`"/>
+						<p>Prix</p>
+						<div class="title-paragraph">{{ priceText }}</div>
 					</div>
+				</div>
+
+				<spacer size="xs"></spacer>
+
+				<!-- seasonality (a list of months) -->
+				<div class="flex flex-row justify-start items-start text-big gap-2" v-if="recipe.months">
+					<p class="font-bold text-pink-100 dark:text-black-300">Saisonnalité:</p>
+					<div v-if="recipe.months.length < 12" class="flex flex-wrap gap-2">
+						<nuxt-link v-for="month in recipe.months"
+							:key="month"
+							:to="`/Recettes?months=${month}`"
+							>
+							<tag look="light">{{month}}</tag>
+						</nuxt-link>
+					</div>
+					<div v-else>
+						<p>{{label('allYearLong')}}</p>
+					</div>					
+				</div>
 
 				<spacer size="sm"></spacer>
 
@@ -179,12 +175,43 @@
 				<h2>Tags</h2>
 				<!-- tags -->
 				<div class="flex flex-row flex-wrap justify-start items-start  gap-2">
+					<!-- tags -->
 					<nuxt-link v-for="t in recipe.tags"
 						:key="t.name"
 						:to="`/Recettes?q=${t.name}`"
 						>
 						<tag look="light">{{t.name}}</tag>
 					</nuxt-link>
+
+					<!-- base recipe -->
+					<nuxt-link v-if="recipe.baseRecipe" key="baseRecipe"
+						:to="`/Recettes?baseRecipe=${recipe.baseRecipe}`"
+						>
+						<tag look="light" class="lowercase">{{recipe.baseRecipe.replaceAll('-',' ')}}</tag>
+					</nuxt-link>
+					
+					<!-- category -->
+					<nuxt-link v-for="cat in recipe.category" :key="cat"
+						:to="`/Recettes?category=${cat}`"
+						>
+						<tag look="light" class="lowercase">{{cat}}</tag>
+					</nuxt-link>
+
+					<!-- cuisine -->
+					<nuxt-link v-if="recipe.cuisine" key="cuisine"
+						:to="`/Recettes?cuisine=${recipe.cuisine}`"
+						>
+						<tag look="light" class="lowercase">{{recipe.cuisine}}</tag>
+					</nuxt-link>
+
+					<!-- allergies -->
+					<nuxt-link v-for="free in recipe.free" :key="free"
+						:to="`/Recettes?free=${free}`"
+						>
+						<tag look="light" class="lowercase">sans {{free}}</tag>
+					</nuxt-link>
+
+					
 				</div>
 
 				<spacer size="sm"></spacer>

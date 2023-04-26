@@ -1,6 +1,6 @@
 <template>
 	<!-- section cards 4 columns -->
-    <section class="flex w-full items-center mx-auto justify-start py-10">
+    <section class="flex w-full items-center mx-auto justify-center py-10">
       <div class="flex flex-col layer__xl space-y-3 ">
         <!-- title row -->
         <div class="flex flex-row justify-between items-center">
@@ -38,7 +38,7 @@
                 :img="item.pictureMedium"
                 :recipeID="item.objectID"
                 :slug="item.slug" 
-                :tags="item.tags"
+                :totalTime="item.totalTime"
                 :author="item.authorName"
                 :title="item.name"/>                
             </div>
