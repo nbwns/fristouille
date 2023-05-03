@@ -23,19 +23,21 @@
 
 		<!-- content blocks -->
 		<content-block v-for="block in contentBlocks" :key="block.id" 
-			:content="block.primary.content" :image="block.primary.image" 
-			:ctaUrl="block.primary.cta_url" :ctaText="block.primary.cta_text" :ctaHeader="block.primary.interest_header"
-			:reverse="block.primary.reverse_display"  />
+			:title="block.primary.content_title" :content="block.primary.content_body" :image="block.primary.content_image" />
 		<!-- featured recipes -->
 		<featured-recipes v-for="(list, index) in horizontalLists" :key="`recipes-${index}`" :title="list.title" :items="list.recipes" :link="list.seeAllQuery" />
     </div>
 	<spacer size="md"></spacer>
+	<!-- call to action -->
+	<call-to-action v-for="cta in ctas" :key="cta.id" 
+			:ctaUrl="cta.primary.cta_url" :ctaText="cta.primary.cta_text" :ctaHeader="cta.primary.cta_header" />
 </section>
 </template>
 
 <script>	
 import FeaturedRecipes from '~/components/FeaturedRecipes'
-import ContentBlock from '~/components/ContentBlock'
+import ContentBlock from '~/components/ContentBlock';
+import CallToAction from '~/components/CallToAction';
 import Breadcrumb from '~/molecules/Breadcrumb.vue';
 import TitleArticle from '~/molecules/TitleArticle.vue';
 import Spacer from '~/molecules/Spacer.vue';
@@ -47,7 +49,8 @@ export default {
 	ContentBlock,
 	Breadcrumb,
 	TitleArticle,
-	Spacer
+	Spacer,
+	CallToAction
   },
   head () {
     return {
@@ -110,11 +113,12 @@ export default {
 
 		let horizontalLists = [];
 		let contentBlocks = [];
+		let ctas = [];
 
+		//featured recipes
 		if(page.body && page.body.length > 0){
 			
 			let horizontalListsSlices = page.body.filter(s => s.slice_type === 'horizontal_list');
-			contentBlocks = page.body.filter(s => s.slice_type === 'content_and_call_to_action');
 
 			//horizontal lists of recipes - get content from Algolia
 			horizontalLists = await Promise.all(
@@ -137,13 +141,25 @@ export default {
 			);
 		}
 
+
+		//content blocks
+		if(page.body1 && page.body1.length > 0){
+			contentBlocks = page.body1;
+		}
+		
+		//calls to action
+		if(page.body2 && page.body2.length > 0){
+			ctas = page.body2;
+		}
+
 		// Returns data to be used in template
 		return {
 			document: document,
 			siblings: siblings,
 			parent: parent,
 			horizontalLists: horizontalLists,
-			contentBlocks: contentBlocks
+			contentBlocks: contentBlocks,
+			ctas: ctas
 		}
     } catch (e) {
       	// Returns error page
