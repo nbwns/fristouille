@@ -71,7 +71,7 @@
 				</nuxt-link>
 			</div>
 			<div class="flex flex-col items-center gap-3">
-				<nuxt-link to="/">
+				<div @click="popupOpen = !popupOpen" class="cursor-pointer">
 					<!-- svg -->
 					<!-- other icon -->
 					<svg class=" h-8 mx-auto" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -82,18 +82,27 @@
 					<!-- link -->
 					<span class="text-sm text-white-200 dark:!text-white-200 font-inter font-medium">
 						autres
-
-						<!-- poster ici la logique de popup javascript afin que je stylise l'ensemble -->
 					</span>
-				</nuxt-link>
+				</div>
 			</div>
+		</div>
+		<!-- popup "autres" -->
+		<div class="bg-black-300" v-show="popupOpen">
+			<ul>
+				<li>A propos</li>
+				<li>Contact</li>
+			</ul>
 		</div>
 	</div>
 </template>
 
 <script>
-export default {
-
+export default{
+	data(){
+		return {
+			popupOpen: false
+		}
+	}
 }
 </script>
 
