@@ -10,56 +10,68 @@
 		  <hyper-link v-if="link" :path="link">Tout voir</hyper-link>
         </div>
         <!-- grid for cards 2-columns -->
-        <vue-horizontal>	
-			<grid-of-cards-articles :articles="items"/>
-        </vue-horizontal>
+		<ssr-carousel
+            loop
+            :slides-per-page='2' 
+            :gutter='30' 
+            show-arrows
+			peek='10%'
+            :responsive='[
+                {
+					maxWidth: 1280,
+					slidesPerPage: 2,
+					gutter: 20,
+                },
+                {
+					maxWidth: 1024,
+					slidesPerPage: 2,
+					gutter: 10,
+                },
+                {
+					maxWidth: 640,
+					slidesPerPage: 1,
+					gutter: 10,
+                }
+            ]'             
+            >
+            <div class="slide" v-for="c in items" :key="c.id">
+				<card-article
+					image-size=""
+					:path="c.url"
+					:img="c.data.cover.url"
+					:imgAlt="c.data.cover.alt"
+					:title="$prismic.asText(c.data.title)"/>
+			</div>
+        </ssr-carousel>
       </div>
     </section>
 </template>
 
 <script>
-import VueHorizontal from 'vue-horizontal';
 import TitleParagraph from '~/molecules/TitleParagraph.vue';
 import HyperLink from '~/molecules/HyperLink.vue';
-import GridOfCardsArticles from './GridOfCardsArticles.vue';
+import SsrCarousel from 'vue-ssr-carousel';
+import CardArticle from './CardArticle.vue';
+
 
 export default {
 	props: ['title','items', 'link'],
-	components: {VueHorizontal, TitleParagraph, HyperLink, GridOfCardsArticles},
+	components: {TitleParagraph, HyperLink, SsrCarousel, CardArticle},
 }
 </script>
 
-<!-- Responsive Breakpoints -->
 <style scoped>
-.horizontal {
-  --count: 1;
-  --gap: 16px;
-  --margin: 24px;
-}
-
-@media (min-width: 640px) {
-  .horizontal {
-    --count: 2;
+  .ssr-carousel-track { @apply justify-start }
+  .ssr-carousel-back-icon, .ssr-carousel-next-icon {
+    @apply !bg-black-300
   }
-}
-
-@media (min-width: 768px) {
-  .horizontal {
-    --count: 3;
-    --margin: 0;
+  :not([aria-disabled]) > .ssr-carousel-back-icon, :not([aria-disabled]) > .ssr-carousel-next-icon {
+    @apply opacity-75
   }
-}
-
-@media (min-width: 1024px) {
-  .horizontal {
-    --count: 4;
+  .ssr-carousel-next-button {
+    @apply -right-6
   }
-}
-
-@media (min-width: 1280px) {
-  .horizontal {
-    --gap: 24px;
-    --count: 6;
+  .ssr-carousel-back-button {
+    @apply -left-6
   }
-}
 </style>
