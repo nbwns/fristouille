@@ -82,6 +82,8 @@
 					<!-- link -->
 					<span class="text-sm text-white-200 dark:!text-white-200 font-inter font-medium">
 						autres
+
+						<!-- poster ici la logique de popup javascript afin que je stylise l'ensemble -->
 					</span>
 				</nuxt-link>
 			</div>
