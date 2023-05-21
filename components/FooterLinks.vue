@@ -35,13 +35,6 @@
 				</a>
             </div>
           </div>
-		  <div class="flex justify-center">
-			<!-- ecoindex badge -->
-			<!-- TODO: dynamic url and theme -->
-			<a href="https://bff.ecoindex.fr/redirect/?url=https://fristouille.netlify.app" target="_blank">
-				<img src="https://bff.ecoindex.fr/badge/?theme=dark&url=https://fristouille.netlify.app" alt="Ecoindex Badge" />
-			</a>
-		  </div>
         </div>
         <div class="flex flex-col sm:flex-row sm:justify-between w-full ">
           <div class="flex flex-col w-full">
@@ -54,13 +47,23 @@
             </form>
           </div>
           <div class="flex flex-col justify-end  w-full">
-            <div class="flex flex-row justify-end items-center gap-3 text-orange-200
+            <div class="flex flex-col justify-end items-end gap-3 text-orange-200
                dark:text-purple-200 ">
+			   <div class="border border-orange-100">
+			<!-- ecoindex badge -->
+			<a href="https://bff.ecoindex.fr/redirect/?url=https://fristouille.netlify.app" target="_blank">
+				<img src="https://bff.ecoindex.fr/badge/?theme=dark&url=https://fristouille.netlify.app" alt="Ecoindex Badge" />
+			</a>			
+		</div>			   
 			   <dark-mode-toggle/>
             </div>
             <p class="note text-right pt-3">copyright ©fristouille {{currentYear}}</p>
           </div>
         </div>
+
+
+
+		<!-- ajout des colonnes pour les liens sup en desktop -->
 		<div class="wrap-sublink">
 			<div>
 				<ul>
