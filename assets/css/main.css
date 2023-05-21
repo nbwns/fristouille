@@ -295,6 +295,18 @@
         @apply text-pink-200
     }
 
+    .wrap-sublink {
+        @apply flex justify-between w-full
+    }
+
+    .wrap-sublink ul {
+        @apply list-none
+    }
+
+    .wrap-sublink ul li {
+        @apply hover:underline hover:cursor-pointer
+    }
+
 
 
 
