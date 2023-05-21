@@ -87,25 +87,25 @@
 			</div>
 		</div>
 		<!-- popup "autres" -->
-		<div class="bg-black-300 fixed top-0 left-0 w-full h-[100vh] !m-0  font-labil text-3xl" v-show="popupOpen">
+		<div class="bg-black-300 dark:bg-white-300 fixed top-0 left-0 w-full h-[100vh] !m-0  font-labil text-3xl" v-show="popupOpen">
 			<div class="flex flex-col justify-between h-full">
 				<div class="ml-auto p-5 h-[50px]" @click="popupOpen = !popupOpen">
 					<svg  class=" h-8 mx-auto" viewBox="0 0 59 67" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M41.0793 19L29.5 30.5793L17.9207 19L15 21.9207L26.5793 33.5L15 45.0793L17.9207 48L29.5 36.4207L41.0793 48L44 45.0793L32.4207 33.5L44 21.9207L41.0793 19Z" fill="white"/>
+						<path d="M41.0793 19L29.5 30.5793L17.9207 19L15 21.9207L26.5793 33.5L15 45.0793L17.9207 48L29.5 36.4207L41.0793 48L44 45.0793L32.4207 33.5L44 21.9207L41.0793 19Z" fill="#FC762B"/>
 					</svg>
 				</div>
-				<ul class="list-none flex justify-center m-auto flex-col text-center border border-orange-200 ">
-					<li class="!text-white-300">
+				<ul class="list-none flex justify-center m-auto flex-col text-center">
+					<li class="!text-white-300 dark:!text-black-300">
 						<nuxt-link to="#">
 							link 1
 						</nuxt-link>
 					</li>
-					<li class="!text-white-300">
+					<li class="!text-white-300 dark:!text-black-300">
 						<nuxt-link to="#">
 							Link 2
 						</nuxt-link>
 					</li>
-					<li class="!text-white-300">
+					<li class="!text-white-300 dark:!text-black-300">
 						<nuxt-link to="#">
 							Link ...
 						</nuxt-link>
