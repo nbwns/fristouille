@@ -94,6 +94,16 @@
        @apply !text-orange-300 dark:!text-purple-300;
       }
 
+    .navmobile.nuxt-link-exact-active > span {
+       @apply !text-orange-300 dark:!text-orange-300;
+      }
+    .navmobile > svg {
+       @apply !fill-white-200 dark:!fill-white-200;
+      }
+    .navmobile.nuxt-link-exact-active > svg {
+       @apply !fill-orange-300 dark:!fill-orange-300;
+      }
+
     #app {
         @apply flex flex-col min-h-screen;
     }
