@@ -90,6 +90,9 @@
     .navlink:hover {
         @apply !text-orange-200 dark:!text-purple-200;
     }
+    .navlink.nuxt-link-exact-active {
+       @apply !text-orange-300 dark:!text-purple-300;
+      }
 
     #app {
         @apply flex flex-col min-h-screen;
