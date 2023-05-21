@@ -61,6 +61,36 @@
             <p class="note text-right pt-3">copyright ©fristouille {{currentYear}}</p>
           </div>
         </div>
+		<div class="flex justify-between w-full border border-orange-200">
+			<div>
+				<ul>
+					<li>link</li>
+					<li>link</li>
+					<li>link</li>
+				</ul>
+			</div>
+			<div>
+				<ul>
+					<li>link</li>
+					<li>link</li>
+					<li>link</li>
+				</ul>
+			</div>
+			<div>
+				<ul>
+					<li>link</li>
+					<li>link</li>
+					<li>link</li>
+				</ul>
+			</div>
+			<div>
+				<ul>
+					<li>link</li>
+					<li>link</li>
+					<li>link</li>
+				</ul>
+			</div>
+		</div>
       </div>
     </div>
   	</footer>

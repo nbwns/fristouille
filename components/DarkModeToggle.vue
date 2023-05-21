@@ -1,6 +1,6 @@
 <template>
-    <div>
-		<span class="text-usual hidden md:flex">Apparence de l'interface</span>
+    <div class="flex space-x-2">
+		<span class="title-paragraph hidden md:flex">Apparence</span>
 		<button @click="toggleDarkMode"  class="
 		text-white-300 hover:text-orange-200
 		dark:text-purple-300 dark:hover:text-purple-100
