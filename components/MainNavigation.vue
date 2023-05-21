@@ -1,6 +1,6 @@
 <template>
-  <nav class="flex items-center justify-between flew-wrap p-4 bg-black-300 dark:bg-white-300">
-    <div class="layer__xl w-full flex flex-row  md:flex-col justify-between mx-auto">
+  <nav class="flex items-center justify-between flew-wrap p-4 bg-black-300 dark:bg-white-300 border border-orange-200">
+    <div class="layer__xl w-full flex flex-row  md:flex-col justify-between mx-auto items-center md:items-start">
       <logo/>
       <dark-mode-toggle class="md:hidden"/>
       <div class="hidden md:flex flex-grow md:w-auto pt-2 ">
