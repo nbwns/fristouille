@@ -271,7 +271,7 @@
     }
 
     .dropdown {
-        @apply relative flex justify-between;
+        @apply relative flex justify-between ;
     }
 
     .dropdown-wrap {
@@ -283,15 +283,15 @@
     }
 
     .dropdown-wrap-content {
-        @apply absolute bg-black-200 dark:bg-white-300 z-50 p-4 w-auto text-white-300;
+        @apply absolute bg-black-300 dark:bg-white-300 z-50 p-4 w-auto text-white-300;
     }
 
     .dropdown-wrap-content-inner {
-        @apply py-4 space-y-2 bg-black-200 dark:bg-white-300 ;
+        @apply py-4 space-y-2 bg-black-300 dark:bg-white-300 ;
     }
 
     .wrap_mobile_filters {
-        @apply flex flex-row flex-grow gap-4 items-start max-w-[90vw] overflow-auto gap-0;
+        @apply flex flex-row flex-grow gap-4 items-start max-w-[90vw] overflow-auto;
     }
 
     .pagination {
