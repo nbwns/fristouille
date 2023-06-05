@@ -1,12 +1,12 @@
 <template>
     <div class="flex space-x-2">
-		<span class="title-paragraph hidden md:flex">Apparence</span>
 		<button @click="toggleDarkMode"  class="
 		text-white-300 hover:text-orange-200
 		dark:text-purple-300 dark:hover:text-purple-100
 		focus-visible:ring-2 focus-visible:ring-pink-300
-		rounded-lg
+		rounded-lg inline-flex
 		">
+			<span>Thème</span>
 			<svg
 				v-if="dark"
 				xmlns="http://www.w3.org/2000/svg"

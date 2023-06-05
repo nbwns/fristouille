@@ -15,7 +15,7 @@
             :slides-per-page='2' 
             :gutter='30' 
             show-arrows
-			peek='10%'
+			peek-right='10%'
             :responsive='[
                 {
 					maxWidth: 1280,

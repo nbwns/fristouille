@@ -78,7 +78,7 @@
 				<div class="w-full h-96 flex items-center justify-center" v-else>
 					<div class=" font-labil font-light p-14 text-black-50  text-xl text-center " >
 						<!-- here we can show suggestions on the default state of the page -->
-						Pas d'idées ? <br /> Essayez avec ces mots clés: "végétarien"
+						Pas d'idées ? <br /> Essayez avec ces mots clés: "lentilles", "facile"
 					</div>
 				</div>
 			

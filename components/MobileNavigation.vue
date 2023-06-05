@@ -1,6 +1,6 @@
 <template>
 	<!-- TODO: center and padding of elements -->
-   <div class="bg-black-300 dark:bg-black-300 bg-opacity-75 dark:bg-opacity-75 w-full px-15 py-15 flex flex-col space-y-5 fixed bottom-0 md:hidden">
+   <div class="bg-black-300 dark:bg-white-300 bg-opacity-75 dark:bg-opacity-95 w-full px-15 py-15 flex flex-col space-y-5 fixed bottom-0 md:hidden">
 		<div class="flex flex-row gap-5 items-center justify-between p-5">
 			<div class="flex flex-col items-center gap-3">
 			<nuxt-link class="navmobile" to="/">
@@ -11,7 +11,7 @@
 				 />
 				</svg>
 				<!-- link -->
-				<span class="text-sm text-white-100 dark:!text-white-100 font-inter font-medium">
+				<span class="text-sm text-white-100 dark:!text-black-100 font-inter font-medium">
 					accueil
 				</span>
 			</nuxt-link>
@@ -35,7 +35,7 @@
 						</defs>
 					</svg>
 					<!-- link -->
-					<span class="text-sm text-white-100 dark:!text-white-100 font-inter font-medium">
+					<span class="text-sm text-white-100 dark:!text-black-100 font-inter font-medium">
 						rechercher
 					</span>
 				</nuxt-link>
@@ -65,13 +65,13 @@
 						 />
 					</svg>
 					<!-- link -->
-					<span class="text-sm text-white-100 dark:!text-white-100 font-inter font-medium">
+					<span class="text-sm text-white-100 dark:!text-black-100 font-inter font-medium">
 						apprendre
 					</span>
 				</nuxt-link>
 			</div>
 			<div class="flex flex-col items-center gap-3">
-				<div @click="popupOpen = !popupOpen" class="cursor-pointer">
+				<div @click="popupOpen = !popupOpen" class="cursor-pointer navmobile">
 					<!-- svg -->
 					<!-- other icon -->
 					<svg class=" h-8 mx-auto" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -80,38 +80,46 @@
 						 />
 					</svg>
 					<!-- link -->
-					<span class="text-sm text-white-100 dark:!text-white-100 font-inter font-medium">
+					<span class="text-sm text-white-100 dark:!text-black-100 font-inter font-medium">
 						autres
 					</span>
 				</div>
 			</div>
 		</div>
 		<!-- popup "autres" -->
-		<div class="bg-black-300 dark:bg-white-300 fixed top-0 left-0 w-full h-[100vh] !m-0  font-labil text-3xl" v-show="popupOpen">
+		<div class="bg-black-300 dark:bg-white-300 fixed top-0 left-0 w-full h-[100vh] !m-0  font-labil" v-show="popupOpen">
 			<div class="flex flex-col justify-between h-full">
-				<div class="ml-auto p-5 h-[50px]" @click="popupOpen = !popupOpen">
+				<div class="ml-auto p-5 h-[50px] cursor-pointer navmobile close" @click="popupOpen = !popupOpen">
 					<svg  class=" h-8 mx-auto" viewBox="0 0 59 67" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M41.0793 19L29.5 30.5793L17.9207 19L15 21.9207L26.5793 33.5L15 45.0793L17.9207 48L29.5 36.4207L41.0793 48L44 45.0793L32.4207 33.5L44 21.9207L41.0793 19Z" fill="#FC762B"/>
+						<path d="M41.0793 19L29.5 30.5793L17.9207 19L15 21.9207L26.5793 33.5L15 45.0793L17.9207 48L29.5 36.4207L41.0793 48L44 45.0793L32.4207 33.5L44 21.9207L41.0793 19Z"/>
 					</svg>
 				</div>
-				<ul class="list-none flex justify-center m-auto flex-col text-center">
-					<li class="!text-white-300 dark:!text-black-300">
-						<nuxt-link to="#">
-							link 1
+				<ul class="list-none flex justify-center m-auto flex-col text-center text-2xl">
+					<li class="!text-white-300 dark:!text-black-300 pb-3">
+						<a href="https://forms.fillout.com/t/tAiagUtQpwus" target="_blank">Ajouter une recette</a>
+					</li>
+					<li class="!text-white-300 dark:!text-black-300 pb-3">
+						<nuxt-link to="/a-propos">
+							À propos
 						</nuxt-link>
 					</li>
-					<li class="!text-white-300 dark:!text-black-300">
-						<nuxt-link to="#">
-							Link 2
+					<li class="!text-white-300 dark:!text-black-300 pb-3">
+						<a href="https://fristouille.super.site/" target="_blank">Services pour entreprises</a>
+					</li>
+					<li class="!text-white-300 dark:!text-black-300 pb-3">
+						<nuxt-link to="/a-propos">
+							Mentions légales
 						</nuxt-link>
 					</li>
-					<li class="!text-white-300 dark:!text-black-300">
-						<nuxt-link to="#">
-							Link ...
+					<li class="!text-white-300 dark:!text-black-300 pb-3">
+						<nuxt-link to="/a-propos">
+							Déclaration d'accessibilité
 						</nuxt-link>
 					</li>
-				
 				</ul>
+				<div class="justify-center m-auto flex-col text-center text-xl">
+					<dark-mode-toggle/>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -123,6 +131,19 @@ export default{
 		return {
 			popupOpen: false
 		}
+	},
+	methods: {
+		close(e) {
+			if (e.target.tagName === "A") {
+				this.popupOpen = false
+			}
+		}
+	},
+	mounted() {
+		document.addEventListener('click', this.close)
+	},
+	beforeDestroy() {
+		document.removeEventListener('click', this.close)
 	}
 }
 </script>

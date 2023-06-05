@@ -95,14 +95,17 @@
       }
 
     .navmobile.nuxt-link-exact-active > span {
-       @apply !text-orange-300 dark:!text-orange-300;
+       @apply !text-orange-300 dark:!text-purple-300;
       }
     .navmobile > svg {
-       @apply !fill-white-200 dark:!fill-white-200;
+       @apply !fill-white-200 dark:!fill-black-200;
       }
     .navmobile.nuxt-link-exact-active > svg {
-       @apply !fill-orange-300 dark:!fill-orange-300;
+       @apply !fill-orange-300 dark:!fill-purple-300;
       }
+	.navmobile.close > svg {
+		@apply !fill-orange-300 dark:!fill-purple-300;
+	}
 
     #app {
         @apply flex flex-col min-h-screen;
@@ -255,7 +258,7 @@
 
 
     .accordion {
-        @apply text-left w-full bg-black-100;
+        @apply text-left w-full bg-black-100 dark:bg-white-100;
     }
 
     .accordion-wrap {
@@ -267,7 +270,7 @@
     }
 
     .accordion-icon {
-        @apply fill-white-300 stroke-white-300;
+        @apply fill-white-300 stroke-white-300 dark:stroke-black-300;
     }
 
     .dropdown {
