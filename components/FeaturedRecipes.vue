@@ -8,12 +8,12 @@
 			<hyper-link v-if="link" :path="`/Recettes${link}`">Tout voir</hyper-link>
         </div>
 
-        <!-- le nouveau carousel ici :  -->
         <ssr-carousel
             loop
             :slides-per-page='3' 
             :gutter='30' 
             show-arrows
+			peek='10%'
             :responsive='[
                 {
 					maxWidth: 1280,
@@ -28,7 +28,7 @@
                 {
 					maxWidth: 640,
 					slidesPerPage: 1,
-					gutter: 0,
+					gutter: 10,
                 }
             ]'             
             >
@@ -52,21 +52,20 @@
 import CardRecipe from './CardRecipe.vue';
 import TitleParagraph from '~/molecules/TitleParagraph.vue';
 import HyperLink from '~/molecules/HyperLink.vue';
-import GridOfCardsRecipes from './GridOfCardsRecipes.vue';
 import Spacer from '~/molecules/Spacer.vue';
 import SsrCarousel from 'vue-ssr-carousel';
 
 
 export default {
 	props: ['title', 'link', 'items'],
-	components: {CardRecipe, TitleParagraph, HyperLink, GridOfCardsRecipes, SsrCarousel, Spacer},
+	components: {CardRecipe, TitleParagraph, HyperLink, SsrCarousel, Spacer},
 	methods: {
 		
 	}
 }
 </script>
 
-<style>
+<style scoped>
   .ssr-carousel-track { @apply justify-start }
   .ssr-carousel-back-icon, .ssr-carousel-next-icon {
     @apply !bg-black-300

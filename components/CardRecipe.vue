@@ -34,16 +34,7 @@
 import Tag from '~/molecules/Tag.vue';
 
 export default {
-	props:{
-		'slug': String,
-		'recipeID': String,
-		'img': String,
-		'diet': String,
-		'title': String,
-		'totalTime': String,
-		'author': String,
-		'width': String,
-	},
+	props:['slug','recipeID','img','diet','title','totalTime','author','width'],
 	components: {Tag},
 	computed:{
 		backgroundImage(){
