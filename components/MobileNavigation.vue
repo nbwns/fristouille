@@ -96,25 +96,15 @@
 				</div>
 				<ul class="list-none flex justify-center m-auto flex-col text-center text-2xl">
 					<li class="!text-white-300 dark:!text-black-300 pb-3">
-						<a href="https://forms.fillout.com/t/tAiagUtQpwus" target="_blank">Ajouter une recette</a>
-					</li>
-					<li class="!text-white-300 dark:!text-black-300 pb-3">
 						<nuxt-link to="/a-propos">
 							À propos
 						</nuxt-link>
 					</li>
 					<li class="!text-white-300 dark:!text-black-300 pb-3">
+						<a href="https://forms.fillout.com/t/tAiagUtQpwus" target="_blank">Ajouter une recette</a>
+					</li>
+					<li class="!text-white-300 dark:!text-black-300 pb-3">
 						<a href="https://fristouille.super.site/" target="_blank">Services pour entreprises</a>
-					</li>
-					<li class="!text-white-300 dark:!text-black-300 pb-3">
-						<nuxt-link to="/a-propos">
-							Mentions légales
-						</nuxt-link>
-					</li>
-					<li class="!text-white-300 dark:!text-black-300 pb-3">
-						<nuxt-link to="/a-propos">
-							Déclaration d'accessibilité
-						</nuxt-link>
 					</li>
 				</ul>
 				<div class="justify-center m-auto flex-col text-center text-xl">

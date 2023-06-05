@@ -20,8 +20,8 @@
 			</div>
 			<div>
 				<ul>
-					<li><nav-link path="/a-propos">Mentions légales</nav-link></li>
-					<li><nav-link path="/a-propos">Déclaration d'accessibilité</nav-link></li>
+					<li><nav-link path="/a-propos/mentions-legales">Mentions légales</nav-link></li>
+					<li><nav-link path="/a-propos/accessibilite">Déclaration d'accessibilité</nav-link></li>
 				</ul>
 			</div>
 

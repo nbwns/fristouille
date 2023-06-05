@@ -79,7 +79,7 @@ export default {
 			  // A list of "path variables" mapped to the API ID
 			  // of a Content Relationship field in the Custom Type.
 			  section: 'parent_page'
-			},
+			}
 		  }
 		]
 	  },
@@ -98,8 +98,8 @@ export default {
   axios: {},
 
   loading: {
-    color: '#F4D1F4',
-    height: '5px'
+    color: '#FC762B',
+    height: '8px'
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
