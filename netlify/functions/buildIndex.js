@@ -18,14 +18,19 @@ exports.handler = async function(event, context) {
 	const index = client.initIndex(ALGOLIA_INDEX_NAME);
 
 	console.log("Fetching recipes from query function...");
+	let recettes = null;
+
 	//get recipes 
-	let recettes = axios({
-        url: QUERY_FUNCTION,
-        method: "get"
+	recettes = axios({
+		url: QUERY_FUNCTION,
+		method: "get"
 	}).then((result) => {
 		console.log("Numbers of results", result.data.length)
 		
-		return result.data.map(recette => {
+		return result.data.map((recette, index) => {
+
+			console.log("recipe ID", recette.recipeId);
+			console.log("index", index);
 
 			let algoliaObject = {
 				objectID: recette.recipeId,
@@ -51,7 +56,8 @@ exports.handler = async function(event, context) {
 			}
 
 			algoliaObject.tags = recette.tags.map(t => t.name);
-			algoliaObject.ingredients = recette.compositions.map(c => c.ingredient[0].name);
+			console.log(recette.ingredientsList);
+			algoliaObject.ingredients = recette.ingredientsList;
 
 			return algoliaObject;
 		});      
@@ -61,7 +67,7 @@ exports.handler = async function(event, context) {
 
 	let message = "";
 
-	console.log(recettes);
+	console.log("recettes",recettes);
 	//replace all objects from the index
 	if(recettes){
 		recettes.then(data => {

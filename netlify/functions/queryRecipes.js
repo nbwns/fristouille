@@ -8,7 +8,10 @@ exports.handler = async function(event, context) {
 
 	console.log("Fetching recipes from Airtable...");
 
-	let pages = [1,2,3,4];
+	const pageSize = 100;
+	let itemsLength = 350;
+	let numberOfPages = parseInt(itemsLength / pageSize);
+	let pages = [...Array(numberOfPages).keys()];
 
 	let recipes = [];
 	for (const page in pages) {
@@ -18,7 +21,7 @@ exports.handler = async function(event, context) {
 			data: {
 			query: `{
 				recettes(
-					_page_size: 100,
+					_page_size: ${pageSize},
 					_page: ${page},
 					_filter: {
 						publishingStatus:{
@@ -50,17 +53,9 @@ exports.handler = async function(event, context) {
 					authorName
 					tags{
 						name
-					}
-					compositions{
-						name
-						ingredient{
-							name
-						}
-						quantity
-						units
-						remark
-						optional
-					}
+					},
+					compositionsJson,
+    				ingredientsList
 				}
 			}`,
 		}

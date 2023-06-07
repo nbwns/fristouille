@@ -28,16 +28,7 @@ const queries = {
 				tags{
 					name
 				}
-				compositions{
-					name
-					ingredient{
-						name
-					}
-					quantity
-					units
-					remark
-					optional
-				}
+				compositionsJson
             }
         }`
     }

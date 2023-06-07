@@ -116,7 +116,7 @@
 						</div>
 						<div class="">
 							<!-- ingredient -->
-							<span class="text-pink-100 dark:text-black-300 ">{{c.ingredient[0].name}}</span>
+							<span class="text-pink-100 dark:text-black-300 ">{{c.ingredient}}</span>
 							<!-- remark -->
 							<i>{{c.remark}}</i> 
 							<!-- if no quantity -->
@@ -292,9 +292,13 @@ export default {
 					console.log(recipe);
 					let article = null;
 
-					if(recipe.compositions){
-						recipe.compositions.sort((a,b) => b.quantity - a.quantity);
+					let compositions = JSON.parse(recipe.compositionsJson);
+
+					if(compositions){
+						compositions.sort((a,b) => b.quantity - a.quantity);
 					}
+
+					recipe.compositions = compositions;
 
 					//if there's an associated page in Prismic, retrieve it
 					if(recipe.prismicPageId){
