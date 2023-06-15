@@ -42,7 +42,7 @@ export default {
 				return 'url(' + this.img + ')';
 			}
 			else{
-				return '';
+				return 'url(/nopicture.png)';
 			}
 		},
 		tag(){

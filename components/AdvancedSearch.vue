@@ -82,7 +82,7 @@
 					<accordion title="Choix alimentaire" key="diet">
 						<div class="space-y-2 py-4">
 							<checkbox-filter uid="Végétalien-a" @check="filter('diet','Végétalien', $event)" :checked="checked('diet','Végétalien')">végétalien</checkbox-filter>
-							<checkbox-filter uid="Végétarien-a" @check="filter('diet','Végétarien', $event, ['Végétarien'])" :checked="checked('diet','Végétarien')">végétarien</checkbox-filter>
+							<checkbox-filter uid="Végétarien-a" @check="filter('diet','Végétarien', $event, ['Végétalien'])" :checked="checked('diet','Végétarien')">végétarien</checkbox-filter>
 							<checkbox-filter uid="Omnivore-a" @check="filter('diet','Omnivore', $event, ['Végétalien', 'Végétarien'])" :checked="checked('diet','Omnivore')">omnivore</checkbox-filter>
 						</div>
 					</accordion>

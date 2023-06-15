@@ -19,7 +19,7 @@
 
 					<!-- search button -->
 					<button @click="updateQuery" class="btn min-w-max hidden md:block" aria-label="Rechercher">
-						je recherche
+						rechercher
 					</button>		
 
 				</div>
@@ -82,83 +82,86 @@
 					</div>
 				</div>
 			
-				<ais-pagination >
-					<template
-						v-slot="{
-						nbHits
-						}"
-					>
-					
-						<!-- number of results (hidden on mobile) -->
-						<div class="hidden md:flex text-usual pt-4 pb-2" >
-							{{ nbHits }} recettes
-						</div>
-					</template>
-				</ais-pagination>
+				<div v-if="searchPerformed">
+					<ais-pagination >
+						<template
+							v-slot="{
+							nbHits
+							}"
+						>
+						
+							<!-- number of results (hidden on mobile) -->
+							<div class="hidden md:flex text-usual pt-4 pb-2" >
+								{{ nbHits }} recettes
+							</div>
+						</template>
+					</ais-pagination>
 			
-				<ais-hits>
-					<template v-slot="{ items }">
-					<grid-of-cards-recipes :recipes="items" v-if="items.length > 0"/>  
-					<div v-else>
-						<!-- no results -->
-						<div class="text-usual">
-							Pas de résultat pour cette recherche
+					<ais-hits>
+						<template v-slot="{ items }">
+						<grid-of-cards-recipes :recipes="items" v-if="items.length > 0"/>  
+						<div v-else>
+							<!-- no results -->
+							<div class="text-usual">
+								Pas de résultat pour cette recherche
+							</div>
 						</div>
-					</div>
-					</template>
-				</ais-hits>
-				<ais-pagination>
-					<template
-						v-slot="{
-						currentRefinement,
-						nbPages,
-						pages,
-						isFirstPage,
-						isLastPage,
-						refine,
-						createURL
-						}"
-					>
-						<div class="w-full py-10">
-							<ul class="pagination">
-								<li v-if="!isFirstPage">
-									<a
-										:href="createURL(currentRefinement - 1)"
-										@click.prevent="refine(currentRefinement - 1)"
-									>
-									<span class="sr-only">Précédent</span>
-									<!-- Heroicon name: mini/chevron-left -->
-									<svg class="w-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path d="M14 7L9 12L14 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-									</svg>
+						</template>
+					</ais-hits>
 
-									</a>
-								</li>
-								<li v-for="page in pages" :key="page">
-									<a
-									:href="createURL(page)"
-									:class="[page === currentRefinement ? 'text-pink-200' : '']"
-									@click.prevent="refine(page)"
-									>
-									{{ page + 1 }}
-									</a>
-								</li>
-								<li v-if="!isLastPage">
-									<a
-										:href="createURL(currentRefinement + 1)"
-										@click.prevent="refine(currentRefinement + 1)"
-									>
-										<span class="sr-only">Next</span>
-										<!-- Heroicon name: mini/chevron-right -->
+					<ais-pagination>
+						<template
+							v-slot="{
+							currentRefinement,
+							nbPages,
+							pages,
+							isFirstPage,
+							isLastPage,
+							refine,
+							createURL
+							}"
+						>
+							<div class="w-full py-10">
+								<ul class="pagination">
+									<li v-if="!isFirstPage">
+										<a
+											:href="createURL(currentRefinement - 1)"
+											@click.prevent="refine(currentRefinement - 1)"
+										>
+										<span class="sr-only">Précédent</span>
+										<!-- Heroicon name: mini/chevron-left -->
 										<svg class="w-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path d="M10 7L15 12L10 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+											<path d="M14 7L9 12L14 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 										</svg>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</template>
-				</ais-pagination>
+
+										</a>
+									</li>
+									<li v-for="page in pages" :key="page">
+										<a
+										:href="createURL(page)"
+										:class="[page === currentRefinement ? 'text-pink-200' : '']"
+										@click.prevent="refine(page)"
+										>
+										{{ page + 1 }}
+										</a>
+									</li>
+									<li v-if="!isLastPage">
+										<a
+											:href="createURL(currentRefinement + 1)"
+											@click.prevent="refine(currentRefinement + 1)"
+										>
+											<span class="sr-only">Next</span>
+											<!-- Heroicon name: mini/chevron-right -->
+											<svg class="w-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M10 7L15 12L10 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+											</svg>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</template>
+					</ais-pagination>
+				</div>
 			</ais-instant-search>
 		</section>
 	</template>
@@ -177,6 +180,14 @@ import GridOfCardsRecipes from '~/components/GridOfCardsRecipes.vue';
 
 import { history as historyRouter } from 'instantsearch.js/es/lib/routers';
 const indexName = 'Recipes';
+
+
+	
+
+
+
+
+
 export default {
 	components: {
 		CardRecipe,
@@ -188,48 +199,31 @@ export default {
 		SelectedFilters,
 		GridOfCardsRecipes
 	},
+	watch: {
+		$route(to, from) {
+			console.log('route change to', to)
+			console.log('route change from', from)
+			console.log("query change");
+
+			// this.historyChanged = true;
+			// this.query = to.query.q;
+			// this.page = to.query.page || 0;
+
+			
+		}
+	},
 	data(){
 		return{
 			indexName,
 			query: '',
 			searchClient: algoliaSearch(this.$config.algoliaAppId,this.$config.algoliaApiKey),
-			// routing: {
-			// 	router: historyRouter(),
-			// 	stateMapping: {
-			// 		stateToRoute(uiState) {
-			// 			const indexUiState = uiState[indexName];
-			// 			console.log("uiState",indexUiState);
-			// 			// return {
-			// 			// 	q: indexUiState.query,
-			// 			// 	page: indexUiState.page,
-			// 			// 	diet: indexUiState.refinementList &&
-			// 			// 		indexUiState.refinementList.diet,
-			// 			// };
-			// 		},
-			// 		routeToState(routeState) {
-			// 			console.log("routeState",routeState);
-			// 			//todo: set query textbox
-			// 			// return {
-			// 			// 	[indexName]: {
-			// 			// 		query: routeState.q,
-			// 			// 		page: routeState.page,
-			// 			// 		refinementList: {
-			// 			// 			diet: routeState.diet,
-			// 			// 		},
-			// 			// 		/*configuration:{
-			// 			// 			filters: routeState.filters
-			// 			// 		}*/
-			// 			// 	},
-			// 			// };
-			// 		}
-			// 	}
-			// },
 			filterQuery:'',
 			searchFiltersFromUrl: null,
 			page: 0,
 			noSearchParameters: false,
 			mobileAdvancedSearch: false,
-			searchPerformed: false
+			searchPerformed: false,
+			historyChanged: false
 		}
 	},
 	computed:{
@@ -249,7 +243,9 @@ export default {
 				//trigger search - without reloading the page
 				console.log("trigger search");
 				helper.search();
+				this.searchPerformed = true;
 				//put search parameters in query string
+				console.log("route push");
 				this.$router.push({
 					path: this.$route.path, 
 					query: { 
@@ -263,6 +259,9 @@ export default {
 						page: helper.state.page
 					}
 				});
+			}
+			else{
+				this.searchPerformed = false;
 			}
 			
 		},
@@ -301,37 +300,42 @@ export default {
 			console.log("filterQuery",filterQuery);
 			return filterQuery;
 		},
-		sanitizeQueryParameter(param){
-			if(this.$route.query[param]){
-				return Array.isArray(this.$route.query[param]) ? this.$route.query[param] : [this.$route.query[param]]
+		sanitizeQueryParameter(route,param){
+			if(route.query[param]){
+				return Array.isArray(route.query[param]) ? route.query[param] : [route.query[param]]
 			}
 			return [];
+		},
+		triggerSearchOnPageLoad(){
+			console.log("----trigger search on page load----");
+			//hydrate objects from the query string		
+		
+			//the query used by Algolia, triggers search if non-empty
+			this.query = this.$route.query.q || "";
+			this.page = this.$route.query.page || 0;
+			this.queryInput = this.query;
+			this.searchFiltersFromUrl = {
+				diet: this.sanitizeQueryParameter(this.$route,"diet"),
+				category: this.sanitizeQueryParameter(this.$route,"category"),
+				free: this.sanitizeQueryParameter(this.$route,"free"),
+				cuisine: this.sanitizeQueryParameter(this.$route,"cuisine"),
+				months: this.sanitizeQueryParameter(this.$route,"months"),
+				baseRecipe: this.sanitizeQueryParameter(this.$route,"baseRecipe"),
+			};
+			
+			//save search filters into the store
+			this.$store.commit('saveSearchFilters', this.searchFiltersFromUrl);
+			
+			//take searchFilters from the URL, build the Algolia filter query and triggers search if non-empty
+			this.filterQuery = this.buildFilterQuery(this.searchFiltersFromUrl);
+			if(this.filterQuery || this.query){
+				this.searchPerformed = true;
+				this.historyChanged = true;
+			}
 		}
 	},
 	mounted(){
-		//hydrate objects from the query string		
-		
-		//the query used by Algolia, triggers search if non-empty
-		this.query = this.$route.query.q || "";
-		this.page = this.$route.query.page || 0;
-		this.queryInput = this.query;
-		this.searchFiltersFromUrl = {
-			diet: this.sanitizeQueryParameter("diet"),
-			category: this.sanitizeQueryParameter("category"),
-			free: this.sanitizeQueryParameter("free"),
-			cuisine: this.sanitizeQueryParameter("cuisine"),
-			months: this.sanitizeQueryParameter("months"),
-			baseRecipe: this.sanitizeQueryParameter("baseRecipe"),
-		};
-		
-		//save search filters into the store
-		this.$store.commit('saveSearchFilters', this.searchFiltersFromUrl);
-		
-		//take searchFilters from the URL, build the Algolia filter query and triggers search if non-empty
-		this.filterQuery = this.buildFilterQuery(this.searchFiltersFromUrl);
-		if(this.filterQuery || this.query){
-			this.searchPerformed = true;
-		}
+		this.triggerSearchOnPageLoad();
 	}
 }
   </script>

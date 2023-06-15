@@ -7,7 +7,7 @@
 					<!-- TODO: check correct sizes for viewports -->
 					<div class="w-full">
 						<nuxt-img v-if="recipe.picture"
-							class="object-cover max-h-56 md:max-h-64 lg:max-h-72 xl:max-h-96 w-full rounded-md"
+							class="object-cover max-h-56 md:max-h-64 lg:max-h-72 xl:max-h-96 w-full rounded-md noprint"
 							fit="cover"
 							:src="recipe.picture"
 							quality="80"
@@ -20,10 +20,19 @@
 					<!-- title -->
 					<h1>{{recipe.name}}</h1>
 					<p class="text-white-300 text-usual mb-3">
-						par {{recipe.authorName[0]}}
+						par
+						<span v-if="recipe.authorWeb[0]">
+							<a :href="recipe.authorWeb[0]" target="_blank" 
+								class="text-base font-inter text-orange-300 dark:text-purple-300 hover:cursor-pointer hover:underline focus:text-orange-200 dark:focus:text-purple-200">
+								{{recipe.authorName[0]}}
+							</a>
+						</span>
+						<span v-else>
+							{{recipe.authorName[0]}}
+						</span>
 					</p>
 					<spacer size="xs"></spacer>
-					<div class="flex flex-col md:flex-row justify-between w-full">
+					<div class="flex flex-col md:flex-row justify-between w-full noprint">
 						<!-- description -->
 						<div class="flex flex-col">
 							<p class="text-big ">{{recipe.description}}</p>
@@ -90,14 +99,14 @@
 				<spacer size="xs"></spacer>
 				<!-- change number of plates -->
 				<div class="flex flex-row items-center gap-2 bg-black-300 dark:bg-purple-100 00 w-fit border-black-200 dark:border-purple-200 ">
-					<button class="title-article border-r-2 border-r-black-200 dark:border-r-purple-200 dark:hover:border-r-purple-200 text-center px-4 dark:hover:bg-purple-200" @click="(servings > 0) ? servings-- : servings" :disabled="servings == 1">-</button>
+					<button class="title-article border-r-2 border-r-black-200 dark:border-r-purple-200 dark:hover:border-r-purple-200 text-center px-4 dark:hover:bg-purple-200 noprint" @click="(servings > 0) ? servings-- : servings" :disabled="servings == 1">-</button>
 					<input 
 						class="max-w-[40px] bg-black-300 dark:bg-purple-100 rounded focus:outline-none focus:ring focus:ring-black-200 block p-2.5 placeholder:text-white-200 text-white-100 title-paragraph text-center"
 						type="number" 
 						v-model="servings"
 						step="1" min="1" max="99"
 						>
-					<button class="title-article border-l-2 border-l-black-200 dark:border-l-purple-200 dark:hover:border-l-purple-200 dark:hover:bg-purple-200 text-center px-4" @click="servings++">+</button>
+					<button class="title-article border-l-2 border-l-black-200 dark:border-l-purple-200 dark:hover:border-l-purple-200 dark:hover:bg-purple-200 text-center px-4 noprint" @click="servings++">+</button>
 				</div>
 				<!-- yield -->
 				<!-- rajouter directement le mot "personnes" à la suite du nombre dans l'input -->
@@ -133,15 +142,25 @@
 				<h2>Procédure</h2>
 				<div v-html="procedure" class="text-big"></div>
 
+				<div v-if="recipe.source">
+					<a :href="recipe.source" target="_blank" 
+						class="text-base font-inter text-orange-300 dark:text-purple-300 hover:cursor-pointer hover:underline focus:text-orange-200 dark:focus:text-purple-200">
+						Vers la publication originale
+					</a>
+				</div>
+
+				<spacer size="xs"></spacer>
+
 				<spacer size="sm"></spacer>
 
-				<h2>Tags</h2>
+				<h2 class="noprint">Tags</h2>
 				<!-- tags -->
-				<div class="flex flex-row flex-wrap justify-start items-start  gap-2">
+				<div class="flex flex-row flex-wrap justify-start items-start  gap-2 noprint">
 					<!-- tags -->
 					<nuxt-link v-for="t in recipe.tags"
 						:key="t.name"
 						:to="`/Recettes?q=${t.name}`"
+						class="noprint"
 						>
 						<tag look="light">{{t.name}}</tag>
 					</nuxt-link>
@@ -180,7 +199,7 @@
 				<spacer size="sm"></spacer>
 
 				<!-- related article -->
-				<div v-if="article" class="w-fit">
+				<div v-if="article" class="w-fit noprint">
 					<h3 class="title">En savoir plus</h3>
 					<card-article 
 						:img="article.data.cover.url" 

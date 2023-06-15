@@ -1,5 +1,5 @@
 <template>
-	<nuxt-link :to="path" class="navlink" no-prefetch>
+	<nuxt-link :to="path" class="navlink" no-prefetch exact-path>
 		<slot></slot>
 	</nuxt-link>
 </template>

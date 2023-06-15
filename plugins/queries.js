@@ -25,6 +25,8 @@ const queries = {
 				prismicPageId
 				slug
 				authorName
+				authorWeb
+      			source
 				tags{
 					name
 				}

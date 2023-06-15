@@ -51,6 +51,8 @@ exports.handler = async function(event, context) {
 					prismicPageId
 					slug
 					authorName
+					authorWeb
+      				source
 					tags{
 						name
 					},

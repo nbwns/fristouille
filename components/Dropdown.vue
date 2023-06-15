@@ -49,7 +49,7 @@ export default {
 	},
 	beforeDestroy() {
 		document.removeEventListener('click', this.close)
-	},
+	}
 
 }
 </script>
