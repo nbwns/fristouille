@@ -14,23 +14,28 @@
 	<h1 class="max-w-lg">{{$prismic.asText(document.data.title)}}</h1>
 	
 	<spacer size="xs"></spacer>
-	
-    <div>
+
 		<!-- intro -->
-		<prismic-rich-text :field="document.data.introduction" class="text-big" />
+	<prismic-rich-text :field="document.data.introduction" class="text-big" />
 
-		<spacer size="md"></spacer>
-
-		<!-- content blocks -->
-		<content-block v-for="block in contentBlocks" :key="block.id" 
-			:title="block.primary.content_title" :content="block.primary.content_body" :image="block.primary.content_image" />
-		<!-- featured recipes -->
-		<featured-recipes v-for="(list, index) in horizontalLists" :key="`recipes-${index}`" :title="list.title" :items="list.recipes" :link="list.seeAllQuery" />
-    </div>
 	<spacer size="md"></spacer>
-	<!-- call to action -->
-	<call-to-action v-for="cta in ctas" :key="cta.id" 
-			:ctaUrl="cta.primary.cta_url" :ctaText="cta.primary.cta_text" :ctaHeader="cta.primary.cta_header" />
+
+	<div class="flex flex-grow flex-col md:flex-row justify-center">
+		<div class="text-left w-full lg:w-2/3">
+			<!-- content blocks -->
+			<content-block v-for="block in contentBlocks" :key="block.id" 
+				:title="block.primary.content_title" :content="block.primary.content_body" :image="block.primary.content_image" />
+			<!-- featured recipes -->
+			<featured-recipes v-for="(list, index) in horizontalLists" :key="`recipes-${index}`" :title="list.title" :items="list.recipes" :link="list.seeAllQuery" />
+		</div>
+		<div class="w-full lg:w-1/3">
+		<!-- call to action -->
+			<call-to-action v-for="cta in ctas" :key="cta.id" 
+				:ctaUrl="cta.primary.cta_url" :ctaText="cta.primary.cta_text" :ctaHeader="cta.primary.cta_header" />
+		</div>
+	</div>
+
+
 </section>
 </template>
 

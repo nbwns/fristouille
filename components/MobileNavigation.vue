@@ -3,7 +3,7 @@
    <div class="bg-black-300 dark:bg-white-300 bg-opacity-75 dark:bg-opacity-95 w-full px-15 py-15 flex flex-col space-y-5 fixed bottom-0 md:hidden noprint">
 		<div class="flex flex-row gap-5 items-center justify-between p-5">
 			<div class="flex flex-col items-center gap-3">
-			<nuxt-link class="navmobile" to="/">
+			<nuxt-link class="navmobile" to="/" exact no-prefetch>
 				<!-- svg -->
 				<svg class=" h-8 mx-auto" viewBox="0 0 35 31" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path fill-rule="evenodd" clip-rule="evenodd"
@@ -17,7 +17,7 @@
 			</nuxt-link>
 			</div>
 			<div class="flex flex-col items-center gap-3">
-				<nuxt-link class="navmobile" to="/Recettes">
+				<nuxt-link class="navmobile" to="/Recettes" no-prefetch>
 					<!-- svg -->
 					<svg class=" h-8 mx-auto" viewBox="0 0 35 31" xmlns="http://www.w3.org/2000/svg">
 						<g clip-path="url(#clip0_948_2756)">
@@ -41,7 +41,7 @@
 				</nuxt-link>
 			</div>
 			<div class="flex flex-col items-center gap-3">
-				<nuxt-link class="navmobile" to="/cuisine-durable">
+				<nuxt-link class="navmobile" to="/cuisine-durable" no-prefetch>
 					<!-- svg -->
 					<!-- Food icon -->
 					<svg class=" h-8 mx-auto" viewBox="0 0 29 29" xmlns="http://www.w3.org/2000/svg">

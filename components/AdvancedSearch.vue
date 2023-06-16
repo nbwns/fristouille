@@ -173,6 +173,7 @@ export default {
 		checked(type,value){
 			//to change the checked property with values from the store
 			if(this.searchFilters && this.searchFilters[type]){
+				//search
 				const index = this.searchFilters[type].indexOf(value);
 				if (index > -1) {
 					return true;

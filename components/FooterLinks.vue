@@ -9,19 +9,19 @@
 			<div>
 				<ul>
 					<li><a href="https://forms.fillout.com/t/tAiagUtQpwus" target="_blank" class="navlink">Ajouter une recette</a></li>
-					<li><nav-link path="/recettes-categories">Recettes par catégories</nav-link></li>
+					<li><nuxt-link class="navlink" to="/recettes-categories" exact no-prefetch>Recettes par catégories</nuxt-link></li>
 				</ul>
 			</div>
 			<div>
 				<ul>
-					<li><nav-link path="/a-propos">À propos</nav-link></li>
+					<li><nuxt-link class="navlink" to="/a-propos" no-prefetch exact>À propos</nuxt-link></li>
 					<li><a href="https://fristouille.super.site/" target="_blank" class="navlink">Services pour entreprises</a></li>
 				</ul>
 			</div>
 			<div>
 				<ul>
-					<li><nav-link path="/a-propos/mentions-legales">Mentions légales</nav-link></li>
-					<li><nav-link path="/a-propos/accessibilite">Déclaration d'accessibilité</nav-link></li>
+					<li><nuxt-link class="navlink" to="/a-propos/mentions-legales" no-prefetch exact>Mentions légales</nuxt-link></li>
+					<li><nuxt-link class="navlink" to="/a-propos/accessibilite" no-prefetch exact>Déclaration d'accessibilité</nuxt-link></li>
 				</ul>
 			</div>
 

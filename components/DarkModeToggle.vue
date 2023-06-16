@@ -36,35 +36,33 @@
   </template>
   
   <script>
-  import { mapGetters, mapMutations } from 'vuex';
-
   export default {
     computed: {
-      ...mapGetters(['dark'])
+	  dark(){
+		return this.$store.state.dark;
+	  }
     },
 
     mounted() {
-      if (localStorage.theme === undefined) {
-        if (
-          window.matchMedia &&
-          window.matchMedia('(prefers-color-scheme: dark)')
-            .matches
-        ) {
-          localStorage.theme = 'light';
-          this.SET_DARK(true);
-        } else {
-          localStorage.theme = 'dark';
-        }
-      } else {
-        this.SET_DARK(localStorage.theme === 'light');
-      }
+      console.log("match media", window.matchMedia('(prefers-color-scheme: dark)').matches);
+		if (localStorage.theme === undefined) {
+			if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				//there's been an inversion, the dark mode css is the default, so the "light"
+				localStorage.theme = 'light';
+			
+			} else {
+				localStorage.theme = 'dark';
+				//there's been an inversion, the light mode css is not the default, so the "dark"
+				this.$store.commit('toggleDarkMode', true);
+			}
+     	} 
+		else {
+			this.$store.commit('toggleDarkMode', localStorage.theme === 'dark');
+      	}
     },
-
     methods: {
-      ...mapMutations(['SET_DARK']),
-
       toggleDarkMode() {
-        this.SET_DARK(!this.dark);
+		this.$store.commit('toggleDarkMode', !this.dark);
         localStorage.theme = this.dark ? 'dark' : 'light';
       }
     }

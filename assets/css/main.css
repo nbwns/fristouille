@@ -90,17 +90,17 @@
     .navlink:hover {
         @apply !text-orange-200 dark:!text-purple-200;
     }
-    .navlink.nuxt-link-exact-active {
+    .navlink.nuxt-link-active {
        @apply !text-orange-300 dark:!text-purple-300;
       }
 
-    .navmobile.nuxt-link-exact-active > span {
+    .navmobile.nuxt-link-active > span {
        @apply !text-orange-300 dark:!text-purple-300;
       }
     .navmobile > svg {
        @apply !fill-white-200 dark:!fill-black-200;
       }
-    .navmobile.nuxt-link-exact-active > svg {
+    .navmobile.nuxt-link-active > svg {
        @apply !fill-orange-300 dark:!fill-purple-300;
       }
 	.navmobile.close > svg {

@@ -4,10 +4,10 @@
       <logo/>
       <div class="hidden md:flex flex-grow md:w-auto pt-2 ">
         <div class="flex flex-grow space-x-5">
-        	  <nav-link path="/">Accueil</nav-link>
-            <nav-link path="/recettes">Rechercher</nav-link>
-            <nav-link path="/recettes-de-base">Recettes de base</nav-link>
-            <nav-link path="/cuisine-durable">Cuisine durable</nav-link>
+			<nuxt-link class="navlink" to="/" no-prefetch exact>Accueil</nuxt-link>
+            <nuxt-link class="navlink" to="/recettes" no-prefetch>Rechercher</nuxt-link>
+            <nuxt-link class="navlink" to="/recettes-de-base" no-prefetch>Recettes de base</nuxt-link>
+            <nuxt-link class="navlink" to="/cuisine-durable" no-prefetch>Cuisine durable</nuxt-link>
         </div>
         <!-- <div>
           <a href="#"
@@ -22,15 +22,13 @@
 
 <script>
 import Logo from '~/molecules/Logo.vue';
-import NavLink from '~/molecules/NavLink.vue';
 
 export default {
 	components:{
-		Logo,
-		NavLink
+		Logo
 	},
 	mounted(){
-		console.log(this.$route.path)
+		//console.log(this.$route.path)
 	}
 }
 </script>

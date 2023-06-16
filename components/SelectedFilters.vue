@@ -26,7 +26,11 @@ export default {
 	},
 	computed:{
 		searchFilters(){
-			return this.$store.state.searchFilters;
+			//searchFilters is an object
+			let searchFilters =  this.$store.state.searchFilters;
+
+			//filter properties which don't contain any value
+			return Object.fromEntries(Object.entries(searchFilters).filter(([key, value]) => value.length > 0));
 		}
 	},
 	methods:{

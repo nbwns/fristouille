@@ -36,7 +36,7 @@
 			<div class="flex flex-row my-4 md:hidden">
 				<!-- search button -->
 				<button @click="updateQuery" class="btn w-max" aria-label="Rechercher">
-					je recherche
+					rechercher
 				</button>
 			</div>
 
@@ -83,7 +83,7 @@
 				</div>
 			
 				<div v-if="searchPerformed">
-					<ais-pagination >
+					<ais-pagination  >
 						<template
 							v-slot="{
 							nbHits
@@ -109,7 +109,7 @@
 						</template>
 					</ais-hits>
 
-					<ais-pagination>
+					<ais-pagination @page-change="pageChange">
 						<template
 							v-slot="{
 							currentRefinement,
@@ -181,13 +181,6 @@ import GridOfCardsRecipes from '~/components/GridOfCardsRecipes.vue';
 import { history as historyRouter } from 'instantsearch.js/es/lib/routers';
 const indexName = 'Recipes';
 
-
-	
-
-
-
-
-
 export default {
 	components: {
 		CardRecipe,
@@ -217,6 +210,28 @@ export default {
 			indexName,
 			query: '',
 			searchClient: algoliaSearch(this.$config.algoliaAppId,this.$config.algoliaApiKey),
+			routing:{
+				read() {
+				/* read from the URL and return a routeState */
+				console.log("routing read");
+				},
+				write(routeState) {
+				/* write to the URL */
+				console.log("routing wrie");
+				},
+				createURL(routeState) {
+				/* return a URL as a string */
+				console.log("routing create url");
+				},
+				onUpdate(callback) {
+				/* call this callback whenever the URL changed externally */
+				console.log("routing onupdate");
+				},
+				dispose() {
+				/* remove any listeners */
+				console.log("routing dispose");
+				},
+			},
 			filterQuery:'',
 			searchFiltersFromUrl: null,
 			page: 0,
@@ -300,9 +315,16 @@ export default {
 			console.log("filterQuery",filterQuery);
 			return filterQuery;
 		},
+		capitalizeWords(arr) {
+			return arr.map((word) => {
+				const capitalizedFirst = word.charAt(0).toUpperCase();
+				const rest = word.slice(1).toLowerCase();
+				return capitalizedFirst + rest;
+			});
+		},
 		sanitizeQueryParameter(route,param){
 			if(route.query[param]){
-				return Array.isArray(route.query[param]) ? route.query[param] : [route.query[param]]
+				return this.capitalizeWords(Array.isArray(route.query[param]) ? route.query[param] : [route.query[param]]);
 			}
 			return [];
 		},
@@ -332,6 +354,9 @@ export default {
 				this.searchPerformed = true;
 				this.historyChanged = true;
 			}
+		},
+		pageChange(){
+			document.body.scrollIntoView();
 		}
 	},
 	mounted(){

@@ -18,17 +18,17 @@
 import MainNavigation from '~/components/MainNavigation.vue'
 import MobileNavigation from '~/components/MobileNavigation.vue'
 import FooterLinks from '~/components/FooterLinks.vue'
-import { mapGetters } from 'vuex';
-
 
 export default {
 	components: {
-    MainNavigation,
-	  MobileNavigation,
-	  FooterLinks
+    	MainNavigation,
+	 	MobileNavigation,
+	  	FooterLinks
     },
     computed: {
-      ...mapGetters(['dark'])
+	  dark(){
+		return this.$store.state.dark;
+	  }
     }
 }
 </script>

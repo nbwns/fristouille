@@ -64,6 +64,10 @@ export default {
 	  }], ["nuxt-sm"]
   ],
 
+  router: {
+    middleware: ['redirect']
+  },
+
   prismic: {
     endpoint: "https://fristouille.cdn.prismic.io/api/v2",
     linkResolver: "@/plugins/link-resolver",

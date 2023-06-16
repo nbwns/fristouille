@@ -1,12 +1,12 @@
 <template>
-  <div class="flex flex-grow flex-col items-center">
+  <div class="flex flex-grow flex-col">
 		<h2>{{ title }}</h2>
-		<div class="text-left w-full self-center">
+		<div>
 			<prismic-rich-text :field="content" />
 			<spacer size="sm"></spacer>
 		</div>
-		<div v-if="image.url" class="w-full layer__md">
-			<img :src="image.url" :alt="image.alt" class="rounded object-cover w-1/2"/>
+		<div v-if="image.url" class="layer__md">
+			<img :src="image.url" :alt="image.alt" class="rounded object-cover mx-auto w-1/2"/>
 			<spacer size="sm"></spacer>
 		</div>
 	</div>

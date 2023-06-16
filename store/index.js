@@ -16,11 +16,6 @@ export const state = () => ({
 	dark: false
 });
 
-export const getters = {
-	dark: (state) => state.dark
-  };
-  
-
 export const mutations = {
 	saveSearchFilters(state, value){
 		state.searchFilters = value;
@@ -36,7 +31,7 @@ export const mutations = {
 			state.searchFilters[filter.type].splice(index, 1); 
 		}
 	},
-	SET_DARK: (state, bool) => {
-		state.dark = bool;
-	  }
+	toggleDarkMode(state, value){
+		state.dark = value;
+	}
 }
