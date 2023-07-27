@@ -11,7 +11,7 @@
 	<spacer size="xxs"></spacer>
 	
 	<!-- page title -->
-	<h1 class="max-w-lg">{{$prismic.asText(document.data.title)}}</h1>
+	<h1>{{$prismic.asText(document.data.title)}}</h1>
 	
 	<spacer size="xs"></spacer>
 
@@ -20,8 +20,8 @@
 
 	<spacer size="md"></spacer>
 
-	<div class="flex flex-grow flex-col md:flex-row justify-center">
-		<div class="text-left w-full lg:w-2/3">
+	<div class="flex flex-grow flex-col lg:flex-row justify-center">
+		<div class="text-left w-full xl:w-2/3">
 			<!-- content blocks -->
 			<content-block v-for="block in contentBlocks" :key="block.id" 
 				:title="block.primary.content_title" :content="block.primary.content_body" :image="block.primary.content_image" />

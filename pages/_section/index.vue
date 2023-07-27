@@ -45,7 +45,7 @@
 						<prismic-text :field="document.data.title" />
 		 			</h1>
 					 <spacer size="xxs"></spacer>	
-					<prismic-rich-text :field="document.data.text"/>
+					<prismic-rich-text :field="document.data.text" class="text-big"/>
 				</div>
 			</div>
 		<spacer size="xl"></spacer>		

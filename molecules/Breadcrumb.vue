@@ -1,5 +1,5 @@
 <template>
-	<nav>
+	<nav class="hidden md:flex">
 		<ol class="flex items-center list-none">
 			<li>
 				<nuxt-link :to="parentPath" class="breadcrumb-main text-usual">
