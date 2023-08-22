@@ -36,12 +36,12 @@
 					</svg>
 					<!-- link -->
 					<span class="text-sm text-white-100 dark:!text-black-100 font-inter font-medium">
-						rechercher
+						recettes
 					</span>
 				</nuxt-link>
 			</div>
 			<div class="flex flex-col items-center gap-3">
-				<nuxt-link class="navmobile" to="/cuisine-durable" no-prefetch>
+				<nuxt-link class="navmobile" to="/cuisiner-durable" no-prefetch>
 					<!-- svg -->
 					<!-- Food icon -->
 					<svg class=" h-8 mx-auto" viewBox="0 0 29 29" xmlns="http://www.w3.org/2000/svg">

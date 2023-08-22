@@ -21,14 +21,14 @@
 	<spacer size="md"></spacer>
 
 	<div class="flex flex-grow flex-col lg:flex-row justify-center">
-		<div class="text-left w-full xl:w-2/3">
+		<div class="text-left w-full" :class="{ 'xl:w-2/3' : hasCtas}">
 			<!-- content blocks -->
 			<content-block v-for="block in contentBlocks" :key="block.id" 
 				:title="block.primary.content_title" :content="block.primary.content_body" :image="block.primary.content_image" />
 			<!-- featured recipes -->
 			<featured-recipes v-for="(list, index) in horizontalLists" :key="`recipes-${index}`" :title="list.title" :items="list.recipes" :link="list.seeAllQuery" />
 		</div>
-		<div class="w-full lg:w-1/3">
+		<div class="w-full lg:w-1/3" v-if="hasCtas">
 		<!-- call to action -->
 			<call-to-action v-for="cta in ctas" :key="cta.id" 
 				:ctaUrl="cta.primary.cta_url" :ctaText="cta.primary.cta_text" :ctaHeader="cta.primary.cta_header" />
@@ -123,6 +123,7 @@ export default {
 		//featured recipes
 		if(page.body && page.body.length > 0){
 			
+			try{
 			let horizontalListsSlices = page.body.filter(s => s.slice_type === 'horizontal_list');
 
 			//horizontal lists of recipes - get content from Algolia
@@ -144,6 +145,10 @@ export default {
 					}
 				})
 			);
+			}
+			catch(error){
+				console.log('error in child page', error)
+			}
 		}
 
 
@@ -164,7 +169,8 @@ export default {
 			parent: parent,
 			horizontalLists: horizontalLists,
 			contentBlocks: contentBlocks,
-			ctas: ctas
+			ctas: ctas,
+			hasCtas: ctas.length > 0
 		}
     } catch (e) {
       	// Returns error page

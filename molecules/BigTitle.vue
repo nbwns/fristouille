@@ -2,7 +2,7 @@
   	<h1 :class="classValue"
 		class="big-title">
 		<slot></slot> 
-		<span class="text-orange-300" v-if="emphasis">{{emphasis}}</span>
+		<span class="text-orange-300 dark:text-purple-300" v-if="emphasis">{{emphasis}}</span>
 	</h1>
 </template>
 

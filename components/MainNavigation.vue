@@ -5,9 +5,9 @@
       <div class="hidden md:flex flex-grow md:w-auto pt-2 ">
         <div class="flex flex-grow space-x-5">
 			<nuxt-link class="navlink" to="/" no-prefetch exact>Accueil</nuxt-link>
-            <nuxt-link class="navlink" to="/recettes" no-prefetch>Rechercher</nuxt-link>
+            <nuxt-link class="navlink" to="/recettes" no-prefetch>Recettes</nuxt-link>
             <nuxt-link class="navlink" to="/recettes-de-base" no-prefetch>Recettes de base</nuxt-link>
-            <nuxt-link class="navlink" to="/cuisine-durable" no-prefetch>Cuisine durable</nuxt-link>
+            <nuxt-link class="navlink" to="/cuisiner-durable" no-prefetch>Cuisiner durable</nuxt-link>
         </div>
         <!-- <div>
           <a href="#"

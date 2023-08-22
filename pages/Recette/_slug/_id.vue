@@ -21,7 +21,7 @@
 					<h1>{{recipe.name}}</h1>
 					<p class="text-white-300 text-usual mb-3">
 						par
-						<span v-if="recipe.authorWeb[0]">
+						<span v-if="recipe.authorWeb">
 							<a :href="recipe.authorWeb[0]" target="_blank" 
 								class="text-base font-inter text-orange-300 dark:text-purple-300 hover:cursor-pointer hover:underline focus:text-orange-200 dark:focus:text-purple-200">
 								{{recipe.authorName[0]}}

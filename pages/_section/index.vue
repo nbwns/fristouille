@@ -101,19 +101,24 @@ export default {
 	 
 	 	// Query to get post content
     	const page = (await $prismic.api.getByUID('simplepage', params.section));
-		console.log(page);
-	 	// Get child pages
-		const children = (await $prismic.api.query( 
-				$prismic.predicates.at('my.childpage.parent_page', page.id) 
+		console.log(page, params.section);
+		let children = [];
+	 	if(page){
+			// Get child pages
+			children = (await $prismic.api.query( 
+				$prismic.predicates.at('my.childpage.parent_page', page.id)
 			)).results
 
-		console.log(children);
+			children.sort((a,b) => a.data.position - b.data.position);
 
-      // Returns data to be used in template
-      return {
-        document: page,
-		children: children
-      }
+			console.log(children);
+		}
+
+		// Returns data to be used in template
+		return {
+			document: page,
+			children: children
+		}
     } catch (e) {
       // Returns error page
 	  console.log("error in top page",e);

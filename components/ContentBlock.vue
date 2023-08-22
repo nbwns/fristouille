@@ -5,10 +5,10 @@
 			<prismic-rich-text :field="content" class="text-big" />
 			<spacer size="sm"></spacer>
 		</div>
-		<div v-if="image.url" class="layer__md">
-			<img :src="image.url" :alt="image.alt" class="rounded object-cover mx-auto w-1/2"/>
-			<spacer size="sm"></spacer>
+		<div v-if="image.url" class="flex justify-center">
+			<prismic-image :field="image" widths="thumbnails" class="rounded object-cover mx-auto"/>
 		</div>
+		<spacer v-if="image.url" size="sm"></spacer>
 	</div>
 </template>
 
