@@ -1,9 +1,9 @@
 <template>
-  <div class="flex flex-grow flex-col">
+  <div class="flex flex-grow flex-col" :class="{'bg-black-100 dark:bg-white-100 py-5 px-5 rounded-md': callout}">
 		<h2 class="text-2xl">{{ title }}</h2>
 		<div>
-			<prismic-rich-text :field="content" class="text-big" />
-			<spacer size="sm"></spacer>
+			<prismic-rich-text :field="content" class="text-big text-spacer" />
+			<spacer size="sm" v-if="!callout"></spacer>
 		</div>
 		<div v-if="image.url" class="flex justify-center">
 			<prismic-image :field="image" widths="thumbnails" class="rounded object-cover mx-auto"/>
@@ -16,7 +16,7 @@
 import Spacer from '~/molecules/Spacer.vue';
 
 export default {
-	props: ['title', 'content', 'image'],
+	props: ['title', 'content', 'image', 'callout'],
 	components:{
 		Spacer
 	}

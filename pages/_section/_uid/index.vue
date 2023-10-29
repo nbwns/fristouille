@@ -1,9 +1,5 @@
 <template>
   <section class="flex flex-col justify-center layer__xl mx-auto">
-	<!-- TODO: sibling pages -->
-	<!-- <div class="h-16 lg:h-20">
-		<grid-of-cards-articles :articles="siblings"/>
-	</div> -->
 	<spacer size="sm"></spacer>
 		<!-- breadcrumb -->
 		<breadcrumb :parentText="$prismic.asText(parent.data.title)" :parentPath="parent.url"><prismic-text :field="document.data.title"/>
@@ -24,9 +20,7 @@
 		<div class="text-left w-full" :class="{ 'xl:w-2/3' : hasCtas}">
 			<!-- content blocks -->
 			<content-block v-for="block in contentBlocks" :key="block.id" 
-				:title="block.primary.content_title" :content="block.primary.content_body" :image="block.primary.content_image" />
-			<!-- featured recipes -->
-			<featured-recipes v-for="(list, index) in horizontalLists" :key="`recipes-${index}`" :title="list.title" :items="list.recipes" :link="list.seeAllQuery" />
+				:title="block.primary.content_title" :content="block.primary.content_body" :image="block.primary.content_image" :callout="block.primary.callout" />
 		</div>
 		<div class="w-full lg:w-1/3" v-if="hasCtas">
 		<!-- call to action -->
@@ -35,6 +29,10 @@
 		</div>
 	</div>
 
+	<!-- featured recipes -->
+	<featured-recipes v-for="(list, index) in horizontalLists" :key="`recipes-${index}`" :title="list.title" :items="list.recipes" :link="list.seeAllQuery" />
+	<!-- related pages -->
+	<related-pages :pages="relatedPages"/>
 
 </section>
 </template>
@@ -42,6 +40,7 @@
 <script>	
 import FeaturedRecipes from '~/components/FeaturedRecipes'
 import ContentBlock from '~/components/ContentBlock';
+import RelatedPages from '~/components/RelatedPages';
 import CallToAction from '~/components/CallToAction';
 import Breadcrumb from '~/molecules/Breadcrumb.vue';
 import TitleArticle from '~/molecules/TitleArticle.vue';
@@ -52,6 +51,7 @@ export default {
   components: {
 	FeaturedRecipes,
 	ContentBlock,
+	RelatedPages,
 	Breadcrumb,
 	TitleArticle,
 	Spacer,
@@ -92,11 +92,12 @@ export default {
   async asyncData({ $prismic, $axios, $config, params, error }) {
     try{
 		let parent = null;
-		let siblings = [];
 
 		// Query to get post content
 		const document = (await $prismic.api.getByUID('childpage', params.uid));
 		const page = document.data;
+
+		//console.log(page);
 
 		if(page.parent_page.id){
 
@@ -109,48 +110,60 @@ export default {
 				parent = parents[0];
 			}
 
-			// Get siblings pages
-			siblings = (await $prismic.api.query( 
-				$prismic.predicates.at('my.childpage.parent_page', page.parent_page.id) 
-			)).results.filter(i => i.uid != params.uid);
-
 		}
 
 		let horizontalLists = [];
 		let contentBlocks = [];
 		let ctas = [];
+		let relatedPages = [];
 
 		//featured recipes
 		if(page.body && page.body.length > 0){
 			
 			try{
-			let horizontalListsSlices = page.body.filter(s => s.slice_type === 'horizontal_list');
+				let horizontalListsSlices = page.body.filter(s => s.slice_type === 'horizontal_list');
 
-			//horizontal lists of recipes - get content from Algolia
-			horizontalLists = await Promise.all(
-				horizontalListsSlices.map(async (hl) => {
-					//based on the horizontal list query_filter prop, query the Algolia index to get the featured recipes
-					const featuredRecipes = (await $axios.get($config.searchIndexFunction,{
-						params: {
-							query: hl.primary.query_term,
-							filters: hl.primary.query_filters
+				//horizontal lists of recipes - get content from Algolia
+				horizontalLists = await Promise.all(
+					horizontalListsSlices.map(async (hl) => {
+						//based on the horizontal list query_filter prop, query the Algolia index to get the featured recipes
+						const featuredRecipes = (await $axios.get($config.searchIndexFunction,{
+							params: {
+								query: hl.primary.query_term,
+								filters: hl.primary.query_filters
+							}
 						}
-					}
-					)).data;
+						)).data;
 
-					return {
-						title: hl.primary.list_title,
-						seeAllQuery: hl.primary.see_all_querystring,
-						recipes: featuredRecipes
-					}
-				})
-			);
+						return {
+							title: hl.primary.list_title,
+							seeAllQuery: hl.primary.see_all_querystring,
+							recipes: featuredRecipes
+						}
+					})
+				);
+
+				let relatedPagesSlices = page.body.filter(s => s.slice_type === 'related_pages');
+				relatedPages = await Promise.all(
+					relatedPagesSlices.map(async (slice) => {
+							//get data of related pages in Prismic
+							let related = null;
+							const relateds = (await $prismic.api.query( 
+								
+								$prismic.predicates.at('document.id', slice.primary.related_page.id) 
+							)).results;
+
+							if(relateds.length > 0){
+								related = relateds[0];
+							}
+							return related;
+					})
+				);
 			}
 			catch(error){
 				console.log('error in child page', error)
 			}
 		}
-
 
 		//content blocks
 		if(page.body1 && page.body1.length > 0){
@@ -165,10 +178,10 @@ export default {
 		// Returns data to be used in template
 		return {
 			document: document,
-			siblings: siblings,
 			parent: parent,
 			horizontalLists: horizontalLists,
 			contentBlocks: contentBlocks,
+			relatedPages: relatedPages,
 			ctas: ctas,
 			hasCtas: ctas.length > 0
 		}

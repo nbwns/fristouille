@@ -140,7 +140,7 @@
 
 				<!-- procedure -->
 				<h2>Procédure</h2>
-				<div v-html="procedure" class="text-big"></div>
+				<div v-html="procedure" class="text-big text-spacer"></div>
 
 				<div v-if="recipe.source">
 					<a :href="recipe.source" target="_blank" 

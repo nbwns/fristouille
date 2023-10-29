@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full bg-black-200 dark:bg-white-200" 
+    <div class="w-full" 
     :class="[
         {'h-44 lg:h-52': xxl},
         {'h-24 lg:h-28': xl},

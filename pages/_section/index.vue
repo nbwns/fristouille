@@ -101,7 +101,7 @@ export default {
 	 
 	 	// Query to get post content
     	const page = (await $prismic.api.getByUID('simplepage', params.section));
-		console.log(page, params.section);
+
 		let children = [];
 	 	if(page){
 			// Get child pages
@@ -110,8 +110,6 @@ export default {
 			)).results
 
 			children.sort((a,b) => a.data.position - b.data.position);
-
-			console.log(children);
 		}
 
 		// Returns data to be used in template

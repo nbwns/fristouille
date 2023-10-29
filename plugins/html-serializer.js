@@ -10,7 +10,7 @@ export default function(type, element, content, children) {
 
 	if (type === "paragraph") {
 		// return some customized HTML.
-		return `<p class="py-1">${children.join("")}</p>`;
+		return `<p>${children.join("")}</p>`;
 	}
 
 	if(type === "heading2"){
@@ -20,7 +20,7 @@ export default function(type, element, content, children) {
 	if (type === "hyperlink") {
 		//replace by nuxt-link
 		//element.data.link_type can be either Document or Web
-		return `<a class="text-base font-inter text-orange-300 dark:text-purple-300 hover:cursor-pointer hover:underline focus:text-orange-200 dark:focus:text-purple-200 " href="${element.data.url}" target="${element.data.target}">${children.join("")}</a>`;
+		return `<a class="text-base font-inter text-orange-300 dark:text-purple-300 hover:cursor-pointer hover:underline focus:text-orange-200 dark:focus:text-purple-200 " href="${element.data.url}" target="${element.data.url.startsWith('http') ? '_blank' : '_self'}">${children.join("")}</a>`;
 	}
 	// Otherwise, return null.
 	return null;

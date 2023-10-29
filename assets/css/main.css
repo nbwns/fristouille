@@ -107,6 +107,14 @@
 		@apply !fill-orange-300 dark:!fill-purple-300;
 	}
 
+	.text-spacer > ol > li, .text-spacer > p{
+		@apply mb-4;
+	}
+
+	.text-spacer > ul > li{
+		@apply mb-2;
+	}
+
     #app {
         @apply flex flex-col min-h-screen;
     }
