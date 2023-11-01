@@ -104,7 +104,7 @@
 						class="max-w-[40px] bg-black-300 dark:bg-purple-100 rounded focus:outline-none focus:ring focus:ring-black-200 block p-2.5 placeholder:text-white-200 text-white-100 title-paragraph text-center"
 						type="number" 
 						v-model="servings"
-						step="1" min="1" max="99"
+						step="1" min="1" max="30"
 						>
 					<button class="title-article border-l-2 border-l-black-200 dark:border-l-purple-200 dark:hover:border-l-purple-200 dark:hover:bg-purple-200 text-center px-4 noprint" @click="servings++">+</button>
 				</div>
@@ -143,10 +143,12 @@
 				<div v-html="procedure" class="text-big text-spacer"></div>
 
 				<div v-if="recipe.source">
-					<a :href="recipe.source" target="_blank" 
+					<a v-if="recipe.source.startsWith('http')"
+						:href="recipe.source" target="_blank" 
 						class="text-base font-inter text-orange-300 dark:text-purple-300 hover:cursor-pointer hover:underline focus:text-orange-200 dark:focus:text-purple-200">
 						Vers la publication originale
 					</a>
+					<span v-else><em class="text-base">{{ recipe.source  }}</em></span>
 				</div>
 
 				<spacer size="xs"></spacer>
