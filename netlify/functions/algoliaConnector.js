@@ -8,8 +8,7 @@ exports.handler = async function(event, context) {
 	console.log("query function", QUERY_FUNCTION);
 
 	console.log("Fetching recipes from query function...");
-	let recettes = null;
-
+	
 	//get recipes 
 	return axios({
 		url: QUERY_FUNCTION,
@@ -17,7 +16,7 @@ exports.handler = async function(event, context) {
 	}).then((result) => {
 		console.log("Numbers of results", result.data.length)
 		
-		recettes = result.data.map((recette, index) => {
+		let recettes = result.data.map((recette, index) => {
 
 			let algoliaObject = {
 				objectID: recette.recipeId,
@@ -42,7 +41,7 @@ exports.handler = async function(event, context) {
 				createdOn: new Date(recette.createdOn).getTime()
 			}
 
-			algoliaObject.tags = recette.tags.map(t => t.name);
+			algoliaObject.tags = recette.tagsList;
 			algoliaObject.ingredients = recette.ingredientsList;
 
 			return algoliaObject;

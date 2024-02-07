@@ -159,12 +159,12 @@
 				<!-- tags -->
 				<div class="flex flex-row flex-wrap justify-start items-start  gap-2 noprint">
 					<!-- tags -->
-					<nuxt-link v-for="t in recipe.tags"
-						:key="t.name"
-						:to="`/Recettes?q=${t.name}`"
+					<nuxt-link v-for="t in recipe.tagsList"
+						:key="t"
+						:to="`/Recettes?q=${t}`"
 						class="noprint"
 						>
-						<tag look="light">{{t.name}}</tag>
+						<tag look="light">{{t}}</tag>
 					</nuxt-link>
 
 					<!-- base recipe -->

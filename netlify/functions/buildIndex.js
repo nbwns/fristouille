@@ -18,16 +18,15 @@ exports.handler = async function(event, context) {
 	const index = client.initIndex(ALGOLIA_INDEX_NAME);
 
 	console.log("Fetching recipes from query function...");
-	let recettes = null;
 
 	//get recipes 
-	recettes = axios({
+	return axios({
 		url: QUERY_FUNCTION,
 		method: "get"
 	}).then((result) => {
 		console.log("Numbers of results", result.data.length)
 		
-		return result.data.map((recette, index) => {
+		let recettes = result.data.map((recette, index) => {
 
 			console.log("recipe ID", recette.recipeId);
 			console.log("index", index);
@@ -55,50 +54,44 @@ exports.handler = async function(event, context) {
 				createdOn: new Date(recette.createdOn).getTime()
 			}
 
-			algoliaObject.tags = recette.tags.map(t => t.name);
+			algoliaObject.tags = recette.tagsList;
 			console.log(recette.ingredientsList);
 			algoliaObject.ingredients = recette.ingredientsList;
 
 			return algoliaObject;
-		});      
-	});
-
-	console.log("Replacing all objects from Algolia Index...");
-
-	let message = "";
-
-	console.log("recettes",recettes);
-	//replace all objects from the index
-	if(recettes){
-		recettes.then(data => {
-			index.replaceAllObjects(data).then(({ objectIDs }) => {
+		});  
+		
+		return recettes;
+	}).then((recettes) => {
+		console.log("Replacing all objects from Algolia Index with this amount of records:", recettes.length);
+		let message = "Index updated";
+		
+		if(recettes && recettes.length > 0){
+			index.replaceAllObjects(recettes).then(({ objectIDs }) => {
 				console.log(objectIDs);
 			});
-		});
-		message = "Index updated";
-	}
-	else{
-		message = "Error, recettes is undefined"
-	}
-	
-	/*index
-	.saveObjects([newObject])/*
-	.wait()
-	.then((response) => console.log(response));*/
+		}
+		else{
+			message = "Error, no recipes"
+		}
 
-	// Search the index for "Fo"
-	// https://www.algolia.com/doc/api-reference/api-methods/search/
-	//index.search("wok").then((objects) => console.log(objects));
-		
-	//TODO: remove CORS
-	return {
-        statusCode: 200,
-		headers:  {
-			'Access-Control-Allow-Origin': '*',
-  			'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-  			'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
-			'Content-Type': 'application/json'
-		},
-        body: JSON.stringify({message: "Index updated"})
-    };
+		return {
+			statusCode: 200,
+			headers:  {
+				'Access-Control-Allow-Origin': '*',
+				  'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+				  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({message: message})
+		};
+	})
+	.catch(error => {
+		return {
+			statusCode: 500,
+			body: JSON.stringify({
+			  error: error.message
+			})
+		  }
+	});	
 }

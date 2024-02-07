@@ -53,9 +53,7 @@ exports.handler = async function(event, context) {
 					authorName
 					authorWeb
       				source
-					tags{
-						name
-					},
+					tagsList,
 					compositionsJson,
     				ingredientsList
 				}
