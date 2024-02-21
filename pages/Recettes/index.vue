@@ -306,7 +306,7 @@ export default {
 						filterQuery += " AND ";
 					}
 					//prefix filter value with the category name, for instance "Végétarien" becomes "diet:Végétarien"
-					let catFilters = filters[cat].map(v => `${cat}:${v}`);
+					let catFilters = filters[cat].map(v => `${cat}:'${v}'`);
 					//join all filter of the same category with OR
 					filterQuery += `(${catFilters.join(' OR ')})`;
 				}

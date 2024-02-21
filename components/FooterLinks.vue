@@ -66,12 +66,8 @@
 		<div class="flex flex-col sm:flex-row sm:justify-between w-full ">
           <div class="flex flex-col w-full">
             <h4>Inscrivez-vous à notre newsletter</h4>
-            <form action="" class=" mt-4 flex w-full max-w-md flex-col gap-3 sm:flex-row">
-              <input type="email" name="email" id="email"
-                class="grow  py-3 px-3 focus:border-black-100 focus:outline-none bg-black-200 dark:bg-white-100 placeholder:text-white-200 dark:placeholder:text-black-200 rounded"
-                placeholder="Adresse email" />
-              <button type="submit" class="btn">Je m'inscris</button>
-            </form>
+			<a href="https://02419efa.sibforms.com/serve/MUIFANEEQaGtCgMgGCIlj2MVYkNzVFJUOIB748mFzklKSTLMB5SqGgeNJGfdWP2nfl5TY1DfHscl4Rho1564zy-CsKAO8fOTDdqL4V00DXsJw3rpUEOYb83wRl5SAmNoHwuKQNYJZPSn5zfCKhJAOF1tnNRe6iXiEyO05SsgpC9hDclYYf0u1A1hw89TBmypEx_lNOwyIBbwmr4s" 
+				target="_blank" class="btn">Je m'inscris</a>
           </div>
           <div class="flex flex-col justify-end  w-full">
             <div class="flex flex-col justify-end items-end gap-3 text-orange-200

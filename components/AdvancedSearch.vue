@@ -27,9 +27,9 @@
 				<dropdown title="Allergie">
 					<checkbox-filter uid="Arachide" ref="Arachide" @check="filter('free','Arachide', $event)" :checked="checked('free','Arachide')">arachide</checkbox-filter>
 					<checkbox-filter uid="Gluten" ref="Gluten" @check="filter('free','Gluten', $event)" :checked="checked('free','Gluten')">gluten</checkbox-filter>
-					<checkbox-filter uid="'Fruit à coque'" ref="'Fruit à coque'" @check="filter('free','\'Fruit à coque\'', $event)" :checked="checked('free','\'Fruit à coque\'')">fruit à coque</checkbox-filter>
+					<checkbox-filter uid="'Fruit à coque'" ref="'Fruit à coque'" @check="filter('free','Fruit à coque', $event)" :checked="checked('free','Fruit à coque')">fruit à coque</checkbox-filter>
 					<checkbox-filter uid="Oeuf" ref="Oeuf" @check="filter('free','Oeuf', $event)" :checked="checked('free','Oeuf')">oeuf</checkbox-filter>
-					<checkbox-filter uid="'Produit laitier'" ref="'Produit laitier'" @check="filter('free','\'Produit laitier\'', $event)" :checked="checked('free','\'Produit laitier\'')">produit laitier</checkbox-filter>
+					<checkbox-filter uid="'Produit laitier'" ref="'Produit laitier'" @check="filter('free','Produit laitier', $event)" :checked="checked('free','Produit laitier')">produit laitier</checkbox-filter>
 					<checkbox-filter uid="Soja" ref="Soja" @check="filter('free','Soja', $event)" :checked="checked('free','Soja')">soja</checkbox-filter>
 				</dropdown>
 
@@ -58,12 +58,12 @@
 				</dropdown>
 
 				<dropdown title="Recette de base">
-					<checkbox-filter uid="légumineuse-en-sauce" ref="légumineuse-en-sauce" @check="filter('baseRecipe','légumineuse-en-sauce', $event)" :checked="checked('baseRecipe','légumineuse-en-sauce')">Légumineuse en sauce</checkbox-filter>
-					<checkbox-filter uid="tartinade-végétale" ref="tartinade-végétale" @check="filter('baseRecipe','tartinade-végétale', $event)" :checked="checked('baseRecipe','tartinade-végétale')">Tartinade végétale</checkbox-filter>
-					<checkbox-filter uid="risotto" ref="risotto" @check="filter('baseRecipe','risotto', $event)" :checked="checked('baseRecipe','risotto')">Risotto</checkbox-filter>
-					<checkbox-filter uid="salade-de-céréale" ref="salade-de-céréale" @check="filter('baseRecipe','salade-de-céréale', $event)" :checked="checked('baseRecipe','salade-de-céréale')">Salade de céréale</checkbox-filter>
-					<checkbox-filter uid="tarte-aux-légumes" ref="tarte-aux-légumes" @check="filter('baseRecipe','tarte-aux-légumes', $event)" :checked="checked('baseRecipe','tarte-aux-légumes')">Tarte aux légumes</checkbox-filter>
-					<checkbox-filter uid="légume-braisé" ref="légume-braisé" @check="filter('baseRecipe','légume-braisé', $event)" :checked="checked('baseRecipe','légume-braisé')">Légume braisé</checkbox-filter>
+					<checkbox-filter uid="légumineuse-en-sauce" ref="légumineuse-en-sauce" @check="filter('baseRecipe','Légumineuse-en-sauce', $event)" :checked="checked('baseRecipe','Légumineuse-en-sauce')">Légumineuse en sauce</checkbox-filter>
+					<checkbox-filter uid="tartinade-végétale" ref="tartinade-végétale" @check="filter('baseRecipe','Tartinade-végétale', $event)" :checked="checked('baseRecipe','Tartinade-végétale')">Tartinade végétale</checkbox-filter>
+					<checkbox-filter uid="risotto" ref="risotto" @check="filter('baseRecipe','Risotto', $event)" :checked="checked('baseRecipe','Risotto')">Risotto</checkbox-filter>
+					<checkbox-filter uid="salade-de-céréale" ref="salade-de-céréale" @check="filter('baseRecipe','Salade-de-céréale', $event)" :checked="checked('baseRecipe','Salade-de-céréale')">Salade de céréale</checkbox-filter>
+					<checkbox-filter uid="tarte-aux-légumes" ref="tarte-aux-légumes" @check="filter('baseRecipe','Tarte-aux-légumes', $event)" :checked="checked('baseRecipe','Tarte-aux-légumes')">Tarte aux légumes</checkbox-filter>
+					<checkbox-filter uid="légume-braisé" ref="légume-braisé" @check="filter('baseRecipe','Légume-braisé', $event)" :checked="checked('baseRecipe','Légume-braisé')">Légume braisé</checkbox-filter>
 				</dropdown>
 			</div>
 			
@@ -102,9 +102,9 @@
 						<div class="space-y-2 py-4">
 							<checkbox-filter uid="Arachide-a" @check="filter('free','Arachide', $event)" :checked="checked('free','Arachide')">arachide</checkbox-filter>
 							<checkbox-filter uid="Gluten-a" @check="filter('free','Gluten', $event)" :checked="checked('free','Gluten')">gluten</checkbox-filter>
-							<checkbox-filter uid="'Fruit à coque'-a"  @check="filter('free','\'Fruit à coque\'', $event)" :checked="checked('free','\'Fruit à coque\'')">fruit à coque</checkbox-filter>
+							<checkbox-filter uid="'Fruit à coque'-a"  @check="filter('free','Fruit à coque', $event)" :checked="checked('free','Fruit à coque')">fruit à coque</checkbox-filter>
 							<checkbox-filter uid="Oeuf-a" @check="filter('free','Oeuf', $event)" :checked="checked('free','Oeuf')">oeuf</checkbox-filter>
-							<checkbox-filter uid="'Produit laitier'-a" @check="filter('free','\'Produit laitier\'', $event)" :checked="checked('free','\'Produit laitier\'')">produit laitier</checkbox-filter>
+							<checkbox-filter uid="'Produit laitier'-a" @check="filter('free','Produit laitier', $event)" :checked="checked('free','Produit laitier')">produit laitier</checkbox-filter>
 							<checkbox-filter uid="Soja-a" @check="filter('free','Soja', $event)" :checked="checked('free','Soja')">soja</checkbox-filter>
 						</div>
 					</accordion>
@@ -139,12 +139,12 @@
 
 					<accordion title="Recette de base" key="baseRecipe">
 						<div class="space-y-2 py-4">
-							<checkbox-filter uid="légumineuse-en-sauce-a" @check="filter('baseRecipe','légumineuse-en-sauce', $event)" :checked="checked('baseRecipe','légumineuse-en-sauce')">Légumineuse en sauce</checkbox-filter>
-							<checkbox-filter uid="tartinade-végétale-a"  @check="filter('baseRecipe','tartinade-végétale', $event)" :checked="checked('baseRecipe','tartinade-végétale')">Tartinade végétale</checkbox-filter>
-							<checkbox-filter uid="risotto-a"  @check="filter('baseRecipe','risotto', $event)" :checked="checked('baseRecipe','risotto')">Risotto</checkbox-filter>
-							<checkbox-filter uid="salade-de-céréale-a"  @check="filter('baseRecipe','salade-de-céréale', $event)" :checked="checked('baseRecipe','salade-de-céréale')">Salade de céréale</checkbox-filter>
-							<checkbox-filter uid="tarte-aux-légumes-a"  @check="filter('baseRecipe','tarte-aux-légumes', $event)" :checked="checked('baseRecipe','tarte-aux-légumes')">Tarte aux légumes</checkbox-filter>
-							<checkbox-filter uid="légume-braisé-a" @check="filter('baseRecipe','légume-braisé', $event)" :checked="checked('baseRecipe','légume-braisé')">Légume braisé</checkbox-filter>
+							<checkbox-filter uid="légumineuse-en-sauce-a" @check="filter('baseRecipe','Légumineuse-en-sauce', $event)" :checked="checked('baseRecipe','Légumineuse-en-sauce')">Légumineuse en sauce</checkbox-filter>
+							<checkbox-filter uid="tartinade-végétale-a"  @check="filter('baseRecipe','Tartinade-végétale', $event)" :checked="checked('baseRecipe','Tartinade-végétale')">Tartinade végétale</checkbox-filter>
+							<checkbox-filter uid="risotto-a"  @check="filter('baseRecipe','Risotto', $event)" :checked="checked('baseRecipe','Risotto')">Risotto</checkbox-filter>
+							<checkbox-filter uid="salade-de-céréale-a"  @check="filter('baseRecipe','Salade-de-céréale', $event)" :checked="checked('baseRecipe','Salade-de-céréale')">Salade de céréale</checkbox-filter>
+							<checkbox-filter uid="tarte-aux-légumes-a"  @check="filter('baseRecipe','Tarte-aux-légumes', $event)" :checked="checked('baseRecipe','Tarte-aux-légumes')">Tarte aux légumes</checkbox-filter>
+							<checkbox-filter uid="légume-braisé-a" @check="filter('baseRecipe','Légume-braisé', $event)" :checked="checked('baseRecipe','Légume-braisé')">Légume braisé</checkbox-filter>
 						</div>
 					</accordion>
 			</div>
