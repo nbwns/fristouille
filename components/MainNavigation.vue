@@ -6,8 +6,7 @@
         <div class="flex flex-grow space-x-5">
 			<nuxt-link class="navlink" to="/" no-prefetch exact>Accueil</nuxt-link>
             <nuxt-link class="navlink" to="/recettes" no-prefetch>Recettes</nuxt-link>
-            <nuxt-link class="navlink" to="/recettes-de-base" no-prefetch>Recettes de base</nuxt-link>
-            <nuxt-link class="navlink" to="/cuisiner-durable" no-prefetch>Cuisiner durable</nuxt-link>
+            <nuxt-link class="navlink" to="/astuces" no-prefetch>Astuces</nuxt-link>
         </div>
         <!-- <div>
           <a href="#"

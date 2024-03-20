@@ -41,7 +41,7 @@
 				</nuxt-link>
 			</div>
 			<div class="flex flex-col items-center gap-3">
-				<nuxt-link class="navmobile" to="/cuisiner-durable" no-prefetch>
+				<nuxt-link class="navmobile" to="/astuces" no-prefetch>
 					<!-- svg -->
 					<!-- Food icon -->
 					<svg class=" h-8 mx-auto" viewBox="0 0 29 29" xmlns="http://www.w3.org/2000/svg">
@@ -66,7 +66,7 @@
 					</svg>
 					<!-- link -->
 					<span class="text-sm text-white-100 dark:!text-black-100 font-inter font-medium">
-						apprendre
+						astuces
 					</span>
 				</nuxt-link>
 			</div>
@@ -81,7 +81,7 @@
 					</svg>
 					<!-- link -->
 					<span class="text-sm text-white-100 dark:!text-black-100 font-inter font-medium">
-						autres
+						plus
 					</span>
 				</div>
 			</div>
@@ -95,11 +95,6 @@
 					</svg>
 				</div>
 				<ul class="list-none flex justify-center m-auto flex-col text-center text-2xl">
-					<li class="!text-white-300 dark:!text-black-300 pb-3">
-						<nuxt-link to="/recettes-de-base">
-							Recettes de base
-						</nuxt-link>
-					</li>
 					<li class="!text-white-300 dark:!text-black-300 pb-3">
 						<a href="https://forms.fillout.com/t/tAiagUtQpwus" target="_blank">Ajouter une recette</a>
 					</li>
