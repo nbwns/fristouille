@@ -26,12 +26,12 @@
 
     h1,
     .big-title {
-        @apply font-labil text-4xl font-medium leading-[1.08];
+        @apply font-labil !text-2xl md:text-3xl lg:text-4xl font-medium leading-[1.08] lowercase;
     }
 
     h2,
     .title {
-        @apply font-labil text-3xl font-medium;
+        @apply font-labil text-3xl font-medium lowercase;
     }
 
 	ul, ol {
@@ -128,7 +128,7 @@
 
 
     .logo {
-        @apply text-4xl font-labil font-bold text-orange-300 dark:text-purple-300;
+        @apply text-2xl lg:text-4xl font-labil font-bold text-orange-300 dark:text-purple-300;
     }
 
     .btn {

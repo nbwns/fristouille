@@ -1,5 +1,5 @@
 <template>
-  <nav class="flex items-center justify-between flew-wrap p-4 bg-black-300 dark:bg-white-300">
+  <nav class="flex items-center justify-between flew-wrap p-1 md:p-4 bg-black-300 dark:bg-white-300">
     <div class="layer__xl w-full flex flex-row justify-between mx-auto items-center">
       <logo/>
       <div class="hidden md:flex flex-grow md:w-auto pt-2 ">
