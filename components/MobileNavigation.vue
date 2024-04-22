@@ -1,6 +1,6 @@
 <template>
 	<!-- TODO: center and padding of elements -->
-   <div class="bg-black-300 dark:bg-white-300 bg-opacity-75 dark:bg-opacity-95 w-full px-15 py-15 flex flex-col space-y-5 fixed bottom-0 md:hidden noprint">
+   <div class=" bg-black-300 dark:bg-white-300 bg-opacity-75 dark:bg-opacity-95 w-full py-15 flex flex-col space-y-5 fixed bottom-0 md:hidden noprint">
 		<div class="flex flex-row gap-5 items-center justify-between p-5">
 			<div class="flex flex-col items-center gap-3">
 			<nuxt-link class="navmobile" to="/" exact no-prefetch>
