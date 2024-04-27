@@ -123,11 +123,13 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
 	transpile: ["vue-slicezone", "nuxt-sm", 'vue-instantsearch', 'instantsearch.js/es'],
-  css: ['~/assets/css/main.css'],
+  // css: ['~/assets/css/main.css'],
   postcss: {
+        postcssOptions: {	
       plugins: {
         tailwindcss: {},
         autoprefixer: {},
+        },
       },
     },
   },
