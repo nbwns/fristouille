@@ -55,6 +55,7 @@
 					:distinct="true"
 					:filters="filterQuery"
 					:query="query"
+					:optional-words.camel="query"
 					:page="page"
 				/>
 			
