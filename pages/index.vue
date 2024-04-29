@@ -9,7 +9,7 @@
 				<big-title :emphasis="$prismic.asText(document.data.hero_title_emphasis)" class="max-w-md">{{$prismic.asText(document.data.hero_title)}}</big-title>
 				
 				<p class="text-big py-5">{{$prismic.asText(document.data.intro_phrase)}}</p>
-				 
+				 s
 				<div v-if="document.data.cta_page.type !== 'broken_type'" class="mt-10">
 					<link-button :path="document.data.cta_page.url">
 						{{document.data.cta_text}}
