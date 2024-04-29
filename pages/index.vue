@@ -3,23 +3,14 @@
 	<!-- Hero introduction -->
     <section>
       <div class="flex flex-col justify-center items-center bg-black-200 dark:bg-white-200">
-		<spacer size="xl"></spacer>
-        <div class="flex flex-col md:flex-row layer__xl justify-between xl:items-center h-auto mx-auto">
-			<div class="block z-0 items-center h-full">
+		<spacer size="xxs"></spacer>
+        <div class="flex flex-col md:flex-row layer__xl justify-between items-center h-auto mx-auto">
+			<div class="block z-0 items-center h-full max-w-sm text-pretty">
 				<big-title :emphasis="$prismic.asText(document.data.hero_title_emphasis)" class="max-w-md">{{$prismic.asText(document.data.hero_title)}}</big-title>
-				
-				<p class="text-big py-5">{{$prismic.asText(document.data.intro_phrase)}}</p>
-				 
-				<div v-if="document.data.cta_page.type !== 'broken_type'" class="mt-10">
-					<link-button :path="document.data.cta_page.url">
-						{{document.data.cta_text}}
-					</link-button>
-				</div>
-				<spacer size="sm"></spacer>
 			</div>
 			<!-- only displayed on desktop -->
 			<div class="hidden md:flex flex-shrink-0 z-50">
-				<svg width="471" height="378" viewBox="0 0 471 378" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<svg width="390" height="378" viewBox="0 0 471 378" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M91.0291 220.446C91.0291 220.446 78.1687 205.382 86.757 190.121C95.3453 174.859 104.518 174.948 106.577 168.664C106.577 168.664 118.439 179.255 112.89 194.727C107.34 210.199 96.2663 214.583 91.0291 220.446Z" fill="url(#paint0_linear_1921_3174)"/>
 					<path d="M79.431 199.387C79.431 199.387 94.1877 200.742 99.4727 188.739C104.758 176.735 100.603 171.098 103.44 167.07C103.44 167.07 91.8032 164.373 85.0337 174.588C78.2643 184.803 80.5948 193.577 79.431 199.387Z" fill="url(#paint1_linear_1921_3174)"/>
 					<path d="M84.0803 206.129C84.0803 206.129 96.925 198.649 94.4361 185.751C91.9472 172.852 85.3479 170.658 85.3824 165.711C85.3824 165.711 74.3291 170.276 74.5882 182.575C74.8473 194.874 81.7345 200.697 84.0803 206.129Z" fill="url(#paint2_linear_1921_3174)"/>
@@ -134,8 +125,8 @@
 
     <!-- search -->
 	<!-- only displayed on desktop -->
-    <section class="hidden md:flex py-[10vh] mx-10 md:mx-0 my-10">
-      <div class="flex flex-col items-center bg-black-200 dark:bg-white-200  w-full gap-[73px] ">
+    <section class="hidden md:flex py-[10vh] mx-10 md:mx-0 mb-10">
+      <div class="flex flex-col w-full items-center bg-black-200 dark:bg-white-200 space-y-5">
 		<h2 class="text-orange-200">
 		Trouver des recettes
 		</h2>
@@ -149,7 +140,7 @@
 			</form>
 
           	<!-- tags -->
-			<div class="flex flex-row justify-between items-center my-2 ">
+			<div class="flex flex-row justify-between items-center my-3 ">
 				<div class="flex flex-row gap-4 items-center">
 					<!-- seasons tags -->
 					<nuxt-link v-for="s in currentSeasons" 

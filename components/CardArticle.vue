@@ -20,8 +20,8 @@
 						:src="img"
 						:alt="imgAlt" >
 				</div>
-				<div class="p-3">	
-					<h4 class="text-big">{{title}}</h4>
+				<div class="p-5">	
+					<h4 class="text-bigbig text-pretty sm:text-balance max-w-xs">{{title}}</h4>
 					<!-- <p class="text-usual">auteur</p> -->
 				</div>
 		</nuxt-link>
