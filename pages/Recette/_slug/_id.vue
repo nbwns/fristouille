@@ -5,41 +5,46 @@
 				<div class="items-start justify-start mx-auto">
 					<!-- picture -->
 					<!-- TODO: check correct sizes for viewports -->
-					<div class="w-full">
-						<nuxt-img v-if="recipe.picture"
-							class="object-cover max-h-56 md:max-h-64 lg:max-h-72 xl:max-h-96 w-full rounded-md noprint"
-							fit="cover"
-							:src="recipe.picture"
-							quality="80"
-							sizes="sm:100vw md:50vw lg:960px"
-							placeholder
-							:alt="`Photo d'un plat de ${recipe.name}`" />
-						
-					</div>
-					<spacer size="xs"></spacer>	
 					<!-- title -->
-					<h1>{{recipe.name}}</h1>
+					<h1 class="big-title">{{recipe.name}}</h1>
 					<p class="text-white-300 text-usual mb-3">
 						par
 						<span v-if="recipe.authorWeb">
 							<a :href="recipe.authorWeb[0]" target="_blank" 
-								class="text-base font-inter text-orange-300 dark:text-purple-300 hover:cursor-pointer hover:underline focus:text-orange-200 dark:focus:text-purple-200">
-								{{recipe.authorName[0]}}
-							</a>
-						</span>
-						<span v-else>
+							class="text-base font-inter text-orange-300 dark:text-purple-300 hover:cursor-pointer hover:underline focus:text-orange-200 dark:focus:text-purple-200">
 							{{recipe.authorName[0]}}
-						</span>
-					</p>
+						</a>
+					</span>
+					<span v-else>
+						{{recipe.authorName[0]}}
+					</span>
+				</p>
+				<spacer size="xs"></spacer>	
+
+				<div class="w-full">
+					<nuxt-img v-if="recipe.picture"
+						class="object-cover max-h-56 md:max-h-64 lg:max-h-72 xl:max-h-96 w-full rounded-md noprint"
+						fit="cover"
+						:src="recipe.picture"
+						quality="80"
+						sizes="sm:100vw md:50vw lg:960px"
+						placeholder
+						:alt="`Photo d'un plat de ${recipe.name}`" />
+					
+				</div>
 					<spacer size="xs"></spacer>
 					<div class="flex flex-col md:flex-row justify-between w-full noprint">
 						<!-- description -->
 						<div class="flex flex-col">
-							<p class="text-big ">{{recipe.description}}</p>
+							<p class="text-bigbig ">{{recipe.description}}</p>
 						</div>
 					</div>
 				</div>
 				<spacer size="md"></spacer>
+
+
+				<h2>Caractéristiques</h2>
+				<spacer size="xs"></spacer>
 
 				<div class="flex w-full justify-between gap-5">
 					<!-- prep time and cook time -->
@@ -74,11 +79,11 @@
 					</div>
 				</div>
 
-				<spacer size="xs"></spacer>
+				<spacer size="sm"></spacer>
 
 				<!-- seasonality (a list of months) -->
-				<div class="flex flex-row justify-start items-start text-big gap-2" v-if="recipe.months">
-					<p class="font-bold text-pink-100 dark:text-black-300">Saisonnalité:</p>
+				<div class="flex flex-col justify-start items-start text-big space-y-4" v-if="recipe.months">
+					<p class="font-bold">Saisonnalité:</p>
 					<div v-if="recipe.months.length < 12" class="flex flex-wrap gap-2">
 						<nuxt-link v-for="month in recipe.months"
 							:key="month"
@@ -92,7 +97,7 @@
 					</div>					
 				</div>
 
-				<spacer size="sm"></spacer>
+				<spacer size="lg"></spacer>
 
 				<!-- ingredients -->
 				<h2>Ingrédients</h2>
@@ -108,6 +113,7 @@
 						>
 					<button class="title-article border-l-2 border-l-black-200 dark:border-l-purple-200 dark:hover:border-l-purple-200 dark:hover:bg-purple-200 text-center px-4 noprint" @click="servings++">+</button>
 				</div>
+				<p class="text-usual">Nombre de personnes</p>
 				<!-- yield -->
 				<!-- rajouter directement le mot "personnes" à la suite du nombre dans l'input -->
 				<!-- <p><span itemprop="recipeYield"> Pour {{recipe.yield}}</span> personnes</p> -->
@@ -115,17 +121,17 @@
 
 				<spacer size="xs"></spacer>
 
-				<div v-for="c in recipe.compositions" :key="c.name">
-					<div v-if="c.ingredient[0]" class="text-usual font-light flex">
+				<div v-for="c in recipe.compositions" :key="c.name" class="py-0.5">
+					<div v-if="c.ingredient[0]" class="text-big font-light flex">
 						<div class="font-bold" v-if="c.quantity > 0">
 							<!-- quantity -->
 							<span class="">{{computedQuantity(c.quantity)}}&nbsp;</span>
 							<!-- units -->
 							<span v-if="c.units != 'pièce'">{{c.units}} <span class="font-light">de &nbsp;</span> </span>
 						</div>
-						<div class="">
+						<div>
 							<!-- ingredient -->
-							<span class="text-pink-100 dark:text-black-300 ">{{c.ingredient}}</span>
+							<span>{{c.ingredient}}</span>
 							<!-- remark -->
 							<i>{{c.remark}}</i> 
 							<!-- if no quantity -->
@@ -136,10 +142,12 @@
 					</div>
 				</div>
 
-				<spacer size="sm"></spacer>
+				<spacer size="lg"></spacer>
 
 				<!-- procedure -->
 				<h2>Procédure</h2>
+				<spacer size="xs"></spacer>
+
 				<div v-html="procedure" class="text-big text-spacer"></div>
 
 				<div v-if="recipe.source">
@@ -151,11 +159,12 @@
 					<span v-else><em class="text-base">{{ recipe.source  }}</em></span>
 				</div>
 
-				<spacer size="xs"></spacer>
 
-				<spacer size="sm"></spacer>
+				<spacer size="lg"></spacer>
 
 				<h2 class="noprint">Tags</h2>
+				<spacer size="xs"></spacer>
+
 				<!-- tags -->
 				<div class="flex flex-row flex-wrap justify-start items-start  gap-2 noprint">
 					<!-- tags -->

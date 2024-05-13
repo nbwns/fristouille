@@ -61,12 +61,4 @@ export default {
 :not([aria-disabled])>.ssr-carousel-back-icon, :not([aria-disabled])>.ssr-carousel-next-icon {
   @apply opacity-75
 }
-
-.ssr-carousel-next-button {
-  @apply -right-6
-}
-
-.ssr-carousel-back-button {
-  @apply -left-6
-}
 </style>
