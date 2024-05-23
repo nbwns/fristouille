@@ -1,32 +1,28 @@
 <template>
 
-<div class="card h-full">
-	<nuxt-link :to='`/Recette/${slug}/${recipeID}`' no-prefetch>
-		<div class="flex-1">
-			<div class="h-40 bg-center bg-cover" :class="width" :style="{backgroundImage: backgroundImage}">
-				<div class="relative">
-					<div class="absolute w-full left-0 top-0 flex flex-row justify-between p-2 items-center">
-						<tag look="primary" :title="tag">{{totalTime}} min</tag>
-						<tag
-							v-if="diet != 'Omnivore'"
-							:title="diet"
-							:look="(diet === 'Végétalien' ? 'pink' : (diet === 'Végétarien' ? 'green': ''))">
-							{{ diet }}
+	<div class="card-recipe h-full border border-purple-300/10 overflow-clip">
+		<nuxt-link class="flex flex-col justify-start h-full" :to='`/Recette/${slug}/${recipeID}`' no-prefetch>
+			<div class=" bg-center bg-cover h-64" :class="width" :style="{ backgroundImage: backgroundImage }" />
+			<div class="flex flex-col justify-between p-3 space-y-4 h-full ">
+				<h4 class="text-usual font-demi ">
+					{{ title }}
+				</h4>
+				<div class="flex flex-col space-y-2 ">
+					<div class=" w-full flex flex-row flex-wrap justify-start items-center space-x-2">
+						<tag class="text-sm bg-purple-200 dark:bg-purple-200/20 text-white dark:text-black-300 tracking-normal"
+							:title="tag">{{ totalTime }}
+							min</tag>
+						<tag class="text-sm bg-purple-200 dark:bg-purple-200/20 text-white dark:text-black-300 tracking-normal"
+							:title="diet"> {{ diet }}
 						</tag>
 					</div>
+					<p class="text-small">
+						{{ author }}
+					</p>
 				</div>
 			</div>
-		</div>
-		<div class="p-3">
-			<h4 class="text-usual font-demi ">
-				{{title}}
-			</h4>
-		</div>
-		<p class="text-small p-3">
-			{{author}}
-		</p>
-	</nuxt-link>
-</div>
+		</nuxt-link>
+	</div>
 
 </template>
 
@@ -34,22 +30,22 @@
 import Tag from '~/molecules/Tag.vue';
 
 export default {
-	props:['slug','recipeID','img','diet','title','totalTime','author','width'],
-	components: {Tag},
-	computed:{
-		backgroundImage(){
-			if(this.img){
+	props: ['slug', 'recipeID', 'img', 'diet', 'title', 'totalTime', 'author', 'width'],
+	components: { Tag },
+	computed: {
+		backgroundImage() {
+			if (this.img) {
 				return 'url(' + this.img + ')';
 			}
-			else{
+			else {
 				return 'url(/nopicture.png)';
 			}
 		},
-		tag(){
-			if(this.tags && this.tags.length > 0){
+		tag() {
+			if (this.tags && this.tags.length > 0) {
 				return this.tags[0];
 			}
-			else{
+			else {
 				return '';
 			}
 		}
