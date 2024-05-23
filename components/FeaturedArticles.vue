@@ -10,7 +10,7 @@
         <hyper-link v-if="link" :path="link">Tout voir</hyper-link>
       </div>
       <!-- grid for cards 2-columns -->
-      <ssr-carousel loop :slides-per-page='2' :gutter='30' show-arrows peek-right='10%' :responsive='[
+      <ssr-carousel loop :slides-per-page='3' :gutter='15' show-arrows peek-right='10%' :responsive='[
         {
           maxWidth: 1280,
           slidesPerPage: 2,
