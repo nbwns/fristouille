@@ -126,35 +126,27 @@
     <!-- search -->
 	<!-- only displayed on desktop -->
     <section class="hidden md:flex py-4 mx-10 md:mx-0 mb-10">
-      <div class="flex flex-col w-full items-center bg-black-200 dark:bg-white-200 space-y-5">
-		<h2 class="text-orange-200">
-		Trouver des recettes
+      <div class="flex flex-col w-full items-start bg-black-200 dark:bg-white-200 space-y-5 layer__xl mx-auto">
+		<h2>
+		Recherche par filtres
 		</h2>
-        <div class="flex flex-col justify-center layer__xl">
-			<!-- search bar -->
-			<form class="flex items-center gap-5" action="/Recettes">
-				<div class="relative w-full">
-					<search-bar value="" placeholder="Que voulez-vous cuisiner ?" required="true"></search-bar>
-				</div>
-				<submit-button>Rechercher</submit-button>
-			</form>
-
+        <div class="flex flex-col justify-center">
           	<!-- tags -->
 			<div class="flex flex-row justify-between items-center my-3 ">
-				<div class="flex flex-row gap-4 items-center">
+				<div class="flex flex-row space-x-2 items-center">
 					<!-- seasons tags -->
 					<nuxt-link v-for="s in currentSeasons" 
 						:key="s" 
 						:to="`/Recettes?${getSeasonQuery(s)}`"
 						>
-						<tag look="primary">{{s}}</tag>
+						<filter class="border border-purple-300/50 bg-purple-300/40 text-purple-50 hover:text-purple-50 hover:bg-purple-900 transition-colors duration-300 px-1.5 py-1 rounded focus:ring-inset focus:ring-2 focus:ring-purple-500 dark:border-purple-300/20 dark:bg-purple-300/10 dark:text-purple-300 dark:hover:bg-purple-300 dark:hover:text-purple-50">{{s}}</filter>
 					</nuxt-link>
 					<!-- quick search tags -->
 					<nuxt-link v-for="(t,index) in quickSearchTags" 
 						:key="index" 
 						:to="`/Recettes${t.tag_query}`"
 						>
-						<tag :look="t.tag_class">{{t.tag_title}}</tag>
+						<filter class="border border-purple-300/50 bg-purple-300/40 text-purple-50 hover:text-purple-50 hover:bg-purple-900 transition-colors duration-300 px-1.5 py-1 rounded focus:ring-inset focus:ring-2 focus:ring-purple-500 dark:border-purple-300/20 dark:bg-purple-300/10 dark:text-purple-300 dark:hover:bg-purple-300 dark:hover:text-purple-50">{{t.tag_title}}</filter>
 					</nuxt-link>
 				</div>
 				<!-- filters -->
@@ -181,6 +173,7 @@ import FeaturedArticles from '~/components/FeaturedArticles'
 import SearchBar from '~/components/SearchBar.vue'
 import SubmitButton from '~/molecules/SubmitButton.vue'
 import Tag from '~/molecules/Tag.vue'
+import Filter from '~/molecules/Filter.vue'
 import BigTitle from '~/molecules/BigTitle.vue'
 import LinkButton from '~/molecules/LinkButton.vue'
 import Spacer from '~/molecules/Spacer.vue'
@@ -195,6 +188,7 @@ export default {
 		SearchBar,
 		SubmitButton,
 		Tag,
+		Filter,
 		BigTitle,
 		LinkButton,
 		Spacer,

@@ -6,8 +6,8 @@
 					<!-- picture -->
 					<!-- TODO: check correct sizes for viewports -->
 					<!-- title -->
-					<h1 class="big-title">{{recipe.name}}</h1>
-					<p class="text-white-300 text-usual mb-3">
+					<h1 class="big-title text-balance">{{recipe.name}}</h1>
+					<p class="text-white-300 text-usual py-3">
 						par
 						<span v-if="recipe.authorWeb">
 							<a :href="recipe.authorWeb[0]" target="_blank" 
@@ -36,7 +36,7 @@
 					<div class="flex flex-col md:flex-row justify-between w-full noprint">
 						<!-- description -->
 						<div class="flex flex-col">
-							<p class="text-bigbig ">{{recipe.description}}</p>
+							<p class="text-bigbig text-balance">{{recipe.description}}</p>
 						</div>
 					</div>
 				</div>
@@ -145,7 +145,7 @@
 				<spacer size="lg"></spacer>
 
 				<!-- procedure -->
-				<h2>Procédure</h2>
+				<h2>Préparations</h2>
 				<spacer size="xs"></spacer>
 
 				<div v-html="procedure" class="text-big text-spacer"></div>
