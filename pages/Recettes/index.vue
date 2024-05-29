@@ -14,7 +14,7 @@
 
 			<!-- advanced search for desktop and mobile, displays selected filters as tags (extract this part ?) -->
 			<advanced-search @filtersChanged="filtersHaveChanged=true" @closePopup="mobileAdvancedSearch = false"
-				@triggerSearch="mobileAdvancedSearch = false, updateQuery()" :popupMobile="mobileAdvancedSearch" />
+				@triggerSearch="mobileAdvancedSearch = false" :popupMobile="mobileAdvancedSearch" />
 		</div>
 		<selected-filters @filtersChanged="filtersHaveChanged=true" />
 		<button @click="updateQuery" v-show="filtersHaveChanged" class="btn w-max" aria-label="Rechercher">

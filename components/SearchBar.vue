@@ -19,14 +19,8 @@
 <script>
 export default {
 	props: {
-		value: String,
 		placeholder: String,
 		required: String
-	},
-	data() {
-		return {
-			value: ''
-		}
 	},
 	computed: {
 		inputValue: {
@@ -36,11 +30,6 @@ export default {
 			set(value){
 				this.$store.commit('saveSearchQuery', value);
 			}
-		}
-	},
-	methods: {
-		saveSearchQuery(){
-			this.$store.commit('saveSearchQuery', this.value);
 		}
 	}
 }
