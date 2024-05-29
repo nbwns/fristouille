@@ -36,6 +36,7 @@ export default {
 	methods:{
 		removeTag(type, value){
 			this.$store.commit('removeFromFilters', {type, value});
+			this.$emit('filtersChanged');
 		}
 	}
 }

@@ -8,9 +8,11 @@
 					d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
 			</svg>
 		</div>
-		<input type="text" name="q" id="search-query-input"
+		<input 
+			type="text" name="q" id="search-query-input"
 			class="input-search text-usual"
-			:value="value" :placeholder="placeholder" @input="$emit('update:value', $event.target.value)" :required="required" />
+		 	:placeholder="placeholder" :required="required"
+			v-model="inputValue"  />
 	</div>
 </template>
 
@@ -20,6 +22,26 @@ export default {
 		value: String,
 		placeholder: String,
 		required: String
+	},
+	data() {
+		return {
+			value: ''
+		}
+	},
+	computed: {
+		inputValue: {
+			get(){
+				return this.$store.state.searchQuery;
+			},
+			set(value){
+				this.$store.commit('saveSearchQuery', value);
+			}
+		}
+	},
+	methods: {
+		saveSearchQuery(){
+			this.$store.commit('saveSearchQuery', this.value);
+		}
 	}
 }
 </script>

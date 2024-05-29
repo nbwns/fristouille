@@ -5,6 +5,7 @@ Vue.use(Vuex);
 //import VuexPersistence from 'vuex-persist'
 
 export const state = () => ({
+	searchQuery: '',
 	searchFilters: {
 		diet: [],
 		category:[],
@@ -17,6 +18,9 @@ export const state = () => ({
 });
 
 export const mutations = {
+	saveSearchQuery(state, value){
+		state.searchQuery = value;
+	},
 	saveSearchFilters(state, value){
 		state.searchFilters = value;
 	},

@@ -11,8 +11,8 @@
 				<!-- dropdown menus -->
 				<dropdown title="Choix alimentaire">
 					<checkbox-filter uid="Végétalien" ref="Végétalien" @check="filter('diet','Végétalien', $event)" :checked="checked('diet','Végétalien')">végétalien</checkbox-filter>
-					<checkbox-filter uid="Végétarien" ref="Végétarien" @check="filter('diet','Végétarien', $event, ['Végétalien'])" :checked="checked('diet','Végétarien')">végétarien</checkbox-filter>
-					<checkbox-filter uid="Omnivore" ref="Omnivore" @check="filter('diet','Omnivore', $event, ['Végétalien', 'Végétarien'])" :checked="checked('diet','Omnivore')">omnivore</checkbox-filter>
+					<checkbox-filter uid="Végétarien" ref="Végétarien" @check="filter('diet','Végétarien', $event)" :checked="checked('diet','Végétarien')">végétarien</checkbox-filter>
+					<checkbox-filter uid="Omnivore" ref="Omnivore" @check="filter('diet','Omnivore', $event)" :checked="checked('diet','Omnivore')">omnivore</checkbox-filter>
 				</dropdown>
 
 				<dropdown title="Catégorie">
@@ -82,8 +82,8 @@
 					<accordion title="Choix alimentaire" key="diet">
 						<div class="space-y-2 py-4">
 							<checkbox-filter uid="Végétalien-a" @check="filter('diet','Végétalien', $event)" :checked="checked('diet','Végétalien')">végétalien</checkbox-filter>
-							<checkbox-filter uid="Végétarien-a" @check="filter('diet','Végétarien', $event, ['Végétalien'])" :checked="checked('diet','Végétarien')">végétarien</checkbox-filter>
-							<checkbox-filter uid="Omnivore-a" @check="filter('diet','Omnivore', $event, ['Végétalien', 'Végétarien'])" :checked="checked('diet','Omnivore')">omnivore</checkbox-filter>
+							<checkbox-filter uid="Végétarien-a" @check="filter('diet','Végétarien', $event)" :checked="checked('diet','Végétarien')">végétarien</checkbox-filter>
+							<checkbox-filter uid="Omnivore-a" @check="filter('diet','Omnivore', $event)" :checked="checked('diet','Omnivore')">omnivore</checkbox-filter>
 						</div>
 					</accordion>
 
@@ -185,12 +185,13 @@ export default {
 			if(event.target.checked){
 				this.$store.commit('addToFilters', {type, value});
 				moreValues.forEach(v => {
-					this.$store.commit('addToFilters', {type: type, value: v})
+					this.$store.commit('addToFilters', {type: type, value: v});
 				});
 			}
 			else{
 				this.$store.commit('removeFromFilters', {type, value});
 			}
+			this.$emit('filtersChanged')
 		},
 		toggleDropdown(type){
 			this.dropdowns[type] = !this.dropdowns[type];

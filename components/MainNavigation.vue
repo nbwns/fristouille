@@ -9,7 +9,7 @@
           <nuxt-link class="navlink" to="/astuces" no-prefetch>Astuces</nuxt-link>
           <form class="flex items-center gap-5" action="/Recettes">
             <div class="relative w-full">
-              <search-bar value="" placeholder="Rechercher" required="true"></search-bar>
+              <search-bar placeholder="Rechercher" required="true"></search-bar>
             </div>
           </form>
         </div>
@@ -33,6 +33,11 @@ export default {
     Logo,
     SearchBar
 
+  },
+  computed: {
+    searchQuery(){
+      return this.$store.state.searchQuery;
+    }
   },
   mounted() {
     //console.log(this.$route.path)

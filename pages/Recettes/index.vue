@@ -13,10 +13,13 @@
 
 
 			<!-- advanced search for desktop and mobile, displays selected filters as tags (extract this part ?) -->
-			<advanced-search @filtersChanged="setFilterQuery" @closePopup="mobileAdvancedSearch = false"
+			<advanced-search @filtersChanged="filtersHaveChanged=true" @closePopup="mobileAdvancedSearch = false"
 				@triggerSearch="mobileAdvancedSearch = false, updateQuery()" :popupMobile="mobileAdvancedSearch" />
 		</div>
-		<selected-filters />
+		<selected-filters @filtersChanged="filtersHaveChanged=true" />
+		<button @click="updateQuery" v-show="filtersHaveChanged" class="btn w-max" aria-label="Rechercher">
+				appliquer les filtres
+		</button>
 		<div class="flex flex-row my-4 md:hidden">
 			<!-- search button -->
 			<button @click="updateQuery" class="btn w-max" aria-label="Rechercher">
@@ -208,6 +211,7 @@ export default {
 			noSearchParameters: false,
 			mobileAdvancedSearch: false,
 			searchPerformed: false,
+			filtersHaveChanged: false,
 			historyChanged: false
 		}
 	},
@@ -215,6 +219,9 @@ export default {
 		//get filters from the store
 		searchFilters() {
 			return this.$store.state.searchFilters;
+		},
+		searchQuery() {
+			return this.$store.state.searchQuery;
 		}
 	},
 	methods: {
@@ -251,9 +258,10 @@ export default {
 
 		},
 		updateQuery() {
-			this.query = this.$refs.searchField.value;
+			this.query = this.searchQuery;//this.$refs.searchField.value;
 			this.setFilterQuery();
 			this.searchPerformed = true;
+			this.filtersHaveChanged = false;
 			if (!this.query && !this.filterQuery) {
 				this.noSearchParameters = true;
 			}
