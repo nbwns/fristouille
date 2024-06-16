@@ -35,6 +35,9 @@ export const mutations = {
 			state.searchFilters[filter.type].splice(index, 1); 
 		}
 	},
+	applyFilters(state, value){
+		state.searchFilters = value;
+	},
 	toggleDarkMode(state, value){
 		state.dark = value;
 	}

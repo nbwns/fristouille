@@ -13,13 +13,11 @@
 
 
 			<!-- advanced search for desktop and mobile, displays selected filters as tags (extract this part ?) -->
-			<advanced-search @filtersChanged="filtersHaveChanged=true" @closePopup="mobileAdvancedSearch = false"
+			<advanced-search @filtersChanged="updateQuery" @closePopup="mobileAdvancedSearch = false"
 				@triggerSearch="mobileAdvancedSearch = false" :popupMobile="mobileAdvancedSearch" />
 		</div>
 		<selected-filters @filtersChanged="filtersHaveChanged=true" />
-		<button @click="updateQuery" v-show="filtersHaveChanged" class="btn w-max" aria-label="Rechercher">
-				appliquer les filtres
-		</button>
+		
 		<div class="flex flex-row my-4 md:hidden">
 			<!-- search button -->
 			<button @click="updateQuery" class="btn w-max" aria-label="Rechercher">

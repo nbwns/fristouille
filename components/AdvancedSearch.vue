@@ -149,6 +149,10 @@
 					</accordion>
 			</div>
 		</div>
+
+		<button @click="applyFilters" class="btn w-max" aria-label="Rechercher">
+				appliquer les filtres
+		</button>
   </div>
 </template>
 
@@ -169,6 +173,18 @@ export default {
 			return this.$store.state.searchFilters;
 		}
 	},
+	data(){
+		return {
+			selectedFilters: {
+				diet: [],
+				category:[],
+				free: [],
+				cuisine: [],
+				months: [],
+				baseRecipe: []
+			}
+		}
+	},
 	methods:{
 		checked(type,value){
 			//to change the checked property with values from the store
@@ -183,18 +199,32 @@ export default {
 		},
 		filter(type, value, event, moreValues = []){
 			if(event.target.checked){
-				this.$store.commit('addToFilters', {type, value});
+				this.addToFilters({type, value});
 				moreValues.forEach(v => {
-					this.$store.commit('addToFilters', {type: type, value: v});
+					this.addToFilters({type: type, value: v});
 				});
 			}
 			else{
-				this.$store.commit('removeFromFilters', {type, value});
+				this.removeFromFilters({type, value});
 			}
-			this.$emit('filtersChanged')
 		},
 		toggleDropdown(type){
 			this.dropdowns[type] = !this.dropdowns[type];
+		},
+		addToFilters(filter){
+			if(!this.selectedFilters[filter.type].includes(filter.value)){
+				this.selectedFilters[filter.type].push(filter.value);
+			}
+		},
+		removeFromFilters(filter){
+			const index = this.selectedFilters[filter.type].indexOf(filter.value);
+			if (index > -1) {
+				this.selectedFilters[filter.type].splice(index, 1); 
+			}
+		},
+		applyFilters(){
+			this.$store.commit('applyFilters', this.selectedFilters);
+			this.$emit('filtersChanged')
 		}
 	}
 }
