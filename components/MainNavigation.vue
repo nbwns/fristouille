@@ -7,7 +7,7 @@
           <nuxt-link class="navlink" to="/" no-prefetch exact>Accueil</nuxt-link>
           <nuxt-link class="navlink" to="/recettes" no-prefetch>Recettes</nuxt-link>
           <nuxt-link class="navlink" to="/astuces" no-prefetch>Astuces</nuxt-link>
-          <form class="flex items-center gap-5" action="/Recettes">
+          <form class="flex items-center gap-5" action="/Recettes" @submit="checkRoute">
             <div class="relative w-full">
               <search-bar placeholder="Rechercher" required="true"></search-bar>
             </div>
@@ -39,8 +39,14 @@ export default {
       return this.$store.state.searchQuery;
     }
   },
-  mounted() {
-    //console.log(this.$route.path)
+  methods: {
+	checkRoute(e){
+		//if we hit search on the recipe page, do not submit the form and trigger the search (the 'togglesearch' must change each time)
+		if(this.$route.path.toLowerCase() === "/recettes"){
+			e.preventDefault();
+			this.$store.commit('toggleSearchFromBar', `query:${this.searchQuery}`);
+		}
+	}
   }
 }
 </script>

@@ -16,14 +16,13 @@
 			<advanced-search @filtersChanged="updateQuery" @closePopup="mobileAdvancedSearch = false"
 				@triggerSearch="mobileAdvancedSearch = false" :popupMobile="mobileAdvancedSearch" />
 		</div>
-		<selected-filters @filtersChanged="filtersHaveChanged=true" />
 		
-		<div class="flex flex-row my-4 md:hidden">
-			<!-- search button -->
+		
+		<!-- <div class="flex flex-row my-4 md:hidden">
 			<button @click="updateQuery" class="btn w-max" aria-label="Rechercher">
 				rechercher
 			</button>
-		</div>
+		</div> -->
 
 		<!-- warning -->
 		<div v-if="noSearchParameters" class="text-usual">
@@ -87,7 +86,6 @@
 				<ais-pagination @page-change="pageChange">
 					<template v-slot="{
 						currentRefinement,
-						nbPages,
 						pages,
 						isFirstPage,
 						isLastPage,
@@ -146,7 +144,6 @@ import algoliaSearch from 'algoliasearch/lite'
 import CardRecipe from '~/components/CardRecipe.vue';
 import AdvancedSearch from '~/components/AdvancedSearch.vue'
 import NormalTitle from '~/molecules/TitleParagraph.vue';
-import SelectedFilters from '~/components/SelectedFilters.vue';
 import GridOfCardsRecipes from '~/components/GridOfCardsRecipes.vue';
 
 import { history as historyRouter } from 'instantsearch.js/es/lib/routers';
@@ -160,7 +157,6 @@ export default {
 		AisHits,
 		AisPagination,
 		NormalTitle,
-		SelectedFilters,
 		GridOfCardsRecipes
 	},
 	watch: {
@@ -220,6 +216,9 @@ export default {
 		},
 		searchQuery() {
 			return this.$store.state.searchQuery;
+		},
+		toggleSearchFromBar(){
+			return this.$store.state.launchSearchFromBar;
 		}
 	},
 	methods: {
@@ -321,8 +320,9 @@ export default {
 				baseRecipe: this.sanitizeQueryParameter(this.$route, "baseRecipe"),
 			};
 
-			//save search filters into the store
+			//save search filters and query into the store
 			this.$store.commit('saveSearchFilters', this.searchFiltersFromUrl);
+			this.$store.commit('saveSearchQuery', this.query);
 
 			//take searchFilters from the URL, build the Algolia filter query and triggers search if non-empty
 			this.filterQuery = this.buildFilterQuery(this.searchFiltersFromUrl);
@@ -333,6 +333,11 @@ export default {
 		},
 		pageChange() {
 			document.body.scrollIntoView();
+		}
+	},
+	watch:{
+		toggleSearchFromBar(newValue, oldValue){
+			this.updateQuery();
 		}
 	},
 	mounted() {

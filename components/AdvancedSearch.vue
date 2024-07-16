@@ -150,9 +150,26 @@
 			</div>
 		</div>
 
-		<button @click="applyFilters" class="btn w-max" aria-label="Rechercher">
+		<button @click="applyFilters" class="btn w-max" aria-label="Rechercher" v-show="showApplyFiltersButton">
 				appliquer les filtres
 		</button>
+
+		<!-- selected filters -->
+		<div class="wrap_mobile_filters" v-if="showSelectedFilters">
+			<!-- loop on all filter categories -->
+			<div v-for="(type, name) in selectedFilters" :key="name" class="flex flex-row my-5 gap-3">
+				<tag v-for="f in type" class="cursor-pointer" :key="f" look="primary" @click="removeFromFilters({type:name,value:f})">
+					{{ f.replaceAll("'","").replaceAll("-", " ") }}
+					<span class="inset-y-0 right-0 flex items-center pr-2 flex-1">
+						<svg viewBox="0 0 20 20" class="fill-white-200 h-5 w-5" xmlns="http://www.w3.org/2000/svg">
+						<path
+							d="M6.98964 5L10.9148 8.92498L14.84 5L15.8301 5.99002L11.9049 9.915L15.8301 13.84L14.84 14.83L10.9148 10.905L6.98964 14.83L5.99957 13.84L9.92475 9.915L5.99957 5.99002L6.98964 5Z"
+							fill="#F3EEE6" />
+						</svg>
+					</span>
+				</tag>
+			</div>
+	</div>
   </div>
 </template>
 
@@ -160,37 +177,46 @@
 import Dropdown from '~/components/Dropdown.vue'
 import Accordion from '~/components/Accordion.vue'
 import CheckboxFilter from '~/molecules/CheckboxFilter.vue'
+import Tag from '~/molecules/Tag.vue'
+
  
 export default {
 	components:{
 		Dropdown,
 		Accordion,
-		CheckboxFilter
+		CheckboxFilter,
+		Tag
 	},
 	props: ["popupMobile"],
 	computed:{
-		searchFilters(){
+		selectedFilters(){
+			//filter properties which don't contain any value
+			console.log("selectedfilters", this.storeFilters);
+			return Object.fromEntries(Object.entries(this.filters).filter(([key, value]) => value.length > 0));
+		},
+		storeFilters(){
 			return this.$store.state.searchFilters;
 		}
 	},
 	data(){
 		return {
-			selectedFilters: {
+			filters: {
 				diet: [],
 				category:[],
 				free: [],
 				cuisine: [],
 				months: [],
 				baseRecipe: []
-			}
+			},
+			showApplyFiltersButton: true,
+			showSelectedFilters: false
 		}
 	},
 	methods:{
 		checked(type,value){
-			//to change the checked property with values from the store
-			if(this.searchFilters && this.searchFilters[type]){
+			if(this.filters && this.filters[type]){
 				//search
-				const index = this.searchFilters[type].indexOf(value);
+				const index = this.filters[type].indexOf(value);
 				if (index > -1) {
 					return true;
 				}
@@ -212,19 +238,28 @@ export default {
 			this.dropdowns[type] = !this.dropdowns[type];
 		},
 		addToFilters(filter){
-			if(!this.selectedFilters[filter.type].includes(filter.value)){
-				this.selectedFilters[filter.type].push(filter.value);
+			if(!this.filters[filter.type].includes(filter.value)){
+				this.filters[filter.type].push(filter.value);
 			}
+			this.showApplyFiltersButton = true;
 		},
 		removeFromFilters(filter){
-			const index = this.selectedFilters[filter.type].indexOf(filter.value);
+			const index = this.filters[filter.type].indexOf(filter.value);
 			if (index > -1) {
-				this.selectedFilters[filter.type].splice(index, 1); 
+				this.filters[filter.type].splice(index, 1); 
 			}
+			this.showApplyFiltersButton = true;
 		},
 		applyFilters(){
-			this.$store.commit('applyFilters', this.selectedFilters);
-			this.$emit('filtersChanged')
+			this.$store.commit('saveSearchFilters', this.filters);
+			this.$emit('filtersChanged');
+		}
+	},
+	watch : {
+		storeFilters(newValue, oldValue){
+			this.filters = JSON.parse(JSON.stringify(newValue));
+			this.showSelectedFilters = true;
+			this.showApplyFiltersButton = false;
 		}
 	}
 }

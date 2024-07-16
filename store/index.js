@@ -14,7 +14,8 @@ export const state = () => ({
 		months: [],
 		baseRecipe: []
 	},
-	dark: false
+	dark: false,
+	launchSearchFromBar: false
 });
 
 export const mutations = {
@@ -22,7 +23,8 @@ export const mutations = {
 		state.searchQuery = value;
 	},
 	saveSearchFilters(state, value){
-		state.searchFilters = value;
+		//to make sure that's a deep copy
+		state.searchFilters = JSON.parse(JSON.stringify(value));
 	},
 	addToFilters(state, filter){
 		if(!state.searchFilters[filter.type].includes(filter.value)){
@@ -35,10 +37,10 @@ export const mutations = {
 			state.searchFilters[filter.type].splice(index, 1); 
 		}
 	},
-	applyFilters(state, value){
-		state.searchFilters = value;
-	},
 	toggleDarkMode(state, value){
 		state.dark = value;
+	},
+	toggleSearchFromBar(state, value){
+		state.launchSearchFromBar = value;
 	}
 }
