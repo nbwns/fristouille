@@ -1,1 +1,1 @@
-/recettes/:ingredient  /recettes/q?:ingredient
+/recettes/:ingredient  /recettes?q=:ingredient
