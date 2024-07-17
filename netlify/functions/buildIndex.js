@@ -8,9 +8,7 @@ exports.handler = async function(event, context) {
 	const ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID;
 	const ALGOLIA_API_KEY = process.env.ALGOLIA_API_KEY;
 	const ALGOLIA_INDEX_NAME = process.env.ALGOLIA_INDEX_NAME;
-	const GRAPHQL_ENDPOINT = process.env.GRAPHQL_ENDPOINT;
 	const QUERY_FUNCTION = process.env.QUERY_FUNCTION;
-	console.log("query function", QUERY_FUNCTION);
 
 	// Start the API client
 	const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_API_KEY);
@@ -21,7 +19,7 @@ exports.handler = async function(event, context) {
 
 	//get recipes 
 	return axios({
-		url: QUERY_FUNCTION,
+		url: `${QUERY_FUNCTION}?filter=published`,
 		method: "get"
 	}).then((result) => {
 		console.log("Numbers of results", result.data.length)

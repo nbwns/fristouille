@@ -235,16 +235,16 @@
 						<div class="flex flex-row space-x-2 items-center">
 							<!-- seasons tags -->
 							<nuxt-link v-for="s in currentSeasons" :key="s" :to="`/Recettes?${getSeasonQuery(s)}`">
-								<filter
+								<quick-filter
 									class="text-base border border-purple-300/50 bg-purple-300/40 text-purple-50 hover:text-purple-50 hover:bg-purple-900 transition-colors duration-300 px-2.5 py-2 rounded focus:ring-inset focus:ring-2 focus:ring-purple-500 dark:border-purple-300/20 dark:bg-purple-300/10 dark:text-purple-300 dark:hover:bg-purple-300 dark:hover:text-purple-50">
-									{{ s }}</filter>
+									{{ s }}</quick-filter>
 							</nuxt-link>
 							<!-- quick search tags -->
 							<nuxt-link v-for="(t, index) in quickSearchTags" :key="index"
 								:to="`/Recettes${t.tag_query}`">
-								<filter
+								<quick-filter
 									class="text-base border border-purple-300/50 bg-purple-300/40 text-purple-50 hover:text-purple-50 hover:bg-purple-900 transition-colors duration-300 px-2.5 py-2 rounded focus:ring-inset focus:ring-2 focus:ring-purple-500 dark:border-purple-300/20 dark:bg-purple-300/10 dark:text-purple-300 dark:hover:bg-purple-300 dark:hover:text-purple-50">
-									{{ t.tag_title }}</filter>
+									{{ t.tag_title }}</quick-filter>
 							</nuxt-link>
 						</div>
 						<!-- filters -->
@@ -275,7 +275,7 @@ import FeaturedArticles from '~/components/FeaturedArticles'
 import SearchBar from '~/components/SearchBar.vue'
 import SubmitButton from '~/molecules/SubmitButton.vue'
 import Tag from '~/molecules/Tag.vue'
-import Filter from '~/molecules/Filter.vue'
+import QuickFilter from '~/molecules/Filter.vue'
 import BigTitle from '~/molecules/BigTitle.vue'
 import LinkButton from '~/molecules/LinkButton.vue'
 import Spacer from '~/molecules/Spacer.vue'
@@ -290,7 +290,7 @@ export default {
 		SearchBar,
 		SubmitButton,
 		Tag,
-		Filter,
+		QuickFilter,
 		BigTitle,
 		LinkButton,
 		Spacer,

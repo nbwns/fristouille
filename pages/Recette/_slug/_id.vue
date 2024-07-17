@@ -10,25 +10,21 @@
 					<p class="text-white-300 text-usual py-3">
 						par
 						<span v-if="recipe.authorWeb">
-							<a :href="recipe.authorWeb[0]" target="_blank" 
-							class="text-base font-inter text-orange-300 dark:text-purple-300 hover:cursor-pointer hover:underline focus:text-orange-200 dark:focus:text-purple-200">
-							{{recipe.authorName[0]}}
-						</a>
-					</span>
-					<span v-else>
-						{{recipe.authorName[0]}}
-					</span>
+							<a :href="recipe.authorWeb" target="_blank" 
+								class="text-base font-inter text-orange-300 dark:text-purple-300 hover:cursor-pointer hover:underline focus:text-orange-200 dark:focus:text-purple-200">
+								{{recipe.authorName}}
+							</a>
+						</span>
+						<span v-else>
+							{{recipe.authorName}}
+						</span>
 				</p>
 				<spacer size="xs"></spacer>	
 
 				<div class="w-full">
-					<nuxt-img v-if="recipe.picture"
+					<img v-if="recipe.picture"
 						class="object-cover max-h-56 md:max-h-64 lg:max-h-72 xl:max-h-96 w-full rounded-md noprint"
-						fit="cover"
 						:src="recipe.picture"
-						quality="80"
-						sizes="sm:100vw md:50vw lg:960px"
-						placeholder
 						:alt="`Photo d'un plat de ${recipe.name}`" />
 					
 				</div>
@@ -41,10 +37,6 @@
 					</div>
 				</div>
 				<spacer size="md"></spacer>
-
-
-				<h2>Caractéristiques</h2>
-				<spacer size="xs"></spacer>
 
 				<div class="flex w-full justify-between gap-5">
 					<!-- prep time and cook time -->
@@ -145,7 +137,7 @@
 				<spacer size="lg"></spacer>
 
 				<!-- procedure -->
-				<h2>Préparations</h2>
+				<h2>Préparation</h2>
 				<spacer size="xs"></spacer>
 
 				<div v-html="procedure" class="text-big text-spacer"></div>
@@ -288,7 +280,7 @@ export default {
 			this.servings++;
 		}
     },
-    async asyncData({ params, error, payload, $axios, $config: { graphqlEndpoint }, $prismic }){
+    async asyncData({ params, error, payload, $axios, $config: { queryFunction }, $prismic }){
         console.log("params",params)
         if (payload){
         	console.log("payload",payload.name);
@@ -311,15 +303,11 @@ export default {
             if(params.id){
 				console.log("fetchRecipe", params.id);
 				const res = await $axios({
-						url: graphqlEndpoint,
-						method: "post",
-						data: {
-							query: queries.getRecipeDetails(params.id),
-						},
+						url: `${queryFunction}?filter=${params.id}`,
+						method: "get"
 					})
-				if(res.data.data && res.data.data.recettes[0]){
-					let recipe = res.data.data && res.data.data.recettes[0];
-					console.log(recipe);
+				if(res.data && res.data.length > 0){
+					let recipe = res.data[0];
 					let article = null;
 
 					let compositions = JSON.parse(recipe.compositionsJson);

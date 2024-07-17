@@ -4,14 +4,39 @@ exports.handler = async function(event, context) {
 
 	dotenv.config();
 
+	let params = null;
+	const filter = event.queryStringParameters.filter;
+
+	if(filter === "published"){
+		params = {
+			view: "Publiées"
+		}
+	}
+	else if(!Number.isNaN(filter)){
+		params = {
+			filterByFormula: `{recipeId} = '${filter}'`
+		  }
+	}
+	else{
+		return {
+			statusCode: 500,
+			headers:  {
+				'Access-Control-Allow-Origin': '*',
+				  'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+				  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({error: "invalid parameter"})
+		};
+	}
+
 	var base = new Airtable({apiKey: process.env.AIRTABLE_TOKEN}).base('appI7jFWaljyfkpVd');
 	
 	async function getRecordsFromAirtable() {
 		let recordsArray = [];
 	
-		await base('Recettes').select({
-			view: "Publiées"
-		}).eachPage((records, fetchNextPage) => {
+		await base('Recettes').select(params)
+		.eachPage((records, fetchNextPage) => {
 			//transform records
 			let recipes = []
 			

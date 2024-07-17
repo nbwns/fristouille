@@ -5,13 +5,12 @@ exports.handler = async function(event, context) {
 	dotenv.config();
 
 	const QUERY_FUNCTION = process.env.QUERY_FUNCTION;
-	console.log("query function", QUERY_FUNCTION);
 
 	console.log("Fetching recipes from query function...");
 	
 	//get recipes 
 	return axios({
-		url: QUERY_FUNCTION,
+		url: `${QUERY_FUNCTION}?filter=published`,
 		method: "get"
 	}).then((result) => {
 		console.log("Numbers of results", result.data.length)

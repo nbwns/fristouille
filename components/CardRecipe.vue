@@ -16,9 +16,6 @@
 							:title="diet"> {{ diet }}
 						</tag>
 					</div>
-					<p class="text-small">
-						{{ author }}
-					</p>
 				</div>
 			</div>
 		</nuxt-link>

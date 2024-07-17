@@ -1,5 +1,4 @@
 import axios from 'axios';
-import queries from './plugins/queries';
 import smConfig from "./sm.json";
 import { getStoriesPaths } from "slice-machine-ui/helpers/storybook";
 export default {
@@ -33,7 +32,6 @@ export default {
   components: true,
 
   publicRuntimeConfig: {
-    graphqlEndpoint: process.env.GRAPHQL_ENDPOINT,
 	algoliaApiKey: process.env.ALGOLIA_API_KEY,
 	algoliaAppId: process.env.ALGOLIA_APP_ID,
 	searchIndexFunction: process.env.SEARCH_INDEX_FUNCTION,
@@ -147,13 +145,9 @@ export default {
   generate: {
     routes(){
       console.log("generate");
-      console.log("query function", process.env.QUERY_FUNCTION);
       let recettes = axios({
-        url: process.env.QUERY_FUNCTION,
-        method: "get",
-        // data: {
-        //   query: queries.generateRecipes(),
-        // }
+        url: `${QUERY_FUNCTION}?filter=published`,
+        method: "get"
       }).then((result) => {
         return result.data.map(recette => {
           console.log(recette)
