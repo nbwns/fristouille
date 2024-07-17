@@ -26,7 +26,7 @@ export default {
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/queries', '@/plugins/vue-instantsearch.js', { src: '~/plugins/pwa-update.js', mode: 'client' }],
+  plugins: ['@/plugins/vue-instantsearch.js', { src: '~/plugins/pwa-update.js', mode: 'client' }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

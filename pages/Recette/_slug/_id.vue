@@ -26,7 +26,6 @@
 						class="object-cover max-h-56 md:max-h-64 lg:max-h-72 xl:max-h-96 w-full rounded-md noprint"
 						:src="recipe.picture"
 						:alt="`Photo d'un plat de ${recipe.name}`" />
-					
 				</div>
 					<spacer size="xs"></spacer>
 					<div class="flex flex-col md:flex-row justify-between w-full noprint">
@@ -218,7 +217,6 @@
 
 <script>
 import {marked} from 'marked'
-import queries from '~/plugins/queries'
 import labels from '~/plugins/labels'
 import { DateTime } from "luxon";
 import Tag from '~/molecules/Tag.vue';
