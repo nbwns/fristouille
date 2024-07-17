@@ -146,7 +146,7 @@ export default {
     routes(){
       console.log("generate");
       let recettes = axios({
-        url: `${QUERY_FUNCTION}?filter=published`,
+        url: `${process.env.QUERY_FUNCTION}?filter=published`,
         method: "get"
       }).then((result) => {
         return result.data.map(recette => {
