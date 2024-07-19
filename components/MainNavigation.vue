@@ -42,7 +42,7 @@ export default {
   methods: {
 	checkRoute(e){
 		//if we hit search on the recipe page, do not submit the form and trigger the search (the 'togglesearch' must change each time)
-		if(this.$route.path.toLowerCase() === "/recettes"){
+		if(this.$route.path.toLowerCase().startsWith("/recettes")){
 			e.preventDefault();
 			this.$store.commit('toggleSearchFromBar', `query:${this.searchQuery}`);
 		}
