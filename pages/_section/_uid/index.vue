@@ -97,8 +97,6 @@ export default {
 		const document = (await $prismic.api.getByUID('childpage', params.uid));
 		const page = document.data;
 
-		//console.log(page);
-
 		if(page.parent_page.id){
 
 			//Get parent page in order to create a breadcrumb

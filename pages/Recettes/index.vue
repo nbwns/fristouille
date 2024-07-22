@@ -13,8 +13,10 @@
 
 
 			<!-- advanced search for desktop and mobile, displays selected filters as tags (extract this part ?) -->
-			<advanced-search @filtersChanged="updateQuery" @closePopup="mobileAdvancedSearch = false"
-				@triggerSearch="mobileAdvancedSearch = false" :popupMobile="mobileAdvancedSearch" />
+			<advanced-search @filtersChanged="updateQuery" 
+				@closePopup="mobileAdvancedSearch = false"
+				@triggerSearch="mobileAdvancedSearch = false" 
+				:popupMobile="mobileAdvancedSearch" />
 		</div>
 		
 		
@@ -159,46 +161,11 @@ export default {
 		NormalTitle,
 		GridOfCardsRecipes
 	},
-	watch: {
-		$route(to, from) {
-			console.log('route change to', to)
-			console.log('route change from', from)
-			console.log("query change");
-
-			// this.historyChanged = true;
-			// this.query = to.query.q;
-			// this.page = to.query.page || 0;
-
-
-		}
-	},
 	data() {
 		return {
 			indexName,
 			query: '',
 			searchClient: algoliaSearch(this.$config.algoliaAppId, this.$config.algoliaApiKey),
-			routing: {
-				read() {
-					/* read from the URL and return a routeState */
-					console.log("routing read");
-				},
-				write(routeState) {
-					/* write to the URL */
-					console.log("routing wrie");
-				},
-				createURL(routeState) {
-					/* return a URL as a string */
-					console.log("routing create url");
-				},
-				onUpdate(callback) {
-					/* call this callback whenever the URL changed externally */
-					console.log("routing onupdate");
-				},
-				dispose() {
-					/* remove any listeners */
-					console.log("routing dispose");
-				},
-			},
 			filterQuery: '',
 			searchFiltersFromUrl: null,
 			page: 0,
@@ -224,17 +191,12 @@ export default {
 	methods: {
 		//triggered on button click
 		search(helper) {
-			console.log("INIT SEARCH")
 			this.setFilterQuery();
-			console.log("search query", helper.state.query);
-			console.log("filter query", this.filterQuery);
 			if (helper.state.query || (!helper.state.query && this.filterQuery != '')) {
 				//trigger search - without reloading the page
-				console.log("trigger search");
 				helper.search();
 				this.searchPerformed = true;
 				//put search parameters in query string
-				console.log("route push");
 				this.$router.push({
 					path: this.$route.path,
 					query: {
@@ -255,7 +217,7 @@ export default {
 
 		},
 		updateQuery() {
-			this.query = this.searchQuery;//this.$refs.searchField.value;
+			this.query = this.searchQuery;
 			this.setFilterQuery();
 			this.searchPerformed = true;
 			this.filtersHaveChanged = false;

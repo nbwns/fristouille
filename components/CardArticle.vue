@@ -21,7 +21,6 @@
 			</div>
 			<div class="p-5 space-y-2">
 				<h4 class="text-big text-pretty sm:text-balance max-w-xs">{{ title }}</h4>
-				<p class="text-sm">auteur</p>
 			</div>
 		</nuxt-link>
 	</div>
