@@ -60,14 +60,8 @@
 			
 		</div>
 		<!-- mobile advanced search -->
-		<!-- TODO: make popup -->
 		<div class="md:hidden flex flex-grow flex-col w-auto pt-2" v-show="popupMobile">
-			<!-- header -->
-			<!-- <div class="inline-block">
-				<div @click="$emit('closePopup')">fermer</div>
-				<div><strong>filtres</strong></div>
-				<div @click="$emit('triggerSearch')">OK</div>
-			</div> -->
+			<!-- header -->			
 			<!-- accordions -->
 			<div class="flex-col">
 					<accordion title="Choix alimentaire" key="diet" :numberOfItemsSelected="numberOfItemsSelected('diet')">
@@ -164,7 +158,6 @@ import Dropdown from '~/components/Dropdown.vue'
 import Accordion from '~/components/Accordion.vue'
 import CheckboxFilter from '~/molecules/CheckboxFilter.vue'
 import Tag from '~/molecules/Tag.vue'
-
  
 export default {
 	components:{
