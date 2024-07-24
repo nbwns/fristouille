@@ -7,6 +7,11 @@
 					<div class="text-big ">
 						{{ title }}
 					</div>
+					<!-- 
+						Display number of selected (v-if="numberOfItemsSelected > 0") )
+						{{ numberOfItemsSelected }} 
+				 
+					-->
 					<div class="accordion-icon">
 						<!-- plus small -->
 						<svg v-if="!visible" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3"
@@ -41,7 +46,7 @@
 <script>
 export default {
 
-	props: ['title'],
+	props: ['title', 'numberOfItemsSelected'],
 	data() {
 		return {
 			visible: false

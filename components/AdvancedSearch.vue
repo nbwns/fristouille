@@ -9,13 +9,13 @@
 		<div class="hidden md:flex flex-grow md:w-auto pt-2 justify-between ">
 			<div class="flex flex-grow text-lg text-white-200 rounded-xs font-inter capitalize font-medium justify-between ">
 				<!-- dropdown menus -->
-				<dropdown title="Choix alimentaire">
+				<dropdown title="Choix alimentaire" :numberOfItemsSelected="numberOfItemsSelected('diet')">
 					<checkbox-filter uid="Végétalien" ref="Végétalien" @check="filter('diet','Végétalien', $event)" :checked="checked('diet','Végétalien')">végétalien</checkbox-filter>
 					<checkbox-filter uid="Végétarien" ref="Végétarien" @check="filter('diet','Végétarien', $event)" :checked="checked('diet','Végétarien')">végétarien</checkbox-filter>
 					<checkbox-filter uid="Omnivore" ref="Omnivore" @check="filter('diet','Omnivore', $event)" :checked="checked('diet','Omnivore')">omnivore</checkbox-filter>
 				</dropdown>
 
-				<dropdown title="Type de plat">
+				<dropdown title="Type de plat" :numberOfItemsSelected="numberOfItemsSelected('category')">
 					<checkbox-filter uid="Entrée" ref="Entrée" @check="filter('category','Entrée', $event)" :checked="checked('category','Entrée')">entrée</checkbox-filter>
 					<checkbox-filter uid="Plat" ref="Plat" @check="filter('category','Plat', $event)" :checked="checked('category','Plat')">plat</checkbox-filter>
 					<checkbox-filter uid="Accompagnement" ref="Accompagnement" @check="filter('category','Accompagnement', $event)" :checked="checked('category','Accompagnement')">accompagnement</checkbox-filter>
@@ -24,7 +24,7 @@
 					<checkbox-filter uid="Petit déjeuner" ref="'Petit déjeuner'" @check="filter('category','\'Petit déjeuner\'', $event)" :checked="checked('category','\'Petit déjeuner\'')">petit déjeuner</checkbox-filter>
 				</dropdown>
 
-				<dropdown title="Allergie">
+				<dropdown title="Allergie" :numberOfItemsSelected="numberOfItemsSelected('free')">
 					<checkbox-filter uid="Arachide" ref="Arachide" @check="filter('free','Arachide', $event)" :checked="checked('free','Arachide')">arachide</checkbox-filter>
 					<checkbox-filter uid="Gluten" ref="Gluten" @check="filter('free','Gluten', $event)" :checked="checked('free','Gluten')">gluten</checkbox-filter>
 					<checkbox-filter uid="'Fruit à coque'" ref="'Fruit à coque'" @check="filter('free','Fruit à coque', $event)" :checked="checked('free','Fruit à coque')">fruit à coque</checkbox-filter>
@@ -33,7 +33,7 @@
 					<checkbox-filter uid="Soja" ref="Soja" @check="filter('free','Soja', $event)" :checked="checked('free','Soja')">soja</checkbox-filter>
 				</dropdown>
 
-				<dropdown title="Cuisine">
+				<dropdown title="Cuisine" :numberOfItemsSelected="numberOfItemsSelected('cuisine')">
 					<checkbox-filter uid="Asiatique" ref="Asiatique" @check="filter('cuisine','Asiatique', $event)" :checked="checked('cuisine','Asiatique')">asiatique</checkbox-filter>
 					<checkbox-filter uid="Américaine" ref="Américaine" @check="filter('cuisine','Américaine', $event)" :checked="checked('cuisine','Américaine')">américaine</checkbox-filter>
 					<checkbox-filter uid="Italienne" ref="Italienne" @check="filter('cuisine','Italienne', $event)" :checked="checked('cuisine','Italienne')">italienne</checkbox-filter>
@@ -42,7 +42,7 @@
 					<checkbox-filter uid="Indienne" ref="Indienne" @check="filter('cuisine','Indienne', $event)" :checked="checked('cuisine','Indienne')">indienne</checkbox-filter>
 				</dropdown>
 
-				<dropdown title="Saison">
+				<dropdown title="Saison" :numberOfItemsSelected="numberOfItemsSelected('months')">
 					<checkbox-filter uid="1-a" @check="filter('months','Janvier', $event)" :checked="checked('months','Janvier')">janvier</checkbox-filter>
 					<checkbox-filter uid="2-a" @check="filter('months','Février', $event)" :checked="checked('months','Février')">février</checkbox-filter>
 					<checkbox-filter uid="3-a" @check="filter('months','Mars', $event)" :checked="checked('months','Mars')">mars</checkbox-filter>
@@ -70,7 +70,7 @@
 			</div> -->
 			<!-- accordions -->
 			<div class="flex-col">
-					<accordion title="Choix alimentaire" key="diet">
+					<accordion title="Choix alimentaire" key="diet" :numberOfItemsSelected="numberOfItemsSelected('diet')">
 						<div class="space-y-2 py-4">
 							<checkbox-filter uid="Végétalien-a" @check="filter('diet','Végétalien', $event)" :checked="checked('diet','Végétalien')">végétalien</checkbox-filter>
 							<checkbox-filter uid="Végétarien-a" @check="filter('diet','Végétarien', $event)" :checked="checked('diet','Végétarien')">végétarien</checkbox-filter>
@@ -78,7 +78,7 @@
 						</div>
 					</accordion>
 
-					<accordion title="Type de plat" key="category">
+					<accordion title="Type de plat" key="category" :numberOfItemsSelected="numberOfItemsSelected('category')">
 						<div class="space-y-2 py-4">
 							<checkbox-filter uid="Entrée-a" @check="filter('category','Entrée', $event)" :checked="checked('category','Entrée')">entrée</checkbox-filter>
 							<checkbox-filter uid="Plat-a" @check="filter('category','Plat', $event)" :checked="checked('category','Plat')">plat</checkbox-filter>
@@ -89,7 +89,7 @@
 						</div>
 					</accordion>
 
-					<accordion title="Allergies" key="allergies">
+					<accordion title="Allergies" key="allergies" :numberOfItemsSelected="numberOfItemsSelected('free')">
 						<div class="space-y-2 py-4">
 							<checkbox-filter uid="Arachide-a" @check="filter('free','Arachide', $event)" :checked="checked('free','Arachide')">arachide</checkbox-filter>
 							<checkbox-filter uid="Gluten-a" @check="filter('free','Gluten', $event)" :checked="checked('free','Gluten')">gluten</checkbox-filter>
@@ -100,7 +100,7 @@
 						</div>
 					</accordion>
 
-					<accordion title="Cuisine" key="cuisine">
+					<accordion title="Cuisine" key="cuisine" :numberOfItemsSelected="numberOfItemsSelected('cuisine')">
 						<div class="space-y-2 py-4">
 							<checkbox-filter uid="Asiatique-a" @check="filter('cuisine','Asiatique', $event)" :checked="checked('cuisine','Asiatique')">asiatique</checkbox-filter>
 							<checkbox-filter uid="Américaine-a" @check="filter('cuisine','Américaine', $event)" :checked="checked('cuisine','Américaine')">américaine</checkbox-filter>
@@ -111,7 +111,7 @@
 						</div>
 					</accordion>
 
-					<accordion title="Saison" key="season">
+					<accordion title="Saison" key="season" :numberOfItemsSelected="numberOfItemsSelected('months')">
 						<div class="space-y-2 py-4">
 							<checkbox-filter uid="1-a" @check="filter('months','Janvier', $event)" :checked="checked('months','Janvier')">janvier</checkbox-filter>
 							<checkbox-filter uid="2-a" @check="filter('months','Février', $event)" :checked="checked('months','Février')">février</checkbox-filter>
@@ -130,7 +130,7 @@
 			</div>
 		</div>
 
-		<button @click="applyFilters" class="btn w-max" aria-label="Rechercher" v-show="showApplyFiltersButton">
+		<button @click="applyFilters" class="btn w-max" aria-label="Rechercher" v-if="showApplyFiltersButton">
 				appliquer les filtres
 		</button>
 
@@ -149,6 +149,12 @@
 					</span>
 				</tag>
 			</div>
+			<div class="flex flex-row my-5 gap-3" v-if="showClearFiltersButton">
+				<tag class="cursor-pointer" @click="clearFilters()">
+					Effacer les filtres
+				</tag>
+			</div>
+			
 	</div>
   </div>
 </template>
@@ -171,7 +177,6 @@ export default {
 	computed:{
 		selectedFilters(){
 			//filter properties which don't contain any value
-			console.log("selectedfilters", this.storeFilters);
 			return Object.fromEntries(Object.entries(this.filters).filter(([key, value]) => value.length > 0));
 		},
 		storeFilters(){
@@ -188,11 +193,22 @@ export default {
 				months: [],
 				baseRecipe: []
 			},
-			showApplyFiltersButton: true,
-			showSelectedFilters: false
+			showApplyFiltersButton: false,
+			showSelectedFilters: false,
+			showClearFiltersButton: false
 		}
 	},
 	methods:{
+		numberOfItemsSelected(type){
+			return this.filters[type].length;
+		},
+		numberOfAppliedFilters(){
+			let total = 0;
+			for(const type in this.filters){
+				total += this.filters[type].length;
+			}
+			return total;
+		},
 		checked(type,value){
 			if(this.filters && this.filters[type]){
 				//search
@@ -214,9 +230,6 @@ export default {
 				this.removeFromFilters({type, value});
 			}
 		},
-		toggleDropdown(type){
-			this.dropdowns[type] = !this.dropdowns[type];
-		},
 		addToFilters(filter){
 			if(!this.filters[filter.type].includes(filter.value)){
 				this.filters[filter.type].push(filter.value);
@@ -230,6 +243,12 @@ export default {
 			}
 			this.showApplyFiltersButton = true;
 		},
+		clearFilters(){
+			for(const type in this.filters){
+				this.filters[type] = [];
+			}
+			this.applyFilters();
+		},
 		applyFilters(){
 			this.$store.commit('saveSearchFilters', this.filters);
 			this.$emit('filtersChanged');
@@ -239,6 +258,7 @@ export default {
 		storeFilters(newValue, oldValue){
 			this.filters = JSON.parse(JSON.stringify(newValue));
 			this.showSelectedFilters = true;
+			this.showClearFiltersButton = this.numberOfAppliedFilters() > 0;
 			this.showApplyFiltersButton = false;
 		}
 	}

@@ -6,6 +6,11 @@
 				<div class="text-medium">
 					{{ title }}
 				</div>
+				<!-- 
+					Display number of selected (v-if="numberOfItemsSelected > 0") )
+					{{ numberOfItemsSelected }} 
+				 
+				-->
 				<svg class="w-6 h-6 fill-white-300 dark:fill-black-300" stroke-width="3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
 						aria-hidden="true">
 						<path fill-rule="evenodd"
@@ -28,7 +33,7 @@
 </template>
 <script>
 export default {
-	props: ['title'],
+	props: ['title', 'numberOfItemsSelected'],
 	data() {
 		return {
 			visible: false
