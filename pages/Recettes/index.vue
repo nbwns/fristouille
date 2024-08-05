@@ -1,30 +1,26 @@
 <template>
 	<section class="flex flex-col justify-start items-start layer__xl mx-auto">
+		<!-- search bar (mobile only) -->
+		<div class="md:hidden">
+			<search-bar placeholder="Rechercher des recettes" @enter="updateQuery()"></search-bar>
+		</div>
 		<!-- link to advanced search (mobile only) -->
 		<div class="pb-1 pt-5">
 			<span class="md:hidden font-labil text-base font-medium text-orange-300 cursor-pointer"
 				@click="mobileAdvancedSearch = !mobileAdvancedSearch">
-				{{ mobileAdvancedSearch ? '- de filtres' : '+ de filtres' }}
+				<svg class="fill-orange-200 dark:fill-purple-200" height="30" width="30" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 300.906 300.906" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M288.953,0h-277c-5.522,0-10,4.478-10,10v49.531c0,5.522,4.478,10,10,10h12.372l91.378,107.397v113.978 c0,3.688,2.03,7.076,5.281,8.816c1.479,0.792,3.101,1.184,4.718,1.184c1.94,0,3.875-0.564,5.548-1.68l49.5-33 c2.782-1.854,4.453-4.977,4.453-8.32v-80.978l91.378-107.397h12.372c5.522,0,10-4.478,10-10V10C298.953,4.478,294.476,0,288.953,0 z M167.587,166.77c-1.539,1.809-2.384,4.105-2.384,6.48v79.305l-29.5,19.666V173.25c0-2.375-0.845-4.672-2.384-6.48L50.585,69.531 h199.736L167.587,166.77z M278.953,49.531h-257V20h257V49.531z"></path> </g> </g> </g></svg>
+				filtres
 			</span>
 		</div>
 		<!-- TODO: add loading indicator -->
 		<!-- TODO: open mobile popup based on query string param -->
 		<div class="flex flex-col md:flex-col-reverse gap-4 w-full">
-
-
 			<!-- advanced search for desktop and mobile, displays selected filters as tags (extract this part ?) -->
-			<advanced-search @filtersChanged="updateQuery" 
-				@closePopup="mobileAdvancedSearch = false"
-				@triggerSearch="mobileAdvancedSearch = false" 
-				:popupMobile="mobileAdvancedSearch" />
+			<advanced-search 
+				@filtersChanged="updateQuery" 
+				:showDrawer="mobileAdvancedSearch"
+				@closeDrawer="mobileAdvancedSearch  = false"  />
 		</div>
-		
-		
-		<!-- <div class="flex flex-row my-4 md:hidden">
-			<button @click="updateQuery" class="btn w-max" aria-label="Rechercher">
-				rechercher
-			</button>
-		</div> -->
 
 		<!-- warning -->
 		<div v-if="noSearchParameters" class="text-usual">
@@ -147,8 +143,8 @@ import CardRecipe from '~/components/CardRecipe.vue';
 import AdvancedSearch from '~/components/AdvancedSearch.vue'
 import NormalTitle from '~/molecules/TitleParagraph.vue';
 import GridOfCardsRecipes from '~/components/GridOfCardsRecipes.vue';
+import SearchBar from '~/components/SearchBar.vue'
 
-import { history as historyRouter } from 'instantsearch.js/es/lib/routers';
 const indexName = 'Recipes';
 
 export default {
@@ -159,7 +155,8 @@ export default {
 		AisHits,
 		AisPagination,
 		NormalTitle,
-		GridOfCardsRecipes
+		GridOfCardsRecipes,
+		SearchBar
 	},
 	data() {
 		return {
@@ -221,6 +218,7 @@ export default {
 			this.setFilterQuery();
 			this.searchPerformed = true;
 			this.filtersHaveChanged = false;
+			this.mobileAdvancedSearch = false;
 			if (!this.query && !this.filterQuery) {
 				this.noSearchParameters = true;
 			}

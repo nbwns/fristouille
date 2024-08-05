@@ -9,7 +9,7 @@
           <nuxt-link class="navlink" to="/astuces" no-prefetch>Astuces</nuxt-link>
           <form class="flex items-center gap-5" action="/Recettes" @submit="checkRoute">
             <div class="relative w-full">
-              <search-bar placeholder="Rechercher des recettes" required="true"></search-bar>
+              <search-bar placeholder="Rechercher des recettes"></search-bar>
             </div>
           </form>
         </div>

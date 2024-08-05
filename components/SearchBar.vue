@@ -12,7 +12,8 @@
 			type="text" name="q" id="search-query-input"
 			class="input-search text-usual"
 		 	:placeholder="placeholder" :required="required"
-			v-model="inputValue"  />
+			v-model="inputValue"
+			@keyup.enter="$emit('enter')"  />
 	</div>
 </template>
 

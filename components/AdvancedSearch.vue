@@ -1,10 +1,5 @@
 <template>
   <div class="w-full">
-		<!-- TODO: 
-		- only save filters in store on search button click ? -> would allow to close the mobile popup without saving the filters
-		- synchronise checkboxes between desktop and mobile -> for instance if screen is rotated
-		-->
-
 	  	<!-- desktop advanced search -->
 		<div class="hidden md:flex flex-grow md:w-auto pt-2 justify-between ">
 			<div class="flex flex-grow text-lg text-white-200 rounded-xs font-inter capitalize font-medium justify-between ">
@@ -57,13 +52,13 @@
 					<checkbox-filter uid="12-a" @check="filter('months','Décembre', $event)" :checked="checked('months','Décembre')">décembre</checkbox-filter>
 				</dropdown>
 			</div>
-			
 		</div>
 		<!-- mobile advanced search -->
-		<div class="md:hidden flex flex-grow flex-col w-auto pt-2" v-show="popupMobile">
+		<div class="md:hidden flex flex-grow flex-col w-auto pt-2">
 			<!-- header -->			
 			<!-- accordions -->
-			<div class="flex-col">
+			<drawer :visible="showDrawer" @close="$emit('closeDrawer')">
+				<div class="flex-col">
 					<accordion title="Choix alimentaire" key="diet" :numberOfItemsSelected="numberOfItemsSelected('diet')">
 						<div class="space-y-2 py-4">
 							<checkbox-filter uid="Végétalien-a" @check="filter('diet','Végétalien', $event)" :checked="checked('diet','Végétalien')">végétalien</checkbox-filter>
@@ -104,26 +99,37 @@
 							<checkbox-filter uid="Indienne-a" @check="filter('cuisine','Indienne', $event)" :checked="checked('cuisine','Indienne')">indienne</checkbox-filter>
 						</div>
 					</accordion>
-
+					<!-- STEPH: la liste des mois dépasse du drawer > la mettre en 2 colonnes ?  -->
 					<accordion title="Saison" key="season" :numberOfItemsSelected="numberOfItemsSelected('months')">
-						<div class="space-y-2 py-4">
-							<checkbox-filter uid="1-a" @check="filter('months','Janvier', $event)" :checked="checked('months','Janvier')">janvier</checkbox-filter>
-							<checkbox-filter uid="2-a" @check="filter('months','Février', $event)" :checked="checked('months','Février')">février</checkbox-filter>
-							<checkbox-filter uid="3-a" @check="filter('months','Mars', $event)" :checked="checked('months','Mars')">mars</checkbox-filter>
-							<checkbox-filter uid="4-a" @check="filter('months','Avril', $event)" :checked="checked('months','Avril')">avril</checkbox-filter>
-							<checkbox-filter uid="5-a" @check="filter('months','Mai', $event)" :checked="checked('months','Mai')">mai</checkbox-filter>
-							<checkbox-filter uid="6-a" @check="filter('months','Juin', $event)" :checked="checked('months','Juin')">juin</checkbox-filter>
-							<checkbox-filter uid="7-a" @check="filter('months','Juillet', $event)" :checked="checked('months','Juillet')">juillet</checkbox-filter>
-							<checkbox-filter uid="8-a" @check="filter('months','Août', $event)" :checked="checked('months','Août')">août</checkbox-filter>
-							<checkbox-filter uid="9-a" @check="filter('months','Septembre', $event)" :checked="checked('months','Septembre')">septembre</checkbox-filter>
-							<checkbox-filter uid="10-a" @check="filter('months','Octobre', $event)" :checked="checked('months','Octobre')">octobre</checkbox-filter>
-							<checkbox-filter uid="11-a" @check="filter('months','Novembre', $event)" :checked="checked('months','Novembre')">novembre</checkbox-filter>
-							<checkbox-filter uid="12-a" @check="filter('months','Décembre', $event)" :checked="checked('months','Décembre')">décembre</checkbox-filter>
+						<div class="grid grid-cols-2 gap-2">
+							<div class="space-y-2 py-4">
+								<checkbox-filter uid="1-a" @check="filter('months','Janvier', $event)" :checked="checked('months','Janvier')">janvier</checkbox-filter>
+								<checkbox-filter uid="2-a" @check="filter('months','Février', $event)" :checked="checked('months','Février')">février</checkbox-filter>
+								<checkbox-filter uid="3-a" @check="filter('months','Mars', $event)" :checked="checked('months','Mars')">mars</checkbox-filter>
+								<checkbox-filter uid="4-a" @check="filter('months','Avril', $event)" :checked="checked('months','Avril')">avril</checkbox-filter>
+								<checkbox-filter uid="5-a" @check="filter('months','Mai', $event)" :checked="checked('months','Mai')">mai</checkbox-filter>
+								<checkbox-filter uid="6-a" @check="filter('months','Juin', $event)" :checked="checked('months','Juin')">juin</checkbox-filter>
+							</div>
+							<div class="space-y-2 py-4">
+								<checkbox-filter uid="7-a" @check="filter('months','Juillet', $event)" :checked="checked('months','Juillet')">juillet</checkbox-filter>
+								<checkbox-filter uid="8-a" @check="filter('months','Août', $event)" :checked="checked('months','Août')">août</checkbox-filter>
+								<checkbox-filter uid="9-a" @check="filter('months','Septembre', $event)" :checked="checked('months','Septembre')">septembre</checkbox-filter>
+								<checkbox-filter uid="10-a" @check="filter('months','Octobre', $event)" :checked="checked('months','Octobre')">octobre</checkbox-filter>
+								<checkbox-filter uid="11-a" @check="filter('months','Novembre', $event)" :checked="checked('months','Novembre')">novembre</checkbox-filter>
+								<checkbox-filter uid="12-a" @check="filter('months','Décembre', $event)" :checked="checked('months','Décembre')">décembre</checkbox-filter>
+							</div>
 						</div>
 					</accordion>
-			</div>
+				</div>
+
+				<button @click="applyFilters" class="btn w-max" aria-label="Rechercher" v-if="showApplyFiltersButton">
+					filtrer
+				</button>
+			</drawer>
+			
 		</div>
 
+		<!-- STEPH: ce bouton est aussi affiché en mobile pour pouvoir réappliquer les filtres si on décoche des filtres dans la liste de tags, voir si on garde ce comportement en mobile -->
 		<button @click="applyFilters" class="btn w-max" aria-label="Rechercher" v-if="showApplyFiltersButton">
 				appliquer les filtres
 		</button>
@@ -156,6 +162,7 @@
 <script>
 import Dropdown from '~/components/Dropdown.vue'
 import Accordion from '~/components/Accordion.vue'
+import Drawer from '~/components/Drawer.vue'
 import CheckboxFilter from '~/molecules/CheckboxFilter.vue'
 import Tag from '~/molecules/Tag.vue'
  
@@ -164,9 +171,10 @@ export default {
 		Dropdown,
 		Accordion,
 		CheckboxFilter,
-		Tag
+		Tag,
+		Drawer
 	},
-	props: ["popupMobile"],
+	props: ['showDrawer'],
 	computed:{
 		selectedFilters(){
 			//filter properties which don't contain any value
