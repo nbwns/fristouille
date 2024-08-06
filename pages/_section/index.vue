@@ -47,18 +47,21 @@
 			</div>
 		<spacer size="xxs"></spacer>		
 	<!-- child pages  -->
-		<grid-of-cards-articles :articles="children"/>
+		<grid-of-cards-articles :articles="children" v-if="!document.data.display_as_links"/>
+		<list-of-links v-else :articles="children"></list-of-links>
 	<spacer size="xxl"></spacer>
   </section>
 </template>
 
 <script>
 import GridOfCardsArticles from '~/components/GridOfCardsArticles.vue'
+import ListOfLinks from '~/components/ListOfLinks.vue'
 import Spacer from '~/molecules/Spacer.vue'
 export default {
   name: 'post',
   components: {
 	GridOfCardsArticles,
+	ListOfLinks,
 	Spacer
   },
   head () {

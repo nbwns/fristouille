@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<div class="drawer bg-black-100 border-slate-50 border-t-4" :style="{
-			height: visible ? '90vh' : '0',
+		<div class="drawer bg-black-100" :style="{
+			height: visible ? '80vh' : '0',
 			paddingTop: visible ? '10px' : '0',
 		}">
 			<slot></slot>

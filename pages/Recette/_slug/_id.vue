@@ -153,9 +153,21 @@
 
 				<spacer size="lg"></spacer>
 
+				<!-- related article -->
+				<div v-if="article" class="w-fit noprint">
+					<h3 class="title">l'astuce fristouille</h3>
+					<card-article 
+						:img="article.data.cover.url" 
+						:imgAlt="article.data.cover.alt" 
+						:path="article.url" 
+						:title="$prismic.asText(article.data.title)"
+						:abstract="article.data.tip_abstract"/>
+				</div>
+
+				<spacer size="sm"></spacer>
+
 				<h2 class="noprint">Tags</h2>
 				<spacer size="xs"></spacer>
-
 				<!-- tags -->
 				<div class="flex flex-row flex-wrap justify-start items-start  gap-2 noprint">
 					<!-- tags -->
@@ -197,20 +209,8 @@
 
 					
 				</div>
-
-				<spacer size="sm"></spacer>
-
-				<!-- related article -->
-				<div v-if="article" class="w-fit noprint">
-					<h3 class="title">En savoir plus</h3>
-					<card-article 
-						:img="article.data.cover.url" 
-						:imgAlt="article.data.cover.alt" 
-						:path="article.url" 
-						:title="$prismic.asText(article.data.title)"/>
-				</div>
+				
 				<spacer size="lg"></spacer>
-
 			</div>
 	</section>
 	</template>
@@ -288,7 +288,7 @@ export default {
 			if(recipe.compositions){
 				recipe.compositions.sort((a,b) => b.quantity - a.quantity);
 			}
-
+			
 			//if there's an associated page in Prismic, retrieve it
 			if(recipe.prismicPageId){
 				//TODO: limit amount of data retrieved (graphQuery and fetch don't work)

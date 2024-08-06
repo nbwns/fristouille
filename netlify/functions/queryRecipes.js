@@ -63,7 +63,7 @@ exports.handler = async function(event, context) {
 						free: r.fields.Free || null,
 						baseRecipe: r.fields.BaseRecipe || null,
 						createdOn: r.fields.CreatedOn,
-						prismicPageId: r.fields.PrismicPageId || null,
+						prismicPageId: r.fields.PrismicPageID || null,
 						slug: r.fields.Slug || null,
 						authorName: r.fields.AuthorName[0] || null,
 						authorWeb: r.fields.AuthorWeb ? r.fields.AuthorWeb[0] : null,
