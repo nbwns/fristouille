@@ -8,12 +8,12 @@
 		<spacer size="xxs"></spacer>
 
 		<!-- page title -->
-		<h1 class="!text-2xl">{{ $prismic.asText(document.data.title) }}</h1>
+		<h1 class="!text-4xl text-balance pt-10">{{ $prismic.asText(document.data.title) }}</h1>
 
 		<spacer size="xs"></spacer>
 
 		<!-- intro -->
-		<prismic-rich-text :field="document.data.introduction" class="text-medium" />
+		<prismic-rich-text :field="document.data.introduction" class="text-bigbig	" />
 
 		<spacer size="md"></spacer>
 
