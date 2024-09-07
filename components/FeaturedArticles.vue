@@ -49,16 +49,24 @@ export default {
 }
 </script>
 
-<style scoped>
+<style global>
 .ssr-carousel-track {
   @apply justify-start
 }
 
 .ssr-carousel-back-icon, .ssr-carousel-next-icon {
-  @apply !bg-black-300
+  @apply !bg-purple-200
 }
 
 :not([aria-disabled])>.ssr-carousel-back-icon, :not([aria-disabled])>.ssr-carousel-next-icon {
   @apply opacity-75
+}
+
+.ssr-carousel-next-button {
+  @apply -right-6
+}
+
+.ssr-carousel-back-button {
+  @apply -left-6
 }
 </style>

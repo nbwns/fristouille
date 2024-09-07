@@ -2,7 +2,7 @@
 
 	<div class="card-recipe h-full border border-purple-300/10 overflow-clip">
 		<nuxt-link class="flex flex-col justify-start h-full" :to='`/Recette/${slug}/${recipeID}`' no-prefetch>
-			<div class=" bg-center bg-cover h-64" :class="width" :style="{ backgroundImage: backgroundImage }" />
+			<div class=" bg-center bg-cover h-[37rem]" :class="width" :style="{ backgroundImage: backgroundImage }" />
 			<div class="flex flex-col justify-between p-3 space-y-4 h-full ">
 				<h4 class="text-usual font-demi ">
 					{{ title }}
