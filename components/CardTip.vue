@@ -1,6 +1,5 @@
 <template>
 	<!-- model with img box constrain differently on flex-container depends on situation -->
-	 <!-- STEPH: change display is abstract -->
 	<div class="card !min-h-96">
 		<nuxt-link :to="path">
 			<div class="card-image">
@@ -10,6 +9,7 @@
 			<div class="p-5 space-y-2">
 				<h4 class="text-big text-pretty sm:text-balance max-w-xs">{{ title }}</h4>
 			</div>
+			<prismic-rich-text :field="abstract" v-if="abstract" class="hidden md:flex"/>
 		</nuxt-link>
 	</div>
 </template>
@@ -17,14 +17,7 @@
 <script>
 
 export default {
-	props: {
-		path: String,
-		img: String,
-		imgAlt: String,
-		title: String,
-		imageSize: String,
-		author: String
-	}
+	props: ['path','img', 'imgAlt', 'title', 'imageSize', 'author', 'abstract']
 }
 </script>
 

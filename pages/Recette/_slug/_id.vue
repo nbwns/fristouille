@@ -156,7 +156,7 @@
 				<!-- related article -->
 				<div v-if="article" class="w-fit noprint">
 					<h3 class="title">l'astuce fristouille</h3>
-					<card-article 
+					<card-tip 
 						:img="article.data.cover.url" 
 						:imgAlt="article.data.cover.alt" 
 						:path="article.url" 
@@ -220,12 +220,12 @@ import {marked} from 'marked'
 import labels from '~/plugins/labels'
 import { DateTime } from "luxon";
 import Tag from '~/molecules/Tag.vue';
-import CardArticle from	'~/components/CardArticle.vue';
+import CardTip from	'~/components/CardTip.vue';
 import Spacer from '~/molecules/Spacer.vue';
 
 
 export default {
-    components: {Tag, CardArticle, Spacer},
+    components: {Tag, CardTip, Spacer},
     computed:{
         procedure(){
 			return (this.recipe.procedure) ? marked(this.recipe.procedure) : ""
@@ -320,7 +320,10 @@ export default {
 					if(recipe.prismicPageId){
 						//TODO: limit amount of data retrieved (graphQuery and fetch don't work)
 						article = (await $prismic.api.getByID(recipe.prismicPageId));
+
 					}
+
+					
 
 					return { recipe: recipe, servings:recipe.yield, article: article};
 				}
