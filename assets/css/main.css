@@ -24,6 +24,17 @@
     @apply text-white-300 dark:text-black-300;
   }
 
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
   h1,
   .big-title {
     @apply font-labil !text-2.5xl md:!text-3xl lg:!text-4xl font-medium leading-[1.08] lowercase;
@@ -151,7 +162,7 @@
   }
 
   .tag.light {
-    @apply bg-black-100 dark:bg-purple-200 text-pink-100 dark:text-white-300;
+    @apply bg-purple-200/30 text-white-300;
   }
 
   .tag.light:hover {
@@ -254,7 +265,7 @@
   }
 
   .checkbox {
-    @apply w-4 h-4 bg-black-50 dark:bg-purple-100 border-black-300 rounded-xs appearance-none checked:bg-orange-300 dark:checked:bg-purple-300;
+    @apply w-4 h-4 dark:accent-purple-200  rounded-xs accent-black-200 checked:bg-black-200;
   }
 
   .checkbox {
@@ -262,7 +273,7 @@
   }
 
   .checkbox:focus {
-    @apply ring-orange-200 dark:ring-purple-200 ring-2;
+    @apply ring-black-50 ring-2 ring-offset-1;
   }
 
   .icon-search {
@@ -278,7 +289,7 @@
   }
 
   .accordion {
-    @apply text-left w-full bg-black-100 dark:bg-white-100;
+    @apply text-left w-full bg-black-100 dark:bg-white-100 hover:bg-black-50 transition-colors duration-200;
   }
 
   .accordion-wrap {
@@ -306,11 +317,15 @@
   }
 
   .dropdown-wrap-content {
-    @apply absolute bg-black-300 dark:bg-white-300 z-50 p-4 w-auto text-white-300;
+    @apply absolute bg-black-100 dark:bg-white-300 z-50 p-4 w-auto text-white-300 top-4 rounded;
+  }
+
+  .dropdown-wrap-content:last-child {
+    @apply -left-16;
   }
 
   .dropdown-wrap-content-inner {
-    @apply py-4 space-y-2 bg-black-300 dark:bg-white-300;
+    @apply space-y-2 bg-black-100 dark:bg-white-300;
   }
 
   .wrap_mobile_filters {

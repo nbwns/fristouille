@@ -35,7 +35,7 @@
 		</div>
 
 		<!-- warning -->
-		<div v-if="noSearchParameters" class="text-usual">
+		<div v-if="noSearchParameters" class="w-full text-center text-usual text-white-300/75">
 			Veuillez indiquer au minimum un terme de recherche ou un filtre avancé
 		</div>
 
