@@ -1,25 +1,37 @@
 <template>
 	<section class="flex flex-col justify-start items-start layer__xl mx-auto">
 		<!-- search bar (mobile only) -->
-		<div class="md:hidden">
+		<div class="flex md:hidden w-full py-4 space-x-6">
 			<search-bar placeholder="Rechercher des recettes" @enter="updateQuery()"></search-bar>
+
+			<div class="flex min-w-[1/5] group">
+				<span
+					class="md:hidden font-labil text-base text-white-100 group-hover:text-orange-300 transition-colors duration-100 dark:text-purple-200 cursor-pointer"
+					@click="mobileAdvancedSearch = !mobileAdvancedSearch">
+					filtres
+					<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none"
+						stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+						class="lucide lucide-list-plus text-white-100 group-hover:text-orange-300 transition-colors duration-100 dark:text-purple-300">
+						<path d="M11 12H3" />
+						<path d="M16 6H3" />
+						<path d="M16 18H3" />
+						<path d="M18 9v6" />
+						<path d="M21 12h-6" />
+					</svg>
+				</span>
+			</div>
+
+
+
 		</div>
 		<!-- link to advanced search (mobile only) -->
-		<div class="pb-1 pt-5">
-			<span class="md:hidden font-labil text-base font-medium text-orange-300 cursor-pointer"
-				@click="mobileAdvancedSearch = !mobileAdvancedSearch">
-				<svg class="fill-orange-200 dark:fill-purple-200" height="30" width="30" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 300.906 300.906" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M288.953,0h-277c-5.522,0-10,4.478-10,10v49.531c0,5.522,4.478,10,10,10h12.372l91.378,107.397v113.978 c0,3.688,2.03,7.076,5.281,8.816c1.479,0.792,3.101,1.184,4.718,1.184c1.94,0,3.875-0.564,5.548-1.68l49.5-33 c2.782-1.854,4.453-4.977,4.453-8.32v-80.978l91.378-107.397h12.372c5.522,0,10-4.478,10-10V10C298.953,4.478,294.476,0,288.953,0 z M167.587,166.77c-1.539,1.809-2.384,4.105-2.384,6.48v79.305l-29.5,19.666V173.25c0-2.375-0.845-4.672-2.384-6.48L50.585,69.531 h199.736L167.587,166.77z M278.953,49.531h-257V20h257V49.531z"></path> </g> </g> </g></svg>
-				filtres
-			</span>
-		</div>
+
 		<!-- TODO: add loading indicator -->
 		<!-- TODO: open mobile popup based on query string param -->
 		<div class="flex flex-col md:flex-col-reverse gap-4 w-full">
 			<!-- advanced search for desktop and mobile, displays selected filters as tags (extract this part ?) -->
-			<advanced-search 
-				@filtersChanged="updateQuery" 
-				:showDrawer="mobileAdvancedSearch"
-				@closeDrawer="mobileAdvancedSearch  = false"  />
+			<advanced-search @filtersChanged="updateQuery" :showDrawer="mobileAdvancedSearch"
+				@closeDrawer="mobileAdvancedSearch = false" />
 		</div>
 
 		<!-- warning -->
@@ -27,8 +39,7 @@
 			Veuillez indiquer au minimum un terme de recherche ou un filtre avancé
 		</div>
 
-		<ais-instant-search :index-name="indexName" :search-client="searchClient" :search-function="search"
-			class="w-full">
+		<ais-instant-search :index-name="indexName" :search-client="searchClient" :search-function="search" class="w-full">
 			<ais-configure :hits-per-page.camel="12" :distinct="true" :filters="filterQuery" :query="query"
 				:optional-words.camel="query" :page="page" />
 
@@ -93,34 +104,29 @@
 						<div class="w-full py-10">
 							<ul class="pagination">
 								<li v-if="!isFirstPage">
-									<a :href="createURL(currentRefinement - 1)"
-										@click.prevent="refine(currentRefinement - 1)">
+									<a :href="createURL(currentRefinement - 1)" @click.prevent="refine(currentRefinement - 1)">
 										<span class="sr-only">Précédent</span>
 										<!-- Heroicon name: mini/chevron-left -->
-										<svg class="w-10" viewBox="0 0 24 24" fill="none"
-											xmlns="http://www.w3.org/2000/svg">
-											<path d="M14 7L9 12L14 17" stroke="currentColor" stroke-width="2"
-												stroke-linecap="round" stroke-linejoin="round" />
+										<svg class="w-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M14 7L9 12L14 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+												stroke-linejoin="round" />
 										</svg>
 
 									</a>
 								</li>
 								<li v-for="page in pages" :key="page">
-									<a :href="createURL(page)"
-										:class="[page === currentRefinement ? 'text-pink-200' : '']"
+									<a :href="createURL(page)" :class="[page === currentRefinement ? 'text-pink-200' : '']"
 										@click.prevent="refine(page)">
 										{{ page + 1 }}
 									</a>
 								</li>
 								<li v-if="!isLastPage">
-									<a :href="createURL(currentRefinement + 1)"
-										@click.prevent="refine(currentRefinement + 1)">
+									<a :href="createURL(currentRefinement + 1)" @click.prevent="refine(currentRefinement + 1)">
 										<span class="sr-only">Next</span>
 										<!-- Heroicon name: mini/chevron-right -->
-										<svg class="w-10" viewBox="0 0 24 24" fill="none"
-											xmlns="http://www.w3.org/2000/svg">
-											<path d="M10 7L15 12L10 17" stroke="currentColor" stroke-width="2"
-												stroke-linecap="round" stroke-linejoin="round" />
+										<svg class="w-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M10 7L15 12L10 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+												stroke-linejoin="round" />
 										</svg>
 									</a>
 								</li>
@@ -181,7 +187,7 @@ export default {
 		searchQuery() {
 			return this.$store.state.searchQuery;
 		},
-		toggleSearchFromBar(){
+		toggleSearchFromBar() {
 			return this.$store.state.launchSearchFromBar;
 		}
 	},
@@ -295,8 +301,8 @@ export default {
 			document.body.scrollIntoView();
 		}
 	},
-	watch:{
-		toggleSearchFromBar(newValue, oldValue){
+	watch: {
+		toggleSearchFromBar(newValue, oldValue) {
 			this.updateQuery();
 		}
 	},
