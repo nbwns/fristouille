@@ -124,7 +124,7 @@
 
   .text-spacer > ol > li,
   .text-spacer > p {
-    @apply mb-4;
+    @apply mb-2;
   }
 
   .text-spacer > ul > li {

@@ -1,0 +1,13 @@
+pour revision page recette bloc text rich text
+# Veuillez saisir le message de validation pour vos modifications. Les lignes
+# commençant par '#' seront ignorées, et un message vide abandonne la validation.
+#
+# Validateur : Stephane Stadler <stephanestadler@MacBook-Pro-de-Stephane.local>
+#
+# Sur la branche feature/tw-update-integration
+# Votre branche est à jour avec 'origin/feature/tw-update-integration'.
+#
+# Modifications qui seront validées :
+#	modifié :         assets/css/main.css
+#	modifié :         pages/Recette/_slug/_id.vue
+#
