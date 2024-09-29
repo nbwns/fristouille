@@ -46,6 +46,7 @@ export default {
     "@nuxt/postcss8",
     "vue-ssr-carousel/nuxt",
     "@nuxt/image",
+    "@nuxtjs/vuex",
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -126,6 +127,7 @@ export default {
       "nuxt-sm",
       "vue-instantsearch",
       "instantsearch.js/es",
+      "vuex-persistedstate", // Add this line
     ],
     postcss: {
       postcssOptions: {
@@ -135,6 +137,18 @@ export default {
         },
       },
     },
+    optimization: {
+      splitChunks: {
+        chunks: "all",
+        automaticNameDelimiter: ".",
+        name: undefined,
+        cacheGroups: {},
+      },
+    },
+    // Add this to minimize the bundle
+    minimize: true,
+    // Add this to enable modern build
+    modern: "client",
   },
   storybook: {
     // This is a bug with `getStoriesPaths` and Nuxt that is awaiting to be fixed
@@ -172,4 +186,10 @@ export default {
     crawler: false,
   },
   ssr: true,
+  vue: {
+    config: {
+      productionTip: false,
+      devtools: false,
+    },
+  },
 };
