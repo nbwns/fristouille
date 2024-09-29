@@ -37,7 +37,9 @@ export const mutations = {
     }
   },
   toggleDarkMode(state, value) {
+    console.log("toggleDarkMode called with value:", value);
     state.dark = value;
+    console.log("New dark state:", state.dark);
   },
   toggleSearchFromBar(state, value) {
     state.launchSearchFromBar = value;
@@ -50,3 +52,8 @@ export const mutations = {
 //     paths: ["dark"],
 //   }),
 // ];
+
+// Add this to check if the store is initialized correctly
+if (process.client) {
+  console.log("Vuex store initialized");
+}

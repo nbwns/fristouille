@@ -31,12 +31,13 @@ export default {
 	},
 
 	mounted() {
-		console.log('Mounted hook called');
+		console.log('DarkModeToggle mounted');
 		if (process.client) {
 			try {
 				console.log('localStorage access:', localStorage !== undefined);
 				if (localStorage.getItem('vuex')) {
 					const savedState = JSON.parse(localStorage.getItem('vuex'));
+					console.log('Saved state:', savedState);
 					if (savedState.dark !== undefined) {
 						this.$store.commit('toggleDarkMode', savedState.dark);
 					}
@@ -55,6 +56,7 @@ export default {
 			if (process.client) {
 				try {
 					const newDarkMode = !this.dark;
+					console.log('Toggling dark mode to:', newDarkMode);
 					this.$store.commit('toggleDarkMode', newDarkMode);
 					console.log('Dark mode after toggle:', this.$store.state.dark);
 					localStorage.theme = newDarkMode ? 'dark' : 'light';
