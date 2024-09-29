@@ -54,9 +54,17 @@ export default {
 	methods: {
 		toggleDarkMode() {
 			try {
-				this.$store.commit('toggleDarkMode', !this.dark);
+				const newDarkMode = !this.dark;
+				this.$store.commit('toggleDarkMode', newDarkMode);
 				console.log('Dark mode after toggle:', this.$store.state.dark);
-				localStorage.theme = this.dark ? 'dark' : 'light';
+				if (process.client) {
+					localStorage.theme = newDarkMode ? 'dark' : 'light';
+					if (newDarkMode) {
+						document.documentElement.classList.add('dark');
+					} else {
+						document.documentElement.classList.remove('dark');
+					}
+				}
 			} catch (error) {
 				console.error('Error in toggleDarkMode:', error);
 			}

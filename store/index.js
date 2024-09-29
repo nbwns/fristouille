@@ -1,46 +1,52 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
+import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex);
-//import VuexPersistence from 'vuex-persist'
 
 export const state = () => ({
-	searchQuery: '',
-	searchFilters: {
-		diet: [],
-		category:[],
-		free: [],
-		cuisine: [],
-		months: [],
-		baseRecipe: []
-	},
-	dark: false,
-	launchSearchFromBar: false
+  searchQuery: "",
+  searchFilters: {
+    diet: [],
+    category: [],
+    free: [],
+    cuisine: [],
+    months: [],
+    baseRecipe: [],
+  },
+  dark: false,
+  launchSearchFromBar: false,
 });
 
 export const mutations = {
-	saveSearchQuery(state, value){
-		state.searchQuery = value;
-	},
-	saveSearchFilters(state, value){
-		//to make sure that's a deep copy
-		state.searchFilters = JSON.parse(JSON.stringify(value));
-	},
-	addToFilters(state, filter){
-		if(!state.searchFilters[filter.type].includes(filter.value)){
-			state.searchFilters[filter.type].push(filter.value);
-		}
-	},
-	removeFromFilters(state, filter){
-		const index = state.searchFilters[filter.type].indexOf(filter.value);
-		if (index > -1) {
-			state.searchFilters[filter.type].splice(index, 1); 
-		}
-	},
-	toggleDarkMode(state, value){
-		state.dark = value;
-	},
-	toggleSearchFromBar(state, value){
-		state.launchSearchFromBar = value;
-	}
-}
+  saveSearchQuery(state, value) {
+    state.searchQuery = value;
+  },
+  saveSearchFilters(state, value) {
+    //to make sure that's a deep copy
+    state.searchFilters = JSON.parse(JSON.stringify(value));
+  },
+  addToFilters(state, filter) {
+    if (!state.searchFilters[filter.type].includes(filter.value)) {
+      state.searchFilters[filter.type].push(filter.value);
+    }
+  },
+  removeFromFilters(state, filter) {
+    const index = state.searchFilters[filter.type].indexOf(filter.value);
+    if (index > -1) {
+      state.searchFilters[filter.type].splice(index, 1);
+    }
+  },
+  toggleDarkMode(state, value) {
+    state.dark = value;
+  },
+  toggleSearchFromBar(state, value) {
+    state.launchSearchFromBar = value;
+  },
+};
+
+export const plugins = [
+  createPersistedState({
+    paths: ["dark"],
+  }),
+];
