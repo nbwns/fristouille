@@ -1,6 +1,5 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex);
 
@@ -45,8 +44,9 @@ export const mutations = {
   },
 };
 
-export const plugins = [
-  createPersistedState({
-    paths: ["dark"],
-  }),
-];
+// Remove the plugins from here
+// export const plugins = [
+//   createPersistedState({
+//     paths: ["dark"],
+//   }),
+// ];

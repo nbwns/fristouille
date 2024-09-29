@@ -31,42 +31,41 @@ export default {
 	},
 
 	mounted() {
-		alert('DarkModeToggle component mounted');
 		console.log('Mounted hook called');
-		try {
-			console.log('localStorage access:', localStorage !== undefined);
-			if (localStorage.theme === undefined) {
-				if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-					localStorage.theme = 'light';
-				} else {
-					localStorage.theme = 'dark';
+		if (process.client) {
+			try {
+				console.log('localStorage access:', localStorage !== undefined);
+				if (localStorage.getItem('vuex')) {
+					const savedState = JSON.parse(localStorage.getItem('vuex'));
+					if (savedState.dark !== undefined) {
+						this.$store.commit('toggleDarkMode', savedState.dark);
+					}
+				} else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
 					this.$store.commit('toggleDarkMode', true);
 				}
-			} else {
-				this.$store.commit('toggleDarkMode', localStorage.theme === 'dark');
+				console.log('Mounted hook completed successfully');
+			} catch (error) {
+				console.error('Error in mounted hook:', error);
 			}
-			console.log('Mounted hook completed successfully');
-		} catch (error) {
-			console.error('Error in mounted hook:', error);
 		}
 	},
 
 	methods: {
 		toggleDarkMode() {
-			try {
-				const newDarkMode = !this.dark;
-				this.$store.commit('toggleDarkMode', newDarkMode);
-				console.log('Dark mode after toggle:', this.$store.state.dark);
-				if (process.client) {
+			if (process.client) {
+				try {
+					const newDarkMode = !this.dark;
+					this.$store.commit('toggleDarkMode', newDarkMode);
+					console.log('Dark mode after toggle:', this.$store.state.dark);
 					localStorage.theme = newDarkMode ? 'dark' : 'light';
 					if (newDarkMode) {
 						document.documentElement.classList.add('dark');
 					} else {
 						document.documentElement.classList.remove('dark');
 					}
+				} catch (error) {
+					console.error('Error in toggleDarkMode:', error);
 				}
-			} catch (error) {
-				console.error('Error in toggleDarkMode:', error);
 			}
 		}
 	}
