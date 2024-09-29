@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="w-fit rounded-3xl flex  justify-start items-center hover:bg-black-300/20 px-4 py-2 transition-all duration-150">
+		class="w-fit rounded-3xl flex justify-start items-center hover:bg-black-300/20 px-4 py-2 transition-all duration-150">
 		<button @click="toggleDarkMode" class="flex space-x-2 items-center justify-start w-full cursor-pointer">
 			<span class="text-usual select-none">Thème</span>
 			<div class="flex items-center">
@@ -26,22 +26,40 @@ export default {
 			return this.$store.state.dark;
 		}
 	},
+	created() {
+		console.log('Created hook called');
+	},
+
 	mounted() {
-		if (localStorage.theme === undefined) {
-			if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-				localStorage.theme = 'light';
+		alert('DarkModeToggle component mounted');
+		console.log('Mounted hook called');
+		try {
+			console.log('localStorage access:', localStorage !== undefined);
+			if (localStorage.theme === undefined) {
+				if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+					localStorage.theme = 'light';
+				} else {
+					localStorage.theme = 'dark';
+					this.$store.commit('toggleDarkMode', true);
+				}
 			} else {
-				localStorage.theme = 'dark';
-				this.$store.commit('toggleDarkMode', true);
+				this.$store.commit('toggleDarkMode', localStorage.theme === 'dark');
 			}
-		} else {
-			this.$store.commit('toggleDarkMode', localStorage.theme === 'dark');
+			console.log('Mounted hook completed successfully');
+		} catch (error) {
+			console.error('Error in mounted hook:', error);
 		}
 	},
+
 	methods: {
 		toggleDarkMode() {
-			this.$store.commit('toggleDarkMode', !this.dark);
-			localStorage.theme = this.dark ? 'dark' : 'light';
+			try {
+				this.$store.commit('toggleDarkMode', !this.dark);
+				console.log('Dark mode after toggle:', this.$store.state.dark);
+				localStorage.theme = this.dark ? 'dark' : 'light';
+			} catch (error) {
+				console.error('Error in toggleDarkMode:', error);
+			}
 		}
 	}
 };
