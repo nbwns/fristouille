@@ -1,8 +1,3 @@
-import Vue from "vue";
-import Vuex from "vuex";
-
-Vue.use(Vuex);
-
 export const state = () => ({
   searchQuery: "",
   searchFilters: {
@@ -22,7 +17,6 @@ export const mutations = {
     state.searchQuery = value;
   },
   saveSearchFilters(state, value) {
-    //to make sure that's a deep copy
     state.searchFilters = JSON.parse(JSON.stringify(value));
   },
   addToFilters(state, filter) {
@@ -46,18 +40,13 @@ export const mutations = {
   },
 };
 
-// Remove the plugins from here
-// export const plugins = [
-//   createPersistedState({
-//     paths: ["dark"],
-//   }),
-// ];
+export const getters = {
+  isDarkMode: (state) => state.dark,
+};
+
+// Remove any import statements for Vue or Vuex at the top of this file
 
 // Add this to check if the store is initialized correctly
 if (process.client) {
   console.log("Vuex store initialized");
 }
-
-export const getters = {
-  isDarkMode: (state) => state.dark,
-};

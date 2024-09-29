@@ -1,6 +1,7 @@
 import axios from "axios";
 import smConfig from "./sm.json";
 import { getStoriesPaths } from "slice-machine-ui/helpers/storybook";
+import { darkMode } from "./tailwind.config";
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: "static",
@@ -46,7 +47,6 @@ export default {
     "@nuxt/postcss8",
     "vue-ssr-carousel/nuxt",
     "@nuxt/image",
-    "@nuxtjs/vuex",
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -117,6 +117,7 @@ export default {
       useWebmanifestExtension: false,
       theme_color: "#FC762B",
       background_color: "#2D1F2E",
+      darkMode: darkMode,
     },
   },
 
