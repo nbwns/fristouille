@@ -26,51 +26,45 @@ export default {
 			return this.$store.state.dark;
 		}
 	},
-	created() {
-		console.log('Created hook called');
-	},
-
 	mounted() {
-		console.log('DarkModeToggle mounted');
 		if (process.client) {
-			try {
-				console.log('localStorage access:', localStorage !== undefined);
-				if (localStorage.getItem('vuex')) {
-					const savedState = JSON.parse(localStorage.getItem('vuex'));
-					console.log('Saved state:', savedState);
-					if (savedState.dark !== undefined) {
-						this.$store.commit('toggleDarkMode', savedState.dark);
-					}
+			this.$nextTick(() => {
+				const savedState = JSON.parse(localStorage.getItem('vuex') || '{}');
+				if (savedState.dark !== undefined) {
+					this.$store.commit('toggleDarkMode', savedState.dark);
 				} else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
 					this.$store.commit('toggleDarkMode', true);
 				}
-				console.log('Mounted hook completed successfully');
-			} catch (error) {
-				console.error('Error in mounted hook:', error);
-			}
+				this.applyDarkMode(this.dark);
+
+				// Debug logs
+				console.log('Dark mode state:', this.$store.state.dark);
+				console.log('localStorage vuex:', localStorage.getItem('vuex'));
+				console.log('HTML classes:', document.documentElement.classList);
+			});
 		}
 	},
-
 	methods: {
 		toggleDarkMode() {
 			if (process.client) {
-				try {
-					const newDarkMode = !this.dark;
-					console.log('Toggling dark mode to:', newDarkMode);
-					this.$store.commit('toggleDarkMode', newDarkMode);
-					console.log('Dark mode after toggle:', this.$store.state.dark);
-					localStorage.setItem('vuex', JSON.stringify({ dark: newDarkMode }));
-					console.log('localStorage after toggle:', localStorage.getItem('vuex'));
-					if (newDarkMode) {
-						document.documentElement.classList.add('dark');
-					} else {
-						document.documentElement.classList.remove('dark');
-					}
-					console.log('HTML class list:', document.documentElement.classList);
-				} catch (error) {
-					console.error('Error in toggleDarkMode:', error);
-				}
+				const newDarkMode = !this.dark;
+				this.$store.commit('toggleDarkMode', newDarkMode);
+				this.applyDarkMode(newDarkMode);
+
+				// Debug logs
+				console.log('Dark mode state after toggle:', this.$store.state.dark);
+				console.log('localStorage vuex after toggle:', localStorage.getItem('vuex'));
+				console.log('HTML classes after toggle:', document.documentElement.classList);
 			}
+		},
+		applyDarkMode(isDark) {
+			if (isDark) {
+				document.documentElement.classList.add('dark');
+			} else {
+				document.documentElement.classList.remove('dark');
+			}
+			// Debug logs
+			console.log('HTML classes after toggle:', document.documentElement.classList);
 		}
 	}
 };

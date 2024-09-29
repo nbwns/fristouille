@@ -128,7 +128,7 @@ export default {
       "nuxt-sm",
       "vue-instantsearch",
       "instantsearch.js/es",
-      "vuex-persistedstate", // Add this line
+      "vuex-persistedstate",
     ],
     postcss: {
       postcssOptions: {
