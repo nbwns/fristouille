@@ -57,3 +57,7 @@ export const mutations = {
 if (process.client) {
   console.log("Vuex store initialized");
 }
+
+export const getters = {
+  isDarkMode: (state) => state.dark,
+};

@@ -59,12 +59,14 @@ export default {
 					console.log('Toggling dark mode to:', newDarkMode);
 					this.$store.commit('toggleDarkMode', newDarkMode);
 					console.log('Dark mode after toggle:', this.$store.state.dark);
-					localStorage.theme = newDarkMode ? 'dark' : 'light';
+					localStorage.setItem('vuex', JSON.stringify({ dark: newDarkMode }));
+					console.log('localStorage after toggle:', localStorage.getItem('vuex'));
 					if (newDarkMode) {
 						document.documentElement.classList.add('dark');
 					} else {
 						document.documentElement.classList.remove('dark');
 					}
+					console.log('HTML class list:', document.documentElement.classList);
 				} catch (error) {
 					console.error('Error in toggleDarkMode:', error);
 				}
