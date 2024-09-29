@@ -37,7 +37,7 @@
 
   h1,
   .big-title {
-    @apply font-labil !text-2.5xl md:!text-3xl lg:!text-4xl font-medium leading-[1.08] lowercase;
+    @apply font-labil !text-2.5xl md:!text-3xl lg:!text-4xl font-medium leading-tight lowercase;
   }
 
   h2,
@@ -68,17 +68,18 @@
     @apply font-labil font-medium text-xl lg:text-2xl;
   }
 
+
   .text-bigbig .text-big,
   .text-small .text-medium {
     @apply font-inter;
   }
 
   .text-bigbig {
-    @apply text-xl leading-snug;
+    @apply text-xl leading-tight;
   }
 
   .text-big {
-    @apply text-lg leading-snug;
+    @apply text-lg leading-tight;
   }
 
   .text-medium {
@@ -96,7 +97,7 @@
   p,
   .text-usual,
   .navlink {
-    @apply font-inter text-base leading-relaxed dark:placeholder:text-black-100;
+    @apply font-inter text-base leading-tight dark:placeholder:text-black-100;
   }
 
   .navlink {
@@ -256,9 +257,7 @@
   .card-image {
     @apply transition-all ease-out duration-300;
   }
-  .card-image:hover {
-    @apply -translate-y-2;
-  }
+  /* Removed the hover effect */
 
   .v-hl-container.v-hl-snap-start {
     @apply !gap-8;

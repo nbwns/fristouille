@@ -63,10 +63,10 @@ export default {
 }
 
 .ssr-carousel-next-button {
-  @apply -right-6
+  @apply -right-6 hidden sm:block
 }
 
 .ssr-carousel-back-button {
-  @apply -left-6
+  @apply -left-6 hidden sm:block
 }
 </style>

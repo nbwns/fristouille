@@ -9,7 +9,7 @@
 					<prismic-text :field="document.data.title" />
 				</h1>
 				<spacer size="xs"></spacer>
-				<prismic-rich-text :field="document.data.text" class="text-base md:text-big text-balance" />
+				<prismic-rich-text :field="document.data.text" class="text-base md:text-big text-balance " />
 				<div class="w-full pt-10">
 					<list-of-links :articles="children" v-if="document.data.display_as_links" />
 				</div>

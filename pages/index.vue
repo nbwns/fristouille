@@ -5,12 +5,12 @@
 			<div class="flex flex-col justify-center items-center bg-black-200 dark:bg-white-200">
 				<spacer size="xxs"></spacer>
 				<div class="flex flex-col md:flex-row layer__xl justify-between items-center h-auto mx-auto">
-					<div class="block z-0 items-center h-full max-w-sm text-pretty py-10 sm:py-0">
-						<big-title :emphasis="$prismic.asText(document.data.hero_title_emphasis)" class="max-w-md">{{
+					<div class="block z-0 items-center h-full max-w-lg text-balance py-10 sm:py-12">
+						<big-title :emphasis="$prismic.asText(document.data.hero_title_emphasis)">{{
 							$prismic.asText(document.data.hero_title) }}</big-title>
 					</div>
 					<!-- only displayed on desktop -->
-					<div class="hidden md:flex flex-shrink-0 z-50">
+					<!-- <div class="hidden md:flex flex-shrink-0 z-50">
 						<svg width="325" height="378" viewBox="0 0 471 378" fill="none"
 							xmlns="http://www.w3.org/2000/svg">
 							<path
@@ -217,15 +217,15 @@
 								</clipPath>
 							</defs>
 						</svg>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</section>
 
 		<!-- search -->
 		<!-- only displayed on desktop -->
-		<section class="hidden md:flex py-4 mx-10 md:mx-0 mb-10">
-			<div class="flex flex-col w-full items-start bg-black-200 dark:bg-white-200 space-y-5 layer__xl mx-auto">
+		<section class="hidden md:flex mx-10 md:mx-0 ">
+			<div class="flex flex-col w-full items-start bg-black-200 dark:bg-white-200 space-y-0 layer__xl mx-auto">
 				<h2>
 					des recettes...
 				</h2>
@@ -240,8 +240,7 @@
 									{{ s }}</quick-filter>
 							</nuxt-link>
 							<!-- quick search tags -->
-							<nuxt-link v-for="(t, index) in quickSearchTags" :key="index"
-								:to="`/Recettes${t.tag_query}`">
+							<nuxt-link v-for="(t, index) in quickSearchTags" :key="index" :to="`/Recettes${t.tag_query}`">
 								<quick-filter
 									class="text-base border border-purple-300/50 bg-purple-300/40 text-purple-50 hover:text-purple-50 hover:bg-purple-900 transition-colors duration-300 px-2.5 py-2 rounded focus:ring-inset focus:ring-2 focus:ring-purple-500 dark:border-purple-300/20 dark:bg-purple-300/10 dark:text-purple-300 dark:hover:bg-purple-300 dark:hover:text-purple-50">
 									{{ t.tag_title }}</quick-filter>
@@ -262,8 +261,8 @@
 
 
 		<!-- featured articles -->
-		<featured-articles v-for="(list, index) in articlesLists" :key="'a' + index" :title="list.title"
-			:items="list.items" :link="list.seeAllLink" />
+		<featured-articles v-for="(list, index) in articlesLists" :key="'a' + index" :title="list.title" :items="list.items"
+			:link="list.seeAllLink" />
 
 		<spacer size="md"></spacer>
 	</div>

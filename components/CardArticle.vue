@@ -1,14 +1,16 @@
 <template>
 	<!-- model with img box constrain differently on flex-container depends on situation -->
-	 <!-- STEPH: change display is abstract -->
-	<div class="card !min-h-96">
-		<nuxt-link :to="path">
-			<div class="card-image">
-				<img class="rounded w-full max-h-44 md:max-h-48 lg:max-h-52 xl:max-h-56 object-cover " :src="img"
-					:alt="imgAlt">
+	<!-- STEPH: change display is abstract -->
+	<div class="card h-96 overflow-hidden group">
+		<nuxt-link :to="path" class="flex flex-col h-full">
+			<div class="card-image h-2/3">
+				<img class="w-full h-full object-cover" :src="img" :alt="imgAlt">
 			</div>
-			<div class="p-5 space-y-2">
-				<h4 class="text-big text-pretty sm:text-balance max-w-xs">{{ title }}</h4>
+			<div
+				class="p-5 space-y-2 h-1/3 bg-black-100 dark:bg-white-100 group-hover:bg-purple-200 dark:group-hover:bg-purple-100 transition-colors duration-300">
+				<h4
+					class="text-big text-pretty sm:text-balance max-w-xs font-demi line-clamp-2 text-white-300 dark:text-black-300">
+					{{ title }}</h4>
 			</div>
 		</nuxt-link>
 	</div>

@@ -4,7 +4,7 @@
 		<nuxt-link class="flex flex-col justify-start h-full" :to='`/Recette/${slug}/${recipeID}`' no-prefetch>
 			<div class=" bg-center bg-cover h-[37rem]" :class="width" :style="{ backgroundImage: backgroundImage }" />
 			<div class="flex flex-col justify-between p-3 space-y-4 h-full ">
-				<h4 class="text-usual font-demi ">
+				<h4 class="text-big text-pretty sm:text-balance max-w-xs font-demi line-clamp-2">
 					{{ title }}
 				</h4>
 				<div class="flex flex-col space-y-2 ">
