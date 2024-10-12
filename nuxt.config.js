@@ -9,6 +9,9 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: "Fristouille",
+    htmlAttrs: {
+      lang: "fr",
+    },
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -26,7 +29,6 @@ export default {
     "@/plugins/vue-instantsearch.js",
     { src: "~/plugins/pwa-update.js", mode: "client" },
     { src: "~/plugins/vuex-persistedstate.js", mode: "client" },
-    // { src: "~/plugins/darkMode.client.js", mode: "client" },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -194,4 +196,7 @@ export default {
       devtools: false,
     },
   },
+
+  // Add this new property
+  srcDir: __dirname,
 };

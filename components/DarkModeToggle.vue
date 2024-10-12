@@ -35,7 +35,7 @@ export default {
 				} else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
 					this.$store.commit('toggleDarkMode', true);
 				}
-				// this.applyDarkMode(this.dark);
+				this.applyDarkMode(this.dark);
 
 				// Debug logs
 				console.log('Dark mode state:', this.$store.state.dark);

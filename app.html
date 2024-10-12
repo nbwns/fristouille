@@ -2,18 +2,6 @@
 <html {{ HTML_ATTRS }}>
   <head {{ HEAD_ATTRS }}>
     {{ HEAD }}
-    <!-- <script>
-      (function() {
-        var savedState = JSON.parse(localStorage.getItem('vuex') || '{}');
-        var isDark = savedState.dark;
-        if (isDark === undefined && window.matchMedia) {
-          isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        }
-        if (isDark) {
-          document.documentElement.classList.add('dark');
-        }
-      })();
-    </script> -->
   </head>
   <body {{ BODY_ATTRS }}>
     {{ APP }}
