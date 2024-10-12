@@ -36,7 +36,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["var(--labil-font)", ...defaultTheme.fontFamily.sans],
-        mono: ["var(--inter-font)", ...defaultTheme.fontFamily.mono],
+        mono: ["var(--martian-font)", ...defaultTheme.fontFamily.mono],
       },
       colors: {
         border: "hsl(var(--border))",

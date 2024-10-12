@@ -4,7 +4,7 @@
     <div v-html="procedure" class="prose md:prose-lg" />
     <div v-if="source">
       <a v-if="source.startsWith('http')" :href="source" target="_blank"
-        class="text-base font-inter text-orange-300 dark:text-purple-300 hover:cursor-pointer hover:underline focus:text-orange-200 dark:focus:text-purple-200">
+        class="text-base font-anonymous text-orange-300 dark:text-purple-300 hover:cursor-pointer hover:underline focus:text-orange-200 dark:focus:text-purple-200">
         Vers la publication originale
       </a>
       <span v-else><em class="text-base">{{ source }}</em></span>

@@ -2,7 +2,8 @@
 	<div class="w-full">
 		<!-- desktop advanced search -->
 		<div class="hidden md:flex flex-grow md:w-auto pt-2 justify-between ">
-			<div class="flex flex-grow text-lg text-white-200 rounded-xs font-inter capitalize font-medium justify-between ">
+			<div
+				class="flex flex-grow text-lg text-white-200 rounded-xs font-anonymous capitalize font-medium justify-between ">
 				<!-- dropdown menus -->
 				<dropdown title="Choix alimentaire" :numberOfItemsSelected="numberOfItemsSelected('diet')">
 					<checkbox-filter uid="Végétalien" ref="Végétalien" @check="filter('diet', 'Végétalien', $event)"
@@ -196,12 +197,12 @@
 
 				<div class="flex w-full item-center p-4">
 					<button @click="applyFilters"
-						class="w-full max text-base bg-orange-300 text-white-300 font-inter font-bold uppercase tracking-widest p-3"
+						class="w-full max text-base bg-orange-300 text-white-300 font-anonymous font-bold uppercase tracking-widest p-3"
 						aria-label="Rechercher" v-if="showApplyFiltersButton">
 						sauvegarder
 					</button>
 					<button @click="applyFilters" v-else
-						class="w-full max text-base bg-orange-300/5 text-white-300/20 font-inter font-bold uppercase tracking-widest p-3"
+						class="w-full max text-base bg-orange-300/5 text-white-300/20 font-anonymous font-bold uppercase tracking-widest p-3"
 						aria-label="Rechercher">
 						sauvegarder
 					</button>
@@ -218,7 +219,7 @@
 				<div class="wrap_mobile_filters no-scrollbar" v-if="showSelectedFilters">
 					<!-- loop on all filter categories -->
 					<div v-for="(type, name) in selectedFilters" :key="name" class="flex flex-row mt-4 gap-3">
-						<tag v-for="f in type" class="cursor-pointer" :key="f" look="light"
+						<tag v-for="f in type" class="cursor-poano" :key="f" look="light"
 							@click="removeFromFilters({ type: name, value: f })">
 							{{ f.replaceAll("'", "").replaceAll("-", " ") }}
 							<span class="inset-y-0 right-0 flex items-center pr-2 flex-1">

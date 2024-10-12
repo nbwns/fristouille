@@ -1,5 +1,5 @@
 <template>
-	<div class="relative shadow w-full">
+	<div class="relative shadow w-full rounded overflow-hidden">
 		<label for="search-query-input" class="sr-only text-primary-foreground">{{ placeholder }}</label>
 		<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
 			<svg class="w-5 h-5 text-primary-foreground" aria-hidden="true" fill="none" stroke="currentColor"
@@ -9,7 +9,7 @@
 			</svg>
 		</div>
 		<input type="text" name="q" id="search-query-input"
-			class="block w-full p-4 pl-10 rounded bg-secondary border-primary-foreground/10 text-primary-foreground placeholder:text-primary-foreground"
+			class="placeholder:font-mono block w-full px-3 py-2 pl-10  bg-secondary border-primary-foreground/10 text-primary-foreground placeholder:text-primary-foreground placeholder:text-sm placeholder:font-medium placeholder:tracking-tight placeholder:ligatures-none"
 			:placeholder="placeholder" :required="required" v-model="inputValue" @keyup.enter="$emit('enter')" />
 	</div>
 </template>

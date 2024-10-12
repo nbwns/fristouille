@@ -1,33 +1,34 @@
 //necessary to add tailwind classes to prismic rich text elements
-export default function(type, element, content, children) {
-	// If element is a list item,
-	//console.log(type);
-	
-	if (type === "list-item") {
-	  // return some customized HTML.
-	  return `<li>${children.join("")}</li>`;
-	}
+export default function (type, element, content, children) {
+  // If element is a list item,
+  //console.log(type);
 
-	if (type === "paragraph") {
-		// return some customized HTML.
-		return `<p>${children.join("")}</p>`;
-	}
-
-	if(type === "heading2"){
-		return `<h2 class='title-paragraph'>${children.join("")}</h2>`;
-	}
-
-	if (type === "hyperlink") {
-		//replace by nuxt-link
-		//element.data.link_type can be either Document or Web
-		return `<a class="text-base font-inter text-orange-300 dark:text-purple-300 hover:cursor-pointer hover:underline focus:text-orange-200 dark:focus:text-purple-200 " href="${element.data.url}" target="${element.data.url.startsWith('http') ? '_blank' : '_self'}">${children.join("")}</a>`;
-	}
-	// Otherwise, return null.
-	return null;
+  if (type === "list-item") {
+    // return some customized HTML.
+    return `<li>${children.join("")}</li>`;
   }
 
+  if (type === "paragraph") {
+    // return some customized HTML.
+    return `<p>${children.join("")}</p>`;
+  }
 
+  if (type === "heading2") {
+    return `<h2 class='title-paragraph'>${children.join("")}</h2>`;
+  }
 
+  if (type === "hyperlink") {
+    //replace by nuxt-link
+    //element.data.link_type can be either Document or Web
+    return `<a class="text-base font-anonymous text-orange-300 dark:text-purple-300 hover:cursor-pointer hover:underline focus:text-orange-200 dark:focus:text-purple-200 " href="${
+      element.data.url
+    }" target="${
+      element.data.url.startsWith("http") ? "_blank" : "_self"
+    }">${children.join("")}</a>`;
+  }
+  // Otherwise, return null.
+  return null;
+}
 
 //prismic version
 // import prismicDOM from 'prismic-dom'
@@ -53,7 +54,7 @@ export default function(type, element, content, children) {
 // 		// return some customized HTML.
 // 		return `<p class="">${children.join("")}</p>`;
 // 		}
- 
+
 //   // Generate links to Prismic Documents as <router-link> components
 //   if (type === Elements.hyperlink) {
 //     if (element.data.link_type === 'Document') {
