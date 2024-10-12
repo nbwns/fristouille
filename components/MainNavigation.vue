@@ -1,5 +1,5 @@
 <template>
-  <nav class="flex items-center justify-between flew-wrap px-1 py-3 md:p-4 bg-background ">
+  <nav class="flex items-center justify-between flew-wrap px-1 py-3 md:p-4 bg-background ligatures-none">
     <div class="layer__xl w-full flex flex-row justify-between mx-auto items-center">
       <logo />
       <div class="hidden md:flex flex-grow md:w-auto pt-2 ">

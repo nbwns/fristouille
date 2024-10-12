@@ -1,20 +1,19 @@
 <template>
-  	<h1 :class="classValue"
-		class="big-title">
-		<slot></slot> 
-		<span class="text-orange-300 dark:text-purple-300" v-if="emphasis">{{emphasis}}</span>
+	<h1 :class="classValue" class="font-sans text-2.5xl md:text-3xl lg:text-4xl font-medium leading-none lowercase">
+		<slot></slot>
+		<span class="text-accent" v-if="emphasis">{{ emphasis }}</span>
 	</h1>
 </template>
 
 <script>
 export default {
-	props:{
+	props: {
 		emphasis: String,
 		size: Number
 	},
 	computed: {
-		classValue(){
-			if(!this.size){
+		classValue() {
+			if (!this.size) {
 				return `text-4xl`
 			}
 			return `text-${this.size}xl`
@@ -23,6 +22,4 @@ export default {
 }
 </script>
 
-<style>
-
-</style>
+<style></style>
