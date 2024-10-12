@@ -142,10 +142,10 @@
     @apply list-disc;
   }
 
-  h3,
+  /* h3,
   .title-article {
     @apply font-mono text-2xl font-medium;
-  }
+  } */
 
   /* h4,
   .title-paragraph {
@@ -210,10 +210,6 @@
 }
 
 @layer components {
-  .logo {
-    @apply text-2xl lg:text-4xl font-sans font-bold text-orange-300 dark:text-purple-300;
-  }
-
   .btn {
     @apply max-w-fit text-base text-white-300 font-mono font-bold uppercase tracking-wide p-2 bg-gradient-to-r from-orange-200 to-orange-300 rounded dark:from-purple-200 dark:to-purple-300 transition ease-in-out duration-300;
   }

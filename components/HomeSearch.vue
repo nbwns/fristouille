@@ -23,7 +23,7 @@
           <!-- filters -->
           <span>
             <hyper-link path="/Recettes"
-              class="font-sans text-base font-medium text-primary-foreground hover:text-underline">
+              class="font-mono text-sm hover:underline hover:underline-offset-2 font-medium text-primary-foreground hover:text-underline">
               voir tout les filtres
             </hyper-link>
           </span>
