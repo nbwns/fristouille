@@ -2,11 +2,11 @@
   <div class="flex flex-col space-y-4">
     <div class="flex flex-col space-y-4">
       <h1 class="big-title text-balance w-full lg:max-w-xl">{{ name }}</h1>
-      <div class="text-white-300 text-usual leading-none">
+      <div class="text-primary-foreground text-usual leading-none">
         par
         <span v-if="authorWeb">
           <a :href="authorWeb" target="_blank"
-            class="text-base font-inter text-orange-300 dark:text-purple-300 hover:cursor-pointer hover:underline focus:text-orange-200 dark:focus:text-purple-200">
+            class="text-base font-mono text-accent hover:cursor-pointer hover:underline focus:text-accent/75">
             {{ authorName }}
           </a>
         </span>
@@ -18,7 +18,7 @@
 
     <div class="flex flex-col md:flex-row justify-between w-full noprint">
       <div class="flex flex-col">
-        <h2 class="font-labil text-lg font-medium text-balance">{{ description }}</h2>
+        <h2 class="font-sans text-lg font-medium text-balance">{{ description }}</h2>
       </div>
     </div>
     <div class="w-full">

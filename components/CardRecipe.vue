@@ -1,19 +1,19 @@
 <template>
 
-	<div class="card-recipe h-full border border-purple-300/10 overflow-clip">
+	<div
+		class="flex flex-col flex-grow justify-between w-full rounded-md bg-secondary h-full max-h-80  border border-primary-foreground/10 overflow-clip">
 		<nuxt-link class="flex flex-col justify-start h-full" :to='`/Recette/${slug}/${recipeID}`' no-prefetch>
 			<div class=" bg-center bg-cover h-[37rem]" :class="width" :style="{ backgroundImage: backgroundImage }" />
 			<div class="flex flex-col justify-between p-3 space-y-4 h-full ">
-				<h4 class="text-big text-pretty sm:text-balance max-w-xs font-demi line-clamp-2">
+				<h4
+					class="text-primary-foreground text-lg leading-tight text-pretty sm:text-balance max-w-xs font-demi line-clamp-2">
 					{{ title }}
 				</h4>
 				<div class="flex flex-col space-y-2 ">
 					<div class=" w-full flex flex-row flex-wrap justify-start items-center space-x-2">
-						<tag class="text-sm bg-purple-200 dark:bg-purple-200/20 text-white dark:text-black-300 tracking-normal"
-							:title="tag">{{ totalTime }}
+						<tag class="text-sm bg-label text-primary-foreground tracking-normal" :title="tag">{{ totalTime }}
 							min</tag>
-						<tag class="text-sm bg-purple-200 dark:bg-purple-200/20 text-white dark:text-black-300 tracking-normal"
-							:title="diet"> {{ diet }}
+						<tag class="text-sm bg-label text-primary-foreground tracking-normal" :title="diet"> {{ diet }}
 						</tag>
 					</div>
 				</div>

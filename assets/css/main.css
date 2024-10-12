@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -60,6 +61,7 @@
     --secondary: 296 14% 23%;
     --secondary-foreground: 10 11% 89%;
     --accent: 22 97% 58%;
+    --label: 308 18% 65%;
     --muted: 240 4.8% 95.9%;
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
@@ -77,6 +79,7 @@
     --secondary: 10 11% 89%;
     --secondary-foreground: 296 14% 23%;
     --accent: 22 97% 58%;
+    --label: 308 18% 65%;
     --muted: 240 3.7% 15.9%;
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
@@ -84,7 +87,7 @@
     --radius: 0.5rem;
   }
 
-  h1,
+  /* h1,
   h2,
   h3,
   h4,
@@ -103,7 +106,7 @@
   .text-usual,
   .text-small {
     @apply text-white-300 dark:text-black-300;
-  }
+  } */
 
   /* Hide scrollbar for Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {
@@ -144,10 +147,10 @@
     @apply font-mono text-2xl font-medium;
   }
 
-  h4,
+  /* h4,
   .title-paragraph {
     @apply font-sans font-medium text-xl lg:text-2xl;
-  }
+  } */
 
   .text-bigbig .text-big,
   .text-small .text-medium {
@@ -158,9 +161,9 @@
     @apply text-xl leading-tight;
   }
 
-  .text-big {
+  /* .text-big {
     @apply text-lg leading-tight;
-  }
+  } */
 
   .text-medium {
     @apply text-base;
@@ -274,7 +277,7 @@
   .tag.vegan:focus {
     @apply bg-pink-300;
   }
-
+  /* 
   .filter {
     @apply border border-purple-300/20 bg-purple-300/10 text-purple-300 dark:border-purple-300 dark:bg-purple-300 dark:text-purple-50  transition-colors duration-300 px-1.5 py-1 rounded;
   }
@@ -285,7 +288,7 @@
 
   .filter:focus {
     @apply ring-inset ring-2 ring-purple-500;
-  }
+  } */
 
   .navlink {
     @apply font-medium tracking-wide;
@@ -316,7 +319,7 @@
   }
 
   .card-recipe {
-    @apply flex flex-col flex-grow justify-between w-full rounded-md bg-black-100 dark:bg-white-100 h-full max-h-80;
+    @apply flex flex-col flex-grow justify-between w-full rounded-md bg-secondary h-full max-h-80;
   }
 
   .card {

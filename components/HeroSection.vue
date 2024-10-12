@@ -22,11 +22,11 @@ export default {
   },
   props: {
     heroTitle: {
-      type: String,
+      type: [String, Array],
       required: true
     },
     heroTitleEmphasis: {
-      type: String,
+      type: [String, Array],
       required: true
     }
   }

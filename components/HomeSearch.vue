@@ -1,7 +1,7 @@
 <template>
   <section class="hidden md:flex mx-10 md:mx-0">
     <div class="flex flex-col w-full items-start bg-background space-y-0 layer__xl mx-auto">
-      <h2>
+      <h2 class="text-primary-foreground">
         des recettes...
       </h2>
       <div class="flex flex-col justify-center">
@@ -9,23 +9,22 @@
           <div class="flex flex-row space-x-2 items-center">
             <!-- seasons tags -->
             <nuxt-link v-for="s in currentSeasons" :key="s" :to="`/Recettes?${getSeasonQuery(s)}`">
-              <quick-filter
-                class="text-base border border-secondary/50 bg-secondary/40 text-primary-foreground hover:text-primary-foreground hover:bg-accent transition-colors duration-300 px-2.5 py-2 rounded focus:ring-inset focus:ring-2 focus:ring-primary-foreground0 dark:border-secondary/20 dark:bg-secondary/10 dark:text-secondary dark:hover:bg-secondary dark:hover:text-primary-foreground">
+              <quick-filter>
                 {{ s }}
               </quick-filter>
             </nuxt-link>
             <!-- quick search tags -->
             <nuxt-link v-for="(t, index) in quickSearchTags" :key="index" :to="`/Recettes${t.tag_query}`">
-              <quick-filter
-                class="text-base border border-secondary/50 bg-secondary/40 text-primary-foreground hover:text-primary-foreground hover:bg-accent transition-colors duration-300 px-2.5 py-2 rounded focus:ring-inset focus:ring-2 focus:ring-primary-foreground0 dark:border-secondary/20 dark:bg-secondary/10 dark:text-secondary dark:hover:bg-secondary dark:hover:text-primary-foreground">
+              <quick-filter>
                 {{ t.tag_title }}
               </quick-filter>
             </nuxt-link>
           </div>
           <!-- filters -->
           <span>
-            <hyper-link path="/Recettes" class="font-labil text-base font-medium text-white-200 hover:text-underline">
-              voir tout les filtres ss
+            <hyper-link path="/Recettes"
+              class="font-sans text-base font-medium text-primary-foreground hover:text-underline">
+              voir tout les filtres
             </hyper-link>
           </span>
         </div>

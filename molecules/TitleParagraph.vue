@@ -1,5 +1,5 @@
 <template>
-  <h4 class="title-paragraph">
+  <h4 class="font-sans font-medium text-xl lg:text-2xl text-primary-foreground">
     <slot></slot>
   </h4>
 </template>
