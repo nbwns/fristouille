@@ -2,7 +2,89 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap");
+
+@font-face {
+  font-family: "Labil";
+  src: url("../fonts/LabilGrotesk-Light.woff2") format("woff2"),
+    url("../fonts/LabilGrotesk-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Labil";
+  src: url("../fonts/LabilGrotesk-Bold.woff2") format("woff2"),
+    url("../fonts/LabilGrotesk-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Labil";
+  src: url("../fonts/LabilGrotesk-Medium.woff2") format("woff2"),
+    url("../fonts/LabilGrotesk-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 
+@font-face {
+  font-family: "Labil Grotesk";
+  src: url("../fonts/LabilGrotesk-Regular.woff2") format("woff2"),
+    url("../fonts/LabilGrotesk-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+} */
+
+/* @font-face {
+  font-family: "Labil Grotesk";
+  src: url("../fonts/LabilGrotesk-Thin.woff2") format("woff2"),
+    url("../fonts/LabilGrotesk-Thin.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+} */
+
 @layer base {
+  :root {
+    --labil-font: "Labil";
+    --inter-font: "Inter";
+    --background: 296 19% 15%;
+    --foreground: 0 0% 99%;
+    --primary: 296 19% 15%;
+    --primary-foreground: 0 0% 99%;
+    --secondary: 296 14% 23%;
+    --secondary-foreground: 10 11% 89%;
+    --accent: 22 97% 58%;
+    --muted: 240 4.8% 95.9%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --labil-font: "Labil";
+    --inter-font: "Inter";
+    --background: 0 0% 99%;
+    --foreground: 296 19% 15%;
+    --primary: 0 0% 99%;
+    --primary-foreground: 296 19% 15%;
+    --secondary: 10 11% 89%;
+    --secondary-foreground: 296 14% 23%;
+    --accent: 22 97% 58%;
+    --muted: 240 3.7% 15.9%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    --radius: 0.5rem;
+  }
+
   h1,
   h2,
   h3,
@@ -37,12 +119,12 @@
 
   h1,
   .big-title {
-    @apply font-labil !text-2.5xl md:!text-3xl lg:!text-4xl font-medium leading-none lowercase;
+    @apply font-sans !text-2.5xl md:!text-3xl lg:!text-4xl font-medium leading-none lowercase;
   }
 
   h2,
   .title {
-    @apply font-labil !text-2xl md:!text-3xl font-medium lowercase;
+    @apply font-sans text-2xl md:text-3xl font-medium lowercase;
   }
 
   ul,
@@ -60,17 +142,17 @@
 
   h3,
   .title-article {
-    @apply font-inter text-2xl font-medium;
+    @apply font-mono text-2xl font-medium;
   }
 
   h4,
   .title-paragraph {
-    @apply font-labil font-medium text-xl lg:text-2xl;
+    @apply font-sans font-medium text-xl lg:text-2xl;
   }
 
   .text-bigbig .text-big,
   .text-small .text-medium {
-    @apply font-inter;
+    @apply font-mono;
   }
 
   .text-bigbig {
@@ -86,27 +168,16 @@
   }
 
   .text-small {
-    @apply font-inter text-sm font-normal;
+    @apply font-mono text-sm font-normal;
   }
 
   .tag {
-    @apply font-inter text-sm text-white-300 font-medium tracking-[0.1em];
+    @apply font-mono text-sm text-white-300 font-medium tracking-[0.1em];
   }
 
   p,
-  .text-usual,
-  .navlink {
-    @apply font-inter text-base leading-tight dark:placeholder:text-black-100;
-  }
-
-  .navlink {
-    @apply text-white-300 dark:text-black-300 transition-colors duration-300;
-  }
-  .navlink:hover {
-    @apply !text-orange-200 dark:!text-purple-500;
-  }
-  .navlink.nuxt-link-active {
-    @apply !text-orange-300 dark:!text-purple-300;
+  .text-usual {
+    @apply font-mono text-base leading-tight dark:placeholder:text-black-100;
   }
 
   .navmobile.nuxt-link-active > span {
@@ -138,11 +209,11 @@
 
 @layer components {
   .logo {
-    @apply text-2xl lg:text-4xl font-labil font-bold text-orange-300 dark:text-purple-300;
+    @apply text-2xl lg:text-4xl font-sans font-bold text-orange-300 dark:text-purple-300;
   }
 
   .btn {
-    @apply max-w-fit text-base text-white-300 font-inter font-bold uppercase tracking-wide p-2 bg-gradient-to-r from-orange-200 to-orange-300 rounded dark:from-purple-200 dark:to-purple-300 transition ease-in-out duration-300;
+    @apply max-w-fit text-base text-white-300 font-mono font-bold uppercase tracking-wide p-2 bg-gradient-to-r from-orange-200 to-orange-300 rounded dark:from-purple-200 dark:to-purple-300 transition ease-in-out duration-300;
   }
 
   .btn:hover {
@@ -414,5 +485,35 @@
   }
   .d-2 {
     @apply border-2 border-lime-400;
+  }
+
+  .ligatures-none {
+    font-variant-ligatures: none;
+  }
+
+  .ligatures-common {
+    font-variant-ligatures: common;
+  }
+  .ligatures-discretionary {
+    font-variant-ligatures: discretionary;
+  }
+  .ligatures-historical {
+    font-variant-ligatures: historical;
+  }
+  .ligatures-contextual {
+    font-variant-ligatures: contextual;
+  }
+
+  .ligatures-no-common {
+    font-variant-ligatures: no-common;
+  }
+  .ligatures-no-discretionary {
+    font-variant-ligatures: no-discretionary;
+  }
+  .ligatures-no-historical {
+    font-variant-ligatures: no-historical;
+  }
+  .ligatures-no-contextual {
+    font-variant-ligatures: no-contextual;
   }
 }

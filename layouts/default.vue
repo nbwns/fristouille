@@ -3,7 +3,7 @@
     <header>
       <MainNavigation />
     </header>
-    <div class="flex-grow bg-black-200 dark:bg-white-200">
+    <div class="flex-grow bg-background">
       <Nuxt />
     </div>
     <footer-links />

@@ -2,7 +2,7 @@
 	<div>
 		<!-- Hero introduction -->
 		<section>
-			<div class="flex flex-col justify-center items-center bg-black-200 dark:bg-white-200">
+			<div class="flex flex-col justify-center items-center d-1 bg-background">
 				<spacer size="xxs"></spacer>
 				<div class="flex flex-col md:flex-row layer__xl justify-between items-center h-auto mx-auto">
 					<div class="block z-0 items-center h-full max-w-lg text-balance py-10 sm:py-12">
@@ -225,7 +225,7 @@
 		<!-- search -->
 		<!-- only displayed on desktop -->
 		<section class="hidden md:flex mx-10 md:mx-0 ">
-			<div class="flex flex-col w-full items-start bg-black-200 dark:bg-white-200 space-y-0 layer__xl mx-auto">
+			<div class="flex flex-col w-full items-start bg-background space-y-0 layer__xl mx-auto">
 				<h2>
 					des recettes...
 				</h2>
