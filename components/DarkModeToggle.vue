@@ -35,8 +35,7 @@ export default {
 				} else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
 					this.$store.commit('toggleDarkMode', true);
 				}
-				// Remove this line as we'll handle it differently
-				// this.applyDarkMode(this.dark);
+				this.applyDarkMode(this.dark);
 
 				// Debug logs
 				console.log('Dark mode state:', this.$store.state.dark);
@@ -50,14 +49,22 @@ export default {
 			if (process.client) {
 				const newDarkMode = !this.dark;
 				this.$store.commit('toggleDarkMode', newDarkMode);
-				// Remove this line as we'll handle it differently
-				// this.applyDarkMode(newDarkMode);
+				this.applyDarkMode(newDarkMode);
 
 				// Debug logs
 				console.log('Dark mode state after toggle:', this.$store.state.dark);
 				console.log('localStorage vuex after toggle:', localStorage.getItem('vuex'));
 				console.log('HTML classes after toggle:', document.documentElement.classList);
 			}
+		},
+		applyDarkMode(isDark) {
+			if (isDark) {
+				document.documentElement.classList.add('dark');
+			} else {
+				document.documentElement.classList.remove('dark');
+			}
+			// Debug logs
+			console.log('HTML classes after toggle:', document.documentElement.classList);
 		}
 	}
 };
