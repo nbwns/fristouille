@@ -61,7 +61,7 @@ export default {
 }
 
 .ssr-carousel-back-icon, .ssr-carousel-next-icon {
-  @apply !bg-purple-200
+  @apply !bg-label
 }
 
 :not([aria-disabled])>.ssr-carousel-back-icon, :not([aria-disabled])>.ssr-carousel-next-icon {

@@ -277,18 +277,6 @@
   .tag.vegan:focus {
     @apply bg-pink-300;
   }
-  /* 
-  .filter {
-    @apply border border-purple-300/20 bg-purple-300/10 text-purple-300 dark:border-purple-300 dark:bg-purple-300 dark:text-purple-50  transition-colors duration-300 px-1.5 py-1 rounded;
-  }
-
-  .filter:hover {
-    @apply hover:text-purple-50 hover:bg-purple-900;
-  }
-
-  .filter:focus {
-    @apply ring-inset ring-2 ring-purple-500;
-  } */
 
   .navlink {
     @apply font-medium tracking-wide;
@@ -329,7 +317,6 @@
   .card-image {
     @apply transition-all ease-out duration-300;
   }
-  /* Removed the hover effect */
 
   .v-hl-container.v-hl-snap-start {
     @apply !gap-8;
@@ -345,18 +332,6 @@
 
   .checkbox:focus {
     @apply ring-black-50 ring-2 ring-offset-1;
-  }
-
-  .icon-search {
-    @apply absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none;
-  }
-
-  .icon-search > svg {
-    @apply w-5 h-5 text-white-300 dark:text-black-300;
-  }
-
-  .input-search {
-    @apply block w-full p-4 pl-10 rounded bg-black-100 dark:bg-white-100 border-transparent focus:border-transparent focus:ring-0;
   }
 
   .accordion {
@@ -463,11 +438,6 @@
   /* hide border blue generate by vue on input element */
   .shadow input[type="text"]:focus {
     outline: none;
-  }
-
-  input::placeholder,
-  textarea::placeholder {
-    @apply text-white-100;
   }
 
   .separator {
