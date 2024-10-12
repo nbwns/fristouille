@@ -1,5 +1,5 @@
 <template>
-	<footer class="bg-black-300 dark:bg-white-300 pt-16">
+	<footer class="bg-primary pt-16">
 		<div class="hidden md:flex mx-10 md:mx-0 mb-10">
 			<div class="flex flex-col layer__xl space-y-[63px] items-center mx-auto justify-center">
 				<!-- Footer columns -->
