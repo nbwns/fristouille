@@ -37,7 +37,7 @@
 
   h1,
   .big-title {
-    @apply font-labil !text-2.5xl md:!text-3xl lg:!text-4xl font-medium leading-tight lowercase;
+    @apply font-labil !text-2.5xl md:!text-3xl lg:!text-4xl font-medium leading-none lowercase;
   }
 
   h2,
@@ -67,7 +67,6 @@
   .title-paragraph {
     @apply font-labil font-medium text-xl lg:text-2xl;
   }
-
 
   .text-bigbig .text-big,
   .text-small .text-medium {
@@ -408,5 +407,12 @@
 
   .ds-label {
     @apply text-white-100 text-small uppercase tracking-wider;
+  }
+
+  .d-1 {
+    @apply border-2 border-fuchsia-400;
+  }
+  .d-2 {
+    @apply border-2 border-lime-400;
   }
 }

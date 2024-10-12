@@ -6,135 +6,88 @@
 				<!-- picture -->
 				<!-- TODO: check correct sizes for viewports -->
 				<!-- title -->
-				<h1 class="big-title text-balance">{{ recipe.name }}</h1>
-				<p class="text-white-300 text-usual py-3">
-					par
-					<span v-if="recipe.authorWeb">
-						<a :href="recipe.authorWeb" target="_blank"
-							class="text-base font-inter text-orange-300 dark:text-purple-300 hover:cursor-pointer hover:underline focus:text-orange-200 dark:focus:text-purple-200">
+				<div class="flex flex-col space-y-4 d-1">
+					<h1 class="big-title text-balance w-full lg:max-w-xl">{{ recipe.name }}</h1>
+					<div class="text-white-300 text-usual leading-none">
+						par
+						<span v-if="recipe.authorWeb">
+							<a :href="recipe.authorWeb" target="_blank"
+								class="text-base font-inter text-orange-300 dark:text-purple-300 hover:cursor-pointer hover:underline focus:text-orange-200 dark:focus:text-purple-200">
+								{{ recipe.authorName }}
+							</a>
+						</span>
+						<span v-else>
 							{{ recipe.authorName }}
-						</a>
-					</span>
-					<span v-else>
-						{{ recipe.authorName }}
-					</span>
-				</p>
+						</span>
+					</div>
+				</div>
 				<spacer size="xs"></spacer>
-
+				<div class="flex flex-col md:flex-row justify-between w-full noprint">
+					<!-- description -->
+					<div class="flex flex-col">
+						<h2 class="text-big text-balance d-2">{{ recipe.description }}</h2>
+					</div>
+				</div>
 				<div class="w-full">
 					<img v-if="recipe.picture"
 						class="object-cover max-h-56 md:max-h-64 lg:max-h-72 xl:max-h-96 w-full rounded-md noprint"
 						:src="recipe.picture" :alt="`Photo d'un plat de ${recipe.name}`" />
 				</div>
 				<spacer size="xs"></spacer>
-				<div class="flex flex-col md:flex-row justify-between w-full noprint">
-					<!-- description -->
-					<div class="flex flex-col">
-						<p class="text-bigbig text-balance">{{ recipe.description }}</p>
-					</div>
-				</div>
-			</div>
-			<spacer size="md"></spacer>
-
-			<div class="flex w-full justify-between gap-5">
-				<!-- prep time and cook time -->
-				<div class="w-full bg-black-100 dark:bg-white-100 py-5 rounded-md text-center">
-					<meta itemprop="prepTime" :content="`PT${(recipe.preparationTime / 60)}M`" />
-					<p>Préparation</p>
-					<time class="title-paragraph">{{ (recipe.preparationTime / 60) }} min</time>
-				</div>
-
-				<div class="w-full bg-black-100 dark:bg-white-100 py-5 rounded-md text-center">
-					<meta itemprop="cookTime" :content="`PT${(recipe.cookTime / 60)}M`" />
-					<p>Cuisson</p>
-					<time class="title-paragraph">{{ (recipe.cookTime / 60) }}min</time>
-				</div>
-
 
 			</div>
-
 			<spacer size="xs"></spacer>
 
-			<div class="flex w-full justify-between gap-5">
-				<div class="w-full bg-black-100 dark:bg-white-100 py-5 rounded-md text-center">
-					<meta itemprop="prepTime" :content="`PT${(recipe.preparationTime / 60)}M`" />
-					<p>Difficulté</p>
-					<div class="title-paragraph">{{ difficultyText }}</div>
+			<div class="flex flex-col gap-5">
+				<div class="flex w-full justify-between gap-5">
+					<RecipeInfoBox label="Préparation" :value="`${(recipe.preparationTime / 60)} min`">
+						<template #content>
+							<time>{{ (recipe.preparationTime / 60) }} min</time>
+						</template>
+					</RecipeInfoBox>
+					<RecipeInfoBox label="Cuisson" :value="`${(recipe.cookTime / 60)} min`">
+						<template #content>
+							<time>{{ (recipe.cookTime / 60) }} min</time>
+						</template>
+					</RecipeInfoBox>
 				</div>
 
-				<div class="w-full bg-black-100 dark:bg-white-100 py-5 rounded-md text-center">
-					<meta itemprop="prepTime" :content="`PT${(recipe.preparationTime / 60)}M`" />
-					<p>Prix</p>
-					<div class="title-paragraph">{{ priceText }}</div>
+				<div class="flex w-full justify-between gap-5">
+					<RecipeInfoBox label="Difficulté" :value="difficultyText" />
+					<RecipeInfoBox label="Prix" :value="priceText" />
+				</div>
+
+				<div class="flex w-full justify-between gap-5">
+					<RecipeInfoBox label="Saisonnalité" :className="'pb-2'">
+						<template #content>
+							<div v-if="recipe.months.length < 12" class="flex flex-wrap gap-2">
+								<nuxt-link v-for="month in recipe.months" :key="month" :to="`/Recettes?months=${month}`">
+									<tag class="text-xs" look="light">{{ month }}</tag>
+								</nuxt-link>
+							</div>
+							<div v-else>
+								<p>{{ label('allYearLong') }}</p>
+							</div>
+						</template>
+					</RecipeInfoBox>
 				</div>
 			</div>
-
-			<spacer size="sm"></spacer>
-
-			<!-- seasonality (a list of months) -->
-			<div class="flex flex-col justify-start items-start text-big space-y-4" v-if="recipe.months">
-				<p class="font-bold">Saisonnalité:</p>
-				<div v-if="recipe.months.length < 12" class="flex flex-wrap gap-2">
-					<nuxt-link v-for="month in recipe.months" :key="month" :to="`/Recettes?months=${month}`">
-						<tag look="light">{{ month }}</tag>
-					</nuxt-link>
-				</div>
-				<div v-else>
-					<p>{{ label('allYearLong') }}</p>
-				</div>
-			</div>
-
-			<spacer size="lg"></spacer>
+			<spacer size="xs"></spacer>
 
 			<!-- ingredients -->
-			<h2>Ingrédients</h2>
-			<spacer size="xs"></spacer>
-			<!-- change number of plates -->
-			<div
-				class="flex flex-row items-center gap-2 bg-black-300 dark:bg-purple-100 00 w-fit border-black-200 dark:border-purple-200 ">
-				<button
-					class="title-article border-r-2 border-r-black-200 dark:border-r-purple-200 dark:hover:border-r-purple-200 text-center px-4 dark:hover:bg-purple-200 noprint"
-					@click="(servings > 0) ? servings-- : servings" :disabled="servings == 1">-</button>
-				<input
-					class="max-w-[40px] bg-black-300 dark:bg-purple-100 rounded focus:outline-none focus:ring focus:ring-black-200 block p-2.5 placeholder:text-white-200 text-white-100 title-paragraph text-center"
-					type="number" v-model="servings" step="1" min="1" max="30">
-				<button
-					class="title-article border-l-2 border-l-black-200 dark:border-l-purple-200 dark:hover:border-l-purple-200 dark:hover:bg-purple-200 text-center px-4 noprint"
-					@click="servings++">+</button>
+			<div class="flex flex-col space-y-2">
+				<h3>Ingrédients</h3>
+				<ServingsAdjuster v-model="servings" />
 			</div>
-			<p class="text-usual">Nombre de personnes</p>
-			<!-- yield -->
-			<!-- rajouter directement le mot "personnes" à la suite du nombre dans l'input -->
-			<!-- <p><span itemprop="recipeYield"> Pour {{recipe.yield}}</span> personnes</p> -->
-			<!-- list of compositions: quantity / units / ingredient name / remark / optional -->
+
 
 			<spacer size="xs"></spacer>
-
-			<div v-for="c in recipe.compositions" :key="c.name" class="py-0.5">
-				<div v-if="c.ingredient[0]" class="text-big font-light flex">
-					<div class="font-bold" v-if="c.quantity > 0">
-						<!-- quantity -->
-						<span class="">{{ computedQuantity(c.quantity) }}&nbsp;</span>
-						<!-- units -->
-						<span v-if="c.units != 'pièce'">{{ c.units }} <span class="font-light">de &nbsp;</span> </span>
-					</div>
-					<div>
-						<!-- ingredient -->
-						<span>{{ c.ingredient }}</span>
-						<!-- remark -->
-						<i>{{ c.remark }}</i>
-						<!-- if no quantity -->
-						<span v-if="c.quantity == 0">selon votre goût</span>
-						<!-- optional -->
-						<span v-if="c.optional">(facultatif)</span>
-					</div>
-				</div>
-			</div>
+			<IngredientList :ingredients="recipe.compositions" :servingsRatio="servingsRatio" />
 
 			<spacer size="lg"></spacer>
 
 			<!-- procedure -->
-			<h2>Préparation</h2>
+			<h3>Préparation</h3>
 			<spacer size="xs"></spacer>
 
 			<div v-html="procedure" class="text-usual"></div>
@@ -159,7 +112,7 @@
 
 			<spacer size="sm"></spacer>
 
-			<h2 class="noprint">Tags</h2>
+			<h3 class="noprint">Tags</h3>
 			<spacer size="xs"></spacer>
 			<!-- tags -->
 			<div class="flex flex-row flex-wrap justify-start items-start  gap-2 noprint">
@@ -203,10 +156,15 @@ import { DateTime } from "luxon";
 import Tag from '~/molecules/Tag.vue';
 import CardTip from '~/components/CardTip.vue';
 import Spacer from '~/molecules/Spacer.vue';
-
+import IngredientList from '~/components/IngredientList.vue'; // Add this import
+import ServingsAdjuster from '~/components/ServingsAdjuster.vue';
+import RecipeInfoBox from '~/components/RecipeInfoBox.vue';
 
 export default {
-	components: { Tag, CardTip, Spacer },
+	components: {
+		RecipeInfoBox,
+		Tag, CardTip, Spacer, IngredientList, ServingsAdjuster
+	},
 	computed: {
 		procedure() {
 			return (this.recipe.procedure) ? marked(this.recipe.procedure) : ""
@@ -253,10 +211,6 @@ export default {
 		},
 		computedQuantity(qty) {
 			return Math.round((qty * this.servingsRatio) * 2) / 2;
-		},
-		addServings() {
-			console.log(this.servings);
-			this.servings++;
 		}
 	},
 	async asyncData({ params, error, payload, $axios, $config: { queryFunction }, $prismic }) {

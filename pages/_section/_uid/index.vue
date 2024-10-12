@@ -8,7 +8,7 @@
 		<spacer size="xxs"></spacer>
 
 		<!-- page title -->
-		<h1 class="!text-4xl text-balance pt-10">{{ $prismic.asText(document.data.title) }}</h1>
+		<h1 class="!text-4xl text-balance pt-10 leading-none">{{ $prismic.asText(document.data.title) }}</h1>
 
 		<spacer size="xs"></spacer>
 
