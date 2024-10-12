@@ -26,7 +26,7 @@
 							<eco-index-badge />
 							<dark-mode-toggle />
 						</div>
-						<p class="text-sm text-right pt-3 text-label">copyright ©fristouille {{ currentYear }} safdsa</p>
+						<p class="text-sm text-right pt-3 text-label">copyright ©fristouille {{ currentYear }}</p>
 					</div>
 				</div>
 			</div>
