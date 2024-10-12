@@ -25,7 +25,7 @@
           <!-- filters -->
           <span>
             <hyper-link path="/Recettes" class="font-labil text-base font-medium text-white-200 hover:text-underline">
-              voir tout les filtres
+              voir tout les filtres ss
             </hyper-link>
           </span>
         </div>
