@@ -26,6 +26,7 @@ export default {
     "@/plugins/vue-instantsearch.js",
     { src: "~/plugins/pwa-update.js", mode: "client" },
     { src: "~/plugins/vuex-persistedstate.js", mode: "client" },
+    { src: "~/plugins/darkMode.client.js", mode: "client" },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

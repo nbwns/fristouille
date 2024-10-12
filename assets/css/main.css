@@ -440,10 +440,6 @@
     @apply h-[1px] bg-black-300 opacity-25 w-full my-5;
   }
 
-  .note {
-    @apply text-sm;
-  }
-
   .ds-label {
     @apply text-white-100 text-small uppercase tracking-wider;
   }

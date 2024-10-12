@@ -1,5 +1,5 @@
 <template>
-	<div class="text-2xl lg:text-4xl font-sans font-bold text-accent flex flex-shrink-0 mr-10">
+	<div class="text-2xl lg:text-4xl font-sans font-bold text-accent flex flex-shrink-0 mr-10 ligatures-contextual">
 		<nuxt-link to="/">fristouille</nuxt-link>
 	</div>
 </template>

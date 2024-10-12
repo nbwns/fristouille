@@ -9,7 +9,7 @@
 			</svg>
 		</div>
 		<input type="text" name="q" id="search-query-input"
-			class="placeholder:font-mono block w-full px-3 py-2 pl-10  bg-secondary border-primary-foreground/10 text-primary-foreground placeholder:text-primary-foreground placeholder:text-sm placeholder:font-medium placeholder:tracking-tight placeholder:ligatures-none"
+			class="placeholder:font-mono font-medium block w-full px-3 py-2 pl-10  bg-secondary border-primary-foreground/10 text-primary-foreground placeholder:text-primary-foreground placeholder:text-sm placeholder:tracking-tight placeholder:ligatures-none"
 			:placeholder="placeholder" :required="required" v-model="inputValue" @keyup.enter="$emit('enter')" />
 	</div>
 </template>

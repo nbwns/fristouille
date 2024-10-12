@@ -6,7 +6,7 @@
         par
         <span v-if="authorWeb">
           <a :href="authorWeb" target="_blank"
-            class="text-base font-mono text-accent hover:cursor-pointer hover:underline focus:text-accent/75">
+            class="text-base font-mono font-medium text-accent hover:cursor-pointer hover:underline focus:text-accent/75">
             {{ authorName }}
           </a>
         </span>

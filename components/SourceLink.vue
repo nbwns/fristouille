@@ -1,7 +1,7 @@
 <template>
   <div>
     <a v-if="source.startsWith('http')" :href="source" target="_blank"
-      class="text-base font-anonymous text-orange-300 dark:text-purple-300 hover:cursor-pointer hover:underline focus:text-orange-200 dark:focus:text-purple-200">
+      class="text-base font-mono font-medium text-accent hover:cursor-pointer hover:underline focus:text-accent">
       Vers la publication originale
     </a>
     <span v-else><em class="text-base">{{ source }}</em></span>
