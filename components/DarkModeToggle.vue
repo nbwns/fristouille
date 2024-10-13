@@ -5,7 +5,7 @@
 			<span
 				class="text-base select-none text-alt group-hover:text-primary-foreground transition-colors duration-300">Thème</span>
 			<div class="flex items-center">
-				<svg v-if="dark" xmlns="http://www.w3.org/2000/svg"
+				<svg v-if="darkMode" xmlns="http://www.w3.org/2000/svg"
 					class="h-6 w-6 text-alt group-hover:text-primary-foreground transition-colors duration-300"
 					viewBox="0 0 20 20" fill="currentColor">
 					<path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
@@ -23,59 +23,23 @@
 </template>
 
 <script>
-export default {
-	computed: {
-		dark() {
-			return this.$store.state.dark;
+import { defineComponent, computed } from '@nuxtjs/composition-api'
+import { useDarkModeStore } from '~/store/darkMode'
+
+export default defineComponent({
+	setup() {
+		const darkModeStore = useDarkModeStore()
+
+		const darkMode = computed(() => darkModeStore.dark)
+
+		const toggleDarkMode = () => {
+			darkModeStore.toggleDarkMode()
+		}
+
+		return {
+			darkMode,
+			toggleDarkMode,
 		}
 	},
-	mounted() {
-		if (process.client) {
-			this.$nextTick(() => {
-				const savedState = JSON.parse(localStorage.getItem('vuex') || '{}');
-				if (savedState.dark !== undefined) {
-					this.$store.commit('toggleDarkMode', savedState.dark);
-				} else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-					this.$store.commit('toggleDarkMode', true);
-				}
-				this.applyDarkMode(this.dark);
-
-				// Debug logs
-				console.log('Dark mode state:', this.$store.state.dark);
-				console.log('localStorage vuex:', localStorage.getItem('vuex'));
-				console.log('HTML classes:', document.documentElement.classList);
-			});
-		}
-	},
-	methods: {
-		toggleDarkMode() {
-			if (process.client) {
-				const newDarkMode = !this.dark;
-				this.$store.commit('toggleDarkMode', newDarkMode);
-				this.applyDarkMode(newDarkMode);
-
-				// Debug logs
-				console.log('Dark mode state after toggle:', this.$store.state.dark);
-				console.log('localStorage vuex after toggle:', localStorage.getItem('vuex'));
-				console.log('HTML classes after toggle:', document.documentElement.classList);
-			}
-		},
-		applyDarkMode(isDark) {
-			if (isDark) {
-				document.documentElement.classList.add('dark');
-			} else {
-				document.documentElement.classList.remove('dark');
-			}
-			// Debug logs
-			console.log('HTML classes after toggle:', document.documentElement.classList);
-		}
-	}
-};
+})
 </script>
-
-
-<style scoped>
-.text-usual {
-	@apply text-white-100 dark:text-black-100;
-}
-</style>

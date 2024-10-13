@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
+    "@nuxtjs/composition-api": "^0.34.0",
     "@nuxtjs/pwa": "^3.3.5",
+    "@pinia/nuxt": "^0.2.1",
     "airtable": "^0.12.2",
     "algoliasearch": "^4.11.0",
     "core-js": "^3.15.1",
@@ -20,6 +22,7 @@
     "netlify-cli": "^17.33.4",
     "nuxt": "^2.16.2",
     "nuxt-sm": "^0.1.6",
+    "pinia": "^2.2.4",
     "vue-horizontal": "^0.8.12",
     "vue-instantsearch": "^4.3.0",
     "vue-slicezone": "^0.1.0",
@@ -37,5 +40,8 @@
     "postcss": "^8.4.21",
     "slice-machine-ui": "^0.7.1",
     "tailwindcss": "^3.4.3"
+  },
+  "overrides": {
+    "vue": "latest"
   }
 }

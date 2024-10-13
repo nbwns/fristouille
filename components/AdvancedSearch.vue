@@ -256,6 +256,9 @@ import Drawer from '~/components/Drawer.vue'
 import CheckboxFilter from '~/molecules/CheckboxFilter.vue'
 import Tag from '~/molecules/Tag.vue'
 import Spacer from '~/molecules/Spacer.vue'
+import { useSearchStore } from '~/store/search'
+import { storeToRefs } from 'pinia'
+
 export default {
 	components: {
 		Dropdown,
@@ -266,13 +269,22 @@ export default {
 		Spacer
 	},
 	props: ['showDrawer'],
+	setup() {
+		const searchStore = useSearchStore()
+		const { searchFilters } = storeToRefs(searchStore)
+
+		return {
+			searchStore,
+			searchFilters
+		}
+	},
 	computed: {
 		selectedFilters() {
 			//filter properties which don't contain any value
 			return Object.fromEntries(Object.entries(this.filters).filter(([key, value]) => value.length > 0));
 		},
 		storeFilters() {
-			return this.$store.state.searchFilters;
+			return this.searchFilters;
 		}
 	},
 	data() {
@@ -342,7 +354,7 @@ export default {
 			this.applyFilters();
 		},
 		applyFilters() {
-			this.$store.commit('saveSearchFilters', this.filters);
+			this.searchStore.saveSearchFilters(this.filters);
 			this.$emit('filtersChanged');
 		}
 	},

@@ -14,22 +14,25 @@
 	</div>
 </template>
 
-<script>
-export default {
-	props: {
-		placeholder: String,
-		required: String
-	},
-	computed: {
-		inputValue: {
-			get() {
-				return this.$store.state.searchQuery;
-			},
-			set(value) {
-				this.$store.commit('saveSearchQuery', value);
-			}
-		}
-	}
+<script setup>
+import { computed } from 'vue'
+import { useSearchStore } from '~/store/search'
+
+const props = defineProps({
+	placeholder: String,
+	required: Boolean
+})
+
+const searchStore = useSearchStore()
+
+const inputValue = computed({
+	get: () => searchStore.searchQuery,
+	set: (value) => searchStore.saveSearchQuery(value)
+})
+
+const updateSearchQuery = () => {
+	searchStore.saveSearchQuery(inputValue.value)
+	searchStore.toggleSearchFromBar(true)
 }
 </script>
 
