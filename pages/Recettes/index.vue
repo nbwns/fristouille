@@ -39,7 +39,8 @@
 			Veuillez indiquer au minimum un terme de recherche ou un filtre avancé
 		</div>
 
-		<ais-instant-search :index-name="indexName" :search-client="searchClient" :search-function="search" class="w-full">
+		<ais-instant-search v-if="searchClient" :index-name="indexName" :search-client="searchClient"
+			:search-function="search" class="w-full">
 			<ais-configure :hits-per-page.camel="12" :distinct="true" :filters="filterQuery" :query="query"
 				:optional-words.camel="query" :page="page" />
 
@@ -139,17 +140,15 @@
 	</section>
 </template>
 <script>
-import {
-	AisInstantSearch,
-	AisHits,
-	AisPagination,
-} from 'vue-instantsearch';
-import algoliaSearch from 'algoliasearch/lite'
+import { AisInstantSearch, AisHits, AisPagination } from 'vue-instantsearch';
+import algoliasearch from 'algoliasearch/lite';
 import CardRecipe from '~/components/CardRecipe.vue';
 import AdvancedSearch from '~/components/AdvancedSearch.vue'
 import NormalTitle from '~/molecules/TitleParagraph.vue';
 import GridOfCardsRecipes from '~/components/GridOfCardsRecipes.vue';
 import SearchBar from '~/components/SearchBar.vue'
+import { useSearchStore } from '~/store/search'
+import { storeToRefs } from 'pinia'
 
 const indexName = 'Recipes';
 
@@ -164,11 +163,22 @@ export default {
 		GridOfCardsRecipes,
 		SearchBar
 	},
+	setup() {
+		const searchStore = useSearchStore()
+		const { searchFilters, searchQuery, launchSearchFromBar } = storeToRefs(searchStore)
+
+		return {
+			searchStore,
+			searchFilters,
+			searchQuery,
+			launchSearchFromBar
+		}
+	},
 	data() {
 		return {
 			indexName,
 			query: '',
-			searchClient: algoliaSearch(this.$config.algoliaAppId, this.$config.algoliaApiKey),
+			searchClient: null,
 			filterQuery: '',
 			searchFiltersFromUrl: null,
 			page: 0,
@@ -179,27 +189,12 @@ export default {
 			historyChanged: false
 		}
 	},
-	computed: {
-		//get filters from the store
-		searchFilters() {
-			return this.$store.state.searchFilters;
-		},
-		searchQuery() {
-			return this.$store.state.searchQuery;
-		},
-		toggleSearchFromBar() {
-			return this.$store.state.launchSearchFromBar;
-		}
-	},
 	methods: {
-		//triggered on button click
 		search(helper) {
 			this.setFilterQuery();
 			if (helper.state.query || (!helper.state.query && this.filterQuery != '')) {
-				//trigger search - without reloading the page
 				helper.search();
 				this.searchPerformed = true;
-				//put search parameters in query string
 				this.$router.push({
 					path: this.$route.path,
 					query: {
@@ -214,10 +209,6 @@ export default {
 					}
 				});
 			}
-			else {
-				this.searchPerformed = false;
-			}
-
 		},
 		updateQuery() {
 			this.query = this.searchQuery;
@@ -225,16 +216,9 @@ export default {
 			this.searchPerformed = true;
 			this.filtersHaveChanged = false;
 			this.mobileAdvancedSearch = false;
-			if (!this.query && !this.filterQuery) {
-				this.noSearchParameters = true;
-			}
-			else {
-				this.noSearchParameters = false;
-			}
+			this.noSearchParameters = !this.query && !this.filterQuery;
 		},
 		setFilterQuery() {
-			//take searchFilters from the store, build the Algolia filter query and triggers search
-			//filterQuery is the value of the 'filters' property of Algolia
 			this.filterQuery = this.buildFilterQuery(this.searchFilters);
 		},
 		buildFilterQuery(filters) {
@@ -286,9 +270,9 @@ export default {
 				baseRecipe: this.sanitizeQueryParameter(this.$route, "baseRecipe"),
 			};
 
-			//save search filters and query into the store
-			this.$store.commit('saveSearchFilters', this.searchFiltersFromUrl);
-			this.$store.commit('saveSearchQuery', this.query);
+			// Update Pinia store
+			this.searchStore.saveSearchFilters(this.searchFiltersFromUrl);
+			this.searchStore.saveSearchQuery(this.query);
 
 			//take searchFilters from the URL, build the Algolia filter query and triggers search if non-empty
 			this.filterQuery = this.buildFilterQuery(this.searchFiltersFromUrl);
@@ -299,14 +283,24 @@ export default {
 		},
 		pageChange() {
 			document.body.scrollIntoView();
+		},
+		initSearchClient() {
+			this.searchClient = algoliasearch(
+				this.$config.algoliaAppId,
+				this.$config.algoliaApiKey
+			);
 		}
 	},
 	watch: {
-		toggleSearchFromBar(newValue, oldValue) {
-			this.updateQuery();
+		launchSearchFromBar: {
+			handler(newValue, oldValue) {
+				this.updateQuery();
+			},
+			immediate: true
 		}
 	},
 	mounted() {
+		this.initSearchClient();
 		this.triggerSearchOnPageLoad();
 	}
 }

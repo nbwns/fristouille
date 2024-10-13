@@ -2,6 +2,7 @@ import axios from "axios";
 import smConfig from "./sm.json";
 import { getStoriesPaths } from "slice-machine-ui/helpers/storybook";
 import { darkMode } from "./tailwind.config";
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: "static",
@@ -25,15 +26,14 @@ export default {
   plugins: [
     "@/plugins/vue-instantsearch.js",
     { src: "~/plugins/pwa-update.js", mode: "client" },
-    { src: "~/plugins/vuex-persistedstate.js", mode: "client" },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
   publicRuntimeConfig: {
-    algoliaApiKey: process.env.ALGOLIA_API_KEY,
     algoliaAppId: process.env.ALGOLIA_APP_ID,
+    algoliaApiKey: process.env.ALGOLIA_API_KEY,
     searchIndexFunction: process.env.SEARCH_INDEX_FUNCTION,
     queryFunction: process.env.QUERY_FUNCTION,
     baseUrl: process.env.BASE_URL,
@@ -47,6 +47,8 @@ export default {
     "@nuxt/postcss8",
     "vue-ssr-carousel/nuxt",
     "@nuxt/image",
+    "@nuxtjs/composition-api/module",
+    ["@pinia/nuxt", { disableVuex: true }],
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -62,6 +64,7 @@ export default {
       },
     ],
     ["nuxt-sm"],
+    "@pinia/nuxt",
   ],
 
   router: {
@@ -128,7 +131,6 @@ export default {
       "nuxt-sm",
       "vue-instantsearch",
       "instantsearch.js/es",
-      "vuex-persistedstate",
     ],
     postcss: {
       postcssOptions: {
@@ -151,6 +153,7 @@ export default {
     // Add this to enable modern build
     modern: "client",
   },
+
   storybook: {
     // This is a bug with `getStoriesPaths` and Nuxt that is awaiting to be fixed
     stories: [...getStoriesPaths().map((path) => path.replace("../", "~/"))],

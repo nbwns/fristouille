@@ -5,10 +5,10 @@
 
 				<!-- Logo and social links -->
 				<div class="flex flex-col justify-center items-center w-full sm:w-1/3 ">
-					<a href="#" class="hover:cursor-pointer">
+					<!-- <a href="#" class="hover:cursor-pointer">
 						<Logo
 							class="w-full mr-0 justify-center text-accent hover:text-secondary-foreground transition-colors duration-300" />
-					</a>
+					</a> -->
 					<div class="flex flex-row justify-center w-6/12 items-center space-x-4">
 						<social-icon v-for="icon in socialIcons" :key="icon.name" :icon="icon" />
 					</div>
@@ -35,7 +35,7 @@
 			<div class="w-full mt-6 mb-2 h-[1px] bg-primary-foreground/10" />
 			<p
 				class="w-full flex items-center justify-center font-sans font-light ligatures-none tracking-wide text-xs text-alt">
-				copyright ©fristouille {{ currentYear }} hello test
+				copyright ©fristouille {{ currentYear }}
 			</p>
 		</div>
 	</footer>
@@ -47,10 +47,10 @@ import FooterColumn from './FooterColumn.vue';
 import SocialIcon from './SocialIcon.vue';
 import NewsletterSignup from './NewsletterSignup.vue';
 import EcoIndexBadge from './EcoIndexBadge.vue';
-import Logo from '~/molecules/Logo.vue';
+// import Logo from '@/components/molecules/Logo.vue';
 export default {
 	components: {
-		Logo,
+		// Logo,
 		DarkModeToggle,
 		FooterColumn,
 		SocialIcon,
