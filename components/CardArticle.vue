@@ -1,22 +1,24 @@
 <template>
-	<!-- model with img box constrain differently on flex-container depends on situation -->
-	<!-- STEPH: change display is abstract -->
 	<div
-		class="flex flex-col flex-grow justify-between w-full rounded bg-secondary h-96 border border-primary-foreground/10 hover:border-primary-foreground/60 overflow-hidden group">
-		<nuxt-link :to="path" class="flex flex-col h-full">
-			<div class="card-image h-2/3">
+		class="flex flex-col flex-grow justify-between w-full rounded-md bg-secondary h-full max-h-72 group border border-primary-foreground/10 hover:border-primary-foreground/60 overflow-clip hover:bg-primary/80 transition-colors duration-300">
+		<nuxt-link :to="path" class="flex flex-col justify-start h-full">
+			<div class="h-[37rem] overflow-hidden">
 				<img class="w-full h-full object-cover" :src="img" :alt="imgAlt">
 			</div>
-			<div class="p-5 space-y-2 h-1/3 bg-secondary group-hover:bg-primary/80 transition-colors duration-300">
-				<h4 class="text-big text-pretty sm:text-balance max-w-xs font-demi line-clamp-2 text-primary-foreground">
-					{{ title }}</h4>
+			<div class="flex flex-col justify-between p-3 space-y-4 h-full">
+				<h4
+					class="text-primary-foreground text-lg leading-tight text-pretty sm:text-balance max-w-xs font-demi line-clamp-2">
+					{{ title }}
+				</h4>
+				<div class="flex flex-col space-y-2">
+					<!-- Placeholder for layout consistency -->
+				</div>
 			</div>
 		</nuxt-link>
 	</div>
 </template>
 
 <script>
-
 export default {
 	props: {
 		path: String,

@@ -1,5 +1,5 @@
 <template>
-  <section class="hidden md:flex mx-10 md:mx-0">
+  <section class="hidden md:flex w-full">
     <div class="flex flex-col w-full items-start bg-background space-y-0 layer__xl mx-auto">
       <h2 class="text-primary-foreground">
         des recettes...

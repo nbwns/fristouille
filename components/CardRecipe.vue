@@ -6,15 +6,19 @@
 			<div class=" bg-center bg-cover h-[37rem]" :class="width" :style="{ backgroundImage: backgroundImage }" />
 			<div class="flex flex-col justify-between p-3 space-y-4 h-full ">
 				<h4
-					class="text-primary-foreground text-lg leading-tight text-pretty sm:text-balance max-w-xs font-demi line-clamp-2 group-hover:bg-primary/80">
+					class="text-primary-foreground text-lg leading-tight text-pretty sm:text-balance max-w-xs font-demi line-clamp-2">
 					{{ title }}
 				</h4>
 				<div class="flex flex-col space-y-2 ">
 					<div class=" w-full flex flex-row flex-wrap justify-start items-center space-x-2">
-						<tag class="text-sm bg-label group-hover:bg-accent/80 text-primary tracking-normal" :title="tag">
+						<tag
+							class="text-sm bg-label group-hover:bg-secondary text-primary group-hover:text-primary-foreground group-hover:border group-hover:border-primary-foreground/60 tracking-normal"
+							:title="tag">
 							{{ totalTime }}
 							min</tag>
-						<tag class="text-sm bg-label group-hover:bg-accent/80 text-primary tracking-normal" :title="diet">
+						<tag
+							class="text-sm bg-label group-hover:bg-secondary text-primary group-hover:text-primary-foreground group-hover:border group-hover:border-primary-foreground/60 tracking-normal"
+							:title="diet">
 							{{ diet }}
 						</tag>
 					</div>

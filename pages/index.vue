@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="container">
 		<!-- Hero introduction -->
 		<hero-section :hero-title="document.data.hero_title" :hero-title-emphasis="document.data.hero_title_emphasis" />
 

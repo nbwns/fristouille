@@ -1,6 +1,6 @@
 <template>
 	<nuxt-link :to="path"
-		class="text-base font-anonymous font-medium text-orange-300  dark:text-purple-300 hover:cursor-pointer hover:underline focus:text-orange-200 dark:focus:text-purple-200">
+		class="text-sm font-mono font-medium text-primary-foreground hover:text-accent hover:cursor-pointer hover:underline">
 		<slot></slot>
 	</nuxt-link>
 </template>
