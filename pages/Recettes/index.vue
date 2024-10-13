@@ -34,8 +34,8 @@
 				@closeDrawer="mobileAdvancedSearch = false" />
 		</div>
 
-		<!-- warning -->
-		<div v-if="noSearchParameters" class="w-full text-center text-usual text-white-300/75 py-10">
+		<!-- Updated warning message -->
+		<div v-if="showNoSearchParametersWarning" class="w-full text-center text-usual text-white-300/75 py-10">
 			Veuillez indiquer au minimum un terme de recherche ou un filtre avancé
 		</div>
 
@@ -54,12 +54,25 @@
 			</ais-state-results>
 
 			<div v-if="searchPerformed" class="pt-10">
-				<normal-title v-if="query">
-					Résultats pour '{{ query }}'
-				</normal-title>
-				<normal-title v-else>
-					Découvrez nos recettes
-				</normal-title>
+				<ais-hits>
+					<template v-slot="{ items }">
+						<template v-if="items.length > 0">
+							<normal-title v-if="query">
+								Résultats pour '{{ query }}'
+							</normal-title>
+							<normal-title v-else>
+								Découvrez nos recettes
+							</normal-title>
+							<grid-of-cards-recipes :recipes="items" />
+						</template>
+						<div v-else>
+							<!-- no results -->
+							<div class="text-usual">
+								Pas de résultat pour cette recherche
+							</div>
+						</div>
+					</template>
+				</ais-hits>
 			</div>
 			<div class="w-full h-96 flex items-center justify-center" v-else>
 				<div class=" font-labil font-light p-14 text-black-50  text-xl text-center ">
@@ -186,8 +199,14 @@ export default {
 			mobileAdvancedSearch: false,
 			searchPerformed: false,
 			filtersHaveChanged: false,
-			historyChanged: false
+			historyChanged: false,
+			showNoSearchParametersWarning: false,
 		}
+	},
+	computed: {
+		hasActiveFilters() {
+			return Object.values(this.searchFilters).some(filter => filter.length > 0);
+		},
 	},
 	methods: {
 		search(helper) {
@@ -216,7 +235,7 @@ export default {
 			this.searchPerformed = true;
 			this.filtersHaveChanged = false;
 			this.mobileAdvancedSearch = false;
-			this.noSearchParameters = !this.query && !this.filterQuery;
+			this.showNoSearchParametersWarning = !this.query && !this.filterQuery && !this.hasActiveFilters;
 		},
 		setFilterQuery() {
 			this.filterQuery = this.buildFilterQuery(this.searchFilters);
@@ -280,6 +299,8 @@ export default {
 				this.searchPerformed = true;
 				this.historyChanged = true;
 			}
+
+			this.showNoSearchParametersWarning = !this.query && !this.filterQuery && !this.hasActiveFilters;
 		},
 		pageChange() {
 			document.body.scrollIntoView();
