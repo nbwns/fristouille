@@ -35,7 +35,7 @@
 			<div class="w-full mt-6 mb-2 h-[1px] bg-primary-foreground/10" />
 			<p
 				class="w-full flex items-center justify-center font-sans font-light ligatures-none tracking-wide text-xs text-alt">
-				copyright ©fristouille {{ currentYear }}
+				copyright ©fristouille {{ currentYear }} hello test
 			</p>
 		</div>
 	</footer>
