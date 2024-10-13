@@ -2,8 +2,7 @@
 	<div class="w-full">
 		<!-- desktop advanced search -->
 		<div class="hidden md:flex flex-grow md:w-auto pt-2 justify-between ">
-			<div
-				class="flex flex-grow text-lg text-white-200 rounded-xs font-anonymous capitalize font-medium justify-between ">
+			<div class="flex flex-grow rounded justify-between">
 				<!-- dropdown menus -->
 				<dropdown title="Choix alimentaire" :numberOfItemsSelected="numberOfItemsSelected('diet')">
 					<checkbox-filter uid="Végétalien" ref="Végétalien" @check="filter('diet', 'Végétalien', $event)"
@@ -218,29 +217,31 @@
 				<!-- selected filters -->
 				<div class="wrap_mobile_filters no-scrollbar" v-if="showSelectedFilters">
 					<!-- loop on all filter categories -->
-					<div v-for="(type, name) in selectedFilters" :key="name" class="flex flex-row mt-4 gap-3">
+					<div v-for="(type, name) in selectedFilters" :key="name" class="flex flex-row gap-3">
 						<tag v-for="f in type" class="cursor-poano" :key="f" look="light"
 							@click="removeFromFilters({ type: name, value: f })">
 							{{ f.replaceAll("'", "").replaceAll("-", " ") }}
-							<span class="inset-y-0 right-0 flex items-center pr-2 flex-1">
-								<svg viewBox="0 0 20 20" class="fill-white-200 h-5 w-5" xmlns="http://www.w3.org/2000/svg">
+							<span class="inset-y-0 right-0 flex items-center flex-1">
+								<svg viewBox="0 0 20 20" class="fill-primary h-5 w-5" xmlns="http://www.w3.org/2000/svg">
 									<path
-										d="M6.98964 5L10.9148 8.92498L14.84 5L15.8301 5.99002L11.9049 9.915L15.8301 13.84L14.84 14.83L10.9148 10.905L6.98964 14.83L5.99957 13.84L9.92475 9.915L5.99957 5.99002L6.98964 5Z"
-										fill="#F3EEE6" />
+										d="M6.98964 5L10.9148 8.92498L14.84 5L15.8301 5.99002L11.9049 9.915L15.8301 13.84L14.84 14.83L10.9148 10.905L6.98964 14.83L5.99957 13.84L9.92475 9.915L5.99957 5.99002L6.98964 5Z" />
 								</svg>
 							</span>
 						</tag>
 					</div>
 				</div>
 				<div class="flex flex-row my-5 gap-3" v-if="showClearFiltersButton">
-					<tag class="cursor-pointer hover:bg-purple-200/10 rounded-[0px] transition-colors duration-150 tracking-wide"
+					<tag
+						class="w-fit inline-flex h-8 px-3.5 tracking-wide items-center justify-center bg-secondary hover:bg-primary  text-primary-foreground border border-primary-foreground/10 hover:border-primary-foreground/60 rounded whitespace-nowrap text-sm font-mono font-medium ring-offset-primary-foreground/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
 						@click="clearFilters()">
 						Réiniialiser tout les filtres
 					</tag>
 				</div>
 			</div>
 			<div class="w-full flex justify-start">
-				<button @click="applyFilters" class="btn text-sm w-max" aria-label="Rechercher" v-if="showApplyFiltersButton">
+				<button @click="applyFilters"
+					class="w-fit inline-flex h-8 px-3.5 tracking-wide items-center justify-center bg-accent/90 hover:bg-accent  text-primary-foreground border border-primary-foreground/10 hover:border-primary-foreground/60 rounded whitespace-nowrap text-sm font-mono font-medium ring-offset-primary-foreground/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+					aria-label="Rechercher" v-if="showApplyFiltersButton">
 					appliquer les filtres
 				</button>
 			</div>

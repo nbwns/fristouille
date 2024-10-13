@@ -1,10 +1,10 @@
 <template>
-	<section class="flex flex-col justify-start items-start layer__xl mx-auto d-1">
+	<section class="flex flex-col w-full h-full container justify-start items-start mx-auto">
 		<!-- search bar (mobile only) -->
 		<div class="flex md:hidden w-full py-4 space-x-6">
 			<search-bar placeholder="Rechercher des recettes" @enter="updateQuery()"></search-bar>
 
-			<div class="flex min-w-[1/5] group d-2">
+			<div class="flex min-w-[1/5] group">
 				<span
 					class="md:hidden font-mono text-sm text-primary-foreground group-hover:text-accent transition-colors duration-300 cursor-pointer"
 					@click="mobileAdvancedSearch = !mobileAdvancedSearch">
@@ -35,8 +35,12 @@
 		</div>
 
 		<!-- Updated warning message -->
-		<div v-if="showNoSearchParametersWarning" class="w-full text-center text-usual text-white-300/75 py-10">
-			Veuillez indiquer au minimum un terme de recherche ou un filtre avancé
+		<div v-if="showNoSearchParametersWarning" class="w-full flex flex-row justify-start items-center gap-10">
+			<draw-radish class="max-w-[90px] py-8" />
+			<div class="basis-4/6  text-balance text-primary-foreground font-light font-sans	text-lg ">
+				Oups ! Veuillez indiquer au minimum un terme de recherche
+				ou un filtre
+				avancé</div>
 		</div>
 
 		<ais-instant-search v-if="searchClient" :index-name="indexName" :search-client="searchClient"
@@ -161,12 +165,13 @@ import NormalTitle from '~/molecules/TitleParagraph.vue';
 import GridOfCardsRecipes from '~/components/GridOfCardsRecipes.vue';
 import SearchBar from '~/components/SearchBar.vue'
 import { useSearchStore } from '~/store/search'
+import DrawRadish from '~/molecules/DrawRadish.vue'
 import { storeToRefs } from 'pinia'
-
 const indexName = 'Recipes';
 
 export default {
 	components: {
+		DrawRadish,
 		CardRecipe,
 		AdvancedSearch,
 		AisInstantSearch,

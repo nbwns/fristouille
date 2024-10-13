@@ -220,10 +220,10 @@
     @apply bg-gradient-to-l from-orange-300 to-orange-300 dark:from-purple-300 dark:to-purple-300 hover:-translate-y-1 hover:scale-105;
   }
 
-  .tag {
+  /* .tag {
     @apply flex items-center py-1 px-3 rounded-3xl max-w-fit w-max;
-  }
-
+  } */
+  /* 
   .tag.default {
     @apply bg-orange-300;
   }
@@ -274,7 +274,7 @@
 
   .tag.vegan:focus {
     @apply bg-pink-300;
-  }
+  } */
 
   /* .navlink {
     @apply font-medium tracking-wide;

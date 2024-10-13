@@ -1,15 +1,13 @@
 <template>
-	<div @click="$emit('click', $event)"
-		:class="classObject"
-		:title="title"
-		class="tag">
+	<div @click="$emit('click', $event)" :class="classObject" :title="title"
+		class="flex items-center py-1 px-1.5 rounded-3xl max-w-fit w-max bg-label text-primary font-mono font-medium text-xs">
 		<slot></slot>
 	</div>
 </template>
 
 <script>
 export default {
-	props:{
+	props: {
 		look: String,
 		title: String
 	},
@@ -27,6 +25,4 @@ export default {
 }
 </script>
 
-<style>
-
-</style>
+<style></style>
