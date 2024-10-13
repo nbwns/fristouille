@@ -1,17 +1,17 @@
 <template>
-	<section class="flex flex-col justify-start items-start layer__xl mx-auto">
+	<section class="flex flex-col justify-start items-start layer__xl mx-auto d-1">
 		<!-- search bar (mobile only) -->
 		<div class="flex md:hidden w-full py-4 space-x-6">
 			<search-bar placeholder="Rechercher des recettes" @enter="updateQuery()"></search-bar>
 
-			<div class="flex min-w-[1/5] group">
+			<div class="flex min-w-[1/5] group d-2">
 				<span
-					class="md:hidden font-labil text-base text-white-100 group-hover:text-orange-300 transition-colors duration-100 dark:text-purple-200 cursor-pointer"
+					class="md:hidden font-mono text-sm text-primary-foreground group-hover:text-accent transition-colors duration-300 cursor-pointer"
 					@click="mobileAdvancedSearch = !mobileAdvancedSearch">
 					filtres
 					<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none"
 						stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-						class="lucide lucide-list-plus text-white-100 group-hover:text-orange-300 transition-colors duration-100 dark:text-purple-300">
+						class="lucide lucide-list-plus text-primary-foreground group-hover:text-accent transition-colors duration-300">
 						<path d="M11 12H3" />
 						<path d="M16 6H3" />
 						<path d="M16 18H3" />

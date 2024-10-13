@@ -1,11 +1,7 @@
 <template>
 	<footer class="bg-primary pt-16">
 		<div class="hidden md:flex mx-10 md:mx-0 mb-10">
-			<div class="flex flex-col layer__xl space-y-[63px] items-center mx-auto justify-center">
-				<!-- Footer columns -->
-				<div class="wrap-sublink">
-					<footer-column v-for="(column, index) in footerColumns" :key="index" :links="column" />
-				</div>
+			<div class="flex flex-col layer__xl space-y-10 items-center mx-auto justify-center">
 
 				<!-- Logo and social links -->
 				<div class="flex flex-col justify-center items-center w-full sm:w-1/3 ">
@@ -17,6 +13,13 @@
 						<social-icon v-for="icon in socialIcons" :key="icon.name" :icon="icon" />
 					</div>
 				</div>
+
+				<!-- Footer columns -->
+				<div class="wrap-sublink">
+					<footer-column v-for="(column, index) in footerColumns" :key="index" :links="column" />
+				</div>
+
+
 
 				<!-- Newsletter, toggle, and ecoindex -->
 				<div class="flex flex-col sm:flex-row sm:justify-between w-full">
