@@ -73,6 +73,7 @@ export default {
 };
 </script>
 
+
 <style scoped>
 .text-usual {
 	@apply text-white-100 dark:text-black-100;
