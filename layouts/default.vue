@@ -6,8 +6,7 @@
     <div class="flex-grow bg-background">
       <Nuxt />
     </div>
-    <dark-mode-toggle />
-    <!-- <footer-links /> -->
+    <footer-links />
     <mobile-navigation />
   </div>
 </template>
@@ -19,15 +18,13 @@ import { defineComponent, onMounted, computed } from '@nuxtjs/composition-api'
 import { useDarkModeStore } from '~/store/darkMode'
 import MainNavigation from '~/components/MainNavigation.vue'
 import MobileNavigation from '~/components/MobileNavigation.vue'
-// import FooterLinks from '~/components/FooterLinks.vue'
-import DarkModeToggle from '~/components/DarkModeToggle.vue'
+import FooterLinks from '~/components/FooterLinks.vue'
 
 export default defineComponent({
   components: {
     MainNavigation,
     MobileNavigation,
-    // FooterLinks
-    DarkModeToggle
+    FooterLinks
   },
   setup() {
     const darkModeStore = useDarkModeStore()
