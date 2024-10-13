@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="w-24">
     <a :href="ecoIndexUrl" target="_blank">
       <img :src="badgeUrl" alt="Ecoindex Badge" />
     </a>

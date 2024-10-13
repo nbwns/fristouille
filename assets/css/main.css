@@ -58,9 +58,10 @@
     --foreground: 0 0% 99%;
     --primary: 296 19% 15%;
     --primary-foreground: 0 0% 99%;
+    --alt: 10 11% 73%;
     --secondary: 296 14% 23%;
     --secondary-foreground: 10 11% 89%;
-    --accent: 21 87% 50%;
+    --accent: 21 98% 56%;
     --label: 305 30% 79%;
     --muted: 240 4.8% 95.9%;
     --border: 240 5.9% 90%;
@@ -76,10 +77,11 @@
     --foreground: 296 19% 15%;
     --primary: 0 0% 99%;
     --primary-foreground: 296 19% 15%;
+    --alt: 10 11% 55%;
     --secondary: 10 11% 89%;
     --secondary-foreground: 296 14% 23%;
     --accent: 21 100% 55%;
-    --label: 305 30% 45%;
+    --label: 305 30% 60%;
     --muted: 240 3.7% 15.9%;
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
@@ -274,7 +276,7 @@
     @apply bg-pink-300;
   }
 
-  .navlink {
+  /* .navlink {
     @apply font-medium tracking-wide;
   }
 
@@ -284,7 +286,7 @@
 
   .navlink:focus {
     @apply text-white-200 dark:text-purple-300;
-  }
+  } */
 
   .breadcrumb-main {
     @apply text-orange-300;

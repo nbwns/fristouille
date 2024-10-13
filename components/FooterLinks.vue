@@ -1,7 +1,7 @@
 <template>
-	<footer class="bg-primary pt-16">
-		<div class="hidden md:flex mx-10 md:mx-0 mb-10">
-			<div class="flex flex-col layer__xl space-y-10 items-center mx-auto justify-center">
+	<footer class="w-full bg-primary pt-16 container d-1">
+		<div class="w-full hidden md:flex md:flex-col md:justify-center mx-10 md:mx-0 mb-10">
+			<div class="w-full flex flex-col space-y-10 items-center mx-auto justify-center">
 
 				<!-- Logo and social links -->
 				<div class="flex flex-col justify-center items-center w-full sm:w-1/3 ">
@@ -24,15 +24,19 @@
 				<!-- Newsletter, toggle, and ecoindex -->
 				<div class="flex flex-col sm:flex-row sm:justify-between w-full">
 					<newsletter-signup />
-					<div class="flex flex-col justify-end w-full">
-						<div class="flex flex-col justify-end items-end gap-3 text-accent">
+					<div class="flex flex-col justify-end items-end w-full space-y-2">
+						<div class="flex flex-row justify-end  space-x-2 items-center">
 							<eco-index-badge />
-							<dark-mode-toggle />
 						</div>
-						<p class="text-sm text-right pt-3 text-label">copyright ©fristouille {{ currentYear }}</p>
+						<dark-mode-toggle />
 					</div>
 				</div>
 			</div>
+			<div class="w-full mt-6 mb-2 h-[1px] bg-primary-foreground/10" />
+			<p
+				class="w-full flex items-center justify-center font-sans font-light ligatures-none tracking-wide text-xs text-alt">
+				copyright ©fristouille {{ currentYear }}
+			</p>
 		</div>
 	</footer>
 </template>

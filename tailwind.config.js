@@ -14,6 +14,17 @@ module.exports = {
     "./nuxt.config.{js,ts}",
   ],
   theme: {
+    container: {
+      center: true,
+      padding: "1rem",
+      screens: {
+        sm: "960px",
+        md: "960px",
+        lg: "960px",
+        xl: "960px",
+        "2xl": "960px",
+      },
+    },
     borderRadius: {
       DEFAULT: ".31rem",
       "3xl": "10rem",
@@ -31,7 +42,7 @@ module.exports = {
       lg: "1.18em",
       base: "1em",
       sm: ".85em",
-      xs: ".5em",
+      xs: ".75em",
     },
     extend: {
       fontFamily: {
@@ -44,6 +55,7 @@ module.exports = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        alt: "hsl(var(--alt))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",

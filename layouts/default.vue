@@ -1,5 +1,5 @@
 <template>
-  <div id="app" :class="{ 'dark': $store.state.dark }">
+  <div id="app" :class="{ 'dark': $store.state.dark }" class="flex flex-col min-h-screen bg-background d-2">
     <header>
       <MainNavigation />
     </header>
