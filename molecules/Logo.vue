@@ -1,13 +1,9 @@
 <template>
-	<div class="text-2xl lg:text-4xl font-sans font-bold text-accent flex flex-shrink-0 mr-10 ligatures-contextual">
-		<nuxt-link to="/">fristouille</nuxt-link>
-	</div>
+	<a href="/"
+		class="text-2xl lg:text-4xl font-sans font-bold text-accent hover:text-alt transition-colors duration-300  ligatures-contextual hover:cursor-pointer">
+		fristouille
+	</a>
 </template>
 
-<script>
-export default {
-
-}
-</script>
-
+<script></script>
 <style></style>

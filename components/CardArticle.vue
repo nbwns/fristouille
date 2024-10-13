@@ -2,7 +2,7 @@
 	<!-- model with img box constrain differently on flex-container depends on situation -->
 	<!-- STEPH: change display is abstract -->
 	<div
-		class="flex flex-col flex-grow justify-between w-full rounded bg-secondary h-96 border border-primary-foreground/10 overflow-hidd group">
+		class="flex flex-col flex-grow justify-between w-full rounded bg-secondary h-96 border border-primary-foreground/10 hover:border-primary-foreground/60 overflow-hidden group">
 		<nuxt-link :to="path" class="flex flex-col h-full">
 			<div class="card-image h-2/3">
 				<img class="w-full h-full object-cover" :src="img" :alt="imgAlt">

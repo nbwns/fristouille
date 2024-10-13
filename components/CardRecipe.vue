@@ -1,7 +1,7 @@
 <template>
 
 	<div
-		class="flex flex-col flex-grow justify-between w-full rounded-md bg-secondary h-full max-h-80  border border-primary-foreground/10 overflow-clip hover:bg-primary/80 transition-colors duration-300">
+		class="flex flex-col flex-grow justify-between w-full rounded-md bg-secondary h-full max-h-80 group border border-primary-foreground/10 hover:border-primary-foreground/60 overflow-clip hover:bg-primary/80 transition-colors duration-300">
 		<nuxt-link class="flex flex-col justify-start h-full" :to='`/Recette/${slug}/${recipeID}`' no-prefetch>
 			<div class=" bg-center bg-cover h-[37rem]" :class="width" :style="{ backgroundImage: backgroundImage }" />
 			<div class="flex flex-col justify-between p-3 space-y-4 h-full ">
@@ -11,9 +11,11 @@
 				</h4>
 				<div class="flex flex-col space-y-2 ">
 					<div class=" w-full flex flex-row flex-wrap justify-start items-center space-x-2">
-						<tag class="text-sm bg-label text-primary-foreground tracking-normal" :title="tag">{{ totalTime }}
+						<tag class="text-sm bg-label group-hover:bg-accent/80 text-primary tracking-normal" :title="tag">
+							{{ totalTime }}
 							min</tag>
-						<tag class="text-sm bg-label text-primary-foreground tracking-normal" :title="diet"> {{ diet }}
+						<tag class="text-sm bg-label group-hover:bg-accent/80 text-primary tracking-normal" :title="diet">
+							{{ diet }}
 						</tag>
 					</div>
 				</div>

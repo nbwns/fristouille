@@ -1,7 +1,7 @@
 <template>
   <a :href="icon.url" :target="icon.name !== 'email' ? '_blank' : undefined" rel="noopener noreferrer">
-    <svg class="fill-label hover:fill-secondary-foreground transition-colors duration-300" width="29" height="30"
-      viewBox="0 0 29 30" xmlns="http://www.w3.org/2000/svg">
+    <svg class="fill-alt hover:fill-accent transition-colors duration-300" width="29" height="30" viewBox="0 0 29 30"
+      xmlns="http://www.w3.org/2000/svg">
       <path :d="getIconPath(icon.name)" />
     </svg>
   </a>
