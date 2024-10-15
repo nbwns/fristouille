@@ -196,12 +196,12 @@
 
 				<div class="flex w-full item-center p-4">
 					<button @click="applyFilters"
-						class="w-full max text-base bg-orange-300 text-white-300 font-anonymous font-bold uppercase tracking-widest p-3"
+						class="w-full inline-flex h-16 px-3.5 tracking-wide items-center justify-center bg-secondary hover:bg-primary  text-primary-foreground border border-primary-foreground/10 hover:border-primary-foreground/60 rounded whitespace-nowrap text-sm font-mono font-medium ring-offset-primary-foreground/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
 						aria-label="Rechercher" v-if="showApplyFiltersButton">
 						sauvegarder
 					</button>
 					<button @click="applyFilters" v-else
-						class="w-full max text-base bg-orange-300/5 text-white-300/20 font-anonymous font-bold uppercase tracking-widest p-3"
+						class="w-full inline-flex h-16 px-3.5 tracking-wide items-center justify-center bg-secondary hover:bg-primary  text-primary-foreground border border-primary-foreground/10 hover:border-primary-foreground/60 rounded whitespace-nowrap text-sm font-mono font-medium ring-offset-primary-foreground/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
 						aria-label="Rechercher">
 						sauvegarder
 					</button>
@@ -215,10 +215,11 @@
 		<div class="flex flex-col w-full space-y-6">
 			<div class="flex flex-col w-full space-y-4">
 				<!-- selected filters -->
-				<div class="wrap_mobile_filters no-scrollbar" v-if="showSelectedFilters">
+				<div class="flex flex-row flex-grow gap-4 items-start max-w-[90vw] overflow-auto no-scrollbar"
+					v-if="showSelectedFilters">
 					<!-- loop on all filter categories -->
 					<div v-for="(type, name) in selectedFilters" :key="name" class="flex flex-row gap-3">
-						<tag v-for="f in type" class="cursor-poano" :key="f" look="light"
+						<tag v-for="f in type" class="cursor-pointer" :key="f" look="light"
 							@click="removeFromFilters({ type: name, value: f })">
 							{{ f.replaceAll("'", "").replaceAll("-", " ") }}
 							<span class="inset-y-0 right-0 flex items-center flex-1">

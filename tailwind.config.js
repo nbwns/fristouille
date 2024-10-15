@@ -34,15 +34,14 @@ module.exports = {
     },
 
     fontSize: {
-      "4xl": "3em",
-      "3xl": "2.5em",
-      "2.5xl": "2.05rem",
-      "2xl": "2em",
-      xl: "1.56em",
-      lg: "1.18em",
-      base: "1em",
-      sm: ".85em",
-      xs: ".75em",
+      "4xl": "4.95rem",
+      "3xl": "3.75rem",
+      "2xl": "2.5rem",
+      xl: "1.95rem",
+      lg: "1.5rem",
+      base: "1.25rem",
+      sm: ".95rem",
+      xs: ".825rem",
     },
     extend: {
       fontFamily: {

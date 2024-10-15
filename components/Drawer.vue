@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="drawer bg-black-100 w-full flex flex-col justify-start items-center" :style="{
+		<div class="drawer bg-secondary w-full flex flex-col justify-start items-center" :style="{
 			height: visible ? '87vh' : '0',
 			// paddingTop: visible ? '10px' : '0',
 		}">

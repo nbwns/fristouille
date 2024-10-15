@@ -6,7 +6,7 @@
 
 			<div class="flex min-w-[1/5] group">
 				<span
-					class="md:hidden font-mono text-sm text-primary-foreground group-hover:text-accent transition-colors duration-300 cursor-pointer"
+					class="md:hidden font-mono text-sm text-primary-foreground group-hover:text-accent transition-colors duration-300 cursor-pointer d-1"
 					@click="mobileAdvancedSearch = !mobileAdvancedSearch">
 					filtres
 					<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none"
@@ -37,7 +37,8 @@
 		<!-- Updated warning message -->
 		<div v-if="showNoSearchParametersWarning" class="w-full flex flex-row justify-start items-center gap-10">
 			<draw-radish class="max-w-[90px] py-8" />
-			<div class="basis-4/6  text-balance text-primary-foreground font-light font-sans	text-lg ">
+			<div
+				class="basis-4/6  text-balance text-primary-foreground font-normal font-sans text-lg leading-tight ligatures-none">
 				Oups ! Veuillez indiquer au minimum un terme de recherche
 				ou un filtre
 				avancé</div>
@@ -79,9 +80,20 @@
 				</ais-hits>
 			</div>
 			<div class="w-full h-96 flex items-center justify-center" v-else>
-				<div class=" font-labil font-light p-14 text-black-50  text-xl text-center ">
-					<!-- here we can show suggestions on the default state of the page -->
-					Pas d'idées ? <br /> Essayez avec ces mots clés: "lentilles", "facile"
+				<div
+					class=" font-sans font-bold p-14 text-alt text-[3rem] text-center ligatures-none leading-none bg-secondary rounded-lg shadow-lg">
+					Pas d'idées ?
+					<br /> Essayez avec ces mots clés:
+					<br />
+					<br />
+					<div class="flex flex-row gap-2 justify-center items-center">
+						<div
+							class="inline-flex justify-center items-center h-8 px-4 font-mono font-medium text-base w-fit border border-primary-foreground/10 hover:border-primary-foreground/60 rounded whitespace-nowrap ring-offset-primary-foreground/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
+							lentilles</div>
+						<div
+							class="inline-flex justify-center items-center h-8 px-4 font-mono font-medium text-base w-fit border border-primary-foreground/10 hover:border-primary-foreground/60 rounded whitespace-nowrap ring-offset-primary-foreground/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
+							facile</div>
+					</div>
 				</div>
 			</div>
 
