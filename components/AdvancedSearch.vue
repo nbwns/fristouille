@@ -241,9 +241,9 @@
 			</div>
 			<div class="w-full flex justify-start">
 				<button @click="applyFilters"
-					class="w-fit inline-flex h-8 px-3.5 tracking-wide items-center justify-center bg-accent/90 hover:bg-accent  text-primary-foreground border border-primary-foreground/10 hover:border-primary-foreground/60 rounded whitespace-nowrap text-sm font-mono font-medium ring-offset-primary-foreground/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+					class="w-fit inline-flex h-12 px-3.5 items-center justify-center bg-accent hover:bg-label  text-background border border-primary-foreground/10 hover:border-primary-foreground/60 rounded whitespace-nowrap text-base font-sans ligatures-none font-medium ring-offset-primary-foreground/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
 					aria-label="Rechercher" v-if="showApplyFiltersButton">
-					appliquer les filtres
+					Appliquer les filtres
 				</button>
 			</div>
 		</div>
