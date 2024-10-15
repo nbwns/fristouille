@@ -31,7 +31,7 @@
 		<div class="flex flex-col md:flex-col-reverse gap-4 w-full">
 			<!-- advanced search for desktop and mobile, displays selected filters as tags (extract this part ?) -->
 			<advanced-search @filtersChanged="updateQuery" :showDrawer="mobileAdvancedSearch"
-				@closeDrawer="mobileAdvancedSearch = false" />
+				@closeDrawer="mobileAdvancedSearch = false" @hideResults="hideResults" />
 		</div>
 
 		<!-- Updated warning message -->
@@ -57,7 +57,7 @@
 				</template>
 			</ais-state-results>
 
-			<div v-if="searchPerformed" class="pt-10">
+			<div v-if="searchPerformed && !resultsHidden" class="pt-10">
 				<ais-hits>
 					<template v-slot="{ items }">
 						<template v-if="items.length > 0">
@@ -206,6 +206,7 @@ export default {
 			filtersHaveChanged: false,
 			historyChanged: false,
 			showNoSearchParametersWarning: false,
+			resultsHidden: false,
 		}
 	},
 	computed: {
@@ -241,6 +242,7 @@ export default {
 			this.filtersHaveChanged = false;
 			this.mobileAdvancedSearch = false;
 			this.showNoSearchParametersWarning = !this.query && !this.filterQuery && !this.hasActiveFilters;
+			this.resultsHidden = false;
 		},
 		setFilterQuery() {
 			this.filterQuery = this.buildFilterQuery(this.searchFilters);
@@ -315,7 +317,11 @@ export default {
 				this.$config.algoliaAppId,
 				this.$config.algoliaApiKey
 			);
-		}
+		},
+		hideResults() {
+			this.resultsHidden = true;
+			this.searchPerformed = false;
+		},
 	},
 	watch: {
 		launchSearchFromBar: {
