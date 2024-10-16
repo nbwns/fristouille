@@ -1,30 +1,40 @@
 <template>
   <div>
-    <h3 class="noprint">Tags</h3>
+    <h3 class="text-primary-foreground text-xl lg:text-2xl pb-12 noprint">Tags</h3>
     <div class="flex flex-row flex-wrap justify-start items-start gap-2 noprint">
       <!-- tags -->
       <nuxt-link v-for="t in tagsList" :key="t" :to="`/Recettes?q=${t}`" class="noprint">
-        <tag look="light">{{ t }}</tag>
+        <tag look="light"
+          class="flex items-center py-1 px-1.5 rounded-3xl max-w-fit w-max bg-label text-primary font-mono font-medium lg:!text-lg h-16 lg:h-24 hover:bg-foreground hover:text-background transition-all duration-300 hover:cursor-pointer hover:scale-110">
+          {{ t }}</tag>
       </nuxt-link>
 
       <!-- base recipe -->
       <nuxt-link v-if="baseRecipe" key="baseRecipe" :to="`/Recettes?baseRecipe=${baseRecipe}`">
-        <tag look="light" class="lowercase">{{ baseRecipe.replaceAll('-', ' ') }}</tag>
+        <tag look="light"
+          class="flex items-center py-1 px-1.5 rounded-3xl max-w-fit w-max bg-label text-primary font-mono font-medium lg:!text-lg h-16 lg:h-24 hover:bg-foreground hover:text-background transition-all duration-300 hover:cursor-pointer hover:scale-110">
+          {{ baseRecipe.replaceAll('-', ' ') }}</tag>
       </nuxt-link>
 
       <!-- category -->
       <nuxt-link v-for="cat in category" :key="cat" :to="`/Recettes?category=${cat}`">
-        <tag look="light" class="lowercase">{{ cat }}</tag>
+        <tag look="light"
+          class="flex items-center py-1 px-1.5 rounded-3xl max-w-fit w-max bg-label text-primary font-mono font-medium lg:!text-lg h-16 lg:h-24 hover:bg-foreground hover:text-background transition-all duration-300 hover:cursor-pointer hover:scale-110">
+          {{ cat }}</tag>
       </nuxt-link>
 
       <!-- cuisine -->
       <nuxt-link v-if="cuisine" key="cuisine" :to="`/Recettes?cuisine=${cuisine}`">
-        <tag look="light" class="lowercase">{{ cuisine }}</tag>
+        <tag look="light"
+          class="flex items-center py-1 px-1.5 rounded-3xl max-w-fit w-max bg-label text-primary font-mono font-medium lg:!text-lg h-16 lg:h-24 hover:bg-foreground hover:text-background transition-all duration-300 hover:cursor-pointer hover:scale-110">
+          {{ cuisine }}</tag>
       </nuxt-link>
 
       <!-- allergies -->
       <nuxt-link v-for="free in freeFrom" :key="free" :to="`/Recettes?free=${free}`">
-        <tag look="light" class="lowercase">sans {{ free }}</tag>
+        <tag look="light"
+          class="flex items-center py-1 px-1.5 rounded-3xl max-w-fit w-max bg-label text-primary font-mono font-medium lg:!text-lg h-16 lg:h-24 hover:bg-foreground hover:text-background transition-all duration-300 hover:cursor-pointer hover:scale-110">
+          sans {{ free }}</tag>
       </nuxt-link>
     </div>
   </div>
