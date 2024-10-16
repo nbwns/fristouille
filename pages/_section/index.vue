@@ -4,7 +4,8 @@
 		<div class="flex lg:flex-row-reverse justify-start w-full gap-6 lg:gap-12">
 
 			<div class="flex flex-col space-y-4 text-left w-full max-w-lg">
-				<h1 class="font-sans text-primary-foreground text-3xl font-medium leading-none lowercase text-balance">
+				<h1
+					class="font-sans text-primary-foreground text-2xl lg:text-3xl font-medium leading-none lowercase text-balance">
 					<prismic-text :field="document.data.title" />
 				</h1>
 				<prismic-rich-text :field="document.data.text" class="text-base font-sans text-balance" />

@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-col gap-5">
-    <div class="flex w-full justify-between gap-5">
+  <div class="flex flex-col gap-5 lg:gap-8">
+    <div class="flex w-full justify-between gap-5 lg:gap-8">
       <RecipeInfoBox label="Préparation" :value="`${preparationTime} min`">
         <template #content>
           <time>{{ preparationTime }} min</time>
@@ -13,18 +13,19 @@
       </RecipeInfoBox>
     </div>
 
-    <div class="flex w-full justify-between gap-5">
+    <div class="flex w-full justify-between gap-5 lg:gap-8">
       <RecipeInfoBox label="Difficulté" :value="difficultyText" />
       <RecipeInfoBox label="Prix" :value="priceText" />
     </div>
 
-    <div class="flex w-full justify-between gap-5">
+    <div class="flex w-full justify-between gap-5 lg:gap-8">
       <RecipeInfoBox label="Saisonnalité" :className="'pb-2'">
         <template #content>
           <div v-if="months.length < 12" class="flex flex-wrap gap-2">
-            <nuxt-link v-for="month in months" :key="month" :to="`/Recettes?months=${month}`">
-              <tag class="text-xs" look="light">{{ month }}</tag>
-            </nuxt-link>
+            <tag v-for="month in months" :key="month" :to="`/Recettes?months=${month}`"
+              class="!text-base lg:!text-lg h-16 lg:h-24 hover:bg-foreground hover:text-background transition-all duration-300">
+              {{ month }}
+            </tag>
           </div>
           <div v-else>
             <p>{{ allYearLongLabel }}</p>

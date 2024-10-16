@@ -1,30 +1,26 @@
 <template>
-	<section class="flex flex-col justify-center layer__xl mx-auto ligatures-none py-8">
+	<section class="flex flex-col container ">
 		<!-- recipe header -->
-		<div v-if="recipe" class="flex flex-col">
+		<div v-if="recipe" class="flex flex-col space-y-12">
 
 			<RecipeHeader :name="recipe.name" :authorName="recipe.authorName" :authorWeb="recipe.authorWeb"
 				:description="recipe.description" :picture="recipe.picture" />
 
-			<spacer size="sm"></spacer>
 
 			<!-- recipe info section -->
 			<RecipeInfoSection :preparationTime="recipe.preparationTime / 60" :cookTime="recipe.cookTime / 60"
 				:difficulty="recipe.difficulty" :price="recipe.price" :months="recipe.months"
 				:allYearLongLabel="label('allYearLong')" />
 
-			<spacer size="sm"></spacer>
 
 			<!-- ingredients -->
 			<RecipeIngredients :ingredients="recipe.compositions" :initialServings="servings" :recipeYield="recipe.yield"
 				@update:servings="servings = $event" />
 
-			<spacer size="sm"></spacer>
 
 			<!-- Explication de la recette -->
 			<RecipePreparation :procedure="procedure" :source="recipe.source" />
 
-			<spacer size="sm"></spacer>
 
 			<!-- liste des tags -->
 			<RecipeTags :tagsList="recipe.tagsList" :baseRecipe="recipe.baseRecipe" :category="recipe.category"
