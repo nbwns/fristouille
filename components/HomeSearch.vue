@@ -1,7 +1,7 @@
 <template>
   <section class="hidden md:flex w-full">
-    <div class="flex flex-col w-full items-start bg-background space-y-0 layer__xl mx-auto">
-      <h2 class="text-primary-foreground">
+    <div class="flex flex-col w-full items-start bg-background">
+      <h2 class="text-primary-foreground text-lg md:text-xl lg:text-2xl">
         des recettes...
       </h2>
       <div class="flex flex-col justify-center">

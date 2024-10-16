@@ -1,6 +1,6 @@
 <template>
 	<h1 :class="classValue"
-		class="font-sans text-primary-foreground text-2xl md:text-3xl lg:text-4xl font-medium leading-none lowercase">
+		class="font-sans text-primary-foreground text-xl md:text-2xl lg:text-3xl font-medium leading-none lowercase">
 		<slot></slot>
 		<span class="text-accent" v-if="emphasis">{{ emphasis }}</span>
 	</h1>
@@ -15,7 +15,7 @@ export default {
 	computed: {
 		classValue() {
 			if (!this.size) {
-				return `text-4xl`
+				return `text-2xl`
 			}
 			return `text-${this.size}xl`
 		}

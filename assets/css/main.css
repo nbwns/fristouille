@@ -120,7 +120,7 @@
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
   }
-
+  /* 
   h1,
   .big-title {
     @apply font-sans !text-2xl md:!text-3xl lg:!text-4xl font-medium leading-none lowercase;
@@ -129,7 +129,7 @@
   h2,
   .title {
     @apply font-sans text-2xl md:text-3xl font-medium lowercase;
-  }
+  } */
 
   ul,
   ol {
