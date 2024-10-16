@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col space-y-2">
-    <h3 class="text-primary-foreground text-lg md:text-xl lg:text-2xl">Ingrédients</h3>
+    <h3 class="text-primary-foreground text-xl lg:text-2xl">Ingrédients</h3>
     <ServingsAdjuster v-model="localServings" />
     <IngredientList :ingredients="ingredients" :servingsRatio="servingsRatio" />
   </div>

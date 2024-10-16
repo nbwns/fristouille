@@ -74,6 +74,25 @@ module.exports = {
         transparent: "transparent",
         current: "currentColor",
 
+        typography: ({ theme }) => ({
+          fristouille: {
+            css: {
+              "--tw-prose-body": "hsl(var(--primary-foreground))",
+              "--tw-prose-headings": "hsl(var(--primary-foreground))",
+              "--tw-prose-lead": "hsl(var(--primary-foreground))",
+              "--tw-prose-links": "hsl(var(--accent))",
+              "--tw-prose-bold": "hsl(var(--primary-foreground))",
+              "--tw-prose-counters": "hsl(var(--primary-foreground))",
+              "--tw-prose-bullets": "hsl(var(--primary-foreground))",
+              "--tw-prose-quotes": "hsl(var(--label))",
+              "--tw-prose-quote-borders": "hsl(var(--primary-foreground))",
+              "--tw-prose-captions": "hsl(var(--primary-foreground))",
+              "--tw-prose-code": "hsl(var(--label))",
+              "--tw-prose-pre-bg": "hsl(var(--label))",
+            },
+          },
+        }),
+
         orange: {
           100: "#FFD9C3",
           200: "#FFA06A",
