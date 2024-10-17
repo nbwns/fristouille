@@ -1,24 +1,10 @@
 <template>
-	<section class="flex flex-col justify-center layer__lg mx-auto">
-		<spacer size="sm"></spacer>
-		<!-- breadcrumb -->
-		<breadcrumb :parentText="$prismic.asText(parent.data.title)" :parentPath="parent.url"><prismic-text
-				:field="document.data.title" />
-		</breadcrumb>
-		<spacer size="xxs"></spacer>
+	<section class="container space-y-8 lg:space-y-12 py-12 ">
+		<article-header :title="document.data.title" :introduction="document.data.introduction"
+			:parentTitle="$prismic.asText(parent.data.title)" :parentUrl="parent.url" />
 
-		<!-- page title -->
-		<h1 class="!text-4xl text-balance pt-10 leading-none">{{ $prismic.asText(document.data.title) }}</h1>
-
-		<spacer size="xs"></spacer>
-
-		<!-- intro -->
-		<prismic-rich-text :field="document.data.introduction" class="text-bigbig	" />
-
-		<spacer size="md"></spacer>
-
-		<div class="flex flex-grow flex-col lg:flex-row justify-center ">
-			<div class="text-left w-full" :class="{ 'xl:w-2/3': hasCtas }">
+		<div class="flex flex-col justify-center items-center space-y-12  d-1 max-w-[65ch] mx-auto">
+			<div class="flex flex-col justify-center items-center space-y-12 w-full" :class="{ 'xl:w-2/3': hasCtas }">
 				<!-- content blocks -->
 				<content-block v-for="block in contentBlocks" :key="block.id" :title="block.primary.content_title"
 					:content="block.primary.content_body" :image="block.primary.content_image" :callout="block.primary.callout" />
@@ -29,13 +15,11 @@
 					:ctaHeader="cta.primary.cta_header" />
 			</div>
 		</div>
-
 		<!-- featured recipes -->
 		<featured-recipes v-for="(list, index) in horizontalLists" :key="`recipes-${index}`" :title="list.title"
 			:items="list.recipes" :link="list.seeAllQuery" />
 		<!-- related pages -->
 		<related-pages :pages="relatedPages" />
-
 	</section>
 </template>
 
@@ -47,6 +31,7 @@ import CallToAction from '~/components/CallToAction';
 import Breadcrumb from '~/molecules/Breadcrumb.vue';
 import TitleArticle from '~/molecules/TitleArticle.vue';
 import Spacer from '~/molecules/Spacer.vue';
+import ArticleHeader from '~/components/ArticleHeader.vue';
 
 export default {
 	name: 'post',
@@ -57,7 +42,8 @@ export default {
 		Breadcrumb,
 		TitleArticle,
 		Spacer,
-		CallToAction
+		CallToAction,
+		ArticleHeader
 	},
 	head() {
 		return {

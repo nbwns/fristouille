@@ -38,7 +38,7 @@
 		<div v-if="showNoSearchParametersWarning" class="w-full flex flex-row justify-start items-center gap-10">
 			<draw-radish class="max-w-[90px] py-8" />
 			<div
-				class="basis-4/6  text-balance text-primary-foreground font-normal font-sans text-lg leading-tight ligatures-none">
+				class="basis-4/6 text-balance text-primary-foreground font-normal font-sans text-lg leading-tight ligatures-none">
 				Oups ! Veuillez indiquer au minimum un terme de recherche
 				ou un filtre
 				avancé</div>

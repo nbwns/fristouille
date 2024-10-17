@@ -1,6 +1,6 @@
 <template>
   <nav class="flex items-center justify-between flew-wrap px-1 py-3 md:p-4 bg-background ligatures-none">
-    <div class="layer__xl w-full flex flex-row justify-between mx-auto items-center">
+    <div class="container w-full flex flex-row justify-between mx-auto items-center">
       <logo />
       <div class="hidden md:flex flex-grow md:w-auto pt-2 ">
         <div class="flex flex-grow space-x-5 justify-end items-center">

@@ -1,11 +1,13 @@
 <template>
-  <div class="flex flex-col space-y-12">
-    <div class="flex flex-col space-y-4">
+  <header class="flex flex-col space-y-12">
+    <div class="recipe-title-section flex flex-col space-y-6">
       <h1
         class="font-sans text-primary-foreground text-2xl lg:text-4xl font-medium leading-none lowercase text-balance w-full max-w-4xl">
-        {{ name }}</h1>
+        {{ name }}
+      </h1>
       <div class="text-primary-foreground text-usual leading-none">
-        par <span v-if="authorWeb">
+        par
+        <span v-if="authorWeb">
           <a :href="authorWeb" target="_blank"
             class="text-base font-mono font-medium text-label hover:cursor-pointer hover:underline focus:text-accent/75">
             {{ authorName }}
@@ -17,29 +19,26 @@
       </div>
     </div>
 
-    <div class="flex flex-col md:flex-row justify-between w-full noprint">
+
+    <div v-if="picture" class="w-full">
+      <img :src="picture" :alt="`Photo d'un plat de ${name}`"
+        class="object-cover max-h-56 md:max-h-64 lg:max-h-72 xl:max-h-96 w-full rounded-[16px] noprint" />
+    </div>
+    <div v-if="description && description.trim().length > 0"
+      class="flex flex-col md:flex-row justify-between w-full noprint">
       <div class="flex flex-col">
         <h2
-          class="text-pretty text-primary-foreground font-light lg:font-normal font-sans text-base lg:text-xl leading-normal ligatures-none">
+          class="w-full lg:w-3/4 text-pretty text-primary-foreground font-light lg:font-normal font-sans text-base lg:text-lg leading-tight ligatures-none">
           " {{ description }} "
         </h2>
       </div>
     </div>
-    <div class="w-full">
-      <img v-if="picture"
-        class="object-cover max-h-56 md:max-h-64 lg:max-h-72 xl:max-h-96 w-full rounded-[16px] noprint" :src="picture"
-        :alt="`Photo d'un plat de ${name}`" />
-    </div>
-  </div>
+  </header>
 </template>
 
 <script>
-import Spacer from '~/molecules/Spacer.vue';
-
 export default {
-  components: {
-    Spacer,
-  },
+  name: 'RecipeHeader',
   props: {
     name: {
       type: String,
@@ -55,7 +54,7 @@ export default {
     },
     description: {
       type: String,
-      required: true,
+      default: '',
     },
     picture: {
       type: String,

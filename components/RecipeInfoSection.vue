@@ -23,7 +23,7 @@
         <template #content>
           <div v-if="months.length < 12" class="flex flex-wrap gap-2">
             <tag v-for="month in months" :key="month" :to="`/Recettes?months=${month}`"
-              class="!text-base lg:!text-lg h-16 lg:h-24 hover:bg-foreground hover:text-background transition-all duration-300 hover:cursor-pointer hover:scale-110">
+              class="!text-sm h-12 lg:h-20 hover:bg-foreground hover:text-background transition-all duration-300 hover:cursor-pointer hover:scale-110">
               {{ month }}
             </tag>
           </div>

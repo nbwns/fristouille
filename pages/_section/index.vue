@@ -1,49 +1,26 @@
 <template>
-	<section class="container space-y-8 lg:space-y-12 pt-12">
+	<section class="container space-y-8 lg:space-y-12 py-12">
 		<!-- body  -->
-		<div class="flex lg:flex-row-reverse justify-start w-full gap-6 lg:gap-12">
-
-			<div class="flex flex-col space-y-4 text-left w-full max-w-lg">
-				<h1
-					class="font-sans text-primary-foreground text-2xl lg:text-3xl font-medium leading-none lowercase text-balance">
-					<prismic-text :field="document.data.title" />
-				</h1>
-				<prismic-rich-text :field="document.data.text" class="text-base font-sans text-balance" />
-				<div class="w-full pt-10">
-					<list-of-links :articles="children" v-if="document.data.display_as_links" />
-				</div>
-
-			</div>
-
-			<hero-illustration-section class-name="hidden lg:block" />
-
-		</div>
-
-
+		<hero-article-section :title="document.data.title" :text="document.data.text" :children="children"
+			:display-as-links="document.data.display_as_links" />
 
 		<!-- child pages  -->
 		<grid-of-cards-articles :articles="children" v-if="!document.data.display_as_links" />
-
-		<spacer size="sm"></spacer>
-
-
 
 	</section>
 </template>
 
 <script>
 import GridOfCardsArticles from '~/components/GridOfCardsArticles.vue'
-import ListOfLinks from '~/components/ListOfLinks.vue'
 import Spacer from '~/molecules/Spacer.vue'
-import HeroIllustrationSection from '~/components/HeroIllustrationSection.vue'
+import HeroArticleSection from '~/components/HeroArticleSection.vue'
 
 export default {
-	name: 'post',
+	name: 'SectionPage',
 	components: {
 		GridOfCardsArticles,
-		ListOfLinks,
 		Spacer,
-		HeroIllustrationSection
+		HeroArticleSection
 	},
 	head() {
 		return {

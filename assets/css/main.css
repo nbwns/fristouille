@@ -287,7 +287,7 @@
   .navlink:focus {
     @apply text-white-200 dark:text-purple-300;
   } */
-
+  /* 
   .breadcrumb-main {
     @apply text-orange-300;
   }
@@ -302,7 +302,7 @@
 
   .breadcrumb-next {
     @apply text-orange-200 ml-2;
-  }
+  } */
 
   .card-recipe {
     @apply flex flex-col flex-grow justify-between w-full rounded-md bg-secondary h-full max-h-80;

@@ -1,25 +1,25 @@
 <template>
 	<section class="flex flex-col container ">
 		<!-- recipe header -->
-		<div v-if="recipe" class="flex flex-col space-y-12">
+		<div v-if="recipe" class="flex flex-col space-y-8 lg:space-y-12 ">
 
 			<RecipeHeader :name="recipe.name" :authorName="recipe.authorName" :authorWeb="recipe.authorWeb"
 				:description="recipe.description" :picture="recipe.picture" />
 
+			<div class="flex flex-col space-y-8 lg:space-y-12 max-w-[65ch] mx-auto">
 
-			<!-- recipe info section -->
-			<RecipeInfoSection :preparationTime="recipe.preparationTime / 60" :cookTime="recipe.cookTime / 60"
-				:difficulty="recipe.difficulty" :price="recipe.price" :months="recipe.months"
-				:allYearLongLabel="label('allYearLong')" />
-
-
-			<!-- ingredients -->
-			<RecipeIngredients :ingredients="recipe.compositions" :initialServings="servings" :recipeYield="recipe.yield"
-				@update:servings="servings = $event" />
+				<!-- recipe info section -->
+				<RecipeInfoSection :preparationTime="recipe.preparationTime / 60" :cookTime="recipe.cookTime / 60"
+					:difficulty="recipe.difficulty" :price="recipe.price" :months="recipe.months"
+					:allYearLongLabel="label('allYearLong')" />
 
 
-			<!-- Explication de la recette -->
-			<RecipePreparation :procedure="procedure" :source="recipe.source" />
+				<!-- ingredients -->
+				<RecipeIngredients :ingredients="recipe.compositions" :initialServings="servings" :recipeYield="recipe.yield"
+					@update:servings="servings = $event" />
+				<!-- Explication de la recette -->
+				<RecipePreparation :procedure="procedure" :source="recipe.source" />
+			</div>
 
 
 			<!-- liste des tags -->

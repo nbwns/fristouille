@@ -8,10 +8,10 @@
         <hyper-link v-if="link" :path="`/Recettes${link}`">Tout voir</hyper-link>
       </div>
 
-      <ssr-carousel loop :slides-per-page='3' :gutter='15' peek-right='10%' show-arrows :responsive='[
+      <ssr-carousel loop :slides-per-page='2' :gutter='15' peek-right='10%' show-arrows :responsive='[
         {
           maxWidth: 1280,
-          slidesPerPage: 3,
+          slidesPerPage: 2,
           gutter: 20,
           showArrows: true
         },

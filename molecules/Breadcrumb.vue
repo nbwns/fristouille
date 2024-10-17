@@ -1,26 +1,23 @@
 <template>
 	<nav class="hidden md:flex">
-		<ol class="flex flex-wrap items-center list-none">
+		<ol class="flex flex-wrap justify-center items-center list-none gap-2">
 			<li>
-				<nuxt-link :to="parentPath" class="breadcrumb-main text-sm">
+				<nuxt-link :to="parentPath"
+					class="text-foreground hover:cursor-pointer hover:underline focus:text-accent text-xs font-medium font-mono leading-none tracking-tighter">
 					<prismic-text v-if="(typeof (parentText)) !== 'string'" :field="parentText" />
-					<span v-else>{{ parentText }}</span>
+					<div v-else>{{ parentText }}</div>
 				</nuxt-link>
 			</li>
 			<li>
-				<svg class="w-6 pl-2" viewBox="0 0 24 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path
-						d="M1.94385 7.50896C5.54385 0.708955 12.4439 6.34229 15.4439 10.009C18.1102 10.009 23.5429 11.209 23.9429 16.0093C24.4429 22.0096 10.9439 30.5093 7.94385 29.5093C4.94385 28.5093 -2.55615 16.009 1.94385 7.50896Z"
-						fill="#D03030" />
-					<path
-						d="M7.94383 25.0093C5.54383 23.4093 2.27716 14.6759 0.943826 10.5093C-2.55617 19.5093 5.44383 29.0093 7.94383 30.0093C9.94383 30.8093 15.1105 27.0093 17.4438 25.0093C15.2772 25.6759 10.3438 26.6093 7.94383 25.0093Z"
-						fill="#D03030" />
-					<path
-						d="M8.94287 6.09635C8.94287 7.81506 12.3815 10.6318 14.1008 11.8254C20.2902 12.9712 22.5744 8.48344 22.9429 6.09635H17.4166L18.8902 1.08347L14.1008 6.09635L12.2587 0.00927734L11.5218 5.02216L8.94287 1.08347V6.09635Z"
-						fill="#0C7945" />
+						d="M8.58616 5.58606C8.21122 5.96112 8.00059 6.46973 8.00059 7.00006C8.00059 7.53039 8.21122 8.03901 8.58616 8.41406L12.1712 12.0001L8.58616 15.5861C8.39514 15.7706 8.24278 15.9912 8.13796 16.2353C8.03314 16.4793 7.97797 16.7417 7.97566 17.0073C7.97335 17.2728 8.02396 17.5362 8.12452 17.782C8.22508 18.0278 8.37359 18.2511 8.56137 18.4389C8.74916 18.6266 8.97246 18.7751 9.21825 18.8757C9.46405 18.9763 9.72741 19.0269 9.99296 19.0246C10.2585 19.0223 10.521 18.9671 10.765 18.8623C11.009 18.7574 11.2297 18.6051 11.4142 18.4141L17.8292 12.0001L11.4142 5.58606C11.0391 5.21112 10.5305 5.00049 10.0002 5.00049C9.46983 5.00049 8.96122 5.21112 8.58616 5.58606Z"
+						fill="black" />
 				</svg>
+
 			</li>
-			<li class="breadcrumb-next">
+			<li
+				class="text-foreground hover:cursor-pointer hover:underline focus:text-accent text-xs font-medium font-mono leading-none tracking-tighter">
 				<slot></slot>
 			</li>
 		</ol>
