@@ -29,9 +29,9 @@
 		<!-- TODO: add loading indicator -->
 		<!-- TODO: open mobile popup based on query string param -->
 		<div class="flex flex-col md:flex-col-reverse gap-4 w-full">
-			<!-- advanced search for desktop and mobile, displays selected filters as tags (extract this part ?) -->
+			<!-- advanced search for desktop and mobile, displays selected filters as tags -->
 			<advanced-search @filtersChanged="updateQuery" :showDrawer="mobileAdvancedSearch"
-				@closeDrawer="mobileAdvancedSearch = false" @hideResults="hideResults" />
+				@closeDrawer="mobileAdvancedSearch = false" />
 		</div>
 
 		<!-- Updated warning message -->
@@ -58,7 +58,7 @@
 				</template>
 			</ais-state-results>
 
-			<div v-if="searchPerformed && !resultsHidden" class="pt-10">
+			<div v-if="searchPerformed" class="pt-10">
 				<ais-hits>
 					<template v-slot="{ items }">
 						<template v-if="items.length > 0">
@@ -68,6 +68,17 @@
 							<normal-title v-else>
 								Découvrez nos recettes
 							</normal-title>
+							<ais-pagination>
+								<template v-slot="{
+									nbHits
+								}">
+
+									<!-- number of results (hidden on mobile) -->
+									<div class="hidden md:flex text-usual pt-4 pb-2">
+										{{ nbHits }} recettes
+									</div>
+								</template>
+							</ais-pagination>
 							<grid-of-cards-recipes :recipes="items" />
 						</template>
 						<div v-else>
@@ -79,49 +90,32 @@
 					</template>
 				</ais-hits>
 			</div>
-			<div class="w-full h-96 flex items-center justify-center" v-else>
+			<div class="w-full h-96 flex items-center justify-center" v-else-if="showDefaultMessage">
 				<div
 					class=" font-sans font-bold p-14 text-alt text-[3rem] text-center ligatures-none leading-none bg-secondary rounded-lg shadow-lg">
 					Pas d'idées ?
-					<br /> Essayez avec ces mots clés:
+					<br /> Essaie une recherche ou un filtre
 					<br />
 					<br />
 					<div class="flex flex-row gap-2 justify-center items-center">
 						<div
 							class="inline-flex justify-center items-center h-8 px-4 font-mono font-medium text-base w-fit border border-primary-foreground/10 hover:border-primary-foreground/60 rounded whitespace-nowrap ring-offset-primary-foreground/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
-							lentilles</div>
+							 <nuxt-link to="/Recettes?q=rapide">
+								rapide
+							 </nuxt-link>
+						</div>
 						<div
 							class="inline-flex justify-center items-center h-8 px-4 font-mono font-medium text-base w-fit border border-primary-foreground/10 hover:border-primary-foreground/60 rounded whitespace-nowrap ring-offset-primary-foreground/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
-							facile</div>
+							 <nuxt-link to="/Recettes?diet=Végétarien">
+								végétarien
+							 </nuxt-link>
+						</div>
+						
 					</div>
 				</div>
 			</div>
 
 			<div v-if="searchPerformed">
-				<ais-pagination>
-					<template v-slot="{
-						nbHits
-					}">
-
-						<!-- number of results (hidden on mobile) -->
-						<div class="hidden md:flex text-usual pt-4 pb-2">
-							{{ nbHits }} recettes
-						</div>
-					</template>
-				</ais-pagination>
-
-				<ais-hits>
-					<template v-slot="{ items }">
-						<grid-of-cards-recipes :recipes="items" v-if="items.length > 0" />
-						<div v-else>
-							<!-- no results -->
-							<div class="text-usual">
-								Pas de résultat pour cette recherche
-							</div>
-						</div>
-					</template>
-				</ais-hits>
-
 				<ais-pagination @page-change="pageChange">
 					<template v-slot="{
 						currentRefinement,
@@ -218,7 +212,7 @@ export default {
 			filtersHaveChanged: false,
 			historyChanged: false,
 			showNoSearchParametersWarning: false,
-			resultsHidden: false,
+			showDefaultMessage: true
 		}
 	},
 	computed: {
@@ -246,6 +240,9 @@ export default {
 					}
 				});
 			}
+			else {
+				this.searchPerformed = false;
+			}
 		},
 		updateQuery() {
 			this.query = this.searchQuery;
@@ -253,8 +250,8 @@ export default {
 			this.searchPerformed = true;
 			this.filtersHaveChanged = false;
 			this.mobileAdvancedSearch = false;
-			this.showNoSearchParametersWarning = !this.query && !this.filterQuery && !this.hasActiveFilters;
-			this.resultsHidden = false;
+			this.showNoSearchParametersWarning = !this.query && !this.filterQuery;
+			this.showDefaultMessage = false;
 		},
 		setFilterQuery() {
 			this.filterQuery = this.buildFilterQuery(this.searchFilters);
@@ -319,7 +316,7 @@ export default {
 				this.historyChanged = true;
 			}
 
-			this.showNoSearchParametersWarning = !this.query && !this.filterQuery && !this.hasActiveFilters;
+			//this.showNoSearchParametersWarning = !this.query && !this.filterQuery && !this.hasActiveFilters;
 		},
 		pageChange() {
 			document.body.scrollIntoView();
@@ -329,18 +326,14 @@ export default {
 				this.$config.algoliaAppId,
 				this.$config.algoliaApiKey
 			);
-		},
-		hideResults() {
-			this.resultsHidden = true;
-			this.searchPerformed = false;
-		},
+		}
 	},
 	watch: {
 		launchSearchFromBar: {
 			handler(newValue, oldValue) {
 				this.updateQuery();
 			},
-			immediate: true
+			immediate: false
 		}
 	},
 	mounted() {

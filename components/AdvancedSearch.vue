@@ -207,10 +207,7 @@
 					</button>
 				</div>
 			</drawer>
-
 		</div>
-
-
 
 		<div class="flex flex-col w-full space-y-6">
 			<div class="flex flex-col w-full space-y-4">
@@ -233,9 +230,9 @@
 				</div>
 				<div class="flex flex-row my-5 gap-3" v-if="showClearFiltersButton">
 					<tag
-						class="w-fit inline-flex h-8 px-3.5 tracking-wide items-center justify-center bg-secondary hover:bg-primary  text-primary-foreground border border-primary-foreground/10 hover:border-primary-foreground/60 rounded whitespace-nowrap text-sm font-mono font-medium ring-offset-primary-foreground/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-						@click="clearFiltersAndHideResults()">
-						Réinitialiser tout les filtres
+						class="w-fit inline-flex h-8 px-3.5 tracking-wide items-center justify-center bg-secondary hover:bg-primary cursor-pointer text-primary-foreground border border-primary-foreground/10 hover:border-primary-foreground/60 rounded whitespace-nowrap text-sm font-mono font-medium ring-offset-primary-foreground/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+						@click="clearFilters()">
+						Réinitialiser les filtres
 					</tag>
 				</div>
 			</div>
@@ -347,11 +344,7 @@ export default {
 			if (index > -1) {
 				this.filters[filter.type].splice(index, 1);
 			}
-			this.showApplyFiltersButton = false;
-		},
-		clearFiltersAndHideResults() {
-			this.clearFilters();
-			this.$emit('hideResults');
+			this.showApplyFiltersButton = true;
 		},
 		clearFilters() {
 			for (const type in this.filters) {
