@@ -33,6 +33,9 @@
 <script>
 import Logo from '~/molecules/Logo.vue';
 import SearchBar from '~/components/SearchBar.vue'
+import { useSearchStore } from '~/store/search'
+import { storeToRefs } from 'pinia'
+
 
 export default {
   components: {
@@ -40,17 +43,23 @@ export default {
     SearchBar
 
   },
-  computed: {
-    searchQuery() {
-      return this.$store.state.searchQuery;
-    }
-  },
+  setup() {
+		const searchStore = useSearchStore()
+		const { searchFilters, searchQuery, launchSearchFromBar } = storeToRefs(searchStore)
+
+		return {
+			searchStore,
+			searchFilters,
+      searchQuery,
+      launchSearchFromBar
+		}
+	},
   methods: {
     checkRoute(e) {
       //if we hit search on the recipe page, do not submit the form and trigger the search (the 'togglesearch' must change each time)
       if (this.$route.path.toLowerCase().startsWith("/recettes")) {
         e.preventDefault();
-        this.$store.commit('toggleSearchFromBar', `query:${this.searchQuery}`);
+        this.searchStore.toggleSearchFromBar(`query:${this.searchQuery}`);
       }
     }
   }
