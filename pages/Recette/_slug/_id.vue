@@ -56,28 +56,53 @@ export default {
 	},
 	computed: {
 		procedure() {
-			return (this.recipe.procedure) ? marked(this.recipe.procedure) : ""
+			return (this.recipe && this.recipe.procedure) ? marked(this.recipe.procedure) : ""
 		},
 		ingredients() {
-			return (this.recipe.ingredients) ? marked(this.recipe.ingredients) : ""
+			return (this.recipe && this.recipe.ingredients) ? marked(this.recipe.ingredients) : ""
 		},
 		inSeason() {
 			let currentMonth = DateTime.now().month;
-			if (this.recipe.months) {
+			if (this.recipe && this.recipe.months) {
 				return this.recipe.months.includes(currentMonth.toString());
 			}
 			return false;
-		},
-		servingsRatio() {
-			return this.servings / this.recipe.yield;
 		}
 	},
 	methods: {
 		label(key) {
 			return labels[key];
-		},
-		computedQuantity(qty) {
-			return Math.round((qty * this.servingsRatio) * 2) / 2;
+		}
+	},
+	mounted(){
+		console.log("recipe null ?", this.recipe);
+		if(!this.recipe){
+			const recipeId = this.$route.params.id;
+			console.log("fetch recipe",recipeId);
+
+			var recipe = null;
+
+			return this.$axios({
+						url: `${this.$config.queryFunction}?filter=${recipeId}`,
+						method: "get"
+					})
+				.then((res) => {
+                    if (res.data && res.data.length > 0) {
+						this.recipe = res.data[0];
+
+						let compositions = JSON.parse(this.recipe.compositionsJson);
+
+						if (compositions) {
+							compositions.sort((a, b) => b.quantity - a.quantity);
+						}
+
+						this.recipe.compositions = compositions;
+					}
+                })
+			
+
+			
+
 		}
 	},
 	async asyncData({ params, error, payload, $axios, $config: { queryFunction }, $prismic }) {
@@ -100,6 +125,7 @@ export default {
 			return { recipe: recipe, servings: recipe.yield, article: article };
 		}
 		else {
+			//called when recipe page is accessed from another page
 			if (params.id) {
 				console.log("fetchRecipe", params.id);
 				const res = await $axios({
@@ -125,47 +151,44 @@ export default {
 
 					}
 
-
-
 					return { recipe: recipe, servings: recipe.yield, article: article };
 				}
 				else {
 					error({ statusCode: 404, message: 'Page not found' })
 				}
 			}
-
 			error({ statusCode: 404, message: 'Page not found' })
 		}
 	},
 	head() {
 		return {
-			title: this.recipe.name,
+			title: (this.recipe) ? this.recipe.name : "",
 			//adapt meta 
 			meta: [
 				{
 					hid: 'description',
 					name: 'description',
-					content: this.recipe.description
+					content: (this.recipe) ? this.recipe.description : ""
 				},
 				{
 					hid: 'og:title',
 					name: 'og:title',
-					content: this.recipe.name
+					content: (this.recipe) ? this.recipe.name : ""
 				},
 				{
 					hid: 'og:description',
 					name: 'og:description',
-					content: this.recipe.description
+					content: (this.recipe) ? this.recipe.description : ""
 				},
 				{
 					hid: 'og:image',
 					name: 'og:image',
-					content: this.recipe.pictureMedium
+					content: (this.recipe) ? this.recipe.pictureMedium : ""
 				},
 				{
 					hid: 'og:url',
 					name: 'og:url',
-					content: `https://www.fristouille.org/Recette/${this.recipe.slug}/${this.recipe.recipeId}`
+					content: (this.recipe) ? `https://www.fristouille.org/Recette/${this.recipe.slug}/${this.recipe.recipeId}` : ""
 				}
 			]
 		}
