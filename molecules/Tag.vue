@@ -1,8 +1,8 @@
 <template>
-	<div @click="$emit('click', $event)" :class="classObject" :title="title"
+	<button @click="$emit('click', $event)" :class="classObject" :title="title"
 		class="flex items-center py-1 px-1.5 rounded-3xl max-w-fit w-max bg-label text-primary font-mono font-medium text-xs">
 		<slot></slot>
-	</div>
+	</button>
 </template>
 
 <script>
