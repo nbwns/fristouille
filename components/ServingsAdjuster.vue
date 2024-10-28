@@ -22,7 +22,7 @@
           fill="currentColor" />
       </svg> -->
       <p class="text-foreground/40 font-sans font-normal text-sm lg:text-base text-balance max-w-[140px]">nombre de
-        personnes ?</p>
+        personnes</p>
     </div>
   </div>
 </template>
@@ -42,7 +42,11 @@ export default {
     }
   },
   methods: {
+    mounted(){
+      console.log("servings", this.servings);
+    },
     decreaseServings() {
+      console.log("decrease servings");
       if (this.servings > 1) {
         this.servings--
         this.$emit('input', this.servings)

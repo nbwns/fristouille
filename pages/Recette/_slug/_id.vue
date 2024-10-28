@@ -74,37 +74,33 @@ export default {
 			return labels[key];
 		}
 	},
-	mounted(){
-		console.log("recipe null ?", this.recipe);
-		if(!this.recipe){
-			const recipeId = this.$route.params.id;
-			console.log("fetch recipe",recipeId);
+	// mounted(){
+	// 	console.log("recipe null ?", this.recipe);
+	// 	if(!this.recipe){
+	// 		const recipeId = this.$route.params.id;
+	// 		console.log("fetch recipe",recipeId);
 
-			var recipe = null;
+	// 		var recipe = null;
 
-			return this.$axios({
-						url: `${this.$config.queryFunction}?filter=${recipeId}`,
-						method: "get"
-					})
-				.then((res) => {
-                    if (res.data && res.data.length > 0) {
-						this.recipe = res.data[0];
+	// 		return this.$axios({
+	// 					url: `${this.$config.queryFunction}?filter=${recipeId}`,
+	// 					method: "get"
+	// 				})
+	// 			.then((res) => {
+    //                 if (res.data && res.data.length > 0) {
+	// 					this.recipe = res.data[0];
 
-						let compositions = JSON.parse(this.recipe.compositionsJson);
+	// 					let compositions = JSON.parse(this.recipe.compositionsJson);
 
-						if (compositions) {
-							compositions.sort((a, b) => b.quantity - a.quantity);
-						}
+	// 					if (compositions) {
+	// 						compositions.sort((a, b) => b.quantity - a.quantity);
+	// 					}
 
-						this.recipe.compositions = compositions;
-					}
-                })
-			
-
-			
-
-		}
-	},
+	// 					this.recipe.compositions = compositions;
+	// 				}
+    //             })
+	// 	}
+	// },
 	async asyncData({ params, error, payload, $axios, $config: { queryFunction }, $prismic }) {
 		console.log("params", params)
 		if (payload) {
@@ -112,9 +108,13 @@ export default {
 			let recipe = payload;
 			let article = null;
 
-			if (recipe.compositions) {
-				recipe.compositions.sort((a, b) => b.quantity - a.quantity);
+			let compositions = JSON.parse(recipe.compositionsJson);
+
+			if (compositions) {
+				compositions.sort((a, b) => b.quantity - a.quantity);
 			}
+
+			recipe.compositions = compositions;
 
 			//if there's an associated page in Prismic, retrieve it
 			if (recipe.prismicPageId) {
