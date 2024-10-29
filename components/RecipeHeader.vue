@@ -2,7 +2,7 @@
   <header class="flex flex-col space-y-12">
     <div class="recipe-title-section flex flex-col space-y-6">
       <h1
-        class="font-sans text-primary-foreground text-2xl lg:text-4xl font-medium leading-none lowercase text-balance w-full max-w-4xl">
+        class="font-sans text-primary-foreground text-xl lg:text-3xl font-medium leading-none lowercase text-balance w-full max-w-4xl">
         {{ name }}
       </h1>
       <div class="text-primary-foreground text-usual leading-none">
@@ -28,7 +28,7 @@
       class="flex flex-col md:flex-row justify-between w-full noprint">
       <div class="flex flex-col">
         <h2
-          class="w-full lg:w-3/4 text-pretty text-primary-foreground font-light lg:font-normal font-sans text-base lg:text-lg leading-tight ligatures-none">
+          class="w-full lg:w-3/4 text-primary-foreground font-light lg:font-light font-sans text-base text-balance lg:text-lg leading-tight ligatures-none">
           " {{ description }} "
         </h2>
       </div>

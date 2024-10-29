@@ -1,12 +1,12 @@
 <template>
 	<div class="flex flex-grow flex-col" :class="{ 'bg-alt font-mono py-5 px-5 rounded-md max-w-[55ch]': callout }">
-		<h3 class=" text-lg lg:text-xl leading-none pb-4 w-full lg:w-3/4 text-pretty"
+		<h3 class=" text-lg lg:text-lg leading-none pb-4 w-full lg:w-3/4 text-pretty"
 			:class="[callout ? 'text-primary text-lg lg:text-xl' : 'text-primary-foreground']">{{ title }}
 		</h3>
-		<div class="d-1">
+		<div class="">
 			<prismic-rich-text :field="content" :class="[
-				'leading-tight text-base font-sans ligatures-none prose-fristouille',
-				'prose-p:font-sans prose-p:font-medium prose-p:text-base prose-p:leading-tight prose-p:ligatures-none',
+				'leading-tight text-base font-sans ligatures-none prose-fristouille text-balance',
+				'prose-p:font-sans prose-p:font-light prose-p:text-base prose-p:leading-tight prose-p:ligatures-none',
 				callout ? 'text-primary prose-p:text-primary' : 'text-foreground prose-p:text-foreground'
 			]" />
 		</div>

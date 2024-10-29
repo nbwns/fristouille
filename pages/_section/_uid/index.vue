@@ -3,8 +3,8 @@
 		<article-header :title="document.data.title" :introduction="document.data.introduction"
 			:parentTitle="$prismic.asText(parent.data.title)" :parentUrl="parent.url" />
 
-		<div class="flex flex-col justify-center items-center space-y-12  d-1 max-w-[65ch] mx-auto">
-			<div class="flex flex-col justify-center items-center space-y-12 w-full" :class="{ 'xl:w-2/3': hasCtas }">
+		<div class="flex flex-col justify-center items-start space-y-12 w-full">
+			<div class="flex flex-col justify-center items-start space-y-12 w-full" :class="{ 'xl:w-2/3': hasCtas }">
 				<!-- content blocks -->
 				<content-block v-for="block in contentBlocks" :key="block.id" :title="block.primary.content_title"
 					:content="block.primary.content_body" :image="block.primary.content_image" :callout="block.primary.callout" />

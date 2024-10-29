@@ -1,12 +1,12 @@
 <template>
-	<section class="flex flex-col container ">
+	<section class="flex flex-col container w-full">
 		<!-- recipe header -->
 		<div v-if="recipe" class="flex flex-col space-y-8 lg:space-y-12 ">
 
 			<RecipeHeader :name="recipe.name" :authorName="recipe.authorName" :authorWeb="recipe.authorWeb"
 				:description="recipe.description" :picture="recipe.picture" />
 
-			<div class="flex flex-col space-y-8 lg:space-y-12 max-w-[65ch] mx-auto">
+			<div class="flex flex-col space-y-8 lg:space-y-12 w-full">
 
 				<!-- recipe info section -->
 				<RecipeInfoSection :preparationTime="recipe.preparationTime / 60" :cookTime="recipe.cookTime / 60"
@@ -87,7 +87,7 @@ export default {
 	// 					method: "get"
 	// 				})
 	// 			.then((res) => {
-    //                 if (res.data && res.data.length > 0) {
+	//                 if (res.data && res.data.length > 0) {
 	// 					this.recipe = res.data[0];
 
 	// 					let compositions = JSON.parse(this.recipe.compositionsJson);
@@ -98,7 +98,7 @@ export default {
 
 	// 					this.recipe.compositions = compositions;
 	// 				}
-    //             })
+	//             })
 	// 	}
 	// },
 	async asyncData({ params, error, payload, $axios, $config: { queryFunction }, $prismic }) {
