@@ -6,7 +6,7 @@
 
 			<div class="flex min-w-[1/5] group">
 				<span
-					class="md:hidden font-mono text-sm text-primary-foreground group-hover:text-accent transition-colors duration-300 cursor-pointer d-1"
+					class="md:hidden font-mono text-sm text-primary-foreground group-hover:text-accent transition-colors duration-300 cursor-pointer"
 					@click="mobileAdvancedSearch = !mobileAdvancedSearch">
 					filtres
 					<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none"
@@ -74,7 +74,7 @@
 								}">
 
 									<!-- number of results (hidden on mobile) -->
-									<div class="hidden md:flex text-usual pt-4 pb-2">
+									<div class="hidden md:flex text-sm text-primary-foreground font-light font-mono pt-4 pb-2">
 										{{ nbHits }} recettes
 									</div>
 								</template>
@@ -90,9 +90,9 @@
 					</template>
 				</ais-hits>
 			</div>
-			<div class="w-full h-96 flex items-center justify-center" v-else-if="showDefaultMessage">
+			<div class="w-full h-96 flex items-center justify-center " v-else-if="showDefaultMessage">
 				<div
-					class=" font-sans font-bold p-14 text-alt text-[3rem] text-center ligatures-none leading-none bg-secondary rounded-lg shadow-lg">
+					class=" font-sans font-bold p-14 text-alt text-xl lg:text-2xl text-center ligatures-none leading-none bg-secondary rounded-lg shadow-lg  container">
 					Pas d'idées ?
 					<br /> Essaie une recherche ou un filtre
 					<br />
@@ -100,17 +100,17 @@
 					<div class="flex flex-row gap-2 justify-center items-center">
 						<div
 							class="inline-flex justify-center items-center h-8 px-4 font-mono font-medium text-base w-fit border border-primary-foreground/10 hover:border-primary-foreground/60 rounded whitespace-nowrap ring-offset-primary-foreground/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
-							 <nuxt-link to="/Recettes?q=rapide">
+							<nuxt-link to="/Recettes?q=rapide">
 								rapide
-							 </nuxt-link>
+							</nuxt-link>
 						</div>
 						<div
 							class="inline-flex justify-center items-center h-8 px-4 font-mono font-medium text-base w-fit border border-primary-foreground/10 hover:border-primary-foreground/60 rounded whitespace-nowrap ring-offset-primary-foreground/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
-							 <nuxt-link to="/Recettes?diet=Végétarien">
+							<nuxt-link to="/Recettes?diet=Végétarien">
 								végétarien
-							 </nuxt-link>
+							</nuxt-link>
 						</div>
-						
+
 					</div>
 				</div>
 			</div>

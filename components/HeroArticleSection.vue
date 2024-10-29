@@ -1,5 +1,5 @@
 <template>
-  <div class="flex lg:flex-row-reverse justify-start w-full gap-6 lg:gap-12">
+  <div class="flex flex-col-reverse lg:flex-row-reverse justify-start w-full gap-6 lg:gap-12">
     <div class="flex flex-col space-y-4 text-left w-full max-w-lg">
       <h1
         class="font-sans text-primary-foreground text-2xl lg:text-3xl font-medium leading-none lowercase text-balance">
