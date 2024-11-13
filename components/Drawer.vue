@@ -4,7 +4,9 @@
 			height: visible ? '87vh' : '0',
 			// paddingTop: visible ? '10px' : '0',
 		}">
-			<slot></slot>
+			<div class="max-h-screen w-full overflow-y-auto">
+				<slot></slot>
+			</div>
 		</div>
 		<div class="drawer-mask" :style="{
 			height: visible ? '100vh' : '0',

@@ -1,5 +1,5 @@
 <template>
-  <div id="app" :class="{ 'dark': darkMode }" class="flex flex-col min-h-screen bg-background">
+  <div id="app" :class="{ 'dark': darkMode }" class="w-full flex flex-col min-h-screen bg-background">
     <header>
       <MainNavigation />
     </header>

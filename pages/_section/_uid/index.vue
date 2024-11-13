@@ -1,26 +1,31 @@
 <template>
-	<section class="container space-y-8 lg:space-y-12 py-12 ">
-		<article-header :title="document.data.title" :introduction="document.data.introduction"
-			:parentTitle="$prismic.asText(parent.data.title)" :parentUrl="parent.url" />
+	<article class="container space-y-8 lg:space-y-12 py-12 flex flex-col lg:flex-row gap-6">
+		<main class="w-full" :class="hasCtas ? 'basis-full lg:basis-3/4' : 'basis-full'"
+			:style="hasCtas ? 'max-width: 840px' : ''">
+			<article-header :title="document.data.title" :introduction="document.data.introduction"
+				:parentTitle="$prismic.asText(parent.data.title)" :parentUrl="parent.url" />
 
-		<div class="flex flex-col justify-center items-start space-y-12 w-full">
-			<div class="flex flex-col justify-center items-start space-y-12 w-full" :class="{ 'xl:w-2/3': hasCtas }">
-				<!-- content blocks -->
-				<content-block v-for="block in contentBlocks" :key="block.id" :title="block.primary.content_title"
-					:content="block.primary.content_body" :image="block.primary.content_image" :callout="block.primary.callout" />
+			<div class="flex flex-col justify-center items-start gap-6 w-full">
+				<div class="flex flex-col justify-center items-start gap-6 w-full" :class="{ 'xl:w-2/3': hasCtas }">
+					<!-- content blocks -->
+					<content-block v-for="block in contentBlocks" :key="block.id" :title="block.primary.content_title"
+						:content="block.primary.content_body" :image="block.primary.content_image"
+						:callout="block.primary.callout" />
+				</div>
+
 			</div>
-			<div class="w-full lg:w-1/3" v-if="hasCtas">
-				<!-- call to action -->
-				<call-to-action v-for="cta in ctas" :key="cta.id" :ctaUrl="cta.primary.cta_url" :ctaText="cta.primary.cta_text"
-					:ctaHeader="cta.primary.cta_header" />
-			</div>
-		</div>
-		<!-- featured recipes -->
-		<featured-recipes v-for="(list, index) in horizontalLists" :key="`recipes-${index}`" :title="list.title"
-			:items="list.recipes" :link="list.seeAllQuery" />
-		<!-- related pages -->
-		<related-pages :pages="relatedPages" />
-	</section>
+			<!-- featured recipes -->
+			<featured-recipes v-for="(list, index) in horizontalLists" :key="`recipes-${index}`" :title="list.title"
+				:items="list.recipes" :link="list.seeAllQuery" :hidden="!list.recipes || list.recipes.length === 0" />
+			<!-- related pages -->
+			<related-pages :pages="relatedPages" />
+		</main>
+
+		<aside v-if="hasCtas" class="w-full basis-1/4">
+			<call-to-action v-for="cta in ctas" :key="cta.id" :ctaUrl="cta.primary.cta_url" :ctaText="cta.primary.cta_text"
+				:ctaHeader="cta.primary.cta_header" />
+		</aside>
+	</article>
 </template>
 
 <script>

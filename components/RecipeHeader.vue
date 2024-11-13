@@ -28,7 +28,7 @@
       class="flex flex-col md:flex-row justify-between w-full noprint">
       <div class="flex flex-col">
         <h2
-          class="w-full lg:w-3/4 text-primary-foreground font-light lg:font-light font-sans text-base text-balance lg:text-lg leading-tight ligatures-none">
+          class="w-full text-primary-foreground font-light lg:font-light font-sans text-base text-pretty lg:text-lg leading-tight ligatures-none">
           " {{ description }} "
         </h2>
       </div>

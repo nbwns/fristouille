@@ -4,7 +4,7 @@
 		<label :for="uid" class="text-lg text-foreground font-mono font-medium cursor-pointer select-none w-auto flex-1">
 			<slot></slot>
 		</label>
-		<input :id="uid" type="checkbox" value="" class="w-4 h-4 rounded-xs accent-label checked:bg-accent select-none d-1"
+		<input :id="uid" type="checkbox" value="" class="w-4 h-4 rounded-xs accent-label checked:bg-accent select-none"
 			:checked="checked" @click="$emit('check', $event)">
 	</div>
 

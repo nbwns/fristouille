@@ -1,11 +1,10 @@
 <template>
-  <header class="flex flex-col space-y-12 w-full text-balance">
+  <header class="flex flex-col py-6 lg:py-0 space-y-12 w-full text-balance">
     <!-- <breadcrumb :parentText="parentTitle" :parentPath="parentUrl">
       <prismic-text :field="title" />
     </breadcrumb> -->
     <div class="flex flex-col space-y-6">
-      <h1
-        class="font-sans text-primary-foreground text-xl lg:text-3xl font-medium leading-none lowercase text-balance w-full ">
+      <h1 class="font-sans text-primary-foreground text-xl lg:text-3xl font-medium leading-none text-balance w-full">
         <prismic-text :field="title" />
       </h1>
       <h2>

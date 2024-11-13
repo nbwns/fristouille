@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -53,7 +53,7 @@
 @layer base {
   :root {
     --labil-font: "Labil";
-    --martian-font: "Roboto Mono";
+    --martian-font: "Inter";
     --background: 296 19% 15%;
     --foreground: 0 0% 99%;
     --primary: 296 19% 15%;
@@ -72,7 +72,7 @@
 
   .dark {
     --labil-font: "Labil";
-    --martian-font: "Roboto Mono";
+    --martian-font: "Inter";
     --background: 0 0% 99%;
     --foreground: 296 19% 15%;
     --primary: 0 0% 99%;

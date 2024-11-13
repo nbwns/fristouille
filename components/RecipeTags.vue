@@ -5,35 +5,35 @@
       <!-- tags -->
       <nuxt-link v-for="t in tagsList" :key="t" :to="`/Recettes?q=${t}`" class="noprint">
         <tag
-          class="!text-sm h-8 lg:h-14 hover:bg-foreground hover:text-background transition-all duration-300 hover:cursor-pointer hover:scale-110">
+          class="!text-sm h-8 hover:bg-foreground hover:text-background transition-all duration-300 hover:cursor-pointer hover:scale-110">
           {{ t }}</tag>
       </nuxt-link>
 
       <!-- base recipe -->
       <nuxt-link v-if="baseRecipe" key="baseRecipe" :to="`/Recettes?baseRecipe=${baseRecipe}`">
         <tag
-          class="!text-sm h-8 lg:h-14 hover:bg-foreground hover:text-background transition-all duration-300 hover:cursor-pointer hover:scale-110">
+          class="!text-sm h-8 hover:bg-foreground hover:text-background transition-all duration-300 hover:cursor-pointer hover:scale-110">
           {{ baseRecipe.replaceAll('-', ' ') }}</tag>
       </nuxt-link>
 
       <!-- category -->
       <nuxt-link v-for="cat in category" :key="cat" :to="`/Recettes?category=${cat}`">
         <tag
-          class="!text-sm h-8 lg:h-14 hover:bg-foreground hover:text-background transition-all duration-300 hover:cursor-pointer hover:scale-110">
+          class="!text-sm h-8 hover:bg-foreground hover:text-background transition-all duration-300 hover:cursor-pointer hover:scale-110">
           {{ cat }}</tag>
       </nuxt-link>
 
       <!-- cuisine -->
       <nuxt-link v-if="cuisine" key="cuisine" :to="`/Recettes?cuisine=${cuisine}`">
         <tag
-          class="!text-sm h-8 lg:h-14 hover:bg-foreground hover:text-background transition-all duration-300 hover:cursor-pointer hover:scale-110">
+          class="!text-sm h-8 hover:bg-foreground hover:text-background transition-all duration-300 hover:cursor-pointer hover:scale-110">
           {{ cuisine }}</tag>
       </nuxt-link>
 
       <!-- allergies -->
       <nuxt-link v-for="free in freeFrom" :key="free" :to="`/Recettes?free=${free}`">
         <tag
-          class="!text-sm h-8 lg:h-14 hover:bg-foreground hover:text-background transition-all duration-300 hover:cursor-pointer hover:scale-110">
+          class="!text-sm h-8 hover:bg-foreground hover:text-background transition-all duration-300 hover:cursor-pointer hover:scale-110">
           sans {{ free }}</tag>
       </nuxt-link>
     </div>

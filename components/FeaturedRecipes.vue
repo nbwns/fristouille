@@ -1,7 +1,7 @@
 <template>
   <!-- section cards 4 columns -->
-  <section class="flex w-full items-center mx-auto justify-center py-10">
-    <div class="flex flex-col space-y-3 ">
+  <section :class="{ 'hidden': hidden }" class="flex w-full items-center mx-auto justify-center py-10">
+    <div class="w-full flex flex-col space-y-3 ">
       <!-- title row -->
       <div class="flex flex-row justify-between items-end">
         <title-paragraph>{{ title }}</title-paragraph>
@@ -47,7 +47,15 @@ import SsrCarousel from 'vue-ssr-carousel';
 
 
 export default {
-  props: ['title', 'link', 'items'],
+  props: {
+    title: String,
+    items: Array,
+    link: String,
+    hidden: {
+      type: Boolean,
+      default: false
+    }
+  },
   components: { CardRecipe, TitleParagraph, HyperLink, SsrCarousel, Spacer },
   methods: {
 
