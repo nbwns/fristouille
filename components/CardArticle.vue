@@ -6,10 +6,10 @@
 				<img class="w-full h-full object-cover" :src="img" :alt="imgAlt">
 			</div>
 			<div class="flex flex-col justify-between p-3 space-y-4 h-full">
-				<h4
-					class="text-foreground text-lg leading-tight text-pretty sm:text-balance max-w-xs font-demi line-clamp-2 ligatures-none">
+				<h3
+					class="text-foreground text-lg leading-tight text-pretty  max-w-xs font-demi line-clamp-2 ligatures-none">
 					{{ title }}
-				</h4>
+				</h3>
 				<div class="flex flex-col space-y-2">
 					<!-- Placeholder for layout consistency -->
 				</div>

@@ -5,10 +5,10 @@
 		<nuxt-link class="flex flex-col justify-start h-full" :to='`/Recette/${slug}/${recipeID}`' no-prefetch>
 			<div class=" bg-center bg-cover h-[37rem]" :class="width" :style="{ backgroundImage: backgroundImage }" />
 			<div class="flex flex-col justify-between p-3 space-y-4 h-full ">
-				<h4
-					class="text-primary-foreground text-md text-pretty sm:text-balance max-w-xs font-demi line-clamp-2 ligatures-none leading-none">
+				<h3
+					class="text-primary-foreground text-lg text-pretty sm:text-balance max-w-xs font-demi line-clamp-2 ligatures-none leading-none">
 					{{ title }}
-				</h4>
+				</h3>
 				<div class="flex flex-col space-y-2 ">
 					<div class=" w-full flex flex-row flex-wrap justify-start items-center space-x-2">
 						<tag

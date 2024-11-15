@@ -4,7 +4,7 @@
     <div class="w-full flex flex-col space-y-3 ">
       <!-- title row -->
       <div class="flex flex-row justify-between items-end">
-        <title-paragraph>{{ title }}</title-paragraph>
+        <h2 class="text-lg lg:text-xl py-4 text-primary-foreground leading-none">{{ title }}</h2>
         <hyper-link v-if="link" :path="`/Recettes${link}`">Tout voir</hyper-link>
       </div>
 

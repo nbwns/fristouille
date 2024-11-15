@@ -1,6 +1,6 @@
 <template>
 	<article class="container space-y-8 lg:space-y-12 py-12 flex flex-col lg:flex-row gap-6">
-		<main class="w-full" :class="hasCtas ? 'basis-full lg:basis-3/4' : 'basis-full'"
+		<main class="w-full" :class="hasCtas ? 'basis-full lg:basis-4/5' : 'basis-full'"
 			:style="hasCtas ? 'max-width: 840px' : ''">
 			<article-header :title="document.data.title" :introduction="document.data.introduction"
 				:parentTitle="$prismic.asText(parent.data.title)" :parentUrl="parent.url" />
@@ -12,7 +12,6 @@
 						:content="block.primary.content_body" :image="block.primary.content_image"
 						:callout="block.primary.callout" />
 				</div>
-
 			</div>
 			<!-- featured recipes -->
 			<featured-recipes v-for="(list, index) in horizontalLists" :key="`recipes-${index}`" :title="list.title"

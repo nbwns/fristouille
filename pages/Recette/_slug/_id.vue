@@ -21,6 +21,7 @@
 				<RecipePreparation :procedure="procedure" :source="recipe.source" />
 			</div>
 
+			<card-tip :article="article"/>
 
 			<!-- liste des tags -->
 			<RecipeTags :tagsList="recipe.tagsList" :baseRecipe="recipe.baseRecipe" :category="recipe.category"
@@ -74,33 +75,6 @@ export default {
 			return labels[key];
 		}
 	},
-	// mounted(){
-	// 	console.log("recipe null ?", this.recipe);
-	// 	if(!this.recipe){
-	// 		const recipeId = this.$route.params.id;
-	// 		console.log("fetch recipe",recipeId);
-
-	// 		var recipe = null;
-
-	// 		return this.$axios({
-	// 					url: `${this.$config.queryFunction}?filter=${recipeId}`,
-	// 					method: "get"
-	// 				})
-	// 			.then((res) => {
-	//                 if (res.data && res.data.length > 0) {
-	// 					this.recipe = res.data[0];
-
-	// 					let compositions = JSON.parse(this.recipe.compositionsJson);
-
-	// 					if (compositions) {
-	// 						compositions.sort((a, b) => b.quantity - a.quantity);
-	// 					}
-
-	// 					this.recipe.compositions = compositions;
-	// 				}
-	//             })
-	// 	}
-	// },
 	async asyncData({ params, error, payload, $axios, $config: { queryFunction }, $prismic }) {
 		console.log("params", params)
 		if (payload) {
@@ -118,7 +92,6 @@ export default {
 
 			//if there's an associated page in Prismic, retrieve it
 			if (recipe.prismicPageId) {
-				//TODO: limit amount of data retrieved (graphQuery and fetch don't work)
 				article = (await $prismic.api.getByID(recipe.prismicPageId));
 			}
 
@@ -146,7 +119,6 @@ export default {
 
 					//if there's an associated page in Prismic, retrieve it
 					if (recipe.prismicPageId) {
-						//TODO: limit amount of data retrieved (graphQuery and fetch don't work)
 						article = (await $prismic.api.getByID(recipe.prismicPageId));
 
 					}

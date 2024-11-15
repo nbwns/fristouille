@@ -1,9 +1,9 @@
 <template>
 	<div class="flex flex-grow flex-col"
 		:class="{ 'bg-alt font-mono py-5 px-5 rounded-md max-w-[55ch] justify-center items-center mx-auto my-6 lg:my-12': callout }">
-		<h3 class=" text-lg lg:text-lg leading-none pb-4 w-full text-pretty"
+		<h2 class=" text-lg lg:text-lg leading-none pb-4 w-full text-pretty ligatures-none" v-if="title"
 			:class="[callout ? 'text-primary text-lg lg:text-xl' : 'text-primary-foreground']">{{ title }}
-		</h3>
+		</h2>
 		<div class="">
 			<prismic-rich-text :field="content" :class="[
 				'leading-snug text-base font-mono ligatures-none prose-fristouille text-balance',
