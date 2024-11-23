@@ -157,7 +157,6 @@
 								:checked="checked('cuisine', 'Indienne')">indienne</checkbox-filter>
 						</div>
 					</accordion>
-					<!-- STEPH: la liste des mois dépasse du drawer > la mettre en 2 colonnes ?  -->
 					<accordion title="Saison" key="season" :numberOfItemsSelected="numberOfItemsSelected('months')">
 						<div class="grid grid-cols-2 gap-2">
 							<div class="py-4">
