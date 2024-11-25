@@ -21,7 +21,7 @@
 				<RecipePreparation :procedure="procedure" :source="recipe.source" />
 			</div>
 
-			<card-tip :article="article"/>
+			<card-tip :article="article" v-if="article"/>
 
 			<!-- liste des tags -->
 			<RecipeTags :tagsList="recipe.tagsList" :baseRecipe="recipe.baseRecipe" :category="recipe.category"

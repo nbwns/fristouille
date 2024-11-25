@@ -29,6 +29,7 @@
 					<logo class="px-6 pt-3" />
 					<div class="inline-flex items-center p-5 cursor-pointer navmobile close" @click="popupOpen = !popupOpen">
 						<svg class="h-8 mx-auto" viewBox="0 0 59 67" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M41.0793 19L29.5 30.5793L17.9207 19L15 21.9207L26.5793 33.5L15 45.0793L17.9207 48L29.5 36.4207L41.0793 48L44 45.0793L32.4207 33.5L44 21.9207L41.0793 19Z"></path>
 						</svg>
 					</div>
 				</div>
@@ -36,7 +37,7 @@
 				<ul class="flex flex-col w-full px-6 space-y-2 text-xl list-none">
 					<PopupMenuItem href="https://forms.fillout.com/t/tAiagUtQpwus" target="_blank" label="Ajouter une recette" />
 					<PopupMenuItem to="/a-propos" label="À propos" />
-					<PopupMenuItem href="https://fristouille.super.site/" target="_blank" label="Services pour entreprises" />
+					<PopupMenuItem href="https://fristouille.super.site/" target="_blank" label="Services" />
 				</ul>
 				<div class="flex-grow"></div>
 				<div class="p-6">

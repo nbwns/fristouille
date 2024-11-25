@@ -2,7 +2,7 @@
   <section class="hidden md:flex w-full">
     <div class="flex flex-col w-full items-start bg-background">
       <h2 class="text-primary-foreground text-xl lg:text-2xl">
-        des recettes...
+        découvre des recettes
       </h2>
       <div class="flex flex-col justify-center">
         <div class="flex flex-row justify-between items-center my-3 space-x-6">
@@ -23,8 +23,8 @@
           <!-- filters -->
           <span>
             <hyper-link path="/Recettes"
-              class="font-mono font-medium text-sm hover:underline hover:underline-offset-2 text-primary-foreground hover:text-underline">
-              voir tout les filtres
+              class="font-mono font-medium text-sm underline hover:underline-offset-2 text-primary-foreground hover:text-underline">
+              ou farfouille dans toutes les recettes
             </hyper-link>
           </span>
         </div>
@@ -64,16 +64,16 @@ export default {
 
       let seasons = [];
       if (month in this.seasonsAndMonths.winter) {
-        seasons.push("hiver");
+        seasons.push("d'hiver");
       }
       if (month in this.seasonsAndMonths.spring) {
-        seasons.push("printemps");
+        seasons.push("de printemps");
       }
       if (month in this.seasonsAndMonths.summer) {
-        seasons.push("été");
+        seasons.push("d'été");
       }
       if (month in this.seasonsAndMonths.autumn) {
-        seasons.push("automne");
+        seasons.push("d'automne");
       }
 
       return seasons;
@@ -83,16 +83,16 @@ export default {
     getSeasonQuery(s) {
       let months;
       switch (s) {
-        case "hiver":
+        case "d'hiver":
           months = Object.values(this.seasonsAndMonths.winter);
           break;
-        case "printemps":
+        case "de printemps":
           months = Object.values(this.seasonsAndMonths.spring);
           break;
-        case "été":
+        case "d'été":
           months = Object.values(this.seasonsAndMonths.summer);
           break;
-        case "automne":
+        case "d'automne":
           months = Object.values(this.seasonsAndMonths.autumn);
           break;
       }

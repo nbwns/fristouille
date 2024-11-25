@@ -64,7 +64,7 @@ export default {
 				],
 				[
 					{ text: 'À propos', url: '/a-propos', external: false },
-					{ text: 'Services pour entreprises', url: 'https://fristouille.super.site/', external: true }
+					{ text: 'Services', url: 'https://fristouille.super.site/', external: true }
 				],
 				[
 					{ text: 'Mentions légales', url: '/a-propos/mentions-legales', external: false },
