@@ -3,45 +3,35 @@
     <h3 class="text-primary-foreground text-lg lg:text-xl pb-4 noprint">Tags</h3>
     <div class="flex flex-row flex-wrap justify-start items-start gap-2 noprint">
       <!-- tags -->
-      <nuxt-link v-for="t in tagsList" :key="t" :to="`/Recettes?q=${t}`" class="noprint">
-        <tag
-          class="!text-sm h-8 hover:bg-foreground hover:text-background transition-all duration-300 hover:cursor-pointer hover:scale-110">
-          {{ t }}</tag>
-      </nuxt-link>
+      <tag v-for="t in tagsList" :key="t" :to="`/Recettes?q=${t}`" class="noprint">
+		{{ t }}
+	  </tag>
 
       <!-- base recipe -->
-      <nuxt-link v-if="baseRecipe" key="baseRecipe" :to="`/Recettes?baseRecipe=${baseRecipe}`">
-        <tag
-          class="!text-sm h-8 hover:bg-foreground hover:text-background transition-all duration-300 hover:cursor-pointer hover:scale-110">
-          {{ baseRecipe.replaceAll('-', ' ') }}</tag>
-      </nuxt-link>
+      <tag v-if="baseRecipe" key="baseRecipe" :to="`/Recettes?baseRecipe=${baseRecipe}`">
+		{{ baseRecipe.replaceAll('-', ' ') }}
+	  </tag>
 
       <!-- category -->
-      <nuxt-link v-for="cat in category" :key="cat" :to="`/Recettes?category=${cat}`">
-        <tag
-          class="!text-sm h-8 hover:bg-foreground hover:text-background transition-all duration-300 hover:cursor-pointer hover:scale-110">
-          {{ cat }}</tag>
-      </nuxt-link>
+      <tag v-for="cat in category" :key="cat" :to="`/Recettes?category=${cat}`">
+		{{ cat }}
+	  </tag>
 
       <!-- cuisine -->
-      <nuxt-link v-if="cuisine" key="cuisine" :to="`/Recettes?cuisine=${cuisine}`">
-        <tag
-          class="!text-sm h-8 hover:bg-foreground hover:text-background transition-all duration-300 hover:cursor-pointer hover:scale-110">
-          {{ cuisine }}</tag>
-      </nuxt-link>
+      <tag v-if="cuisine" key="cuisine" :to="`/Recettes?cuisine=${cuisine}`">
+		{{ cuisine }}
+      </tag>
 
       <!-- allergies -->
-      <nuxt-link v-for="free in freeFrom" :key="free" :to="`/Recettes?free=${free}`">
-        <tag
-          class="!text-sm h-8 hover:bg-foreground hover:text-background transition-all duration-300 hover:cursor-pointer hover:scale-110">
-          sans {{ free }}</tag>
-      </nuxt-link>
+      <tag v-for="free in freeFrom" :key="free" :to="`/Recettes?free=${free}`">
+		sans {{ free }}
+      </tag>
     </div>
   </div>
 </template>
 
 <script>
-import Tag from '~/molecules/Tag.vue';
+import Tag from '~/molecules/LinkTag.vue';
 
 export default {
   components: { Tag },

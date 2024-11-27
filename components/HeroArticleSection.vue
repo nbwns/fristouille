@@ -3,7 +3,7 @@
     <div class="flex flex-col space-y-4 text-left w-full max-w-lg">
 	<h1
 		class="font-sans text-primary-foreground text-2xl lg:text-3xl font-medium leading-none lowercase text-balance">
-		<prismic-text :field="title" />
+		{{ $prismic.asText(title) }}
 	</h1>
      <h2>
 		<prismic-rich-text :field="text" class="text-base font-sans text-balance text-primary-foreground font-medium" />
@@ -12,8 +12,7 @@
         <list-of-links :articles="children" />
       </div>
     </div>
-
-    <hero-illustration-section class-name="hidden lg:block" />
+    <hero-illustration-section class="hidden lg:block" />
   </div>
 </template>
 

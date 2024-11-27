@@ -12,13 +12,11 @@
 				<div class="flex flex-col space-y-2 ">
 					<div class=" w-full flex flex-row flex-wrap justify-start items-center space-x-2">
 						<tag
-							class="text-xs bg-label group-hover:bg-secondary text-primary group-hover:text-primary-foreground  tracking-normal h-8"
-							:title="tag">
+							class="text-xs bg-label group-hover:bg-secondary text-primary group-hover:text-primary-foreground  tracking-normal h-8">
 							{{ totalTime }}
 							min</tag>
 						<tag
-							class="text-xs bg-label group-hover:bg-secondary text-primary group-hover:text-primary-foreground  tracking-normal h-8"
-							:title="diet">
+							class="text-xs bg-label group-hover:bg-secondary text-primary group-hover:text-primary-foreground  tracking-normal h-8">
 							{{ diet }}
 						</tag>
 					</div>
@@ -30,7 +28,7 @@
 </template>
 
 <script>
-import Tag from '~/molecules/Tag.vue';
+import Tag from '~/molecules/DisplayTag.vue';
 
 export default {
 	props: ['slug', 'recipeID', 'img', 'diet', 'title', 'totalTime', 'author', 'width'],

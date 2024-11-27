@@ -35,7 +35,7 @@
 import { marked } from 'marked'
 import labels from '~/plugins/labels'
 import { DateTime } from "luxon";
-import Tag from '~/molecules/Tag.vue';
+import Tag from '~/molecules/ButtonTag.vue';
 import CardTip from '~/components/CardTip.vue';
 import Spacer from '~/molecules/Spacer.vue';
 import IngredientList from '~/components/IngredientList.vue'; // Add this import

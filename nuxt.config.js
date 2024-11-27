@@ -173,7 +173,7 @@ export default {
         method: "get",
       }).then((result) => {
         return result.data.map((recette) => {
-          console.log(recette);
+          console.log(recette.recipeId);
           return {
             route: `Recette/${recette.slug}/${recette.recipeId}`,
             payload: recette,

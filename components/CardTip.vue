@@ -16,11 +16,11 @@
 						<img class="w-full h-full object-cover" :src="article.data.cover.url" :alt="article.data.cover.alt">
 					</div>
 					<!-- Content on the right -->
-					<div class="hidden md:flex flex-col justify-between p-6 w-full">
-						<h3 class="text-foreground text-lg leading-tight font-demi line-clamp-2">
+					<div class="hidden md:flex flex-col justify-between px-6 py-3 w-full">
+						<h3 class="text-foreground text-lg leading-tight font-demi line-clamp-2 ligatures-none">
 							{{ $prismic.asText(article.data.title) }}
 						</h3>
-						<div class="text-sm text-foreground/80 flex-grow">
+						<div class="text-sm text-foreground/80 flex-grow font-light pt-3">
 							<prismic-rich-text :field="article.data.tip_abstract" v-if="article.data.tip_abstract" />
 						</div>
 						<div class="flex justify-end">
@@ -37,6 +37,9 @@
 							class="text-foreground text-lg leading-tight text-pretty max-w-xs font-demi line-clamp-2 ligatures-none">
 							{{ $prismic.asText(article.data.title) }}
 						</h3>
+						<div class="text-sm text-foreground/80 flex-grow font-light">
+							<prismic-rich-text :field="article.data.tip_abstract" v-if="article.data.tip_abstract" />
+						</div>
 					</div>
 				</nuxt-link>
 			</div>

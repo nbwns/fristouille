@@ -3,12 +3,12 @@
     <div class="flex w-full justify-between gap-5 lg:gap-8">
       <RecipeInfoBox label="Préparation" :value="`${preparationTime} min`">
         <template #content>
-          <time>{{ preparationTime }} min</time>
+          <time :datetime="toDuration(preparationTime)">{{ preparationTime }} min</time>
         </template>
       </RecipeInfoBox>
       <RecipeInfoBox label="Cuisson" :value="`${cookTime} min`">
         <template #content>
-          <time>{{ cookTime }} min</time>
+          <time :datetime="toDuration(cookTime)">{{ cookTime }} min</time>
         </template>
       </RecipeInfoBox>
     </div>
@@ -23,7 +23,7 @@
         <template #content>
           <div v-if="months.length < 12" class="flex flex-wrap gap-2">
             <tag v-for="month in months" :key="month" :to="`/Recettes?months=${month}`"
-              class="!text-sm lg:h-8 hover:bg-foreground hover:text-background transition-all duration-300 hover:cursor-pointer hover:scale-110">
+             >
               {{ month }}
             </tag>
           </div>
@@ -38,7 +38,7 @@
 
 <script>
 import RecipeInfoBox from './RecipeInfoBox.vue';
-import Tag from '~/molecules/Tag.vue';
+import Tag from '~/molecules/LinkTag.vue';
 
 export default {
   components: {
@@ -91,7 +91,14 @@ export default {
         case '€€€':
           return 'On se fait plaisir';
       }
-    },
+    }
   },
+  methods:{
+	toDuration(totalMinutes) {
+		const hours = Math.floor(totalMinutes / 60);
+		const minutes = totalMinutes % 60;
+		return `PT${hours}H${minutes}M`;
+	} 
+  }
 };
 </script>

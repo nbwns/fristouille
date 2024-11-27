@@ -12,7 +12,7 @@
 			]" />
 		</div>
 		<div v-if="image.url" class="flex justify-center items-center py-12 lg:py-24 w-full">
-			<prismic-image :field="image" widths="thumbnails"
+			<prismic-image :field="image" 
 				class="rounded-[24px] object-cover w-full lg:w-2/3 aspect-square" />
 		</div>
 	</div>
