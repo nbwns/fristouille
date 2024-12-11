@@ -73,7 +73,12 @@ export default {
 	methods: {
 		label(key) {
 			return labels[key];
-		}
+		},
+		toDuration(totalMinutes) {
+			const hours = Math.floor(totalMinutes / 60);
+			const minutes = totalMinutes % 60;
+			return `PT${hours}H${minutes}M`;
+		} 
 	},
 	async asyncData({ params, error, payload, $axios, $config: { queryFunction }, $prismic }) {
 		console.log("params", params)
@@ -133,6 +138,32 @@ export default {
 		}
 	},
 	head() {
+		
+		let structuredData = {}
+		
+		if(this.recipe){
+			let keywords = this.recipe.free.map((x) => `sans ${x}`);
+			keywords = this.recipe.tagsList.concat(keywords);
+			
+			structuredData = {
+				"@context": "https://schema.org/",
+				'@type': 'Recipe',
+				name: this.recipe.name,
+				image: this.recipe.pictureMedium,
+				author: [{name: this.recipe.authorName}],
+				cookTime: this.toDuration(this.recipe.cookTime),
+				prepTime: this.toDuration(this.recipe.preparationTime),
+				description: this.recipe.description,
+				recipeCategory: this.recipe.category.join(", "),
+				recipeCuisine: this.recipe.cuisine,
+				recipeInstructions: this.recipe.procedure,
+				recipeYield: this.recipe.yield,
+				recipeIngredient: this.recipe.compositionsStructuredData,
+				keywords: keywords
+			}
+		}	
+		
+		
 		return {
 			title: (this.recipe) ? this.recipe.name : "",
 			//adapt meta 
@@ -161,6 +192,12 @@ export default {
 					hid: 'og:url',
 					name: 'og:url',
 					content: (this.recipe) ? `https://www.fristouille.org/Recette/${this.recipe.slug}/${this.recipe.recipeId}` : ""
+				}
+			],
+			script: [
+				{
+				type: 'application/ld+json',
+				json: structuredData
 				}
 			]
 		}

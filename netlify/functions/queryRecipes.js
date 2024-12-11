@@ -70,7 +70,8 @@ exports.handler = async function(event, context) {
 						source: r.fields.Source || null,
 						tagsList: r.fields.TagsList || null,
 						compositionsJson: r.fields.CompositionsJSON || null,
-						ingredientsList: r.fields.IngredientsList || null
+						ingredientsList: r.fields.IngredientsList || null,
+						compositionsStructuredData: r.fields.CompositionsStructuredData || null
 					}
 				});
 			}

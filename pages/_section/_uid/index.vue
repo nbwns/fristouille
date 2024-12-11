@@ -50,6 +50,19 @@ export default {
 		ArticleHeader
 	},
 	head() {
+		
+		const structuredData = {
+			"@context": "https://schema.org/",
+			'@type': 'Article',
+			headline: this.document.data.meta_title,
+			image: this.document.data.facebook_image.url,
+			author: [{
+				"@type":"Organization",
+				"name": "Fristouille",
+				"url": "https://www.fristouille.org/"
+			}]
+		}
+		
 		return {
 			title: this.document.data.meta_title,
 			meta: [
@@ -77,6 +90,12 @@ export default {
 					hid: 'og:url',
 					name: 'og:url',
 					content: `https://www.fristouille.org${this.document.url}`
+				}
+			],
+			script: [
+				{
+				type: 'application/ld+json',
+				json: structuredData
 				}
 			]
 		}
