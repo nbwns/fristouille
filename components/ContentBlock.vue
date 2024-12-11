@@ -11,7 +11,7 @@
 				callout ? 'text-primary prose-p:text-primary' : 'text-foreground prose-p:text-foreground'
 			]" />
 		</div>
-		<div v-if="image.url" class="flex justify-center items-center py-12 lg:py-24 w-full">
+		<div v-if="image && image.url" class="flex justify-center items-center py-12 lg:py-24 w-full">
 			<prismic-image :field="image" 
 				class="rounded-[24px] object-cover w-full lg:w-2/3 aspect-square" />
 		</div>
@@ -22,24 +22,7 @@
 import Spacer from '~/molecules/Spacer.vue';
 
 export default {
-	props: {
-		title: {
-			type: String,
-			required: true
-		},
-		content: {
-			type: Object,
-			required: true
-		},
-		image: {
-			type: Object,
-			default: () => ({})
-		},
-		callout: {
-			type: Boolean,
-			default: false
-		}
-	},
+	props: ["title", "content", "image", "callout"],
 	components: {
 		Spacer
 	}

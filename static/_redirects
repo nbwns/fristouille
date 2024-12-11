@@ -1,1 +1,3 @@
 /recettes/:ingredient  /recettes?q=:ingredient
+/menu  /fonctionnalites
+/account  /fonctionnalites

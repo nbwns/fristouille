@@ -7,6 +7,7 @@
 		<!-- child pages  -->
 		<grid-of-cards-articles :articles="children" v-if="!document.data.display_as_links" />
 
+		<recipe-categories v-if="recipeCategories" :content="recipeCategories.primary.content" :ingredients="ingredients" />
 	</section>
 </template>
 
@@ -14,13 +15,16 @@
 import GridOfCardsArticles from '~/components/GridOfCardsArticles.vue'
 import Spacer from '~/molecules/Spacer.vue'
 import HeroArticleSection from '~/components/HeroArticleSection.vue'
+import RecipeCategories from '~/components/RecipeCategories';
+
 
 export default {
 	name: 'SectionPage',
 	components: {
 		GridOfCardsArticles,
 		Spacer,
-		HeroArticleSection
+		HeroArticleSection,
+		RecipeCategories
 	},
 	head() {
 		return {
@@ -54,7 +58,7 @@ export default {
 			]
 		}
 	},
-	async asyncData({ $prismic, params, error }) {
+	async asyncData({ $prismic, $axios, $config, params, error }) {
 		try {
 
 			// Query to get post content
@@ -70,10 +74,31 @@ export default {
 				children.sort((a, b) => a.data.position - b.data.position);
 			}
 
+			//the "recettes par categories" is a slice that should be unique.
+			let recipeCats = null;
+			let ingredients = [];
+			console.log(page.data.body)
+			if (page.data.body && page.data.body.length > 0) {
+				try {
+					let recipeCatsSlices = page.data.body.filter(s => s.slice_type === 'recipecategories');
+					if(recipeCatsSlices.length > 0){
+						recipeCats = recipeCatsSlices[0];
+						//get the list of ingredients from Airtable
+						ingredients = (await $axios.get($config.ingredientsFunction)).data;
+					}
+
+				}
+				catch (error) {
+					console.log('error in child page', error)
+				}
+			}
+
 			// Returns data to be used in template
 			return {
 				document: page,
-				children: children
+				children: children,
+				recipeCategories: recipeCats,
+				ingredients: ingredients
 			}
 		} catch (e) {
 			// Returns error page
