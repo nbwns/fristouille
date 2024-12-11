@@ -37,7 +37,7 @@
 				<ul class="flex flex-col w-full px-6 space-y-2 text-xl list-none">
 					<PopupMenuItem href="https://forms.fillout.com/t/tAiagUtQpwus" target="_blank" label="Ajouter une recette" />
 					<PopupMenuItem to="/a-propos" label="À propos" />
-					<PopupMenuItem href="https://fristouille.super.site/" target="_blank" label="Services" />
+					<PopupMenuItem href="/a-propos/services" target="_blank" label="Services" />
 				</ul>
 				<div class="flex-grow"></div>
 				<div class="p-6">
