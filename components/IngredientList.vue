@@ -1,10 +1,10 @@
 <template>
   <div class="py-12">
     <div v-for="c in ingredients" :key="c.name" class="py-0.5">
-      <div v-if="c.ingredient[0]" class="font-mono text-base leading-tight text-foreground font-light flex">
-        <div class="font-bold" v-if="c.quantity > 0">
-          <span class="">{{ computedQuantity(c.quantity) }}&nbsp;</span>
-          <span v-if="c.units != 'pièce'">{{ c.units }} <span class="font-light">de &nbsp;</span> </span>
+      <div v-if="c.ingredient[0]" class="font-mono text-base leading-tight text-foreground font-light flex flex-wrap space-x-1">
+        <div class="font-bold flex space-x-1" v-if="c.quantity > 0">
+          <span>{{ computedQuantity(c.quantity) }}&nbsp;</span>
+          <span v-if="c.units != 'pièce'">{{ c.units }} <span class="font-light">de </span></span>
         </div>
         <div>
           <span>{{ c.ingredient }}</span>

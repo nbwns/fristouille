@@ -64,11 +64,11 @@ export default {
 				],
 				[
 					{ text: 'À propos', url: '/a-propos', external: false },
-					{ text: 'Services', url: 'https://fristouille.super.site/', external: true }
+					{ text: 'Services', url: '/a-propos/services', external: false }
 				],
 				[
-					{ text: 'Mentions légales', url: '/a-propos/mentions-legales', external: false },
-					{ text: 'Déclaration d\'accessibilité', url: '/a-propos/accessibilite', external: false }
+					{ text: 'Nous contacter', url: 'https://forms.fillout.com/t/npCTCGvMsyus', external: true },
+					{ text: 'Mentions légales', url: '/a-propos/mentions-legales', external: false }
 				]
 			],
 			socialIcons: [

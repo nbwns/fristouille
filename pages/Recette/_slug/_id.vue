@@ -1,7 +1,7 @@
 <template>
 	<section class="flex flex-col container w-full">
 		<!-- recipe header -->
-		<div v-if="recipe" class="flex flex-col space-y-8 lg:space-y-12 ">
+		<div v-if="recipe" class="flex flex-col space-y-8 lg:space-y-12 pb-10 lg:pb-0">
 
 			<RecipeHeader :name="recipe.name" :authorName="recipe.authorName" :authorWeb="recipe.authorWeb"
 				:description="recipe.description" :picture="recipe.picture" />

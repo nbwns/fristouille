@@ -22,8 +22,7 @@
       <RecipeInfoBox label="Saisonnalité" :className="'pb-2'">
         <template #content>
           <div v-if="months.length < 12" class="flex flex-wrap gap-2">
-            <tag v-for="month in months" :key="month" :to="`/Recettes?months=${month}`"
-             >
+            <tag v-for="month in months" :key="month" :to="`/Recettes?months=${month}`">
               {{ month }}
             </tag>
           </div>
@@ -43,7 +42,7 @@ import Tag from '~/molecules/LinkTag.vue';
 export default {
   components: {
     RecipeInfoBox,
-    Tag,
+    Tag
   },
   props: {
     preparationTime: {

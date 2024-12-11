@@ -9,8 +9,8 @@
         par
         <span v-if="authorWeb">
           <a :href="authorWeb" target="_blank"
-            class="text-base font-mono font-medium text-label hover:cursor-pointer hover:underline focus:text-accent/75">
-            {{ authorName }}
+            class="inline-flex items-center gap-1 text-base font-mono font-medium text-label hover:cursor-pointer hover:underline focus:text-accent/75">
+            {{ authorName }} <external-link-icon class="stroke-purple-100"/>
           </a>
         </span>
         <span v-else>
@@ -37,8 +37,14 @@
 </template>
 
 <script>
+import ExternalLinkIcon from './icons/ExternalLinkIcon.vue'
+
+
 export default {
   name: 'RecipeHeader',
+  components: {
+	ExternalLinkIcon
+  },
   props: {
     name: {
       type: String,
