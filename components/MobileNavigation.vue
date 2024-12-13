@@ -4,7 +4,7 @@
 		class="fixed bottom-0 w-full py-15 bg-black-300 bg-opacity-75 dark:bg-white-300 dark:bg-opacity-95 md:hidden noprint">
 		<!-- Navigation items container -->
 		<div class="flex flex-row items-center justify-between gap-5 p-5 ">
-			<NavItem to="/" icon="home" label="accueil" />
+			<NavItem to="/" icon="home" label="accueil" exact="exact" />
 			<NavItem to="/recettes" icon="recipe" label="recettes" />
 			<NavItem to="/astuces" icon="tips" label="astuces" />
 			<div class="flex flex-col items-center gap-3">
@@ -38,6 +38,7 @@
 					<PopupMenuItem href="https://forms.fillout.com/t/tAiagUtQpwus" target="_blank" label="Ajouter une recette" />
 					<PopupMenuItem to="/a-propos" label="À propos" />
 					<PopupMenuItem href="/a-propos/services" label="Services" />
+					<PopupMenuItem href="/a-propos/contact" label="Contact" />
 				</ul>
 				<div class="flex-grow"></div>
 				<div class="p-6">

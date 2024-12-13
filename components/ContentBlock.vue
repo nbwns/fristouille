@@ -6,8 +6,11 @@
 		</h2>
 		<div class="">
 			<prismic-rich-text :field="content" :class="[
-				'leading-snug text-base font-mono ligatures-none prose-fristouille text-balance',
-				'prose-p:font-mono prose-p:font-light prose-p:text-base prose-p:leading-snug prose-p:ligatures-none',
+				' text-base font-mono ligatures-none prose-fristouille text-pretty',
+				'prose-p:font-mono prose-p:font-light prose-p:text-base  prose-p:ligatures-none prose-p:text-pretty',
+				'prose-ul:font-mono prose-ul:font-light prose-ul:text-base prose-ul:text-pretty ',
+				'prose-ol:font-mono prose-ol:font-light prose-ol:text-base prose-ol:text-pretty',
+				'prose-h1:mb-2 prose-h2:mb-2 prose-p:mb-1 prose-ul:mb-1',
 				callout ? 'text-primary prose-p:text-primary' : 'text-foreground prose-p:text-foreground'
 			]" />
 		</div>
