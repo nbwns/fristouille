@@ -83,10 +83,13 @@
 						</template>
 						<div v-else>
 							<!-- no results -->
-							<div class="text-usual">
-								Pas de résultat pour cette recherche
+							<div class="w-full flex flex-row justify-start items-center gap-10">
+								<draw-radish class="max-w-[90px] py-8" />
+								<div
+									class="basis-4/6 text-balance text-primary-foreground font-normal font-sans text-lg leading-tight ligatures-none">
+									Ouille, il n'y a pas de résultats pour cette recherche</div>
+								</div>
 							</div>
-						</div>
 					</template>
 				</ais-hits>
 			</div>

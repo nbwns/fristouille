@@ -14,6 +14,8 @@
 				</dropdown>
 
 				<dropdown title="Type de plat" :numberOfItemsSelected="numberOfItemsSelected('category')">
+					<checkbox-filter uid="Apéritif" @check="filter('category', 'Apéritif', $event)"
+						:checked="checked('category', 'Apéritif')">apéro</checkbox-filter>
 					<checkbox-filter uid="Entrée" ref="Entrée" @check="filter('category', 'Entrée', $event)"
 						:checked="checked('category', 'Entrée')">entrée</checkbox-filter>
 					<checkbox-filter uid="Plat" ref="Plat" @check="filter('category', 'Plat', $event)"
@@ -23,11 +25,9 @@
 						:checked="checked('category', 'Accompagnement')">accompagnement</checkbox-filter>
 					<checkbox-filter uid="Dessert" ref="Dessert" @check="filter('category', 'Dessert', $event)"
 						:checked="checked('category', 'Dessert')">dessert</checkbox-filter>
-					<checkbox-filter uid="Boisson" ref="Boisson" @check="filter('category', 'Boisson', $event)"
-						:checked="checked('category', 'Boisson')">boisson</checkbox-filter>
 					<checkbox-filter uid="Petit déjeuner" ref="'Petit déjeuner'"
-						@check="filter('category', '\'Petit déjeuner\'', $event)"
-						:checked="checked('category', '\'Petit déjeuner\'')">petit déjeuner</checkbox-filter>
+						@check="filter('category', 'Petit déjeuner', $event)"
+						:checked="checked('category', 'Petit déjeuner')">petit déjeuner</checkbox-filter>
 				</dropdown>
 
 				<dropdown title="Allergie" :numberOfItemsSelected="numberOfItemsSelected('free')">
@@ -109,6 +109,8 @@
 
 					<accordion title="Type de plat" key="category" :numberOfItemsSelected="numberOfItemsSelected('category')">
 						<div class="py-4">
+							<checkbox-filter uid="Apéritif-a" @check="filter('category', 'Apéritif', $event)"
+								:checked="checked('category', 'Apéritif')">apéro</checkbox-filter>
 							<checkbox-filter uid="Entrée-a" @check="filter('category', 'Entrée', $event)"
 								:checked="checked('category', 'Entrée')">entrée</checkbox-filter>
 							<checkbox-filter uid="Plat-a" @check="filter('category', 'Plat', $event)"
@@ -117,10 +119,8 @@
 								:checked="checked('category', 'Accompagnement')">accompagnement</checkbox-filter>
 							<checkbox-filter uid="Dessert-a" @check="filter('category', 'Dessert', $event)"
 								:checked="checked('category', 'Dessert')">dessert</checkbox-filter>
-							<checkbox-filter uid="Boisson-a" @check="filter('category', 'Boisson', $event)"
-								:checked="checked('category', 'Boisson')">boisson</checkbox-filter>
-							<checkbox-filter uid="Petit déjeuner-a" @check="filter('category', '\'Petit déjeuner\'', $event)"
-								:checked="checked('category', '\'Petit déjeuner\'')">petit déjeuner</checkbox-filter>
+							<checkbox-filter uid="Petit déjeuner-a" @check="filter('category', 'Petit déjeuner', $event)"
+								:checked="checked('category', 'Petit déjeuner')">petit déjeuner</checkbox-filter>
 						</div>
 					</accordion>
 
