@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col">
-    <h3 class="text-primary-foreground text-lg lg:text-xl pb-4">Préparation</h3>
+    <h3 class="text-primary-foreground text-lg lg:text-xl pb-4 lowercase">Préparation</h3>
     <div v-html="procedure"
       class="prose-fristouille font-light text-pretty prose-ol:text-base prose-ol:leading-tight prose-ol:font-light prose-ol:ligatures-none prose-li:mb-6 prose-p:text-base  prose-p:text-foreground prose-p:font-mono prose-ol:text-foreground prose-ul:text-foreground prose-li:text-foreground prose-a:text-accent prose-a:hover:text-foreground prose-a:focus:text-foreground prose-ol:font-mono" />
     <div v-if="source" class="mt-6 underline">

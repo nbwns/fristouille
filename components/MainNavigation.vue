@@ -5,17 +5,17 @@
       <div class="hidden md:flex flex-grow md:w-auto pt-2 ">
         <div class="flex flex-grow space-x-5 justify-end items-center">
           <nuxt-link
-            class="text-base font-medium font-sans tracking-normal text-alt hover:text-primary-foreground focus:text-foreground transition-colors duration-300"
+            class="text-base font-medium font-sans tracking-normal text-alt lowercase hover:text-primary-foreground focus:text-foreground transition-colors duration-300"
             to="/" no-prefetch exact>Accueil</nuxt-link>
           <nuxt-link
-            class="text-base font-medium font-sans tracking-normal text-alt hover:text-primary-foreground focus:text-foreground transition-colors duration-300"
+            class="text-base font-medium font-sans tracking-normal text-alt lowercase hover:text-primary-foreground focus:text-foreground transition-colors duration-300"
             to="/recettes" no-prefetch>Recettes</nuxt-link>
           <nuxt-link
-            class="text-base font-medium font-sans tracking-normal text-alt hover:text-primary-foreground focus:text-foreground transition-colors duration-300"
+            class="text-base font-medium font-sans tracking-normal text-alt lowercase hover:text-primary-foreground focus:text-foreground transition-colors duration-300"
             to="/astuces" no-prefetch>Astuces</nuxt-link>
           <form class="flex items-center gap-5" action="/Recettes" @submit="checkRoute">
             <div class="relative w-full">
-              <search-bar placeholder="Rechercher des recettes"></search-bar>
+              <search-bar placeholder="rechercher des recettes"></search-bar>
             </div>
           </form>
         </div>

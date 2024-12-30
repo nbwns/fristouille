@@ -4,7 +4,7 @@
 			aria-haspopup="true">
 			<div class="flex flex-row justify-center items-center group">
 				<div
-					class="text-lg text-primary-foreground group-hover:text-accent font-sans font-medium ligatures-none transition-all duration-300 z-10">
+					class="text-lg text-primary-foreground group-hover:text-accent font-sans font-medium lowercase ligatures-none transition-all duration-300 z-10">
 					{{ title }}
 				</div>
 				<span class="relative">

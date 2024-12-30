@@ -69,7 +69,7 @@ export default {
 				// Get child pages
 				children = (await $prismic.api.query(
 					$prismic.predicates.at('my.childpage.parent_page', page.id)
-				)).results
+				)).results.filter(c => c.data.show_in_grid == true);
 
 				children.sort((a, b) => a.data.position - b.data.position);
 			}

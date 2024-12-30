@@ -3,7 +3,7 @@
 		class="w-fit rounded inline-flex h-8 px-3.5 flex bg-secondary  border border-primary-foreground/10 hover:border-primary-foreground/60 items-center hover:bg-primary transition-all duration-300 group">
 		<button @click="toggleDarkMode" class="flex space-x-2 items-center justify-start w-full cursor-pointer">
 			<span
-				class="text-base select-none text-primary-foreground group-hover:text-primary-foreground transition-colors duration-300">Thème</span>
+				class="text-base select-none text-primary-foreground group-hover:text-primary-foreground transition-colors duration-300 lowercase">Thème</span>
 			<span class="flex items-center">
 				<svg v-if="darkMode" xmlns="http://www.w3.org/2000/svg"
 					class="h-6 w-6 text-alt group-hover:text-primary-foreground transition-colors duration-300"

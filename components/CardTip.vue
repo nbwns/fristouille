@@ -17,7 +17,7 @@
 					</div>
 					<!-- Content on the right -->
 					<div class="flex flex-col justify-between px-6 py-3 w-full">
-						<h3 class="text-foreground text-lg leading-tight font-demi line-clamp-2 ligatures-none">
+						<h3 class="text-foreground text-lg leading-tight font-demi line-clamp-2 ligatures-none lowercase">
 							{{ $prismic.asText(article.data.title) }}
 						</h3>
 						<div class="text-sm text-foreground/80 flex-grow font-light pt-3">

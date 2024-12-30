@@ -4,7 +4,7 @@
 			<span @click="visible = !visible">
 
 				<div class="flex justify-between items-center cursor-pointer">
-					<div class="text-xl text-foreground">
+					<div class="text-xl text-foreground lowercase">
 						{{ title }}
 					</div>
 					<div class="fill-foreground stroke-foreground ">

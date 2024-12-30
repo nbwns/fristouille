@@ -7,7 +7,7 @@
 			</div>
 			<div class="flex flex-col justify-between p-3 space-y-4 h-full">
 				<h3
-					class="text-foreground text-lg leading-tight text-pretty  max-w-xs font-demi line-clamp-2 ligatures-none">
+					class="text-foreground text-lg leading-tight text-pretty  max-w-xs font-demi line-clamp-2 ligatures-none lowercase">
 					{{ title }}
 				</h3>
 				<div class="flex flex-col space-y-2">

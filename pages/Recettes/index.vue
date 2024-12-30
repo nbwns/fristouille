@@ -39,7 +39,7 @@
 			<draw-radish class="max-w-[90px] py-8" />
 			<div
 				class="basis-4/6 text-balance text-primary-foreground font-normal font-sans text-lg leading-tight ligatures-none">
-				Oups ! Veuillez indiquer au minimum un terme de recherche
+				oups ! Veuillez indiquer au minimum un terme de recherche
 				ou un filtre
 				avancé</div>
 		</div>
@@ -87,7 +87,7 @@
 								<draw-radish class="max-w-[90px] py-8" />
 								<div
 									class="basis-4/6 text-balance text-primary-foreground font-normal font-sans text-lg leading-tight ligatures-none">
-									Ouille, il n'y a pas de résultats pour cette recherche</div>
+									ouille, il n'y a pas de résultats pour cette recherche</div>
 								</div>
 							</div>
 					</template>
@@ -96,8 +96,8 @@
 			<div class="w-full h-96 flex items-center justify-center " v-else-if="showDefaultMessage">
 				<div
 					class=" font-sans font-bold p-14 text-alt text-xl lg:text-2xl text-center ligatures-none leading-none bg-secondary rounded-lg shadow-lg  container">
-					Pas d'idées ?
-					<br /> Essaie une recherche ou un filtre
+					pas d'idées ?
+					<br /> essaie une recherche ou un filtre
 					<br />
 					<br />
 					<div class="flex flex-row gap-2 justify-center items-center">
@@ -126,9 +126,10 @@
 						isFirstPage,
 						isLastPage,
 						refine,
-						createURL
+						createURL,
+						nbHits
 					}">
-						<div class="w-full py-10">
+						<div class="w-full py-10" v-show="nbHits > 0">
 							<ul class="pagination">
 								<li v-if="!isFirstPage">
 									<a :href="createURL(currentRefinement - 1)" @click.prevent="refine(currentRefinement - 1)">

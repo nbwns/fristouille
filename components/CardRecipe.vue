@@ -6,7 +6,7 @@
 			<div class=" bg-center bg-cover h-[37rem]" :class="width" :style="{ backgroundImage: backgroundImage }" />
 			<div class="flex flex-col justify-between p-3 space-y-4 h-full ">
 				<h3
-					class="text-primary-foreground text-lg text-pretty sm:text-balance max-w-xs font-demi line-clamp-2 ligatures-none leading-none">
+					class="text-primary-foreground text-lg text-pretty sm:text-balance max-w-xs font-demi line-clamp-2 lowercase ligatures-none leading-none">
 					{{ title }}
 				</h3>
 				<div class="flex flex-col space-y-2 ">
