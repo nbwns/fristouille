@@ -1,5 +1,5 @@
 <template>
-  <li class="flex items-center pb-3 !text-white-300 dark:!text-black-300">
+  <li class="flex items-center pb-3 !text-white-300 dark:!text-black-300 lowercase">
     <component :is="linkComponent" v-bind="linkProps">{{ label }}</component>
   </li>
 </template>
