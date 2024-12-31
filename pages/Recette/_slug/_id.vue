@@ -13,7 +13,7 @@
 					:difficulty="recipe.difficulty" :price="recipe.price" :months="recipe.months"
 					:allYearLongLabel="label('allYearLong')" />
 
-				<recipe-share :name="recipe.name"></recipe-share>
+				<!-- <recipe-share :name="recipe.name"></recipe-share> -->
 
 
 				<!-- ingredients -->
