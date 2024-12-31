@@ -35,7 +35,6 @@ import RelatedPages from '~/components/RelatedPages';
 import CallToAction from '~/components/CallToAction';
 import Breadcrumb from '~/molecules/Breadcrumb.vue';
 import TitleArticle from '~/molecules/TitleArticle.vue';
-// import GoBackLink from '~/molecules/GoBackLink.vue';
 import Spacer from '~/molecules/Spacer.vue';
 import ArticleHeader from '~/components/ArticleHeader.vue';
 
@@ -49,8 +48,7 @@ export default {
 		TitleArticle,
 		Spacer,
 		CallToAction,
-		ArticleHeader,
-		// GoBackLink
+		ArticleHeader
 	},
 	head() {
 		
