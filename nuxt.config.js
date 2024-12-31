@@ -66,10 +66,15 @@ export default {
     ],
     ["nuxt-sm"],
     "@pinia/nuxt",
+    'vue-plausible'
   ],
 
   router: {
     middleware: ["redirect"],
+  },
+
+  plausible: { // Use as fallback if no runtime config is available at runtime
+    domain: process.env.PLAUSIBLE_DOMAIN
   },
 
   prismic: {
