@@ -39,7 +39,7 @@
 			<draw-radish class="max-w-[90px] py-8" />
 			<div
 				class="basis-4/6 text-balance text-primary-foreground font-normal font-sans text-lg leading-tight ligatures-none">
-				oups ! Veuillez indiquer au minimum un terme de recherche
+				oups, tu dois indiquer au minimum un terme de recherche
 				ou un filtre
 				avancé</div>
 		</div>
@@ -66,7 +66,7 @@
 								Résultats pour '{{ query }}'
 							</normal-title>
 							<normal-title v-else>
-								Découvrez nos recettes
+								Découvre nos recettes
 							</normal-title>
 							<ais-pagination>
 								<template v-slot="{

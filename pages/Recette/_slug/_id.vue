@@ -13,6 +13,8 @@
 					:difficulty="recipe.difficulty" :price="recipe.price" :months="recipe.months"
 					:allYearLongLabel="label('allYearLong')" />
 
+				<recipe-share :name="recipe.name"></recipe-share>
+
 
 				<!-- ingredients -->
 				<RecipeIngredients :ingredients="recipe.compositions" :initialServings="servings" :recipeYield="recipe.yield"
@@ -45,6 +47,7 @@ import RecipeHeader from '~/components/RecipeHeader.vue';
 import RecipePreparation from '~/components/RecipePreparation.vue';
 import RecipeTags from '~/components/RecipeTags.vue';
 import RecipeIngredients from '~/components/RecipeIngredients.vue';
+import RecipeShare from '~/components/RecipeShare.vue';
 
 export default {
 	components: {
@@ -53,7 +56,8 @@ export default {
 		RecipeHeader,
 		RecipePreparation,
 		RecipeTags,
-		RecipeIngredients
+		RecipeIngredients,
+		RecipeShare
 	},
 	computed: {
 		procedure() {

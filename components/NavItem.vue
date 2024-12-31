@@ -2,7 +2,7 @@
   <div class="flex flex-col items-center gap-3">
     <nuxt-link class="navmobile flex flex-col items-center" :to="to" no-prefetch :exact="exact">
       <component :is="iconComponent" class="h-8 mx-auto" />
-      <span class="text-sm font-medium font-anonymous">
+      <span class="text-sm font-medium font-anonymous lowercase">
         {{ label }}
       </span>
     </nuxt-link>
