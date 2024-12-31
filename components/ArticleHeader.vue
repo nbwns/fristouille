@@ -18,23 +18,6 @@ export default {
   components: {
     Breadcrumb
   },
-  props: {
-    title: {
-      type: Object,
-      required: false
-    },
-    introduction: {
-      type: Object,
-      required: false
-    },
-    parentTitle: {
-      type: String,
-      required: false
-    },
-    parentUrl: {
-      type: String,
-      required: false
-    }
-  }
+  props: ['title', 'introduction', 'parentTitle', 'parentUrl'] 
 }
 </script>
