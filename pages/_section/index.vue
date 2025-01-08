@@ -58,7 +58,7 @@ export default {
 			]
 		}
 	},
-	async asyncData({ $prismic, $axios, $config, params, error }) {
+	async asyncData({ $prismic, $axios, $config: { ingredientsFunction }, params, error }) {
 		try {
 
 			// Query to get post content
@@ -84,12 +84,12 @@ export default {
 					if(recipeCatsSlices.length > 0){
 						recipeCats = recipeCatsSlices[0];
 						//get the list of ingredients from Airtable
-						ingredients = (await $axios.get($config.ingredientsFunction)).data;
+						ingredients = (await $axios.get(ingredientsFunction)).data;
 					}
 
 				}
 				catch (error) {
-					console.log('error in child page', error)
+					console.log('error in top page/recipecategories when retrieving ingredients',$config.ingredientsFunction, error)
 				}
 			}
 

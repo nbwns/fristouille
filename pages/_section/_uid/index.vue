@@ -145,6 +145,9 @@ export default {
 							}
 							)).data;
 
+							console.log("childpage: called searchIndexFunction (params,length)",
+								hl.primary, featuredRecipes.length);
+
 							return {
 								title: hl.primary.list_title,
 								seeAllQuery: hl.primary.see_all_querystring,

@@ -85,9 +85,9 @@ export default {
 		} 
 	},
 	async asyncData({ params, error, payload, $axios, $config: { queryFunction }, $prismic }) {
-		console.log("params", params)
+		//console.log("params", params)
 		if (payload) {
-			console.log("payload", payload.name);
+			//console.log("payload", payload.name);
 			let recipe = payload;
 			let article = null;
 
@@ -147,7 +147,9 @@ export default {
 		
 		if(this.recipe){
 			let keywords = this.recipe.free.map((x) => `sans ${x}`);
-			keywords = this.recipe.tagsList.concat(keywords);
+			if(this.recipe.tagsList){
+				keywords = this.recipe.tagsList.concat(keywords);
+			}
 			
 			structuredData = {
 				"@context": "https://schema.org/",

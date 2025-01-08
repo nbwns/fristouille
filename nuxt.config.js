@@ -188,7 +188,6 @@ export default {
       });
 
       return Promise.all([recettes]).then((values) => {
-        console.log(values[0]);
         return values[0];
       });
     },

@@ -73,7 +73,7 @@ export default {
 			],
 			socialIcons: [
 				{ name: 'email', url: 'mailto:bonjour@fristouille.org' },
-				{ name: 'instagram', url: '#' },
+				{ name: 'pinterest', url: 'https://www.pinterest.com/fristouille' },
 				{ name: 'facebook', url: 'https://www.facebook.com/fristouille.org' }
 			]
 		}
