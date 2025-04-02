@@ -42,9 +42,6 @@ export default {
     }
   },
   methods: {
-    mounted(){
-      console.log("servings", this.servings);
-    },
     decreaseServings() {
       console.log("decrease servings");
       if (this.servings > 1) {
@@ -61,6 +58,9 @@ export default {
     updateServings() {
       this.$emit('input', this.servings)
     }
+  },
+  mounted(){
+    console.log("servings", this.servings);
   }
 }
 </script>

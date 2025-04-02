@@ -15,10 +15,15 @@
 
 				<!-- <recipe-share :name="recipe.name"></recipe-share> -->
 
-
+				
 				<!-- ingredients -->
-				<RecipeIngredients :ingredients="recipe.compositions" :initialServings="servings" :recipeYield="recipe.yield"
+				<client-only>
+				<RecipeIngredients 
+					:ingredients="recipe.compositions"
+					:initialServings="servings" 
+					:recipeYield="recipe.yield"
 					@update:servings="servings = $event" />
+				</client-only>
 				<!-- Explication de la recette -->
 				<RecipePreparation :procedure="procedure" :source="recipe.source" />
 			</div>
@@ -74,6 +79,12 @@ export default {
 			return false;
 		}
 	},
+	data() {
+		return {
+			recipe: this.recipe || {},
+			servings: this.servings || 2
+		}
+	},
 	methods: {
 		label(key) {
 			return labels[key];
@@ -82,63 +93,134 @@ export default {
 			const hours = Math.floor(totalMinutes / 60);
 			const minutes = totalMinutes % 60;
 			return `PT${hours}H${minutes}M`;
-		} 
+		}, 
+		async fetchData() {
+			if (!this.$route.params.id) return;
+			
+			try {
+				console.log("fetchData", this.$route.params.id);
+				const res = await this.$axios({
+					url: `${this.$config.queryFunction}?filter=${this.$route.params.id}`,
+					method: "get"
+				});
+				
+				if (res.data && res.data.length > 0) {
+					const recipe = res.data[0];
+					
+					try {
+						const compositions = JSON.parse(recipe.compositionsJson || '[]');
+						compositions.sort((a, b) => b.quantity - a.quantity);
+						recipe.compositions = compositions;
+					} catch (e) {
+						console.error("Erreur lors du parsing des compositions", e);
+						recipe.compositions = [];
+					}
+					
+					this.recipe = recipe;
+					this.servings = recipe.yield || 2;
+					
+					// Récupérer l'article si nécessaire
+					if (recipe.prismicPageId) {
+						try {
+							this.article = await this.$prismic.api.getByID(recipe.prismicPageId);
+						} catch (e) {
+							console.error("Erreur lors de la récupération de l'article", e);
+						}
+					}
+				}
+			} catch (e) {
+				console.error("Erreur lors de la récupération de la recette", e);
+			}
+		}
 	},
 	async asyncData({ params, error, payload, $axios, $config: { queryFunction }, $prismic }) {
+		let recipe = null;
+		let article = null;
+		let servings = 0;
+		
 		//console.log("params", params)
 		if (payload) {
 			//console.log("payload", payload.name);
-			let recipe = payload;
-			let article = null;
+			recipe = payload;
+			servings = recipe.yield || 2;
 
-			let compositions = JSON.parse(recipe.compositionsJson);
-
-			if (compositions) {
+			try {
+				let compositions = JSON.parse(recipe.compositionsJson || '[]');
 				compositions.sort((a, b) => b.quantity - a.quantity);
+				recipe.compositions = compositions;
+			} catch (e) {
+				console.error("Erreur lors du parsing des compositions:", e);
+				recipe.compositions = [];
 			}
-
-			recipe.compositions = compositions;
 
 			//if there's an associated page in Prismic, retrieve it
 			if (recipe.prismicPageId) {
-				article = (await $prismic.api.getByID(recipe.prismicPageId));
+				try {
+					article = await $prismic.api.getByID(recipe.prismicPageId);
+				} catch (e) {
+					console.error("Erreur lors de la récupération de l'article:", e);
+				}
 			}
-
-			return { recipe: recipe, servings: recipe.yield, article: article };
 		}
-		else {
+		else if (params.id){
 			//called when recipe page is accessed from another page
-			if (params.id) {
+			try{
 				console.log("fetchRecipe", params.id);
 				const res = await $axios({
 					url: `${queryFunction}?filter=${params.id}`,
 					method: "get"
 				})
 				if (res.data && res.data.length > 0) {
-					let recipe = res.data[0];
-					let article = null;
+					recipe = res.data[0];
+					servings = recipe.yield || 2;
 
-					let compositions = JSON.parse(recipe.compositionsJson);
-
-					if (compositions) {
+					try {
+						let compositions = JSON.parse(recipe.compositionsJson || '[]');
 						compositions.sort((a, b) => b.quantity - a.quantity);
+						recipe.compositions = compositions;
+					} catch (e) {
+						console.error("Erreur lors du parsing des compositions:", e);
+						recipe.compositions = [];
 					}
 
-					recipe.compositions = compositions;
-
-					//if there's an associated page in Prismic, retrieve it
 					if (recipe.prismicPageId) {
-						article = (await $prismic.api.getByID(recipe.prismicPageId));
-
+						try {
+							article = await $prismic.api.getByID(recipe.prismicPageId);
+						} catch (e) {
+							console.error("Erreur lors de la récupération de l'article:", e);
+						}
 					}
-
-					return { recipe: recipe, servings: recipe.yield, article: article };
 				}
 				else {
-					error({ statusCode: 404, message: 'Page not found' })
+					error({ statusCode: 404, message: 'Recette non trouvée' })
 				}
+
+			} catch (e) {
+				console.error("Erreur lors de la récupération de la recette:", e);
+				return error({ statusCode: 500, message: 'Erreur serveur' });
 			}
-			error({ statusCode: 404, message: 'Page not found' })
+		} else {
+			return error({ statusCode: 404, message: 'Recette non trouvée' });
+		}
+
+		return { 
+			recipe: recipe || {}, 
+			servings: servings, 
+			article: article 
+		};
+	},
+	created() {
+		// S'exécute côté serveur et client
+		if (!this.recipe || !this.recipe.recipeId) {
+			console.log("Recipe not available in created, will fetch in mounted");
+		}
+	},
+	mounted() {
+		// S'exécute uniquement côté client
+		console.log("mounted", this.recipe);
+		if (!this.recipe || !this.recipe.compositions || !this.recipe.compositions.length) {
+			console.log("Fetching recipe data on client side");
+			this.fetchData();
 		}
 	},
 	head() {

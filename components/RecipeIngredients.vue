@@ -18,16 +18,16 @@ export default {
   props: {
     ingredients: {
       type: Array,
-      required: true,
+      default: () => []
     },
     initialServings: {
       type: Number,
-      required: true,
+      default: 2
     },
     recipeYield: {
       type: Number,
-      required: true,
-    },
+      default: 2
+    }
   },
   data() {
     return {
