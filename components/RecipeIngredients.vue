@@ -44,5 +44,8 @@ export default {
       this.$emit('update:servings', newValue);
     },
   },
+  mounted(){
+    console.log("recipeingredients", this.ingredients);
+  }
 };
 </script>

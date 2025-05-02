@@ -176,7 +176,7 @@
     @apply !fill-white-200 dark:!fill-black-200;
   }
   .navmobile.nuxt-link-active > svg {
-    @apply !fill-orange-300 dark:!fill-purple-300;
+    @apply !fill-orange-300 dark:!fill-purple-300 !important;
   }
   .navmobile.close > svg {
     @apply !fill-orange-300 dark:!fill-purple-300;

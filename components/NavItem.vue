@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col items-center gap-3">
-    <nuxt-link class="navmobile flex flex-col items-center" :to="to" no-prefetch :exact="exact">
+    <nuxt-link class="navmobile flex flex-col items-center" :to="to" no-prefetch :exact="exact === true">
       <component :is="iconComponent" class="h-8 mx-auto" />
       <span class="text-sm font-medium font-anonymous lowercase">
         {{ label }}
@@ -33,9 +33,9 @@ export default {
       type: String,
       required: true
     },
-	exact: {
+    exact: {
       type: Boolean,
-      required: false
+      default: false
     }
   },
   computed: {
@@ -65,6 +65,6 @@ export default {
 }
 
 .navmobile.nuxt-link-exact-active :deep(svg) {
-  @apply fill-orange-300;
+  @apply !fill-orange-300 dark:!fill-purple-300;
 }
 </style>

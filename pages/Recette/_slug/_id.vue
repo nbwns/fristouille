@@ -1,37 +1,37 @@
 <template>
 	<section class="flex flex-col container w-full">
 		<!-- recipe header -->
-		<div v-if="recipe" class="flex flex-col space-y-8 lg:space-y-12 pb-10 lg:pb-0">
-
-			<RecipeHeader :name="recipe.name" :authorName="recipe.authorName" :authorWeb="recipe.authorWeb"
+		<div class="flex flex-col space-y-8 lg:space-y-12 pb-10 lg:pb-0">
+			<!-- Conditionnement des composants individuels plutôt que toute la page -->
+			<RecipeHeader v-if="recipe" :name="recipe.name" :authorName="recipe.authorName" :authorWeb="recipe.authorWeb"
 				:description="recipe.description" :picture="recipe.picture" />
 
 			<div class="flex flex-col space-y-8 lg:space-y-12 w-full">
-
 				<!-- recipe info section -->
-				<RecipeInfoSection :preparationTime="recipe.preparationTime / 60" :cookTime="recipe.cookTime / 60"
+				<RecipeInfoSection v-if="recipe" :preparationTime="recipe.preparationTime / 60" :cookTime="recipe.cookTime / 60"
 					:difficulty="recipe.difficulty" :price="recipe.price" :months="recipe.months"
 					:allYearLongLabel="label('allYearLong')" />
 
-				<!-- <recipe-share :name="recipe.name"></recipe-share> -->
-
+				<recipe-share v-if="recipe" :name="recipe.name"></recipe-share>
 				
 				<!-- ingredients -->
 				<client-only>
-				<RecipeIngredients 
-					:ingredients="recipe.compositions"
-					:initialServings="servings" 
-					:recipeYield="recipe.yield"
-					@update:servings="servings = $event" />
+					<RecipeIngredients 
+						v-if="compositions && compositions.length"
+						:ingredients="compositions"
+						:initialServings="servings" 
+						:recipeYield="yield"
+						@update:servings="updateServings" />
 				</client-only>
+
 				<!-- Explication de la recette -->
-				<RecipePreparation :procedure="procedure" :source="recipe.source" />
+				<RecipePreparation v-if="recipe" :procedure="procedure" :source="recipe.source" />
 			</div>
 
-			<card-tip :article="article" v-if="article"/>
+			<card-tip v-if="article" :article="article"/>
 
 			<!-- liste des tags -->
-			<RecipeTags :tagsList="recipe.tagsList" :baseRecipe="recipe.baseRecipe" :category="recipe.category"
+			<RecipeTags v-if="recipe" :tagsList="recipe.tagsList" :baseRecipe="recipe.baseRecipe" :category="recipe.category"
 				:cuisine="recipe.cuisine" :freeFrom="recipe.free" />
 
 		</div>
@@ -45,7 +45,7 @@ import { DateTime } from "luxon";
 import Tag from '~/molecules/ButtonTag.vue';
 import CardTip from '~/components/CardTip.vue';
 import Spacer from '~/molecules/Spacer.vue';
-import IngredientList from '~/components/IngredientList.vue'; // Add this import
+import IngredientList from '~/components/IngredientList.vue';
 import ServingsAdjuster from '~/components/ServingsAdjuster.vue';
 import RecipeInfoSection from '~/components/RecipeInfoSection.vue';
 import RecipeHeader from '~/components/RecipeHeader.vue';
@@ -77,12 +77,21 @@ export default {
 				return this.recipe.months.includes(currentMonth.toString());
 			}
 			return false;
+		},
+		yield() {
+			// Valeur par défaut indépendante de recipe
+			return this.recipeYield || 2;
 		}
 	},
 	data() {
 		return {
-			recipe: this.recipe || {},
-			servings: this.servings || 2
+			// Initialiser toutes les propriétés avec des valeurs par défaut
+			recipe: null,           // Utiliser null au lieu de undefined
+			compositions: [],       // Pour être sûr que c'est un array
+			servings: 2,           // Par défaut
+			article: null,         // Par défaut
+			recipeYield: 2,        // Nouvelle propriété indépendante de recipe
+			recipeId: null,        // Pour stocker l'ID de la recette
 		}
 	},
 	methods: {
@@ -93,67 +102,65 @@ export default {
 			const hours = Math.floor(totalMinutes / 60);
 			const minutes = totalMinutes % 60;
 			return `PT${hours}H${minutes}M`;
-		}, 
-		async fetchData() {
-			if (!this.$route.params.id) return;
+		},
+		updateServings(newServings) {
+			this.servings = newServings;
+		},
+		async fetchRecipeData() {
+			// S'assurer que nous avons un ID
+			const recipeId = this.recipeId || this.$route.params.id;
+			if (!recipeId) return;
 			
 			try {
-				console.log("fetchData", this.$route.params.id);
+				console.log("Fetching recipe data for", recipeId);
 				const res = await this.$axios({
-					url: `${this.$config.queryFunction}?filter=${this.$route.params.id}`,
+					url: `${this.$config.queryFunction}?filter=${recipeId}`,
 					method: "get"
 				});
 				
 				if (res.data && res.data.length > 0) {
-					const recipe = res.data[0];
+					const recipeData = res.data[0];
 					
+					// Mise à jour des compositions et du yield uniquement
 					try {
-						const compositions = JSON.parse(recipe.compositionsJson || '[]');
+						const compositions = JSON.parse(recipeData.compositionsJson || '[]');
 						compositions.sort((a, b) => b.quantity - a.quantity);
-						recipe.compositions = compositions;
+						this.compositions = compositions;
+						this.servings = recipeData.yield || 2;
+						this.recipeYield = recipeData.yield || 2;
+						console.log("Data fetched:", compositions.length, "compositions for", this.servings, "servings");
 					} catch (e) {
 						console.error("Erreur lors du parsing des compositions", e);
-						recipe.compositions = [];
-					}
-					
-					this.recipe = recipe;
-					this.servings = recipe.yield || 2;
-					
-					// Récupérer l'article si nécessaire
-					if (recipe.prismicPageId) {
-						try {
-							this.article = await this.$prismic.api.getByID(recipe.prismicPageId);
-						} catch (e) {
-							console.error("Erreur lors de la récupération de l'article", e);
-						}
+						this.compositions = [];
 					}
 				}
 			} catch (e) {
-				console.error("Erreur lors de la récupération de la recette", e);
+				console.error("Erreur lors de la récupération des données de recette", e);
 			}
 		}
 	},
 	async asyncData({ params, error, payload, $axios, $config: { queryFunction }, $prismic }) {
 		let recipe = null;
 		let article = null;
-		let servings = 0;
+		let servings = 2;
+		let compositions = [];
+		let recipeYield = 2;
+		let recipeId = null;
 		
-		//console.log("params", params)
 		if (payload) {
-			//console.log("payload", payload.name);
 			recipe = payload;
 			servings = recipe.yield || 2;
+			recipeYield = recipe.yield || 2;
+			recipeId = recipe.recipeId || params.id;
 
 			try {
-				let compositions = JSON.parse(recipe.compositionsJson || '[]');
+				compositions = JSON.parse(recipe.compositionsJson || '[]');
 				compositions.sort((a, b) => b.quantity - a.quantity);
-				recipe.compositions = compositions;
 			} catch (e) {
 				console.error("Erreur lors du parsing des compositions:", e);
-				recipe.compositions = [];
+				compositions = [];
 			}
 
-			//if there's an associated page in Prismic, retrieve it
 			if (recipe.prismicPageId) {
 				try {
 					article = await $prismic.api.getByID(recipe.prismicPageId);
@@ -163,9 +170,9 @@ export default {
 			}
 		}
 		else if (params.id){
-			//called when recipe page is accessed from another page
+			recipeId = params.id;
 			try{
-				console.log("fetchRecipe", params.id);
+				console.log("fetchRecipe in asyncData", params.id);
 				const res = await $axios({
 					url: `${queryFunction}?filter=${params.id}`,
 					method: "get"
@@ -173,14 +180,14 @@ export default {
 				if (res.data && res.data.length > 0) {
 					recipe = res.data[0];
 					servings = recipe.yield || 2;
+					recipeYield = recipe.yield || 2;
 
 					try {
-						let compositions = JSON.parse(recipe.compositionsJson || '[]');
+						compositions = JSON.parse(recipe.compositionsJson || '[]');
 						compositions.sort((a, b) => b.quantity - a.quantity);
-						recipe.compositions = compositions;
 					} catch (e) {
 						console.error("Erreur lors du parsing des compositions:", e);
-						recipe.compositions = [];
+						compositions = [];
 					}
 
 					if (recipe.prismicPageId) {
@@ -204,31 +211,35 @@ export default {
 		}
 
 		return { 
-			recipe: recipe || {}, 
-			servings: servings, 
-			article: article 
+			recipe, 
+			compositions,
+			servings,
+			recipeYield,
+			article,
+			recipeId 
 		};
 	},
 	created() {
-		// S'exécute côté serveur et client
-		if (!this.recipe || !this.recipe.recipeId) {
-			console.log("Recipe not available in created, will fetch in mounted");
-		}
+		// Cette méthode s'exécute côté serveur et client
+		console.log("created hook", this.recipe ? "recipe exists" : "no recipe", 
+			this.compositions ? `${this.compositions.length} compositions` : "no compositions");
 	},
 	mounted() {
-		// S'exécute uniquement côté client
-		console.log("mounted", this.recipe);
-		if (!this.recipe || !this.recipe.compositions || !this.recipe.compositions.length) {
-			console.log("Fetching recipe data on client side");
-			this.fetchData();
+		// Cette méthode s'exécute uniquement côté client
+		console.log("mounted hook", this.recipe ? "recipe exists" : "no recipe", 
+			this.compositions ? `${this.compositions.length} compositions` : "no compositions");
+		
+		// Si les compositions sont vides, récupérer les données côté client
+		if (!this.compositions || !this.compositions.length) {
+			console.log("Compositions not available, fetching on client side");
+			this.fetchRecipeData();
 		}
 	},
 	head() {
-		
 		let structuredData = {}
 		
 		if(this.recipe){
-			let keywords = this.recipe.free.map((x) => `sans ${x}`);
+			let keywords = this.recipe.free ? this.recipe.free.map((x) => `sans ${x}`) : [];
 			if(this.recipe.tagsList){
 				keywords = this.recipe.tagsList.concat(keywords);
 			}
@@ -242,7 +253,7 @@ export default {
 				cookTime: this.toDuration(this.recipe.cookTime),
 				prepTime: this.toDuration(this.recipe.preparationTime),
 				description: this.recipe.description,
-				recipeCategory: this.recipe.category.join(", "),
+				recipeCategory: this.recipe.category ? this.recipe.category.join(", ") : "",
 				recipeCuisine: this.recipe.cuisine,
 				recipeInstructions: this.recipe.procedure,
 				recipeYield: this.recipe.yield,
@@ -251,10 +262,8 @@ export default {
 			}
 		}	
 		
-		
 		return {
 			title: (this.recipe) ? this.recipe.name : "",
-			//adapt meta 
 			meta: [
 				{
 					hid: 'description',
@@ -291,7 +300,6 @@ export default {
 		}
 	}
 }
-
 </script>
 
 <style scoped>
