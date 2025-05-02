@@ -89,11 +89,11 @@ export default {
 	@apply text-white-100 dark:text-black-100 hover:text-white-300 dark:hover:text-black-300 transition-colors duration-200;
 }
 
-.navmobile.nuxt-link-exact-active {
-	@apply text-orange-300;
+.navmobile.nuxt-link-active {
+	@apply text-orange-300 dark:text-purple-300;
 }
 
-.navmobile.nuxt-link-exact-active svg {
-	@apply fill-orange-300;
+.navmobile.nuxt-link-active svg {
+	@apply !fill-orange-300 dark:!fill-purple-300;
 }
 </style>

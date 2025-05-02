@@ -80,7 +80,7 @@ export default {
 }
 
 .navmobile.nuxt-link-active {
-  @apply text-orange-300;
+  @apply text-orange-300 dark:text-purple-300;
 }
 
 .navmobile.nuxt-link-active :deep(svg) {
