@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col items-center gap-3">
-    <nuxt-link class="navmobile flex flex-col items-center" :to="to" no-prefetch :exact="exact === true">
+    <nuxt-link class="navmobile flex flex-col items-center" :to="to" no-prefetch :exact="exact" :class="{ 'nuxt-link-active': checkIsActive() }">
       <component :is="iconComponent" class="h-8 mx-auto" />
       <span class="text-sm font-medium font-anonymous lowercase">
         {{ label }}
@@ -35,7 +35,7 @@ export default {
     },
     exact: {
       type: Boolean,
-      default: false
+      required: false
     }
   },
   computed: {
@@ -51,6 +51,25 @@ export default {
           return null
       }
     }
+  },
+  methods:{
+    checkIsActive() {
+      // Si nous sommes sur la route exacte
+      const currentPath = this.$route.path;
+      const to = typeof this.to === 'string' ? this.to : this.to.path;
+      
+      // Cas spécial pour recettes et recette
+      if (to.toLowerCase() === '/recettes' && currentPath.toLowerCase().startsWith('/recette/')) {
+        return true;
+      }
+      
+      // Comportement normal de nuxt-link
+      if (this.exact) {
+        return currentPath === to;
+      } else {
+        return currentPath.startsWith(to) && to !== '/';
+      }
+    }
   }
 }
 </script>
@@ -60,11 +79,11 @@ export default {
   @apply text-white-100 dark:text-black-100 hover:text-white-300 dark:hover:text-black-300 transition-colors duration-200;
 }
 
-.navmobile.nuxt-link-exact-active {
+.navmobile.nuxt-link-active {
   @apply text-orange-300;
 }
 
-.navmobile.nuxt-link-exact-active :deep(svg) {
+.navmobile.nuxt-link-active :deep(svg) {
   @apply !fill-orange-300 dark:!fill-purple-300;
 }
 </style>

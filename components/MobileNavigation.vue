@@ -4,7 +4,7 @@
 		class="fixed bottom-0 w-full py-15 bg-black-300 bg-opacity-75 dark:bg-white-300 dark:bg-opacity-95 md:hidden noprint">
 		<!-- Navigation items container -->
 		<div class="flex flex-row items-center justify-between gap-5 p-5 ">
-			<NavItem to="/" icon="home" label="accueil" exact="true" />
+			<NavItem to="/" icon="home" label="accueil" exact="exact" />
 			<NavItem to="/recettes" icon="recipe" label="recettes" />
 			<NavItem to="/astuces" icon="tips" label="astuces" />
 			<div class="flex flex-col items-center gap-3">

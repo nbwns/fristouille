@@ -28,7 +28,7 @@ export default {
 	},
 	head() {
 		return {
-			title: this.document.data.meta_title,
+			title: `${this.document.data.meta_title} - Fristouille, la cuisine durable en toute simplicité`,
 			meta: [
 				{
 					hid: 'description',
@@ -38,7 +38,7 @@ export default {
 				{
 					hid: 'og:title',
 					name: 'og:title',
-					content: this.document.data.meta_title
+					content: `${this.document.data.meta_title} - Fristouille, la cuisine durable en toute simplicité`
 				},
 				{
 					hid: 'og:description',

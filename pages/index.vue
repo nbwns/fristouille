@@ -111,7 +111,7 @@ export default {
 	},
 	head() {
 		return {
-			title: this.document.data.meta_title,
+			title: `${this.document.data.meta_title}`,
 			meta: [
 				{
 					hid: 'description',
@@ -121,7 +121,7 @@ export default {
 				{
 					hid: 'og:title',
 					name: 'og:title',
-					content: this.document.data.meta_title
+					content: `${this.document.data.meta_title}`
 				},
 				{
 					hid: 'og:description',

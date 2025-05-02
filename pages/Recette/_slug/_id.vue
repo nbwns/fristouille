@@ -114,7 +114,7 @@ export default {
 			try {
 				console.log("Fetching recipe data for", recipeId);
 				const res = await this.$axios({
-					url: `${this.$config.queryFunction}?filter=${recipeId}`,
+					url: `${this.$config.queryFunction}?filter=${recipeId}&compositions=true`,
 					method: "get"
 				});
 				
@@ -263,7 +263,7 @@ export default {
 		}	
 		
 		return {
-			title: (this.recipe) ? this.recipe.name : "",
+			title: (this.recipe) ? `${this.recipe.name} - Fristouille, la cuisine durable en toute simplicité` : "",
 			meta: [
 				{
 					hid: 'description',
@@ -273,7 +273,7 @@ export default {
 				{
 					hid: 'og:title',
 					name: 'og:title',
-					content: (this.recipe) ? this.recipe.name : ""
+					content: (this.recipe) ? `${this.recipe.name} - Fristouille, la cuisine durable en toute simplicité` : ""
 				},
 				{
 					hid: 'og:description',

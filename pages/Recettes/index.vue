@@ -240,6 +240,7 @@ export default {
 						free: this.searchFilters.free,
 						months: this.searchFilters.months,
 						baseRecipe: this.searchFilters.baseRecipe,
+						authorName: this.searchFilters.authorName,
 						page: helper.state.page
 					}
 				});
@@ -307,6 +308,7 @@ export default {
 				cuisine: this.sanitizeQueryParameter(this.$route, "cuisine"),
 				months: this.sanitizeQueryParameter(this.$route, "months"),
 				baseRecipe: this.sanitizeQueryParameter(this.$route, "baseRecipe"),
+				authorName: this.sanitizeQueryParameter(this.$route, "authorName")
 			};
 
 			// Update Pinia store
@@ -338,6 +340,51 @@ export default {
 				this.updateQuery();
 			},
 			immediate: false
+		}
+	},
+	head() {
+		return {
+			title: `${this.document.data.meta_title} - Fristouille, la cuisine durable en toute simplicité`,
+			meta: [
+				{
+					hid: 'description',
+					name: 'description',
+					content: this.document.data.meta_description
+				},
+				{
+					hid: 'og:title',
+					name: 'og:title',
+					content: `${this.document.data.meta_title} - Fristouille, la cuisine durable en toute simplicité`
+				},
+				{
+					hid: 'og:description',
+					name: 'og:description',
+					content: this.document.data.meta_description
+				},
+				{
+					hid: 'og:image',
+					name: 'og:image',
+					content: this.document.data.facebook_image.url
+				},
+				{
+					hid: 'og:url',
+					name: 'og:url',
+					content: `https://www.fristouille.org${this.document.url}`
+				}
+			]
+		}
+	},
+	async asyncData({ $prismic, $axios, $config, params, error }) {
+		try {
+			const document = (await $prismic.api.getSingle('recipes'));
+			return {
+				document: document
+			}
+
+		} catch (e) {
+			// Returns error page
+			console.log("error in recettes", e);
+			error({ statusCode: 404, message: 'Page not found' })
 		}
 	},
 	mounted() {
