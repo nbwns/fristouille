@@ -81,6 +81,7 @@ exports.handler = async function(event, context) {
 					recipes = records.map(r => {
 						return {
 							recipeId: r.fields.RecipeID,
+							recipeName: r.fields.Name,
 							yield: r.fields.Yield || null,
 							compositionsJson: r.fields.CompositionsJSON || null
 						}

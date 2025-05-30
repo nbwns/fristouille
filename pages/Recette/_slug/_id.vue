@@ -12,15 +12,16 @@
 					:difficulty="recipe.difficulty" :price="recipe.price" :months="recipe.months"
 					:allYearLongLabel="label('allYearLong')" />
 
-				<recipe-share v-if="recipe" :name="recipe.name"></recipe-share>
-				
+				<client-only>
+					<recipe-share :name="recipeName"></recipe-share>
+				</client-only>
 				<!-- ingredients -->
 				<client-only>
 					<RecipeIngredients 
 						v-if="compositions && compositions.length"
 						:ingredients="compositions"
 						:initialServings="servings" 
-						:recipeYield="yield"
+						:recipeYield="recipeYield"
 						@update:servings="updateServings" />
 				</client-only>
 
@@ -77,21 +78,18 @@ export default {
 				return this.recipe.months.includes(currentMonth.toString());
 			}
 			return false;
-		},
-		yield() {
-			// Valeur par défaut indépendante de recipe
-			return this.recipeYield || 2;
 		}
 	},
 	data() {
 		return {
-			// Initialiser toutes les propriétés avec des valeurs par défaut
-			recipe: null,           // Utiliser null au lieu de undefined
-			compositions: [],       // Pour être sûr que c'est un array
-			servings: 2,           // Par défaut
-			article: null,         // Par défaut
-			recipeYield: 2,        // Nouvelle propriété indépendante de recipe
-			recipeId: null,        // Pour stocker l'ID de la recette
+			recipe: null,           
+			servings: 2,           
+			article: null,      
+			// to be independant from recipe object (in client-only component) 
+			compositions: [],       
+			recipeYield: 2,        
+			recipeName: null,
+			recipeId: null,        
 		}
 	},
 	methods: {
@@ -107,7 +105,8 @@ export default {
 			this.servings = newServings;
 		},
 		async fetchRecipeData() {
-			// S'assurer que nous avons un ID
+			// Used when the (static) page is accessed directly (NOT via a link), recipe data needs to be refetched in order to change the number of servings dynamically
+			// --> see if possible to change that by fetching data attributes instead
 			const recipeId = this.recipeId || this.$route.params.id;
 			if (!recipeId) return;
 			
@@ -128,6 +127,7 @@ export default {
 						this.compositions = compositions;
 						this.servings = recipeData.yield || 2;
 						this.recipeYield = recipeData.yield || 2;
+						this.recipeName = recipeData.recipeName	;
 						console.log("Data fetched:", compositions.length, "compositions for", this.servings, "servings");
 					} catch (e) {
 						console.error("Erreur lors du parsing des compositions", e);
@@ -146,11 +146,13 @@ export default {
 		let compositions = [];
 		let recipeYield = 2;
 		let recipeId = null;
+		let recipeName = null;
 		
 		if (payload) {
 			recipe = payload;
 			servings = recipe.yield || 2;
 			recipeYield = recipe.yield || 2;
+			recipeName = recipe.name;
 			recipeId = recipe.recipeId || params.id;
 
 			try {
@@ -181,6 +183,7 @@ export default {
 					recipe = res.data[0];
 					servings = recipe.yield || 2;
 					recipeYield = recipe.yield || 2;
+					recipeName = recipe.name;
 
 					try {
 						compositions = JSON.parse(recipe.compositionsJson || '[]');
