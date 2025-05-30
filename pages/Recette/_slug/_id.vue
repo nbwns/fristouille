@@ -219,7 +219,8 @@ export default {
 			servings,
 			recipeYield,
 			article,
-			recipeId 
+			recipeId,
+			recipeName
 		};
 	},
 	created() {
