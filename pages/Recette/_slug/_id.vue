@@ -167,7 +167,7 @@ export default {
 				try {
 					article = await $prismic.api.getByID(recipe.prismicPageId);
 				} catch (e) {
-					console.error("Erreur lors de la récupération de l'article:", e);
+					console.error("Erreur lors de la récupération de l'article:", e, recipeId, recipe.prismicPageId);
 				}
 			}
 		}
@@ -197,7 +197,7 @@ export default {
 						try {
 							article = await $prismic.api.getByID(recipe.prismicPageId);
 						} catch (e) {
-							console.error("Erreur lors de la récupération de l'article:", e);
+							console.error("Erreur lors de la récupération de l'article:", e, recipeId, recipe.prismicPageId);
 						}
 					}
 				}

@@ -82,6 +82,7 @@ export default {
     
     sitemaps: [
       {
+        hostname: process.env.BASE_URL,
         path: '/sitemap-global.xml',
         exclude: [
           '/preview',
@@ -89,6 +90,7 @@ export default {
         ]
       },
       {
+        hostname: process.env.BASE_URL,
         path: '/sitemap-ingredients.xml',
         exclude: [
           '/preview',
@@ -100,6 +102,7 @@ export default {
         }
       },
       {
+        hostname: process.env.BASE_URL,
         path: '/sitemap-prismic.xml',
         exclude: [
           '/preview',
