@@ -66,7 +66,8 @@ export default {
     ],
     ["nuxt-sm"],
     "@pinia/nuxt",
-    'vue-plausible'
+    'vue-plausible',
+    '@nuxtjs/sitemap'
   ],
 
   router: {
@@ -77,8 +78,46 @@ export default {
     domain: process.env.PLAUSIBLE_DOMAIN
   },
 
+  sitemap : {
+    
+    sitemaps: [
+      {
+        path: '/sitemap-global.xml',
+        exclude: [
+          '/preview',
+          '/designsystem'
+        ]
+      },
+      {
+        path: '/sitemap-ingredients.xml',
+        exclude: [
+          '/preview',
+          '/designsystem'
+        ],
+        routes: async () => {
+          const { data } = await axios.get(process.env.INGREDIENTS_FUNCTION)
+          return data.map((ingredient) => `Recettes/${ingredient.name}/`)
+        }
+      },
+      {
+        path: '/sitemap-prismic.xml',
+        exclude: [
+          '/preview',
+          '/designsystem'
+        ],
+        routes: async () => {
+          const { data } = await axios.get(process.env.ARTICLES_FUNCTION)
+          return data.map((r) => `${r.url}`)
+        }
+      }
+    ]
+  },
+
   prismic: {
-    endpoint: "https://fristouille.cdn.prismic.io/api/v2",
+    endpoint: process.env.PRISMIC_ENDPOINT,
+    // clientConfig: {
+    //   accessToken: process.env.PRISMIC_TOKEN,
+    // },
     linkResolver: "@/plugins/link-resolver",
     htmlSerializer: "@/plugins/html-serializer",
     apiOptions: {
