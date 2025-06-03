@@ -5,9 +5,9 @@
 			class="placeholder:font-mono font-medium flex items-center w-full h-full px-3 py-0 bg-secondary border-primary-foreground/10 text-primary-foreground placeholder:text-primary-foreground placeholder:text-sm placeholder:tracking-tight placeholder:ligatures-none"
 			:placeholder="placeholder" :required="required" v-model="inputValue" @keyup.enter="keyEnter" />
 			<button
-				type="button"
+				type="submit"
 				class="plausible-event-name=Search+Click bg-orange-300 dark:bg-purple-300 hover:bg-orange-600 text-white rounded-full p-2 flex items-center justify-center select-none"
-				@click="keyEnter"
+				@click="clickButton"
 			>
 			<svg class="w-5 h-5 stroke-white-100" aria-hidden="true" fill="none"
 				viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -54,10 +54,14 @@ export default {
       this.searchStore.saveSearchQuery(this.inputValue);
       this.searchStore.toggleSearchFromBar(true);
     },
-	keyEnter(event){
-		event.target.blur();
-		this.$emit('enter')
-	}
+    clickButton(){
+      console.log("test")
+      this.$emit('enter')
+    },
+    keyEnter(event){
+      event.target.blur();
+      this.$emit('enter')
+    }
   },
 };
 

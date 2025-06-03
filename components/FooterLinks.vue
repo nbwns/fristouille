@@ -23,9 +23,9 @@
 				<div class="flex flex-col sm:flex-row sm:justify-between w-full">
 					<newsletter-signup />
 					<div class="flex flex-col justify-end items-end w-full space-y-2">
-						<div class="flex flex-row justify-end  space-x-2 items-center">
+						<!-- <div class="flex flex-row justify-end  space-x-2 items-center">
 							<eco-index-badge />
-						</div>
+						</div> -->
 						<dark-mode-toggle />
 					</div>
 				</div>
