@@ -1,0 +1,10 @@
+# Production - utilise robots-production.txt
+[context.production]
+  command = "mv static/robots-production.txt static/robots.txt && npm run generate"
+
+# Branch deploys - utilise robots-disallow.txt
+[context.branch-deploy]
+  command = "mv static/robots-disallow.txt static/robots.txt && npm run generate"
+  [context.branch-deploy.headers]
+    "/*"
+      X-Robots-Tag = "noindex, nofollow, nosnippet, noarchive"

@@ -100,19 +100,19 @@ export default {
           const { data } = await axios.get(process.env.INGREDIENTS_FUNCTION)
           return data.map((ingredient) => `Recettes/${ingredient.name}/`)
         }
-      },
-      {
-        hostname: process.env.BASE_URL,
-        path: '/sitemap-prismic.xml',
-        exclude: [
-          '/preview',
-          '/designsystem'
-        ],
-        routes: async () => {
-          const { data } = await axios.get(process.env.ARTICLES_FUNCTION)
-          return data.map((r) => `${r.url}`)
-        }
       }
+      // {
+      //   hostname: process.env.BASE_URL,
+      //   path: '/sitemap-prismic.xml',
+      //   exclude: [
+      //     '/preview',
+      //     '/designsystem'
+      //   ],
+      //   routes: async () => {
+      //     const { data } = await axios.get(process.env.ARTICLES_FUNCTION)
+      //     return data.map((r) => `${r.url}`)
+      //   }
+      // }
     ]
   },
 

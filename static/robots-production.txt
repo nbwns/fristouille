@@ -1,0 +1,5 @@
+# Production rules
+User-agent: *
+Disallow: /
+
+Sitemap: http://www.fristouille.org/sitemap-index.xml
