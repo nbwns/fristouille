@@ -5,6 +5,8 @@
 # Branch deploys - utilise robots-disallow.txt
 [context.branch-deploy]
   command = "mv static/robots-disallow.txt static/robots.txt && npm run generate"
-  [context.branch-deploy.headers]
-    "/*"
+  [[headers]]
+    # Define which paths this specific [[headers]] block will cover.
+    for = "/*"
+    [headers.values]
       X-Robots-Tag = "noindex, nofollow, nosnippet, noarchive"
