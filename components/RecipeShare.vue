@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-row justify-center items-center w-full space-x-2">
 		<div class="md:hidden">
-			<button @click="shareContent" class="w-fit inline-flex h-8 px-3.5 tracking-wide items-center justify-center bg-secondary hover:bg-primary text-primary-foreground border border-primary-foreground/10 hover:border-primary-foreground/60 rounded whitespace-nowrap text-sm font-mono font-medium ring-offset-primary-foreground/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+			<button @click="shareContent" class="plausible-event-name=Share+Click w-fit inline-flex h-8 px-3.5 tracking-wide items-center justify-center bg-secondary hover:bg-primary text-primary-foreground border border-primary-foreground/10 hover:border-primary-foreground/60 rounded whitespace-nowrap text-sm font-mono font-medium ring-offset-primary-foreground/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
 				<span
 					class="text-sm select-none text-primary-foreground group-hover:text-primary-foreground transition-colors duration-300 lowercase">partager&nbsp;</span>
 				<span 
@@ -16,7 +16,7 @@
 			</button>
 		</div>
 		<div>
-			<a :href="`https://www.pinterest.com/pin/create/button/?url=${this.fullPath}&description=${this.name}`" target="_blank" class="w-fit inline-flex h-8 px-3.5 tracking-wide items-center justify-center bg-secondary hover:bg-primary text-primary-foreground border border-primary-foreground/10 hover:border-primary-foreground/60 rounded whitespace-nowrap text-sm font-mono font-medium ring-offset-primary-foreground/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+			<a :href="`https://www.pinterest.com/pin/create/button/?url=${this.fullPath}&description=${this.name}`" target="_blank" class="plausible-event-name=Pin+Click w-fit inline-flex h-8 px-3.5 tracking-wide items-center justify-center bg-secondary hover:bg-primary text-primary-foreground border border-primary-foreground/10 hover:border-primary-foreground/60 rounded whitespace-nowrap text-sm font-mono font-medium ring-offset-primary-foreground/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
 				<span
 					class="text-sm select-none text-primary-foreground group-hover:text-primary-foreground transition-colors duration-300 lowercase">épingler&nbsp;</span>
 				<span class="flex items-center">

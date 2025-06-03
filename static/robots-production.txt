@@ -2,4 +2,4 @@
 User-agent: *
 Disallow: /
 
-Sitemap: http://www.fristouille.org/sitemap-index.xml
+Sitemap: http://www.fristouille.org/sitemapindex.xml
