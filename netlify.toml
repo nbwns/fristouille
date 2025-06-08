@@ -1,17 +1,8 @@
 # Production - utilise robots-production.txt
 [context.production]
   command = "mv static/robots-production.txt static/robots.txt && npm run generate"
-  [[headers]]
-    # Define which paths this specific [[headers]] block will cover.
-    for = "/*"
-    [headers.values]
-      X-Robots-Tag = "allow"
 
 # Branch deploys - utilise robots-disallow.txt
 [context.branch-deploy]
   command = "mv static/robots-disallow.txt static/robots.txt && npm run generate"
-  [[headers]]
-    # Define which paths this specific [[headers]] block will cover.
-    for = "/*"
-    [headers.values]
-      X-Robots-Tag = "noindex, nofollow, nosnippet, noarchive"
+
