@@ -282,22 +282,22 @@ export default {
 				},
 				{
 					hid: 'og:title',
-					name: 'og:title',
+					property: 'og:title',
 					content: (this.recipe) ? `${this.recipe.name} - Fristouille, la cuisine durable en toute simplicité` : ""
 				},
 				{
 					hid: 'og:description',
-					name: 'og:description',
+					property: 'og:description',
 					content: (this.recipe) ? this.recipe.description : ""
 				},
 				{
 					hid: 'og:image',
-					name: 'og:image',
-					content: ogPictureHttp.replace("https://", "http://")
+					property: 'og:image',
+					content: ogPictureHttp
 				},
 				{
 					hid: 'og:url',
-					name: 'og:url',
+					property: 'og:url',
 					content: (this.recipe) ? `https://www.fristouille.org/Recette/${this.recipe.slug}/${this.recipe.recipeId}` : ""
 				}
 			],
