@@ -6,8 +6,8 @@
 
 			<div class="flex min-w-[1/5] group">
 				<span
-					class="plausible-event-name=Filter+Open md:hidden font-mono text-sm text-primary-foreground group-hover:text-accent transition-colors duration-300 cursor-pointer"
-					@click="mobileAdvancedSearch = !mobileAdvancedSearch">
+					class="md:hidden font-mono text-sm text-primary-foreground group-hover:text-accent transition-colors duration-300 cursor-pointer"
+					@click="toggleFilters()">
 					filtres
 					<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none"
 						stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -225,6 +225,10 @@ export default {
 		},
 	},
 	methods: {
+		toggleFilters(){
+			this.mobileAdvancedSearch = !this.mobileAdvancedSearch;
+			this.$plausible.trackEvent("Filter Open");
+		},
 		search(helper) {
 			this.setFilterQuery();
 			if (helper.state.query || (!helper.state.query && this.filterQuery != '')) {

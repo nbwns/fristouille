@@ -38,6 +38,7 @@ export default {
     queryFunction: process.env.QUERY_FUNCTION,
     ingredientsFunction: process.env.INGREDIENTS_FUNCTION,
     baseUrl: process.env.BASE_URL,
+    noPictureUrl: process.env.NOPICTURE_URL,
   },
   privateRuntimeConfig: {},
 
@@ -101,18 +102,6 @@ export default {
           return data.map((ingredient) => `Recettes/${ingredient.name}/`)
         }
       }
-      // {
-      //   hostname: process.env.BASE_URL,
-      //   path: '/sitemap-prismic.xml',
-      //   exclude: [
-      //     '/preview',
-      //     '/designsystem'
-      //   ],
-      //   routes: async () => {
-      //     const { data } = await axios.get(process.env.ARTICLES_FUNCTION)
-      //     return data.map((r) => `${r.url}`)
-      //   }
-      // }
     ]
   },
 
@@ -163,7 +152,7 @@ export default {
       name: "Fristouille",
       short_name: "Fristouille",
       description: "La cuisine durable tout en simplicité",
-      orientation: "portrait",
+      orientation: "natural",
       lang: "fr-BE",
       useWebmanifestExtension: false,
       theme_color: "#FC762B",

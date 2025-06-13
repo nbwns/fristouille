@@ -1,5 +1,5 @@
 <template>
-  <a :href="icon.url" :target="icon.name !== 'email' ? '_blank' : undefined" rel="noopener noreferrer">
+  <a :href="icon.url" :target="icon.name !== 'email' ? '_blank' : undefined" rel="noopener noreferrer" :aria-label="icon.name">
     <svg class="transition-colors duration-300 fill-primary-foreground hover:fill-accent" width="24" height="24"
       viewBox="0 0 29 30" xmlns="http://www.w3.org/2000/svg">
       <path :d="getIconPath(icon.name)" />

@@ -96,9 +96,10 @@ export default {
 		label(key) {
 			return labels[key];
 		},
-		toDuration(totalMinutes) {
-			const hours = Math.floor(totalMinutes / 60);
-			const minutes = totalMinutes % 60;
+		toDuration(totalSeconds) {
+			const hours = Math.floor(totalSeconds / 3600);
+    		const minutes = Math.floor((totalSeconds % 3600) / 60);
+			console.log("duration", totalSeconds, hours, minutes)
 			return `PT${hours}H${minutes}M`;
 		},
 		updateServings(newServings) {
@@ -225,13 +226,13 @@ export default {
 	},
 	created() {
 		// Cette méthode s'exécute côté serveur et client
-		console.log("created hook", this.recipe ? "recipe exists" : "no recipe", 
-			this.compositions ? `${this.compositions.length} compositions` : "no compositions");
+		// console.log("created hook", this.recipe ? "recipe exists" : "no recipe", 
+		// 	this.compositions ? `${this.compositions.length} compositions` : "no compositions");
 	},
 	mounted() {
 		// Cette méthode s'exécute uniquement côté client
-		console.log("mounted hook", this.recipe ? "recipe exists" : "no recipe", 
-			this.compositions ? `${this.compositions.length} compositions` : "no compositions");
+		// console.log("mounted hook", this.recipe ? "recipe exists" : "no recipe", 
+		// 	this.compositions ? `${this.compositions.length} compositions` : "no compositions");
 		
 		// Si les compositions sont vides, récupérer les données côté client
 		if (!this.compositions || !this.compositions.length) {
@@ -241,11 +242,16 @@ export default {
 	},
 	head() {
 		let structuredData = {}
-		
+		let ogPictureHttp = this.$config.noPictureUrl;
+
 		if(this.recipe){
 			let keywords = this.recipe.free ? this.recipe.free.map((x) => `sans ${x}`) : [];
 			if(this.recipe.tagsList){
 				keywords = this.recipe.tagsList.concat(keywords);
+			}
+
+			if(this.recipe.pictureMedium){
+				ogPictureHttp = this.recipe.pictureMedium;
 			}
 			
 			structuredData = {
@@ -287,7 +293,7 @@ export default {
 				{
 					hid: 'og:image',
 					name: 'og:image',
-					content: (this.recipe) ? this.recipe.pictureMedium : ""
+					content: ogPictureHttp.replace("https://", "http://")
 				},
 				{
 					hid: 'og:url',

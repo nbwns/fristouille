@@ -6,7 +6,8 @@
 			:placeholder="placeholder" :required="required" v-model="inputValue" @keyup.enter="keyEnter" />
 			<button
 				type="submit"
-				class="plausible-event-name=Search+Click bg-orange-300 dark:bg-purple-300 hover:bg-orange-600 text-white rounded-full p-2 flex items-center justify-center select-none"
+				class="bg-orange-300 dark:bg-purple-300 hover:bg-orange-600 text-white rounded-full p-2 flex items-center justify-center select-none"
+        ari-label="Chercher des recettes"
 				@click="clickButton"
 			>
 			<svg class="w-5 h-5 stroke-white-100" aria-hidden="true" fill="none"
@@ -55,7 +56,7 @@ export default {
       this.searchStore.toggleSearchFromBar(true);
     },
     clickButton(){
-      console.log("test")
+      this.$plausible.trackEvent("Search Click");
       this.$emit('enter')
     },
     keyEnter(event){
