@@ -259,16 +259,22 @@ export default {
 				'@type': 'Recipe',
 				name: this.recipe.name,
 				image: this.recipe.pictureMedium,
-				author: [{name: this.recipe.authorName}],
+				author: {"@type": "Person", name: this.recipe.authorName},
 				cookTime: this.toDuration(this.recipe.cookTime),
 				prepTime: this.toDuration(this.recipe.preparationTime),
-				description: this.recipe.description,
 				recipeCategory: this.recipe.category ? this.recipe.category.join(", ") : "",
-				recipeCuisine: this.recipe.cuisine,
 				recipeInstructions: this.recipe.procedure,
 				recipeYield: this.recipe.yield,
 				recipeIngredient: this.recipe.compositionsStructuredData,
 				keywords: keywords
+			}
+
+			if(this.recipe.cuisine){
+				structuredData["recipeCuisine"] = this.recipe.cuisine;
+			}
+
+			if(this.recipe.description){
+				structuredData["description"] = this.recipe.description;
 			}
 		}	
 		

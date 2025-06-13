@@ -152,7 +152,7 @@ export default {
       name: "Fristouille",
       short_name: "Fristouille",
       description: "La cuisine durable tout en simplicité",
-      orientation: "natural",
+      orientation: "any",
       lang: "fr-BE",
       useWebmanifestExtension: false,
       theme_color: "#FC762B",
