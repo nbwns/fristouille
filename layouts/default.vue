@@ -1,13 +1,13 @@
 <template>
   <div id="app" :class="{ 'dark': darkMode }" class="w-full flex flex-col min-h-screen bg-background">
-    <header>
+    <header class="print:hidden">
       <MainNavigation />
     </header>
     <div class="flex-grow bg-background">
       <Nuxt />
     </div>
-    <footer-links />
-    <mobile-navigation />
+    <footer-links class="print:hidden" />
+    <mobile-navigation class="print:hidden" />
   </div>
 </template>
 

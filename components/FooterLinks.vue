@@ -64,7 +64,7 @@ export default {
 				],
 				[
 					{ text: 'À propos', url: '/a-propos', external: false },
-					{ text: 'Services', url: '/a-propos/services', external: false }
+					{ text: 'Fristouiller avec nous', url: '/a-propos/services', external: false }
 				],
 				[
 					{ text: 'Nous contacter', url: 'https://forms.fillout.com/t/npCTCGvMsyus', external: true },

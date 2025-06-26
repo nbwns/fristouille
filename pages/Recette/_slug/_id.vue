@@ -8,12 +8,12 @@
 
 			<div class="flex flex-col space-y-8 lg:space-y-12 w-full">
 				<!-- recipe info section -->
-				<RecipeInfoSection v-if="recipe" :preparationTime="recipe.preparationTime / 60" :cookTime="recipe.cookTime / 60"
+				<RecipeInfoSection class="print:hidden" v-if="recipe" :preparationTime="recipe.preparationTime / 60" :cookTime="recipe.cookTime / 60"
 					:difficulty="recipe.difficulty" :price="recipe.price" :months="recipe.months"
 					:allYearLongLabel="label('allYearLong')" />
 
 				<client-only>
-					<recipe-share :name="recipeName"></recipe-share>
+					<recipe-share class="print:hidden" :name="recipeName"></recipe-share>
 				</client-only>
 				<!-- ingredients -->
 				<client-only>
@@ -29,11 +29,11 @@
 				<RecipePreparation v-if="recipe" :procedure="procedure" :source="recipe.source" />
 			</div>
 
-			<card-tip v-if="article" :article="article"/>
+			<card-tip v-if="article" :article="article" class="print:hidden"/>
 
 			<!-- liste des tags -->
 			<RecipeTags v-if="recipe" :tagsList="recipe.tagsList" :baseRecipe="recipe.baseRecipe" :category="recipe.category"
-				:cuisine="recipe.cuisine" :freeFrom="recipe.free" />
+				:cuisine="recipe.cuisine" :freeFrom="recipe.free" class="print:hidden" />
 
 		</div>
 	</section>
@@ -258,7 +258,7 @@ export default {
 				"@context": "https://schema.org/",
 				'@type': 'Recipe',
 				name: this.recipe.name,
-				image: this.recipe.pictureMedium,
+				image: ogPictureHttp,
 				author: {"@type": "Person", name: this.recipe.authorName},
 				cookTime: this.toDuration(this.recipe.cookTime),
 				prepTime: this.toDuration(this.recipe.preparationTime),
