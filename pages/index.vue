@@ -114,22 +114,20 @@ export default {
 			title: `${this.document.data.meta_title}`,
 			meta: [
 				{
-					hid: 'description',
-					name: 'description',
-					content: this.document.data.meta_description
-				},
-				{
 					hid: 'og:title',
-					name: 'og:title',
+					name: 'title',
+					property: 'og:title',
 					content: `${this.document.data.meta_title}`
 				},
 				{
 					hid: 'og:description',
-					name: 'og:description',
+					name: 'description',
+					property: 'og:description',
 					content: this.document.data.meta_description
 				},
 				{
 					hid: 'og:image',
+					name: 'image',
 					name: 'og:image',
 					content: this.document.data.facebook_image.url
 				},

@@ -70,22 +70,25 @@ export default {
 				{
 					hid: 'description',
 					name: 'description',
-					content: this.document.data.meta_description
-				},
-				{
-					hid: 'og:title',
-					property: 'og:title',
-					content: `${this.document.data.meta_title} - Fristouille, la cuisine durable en toute simplicité`
-				},
-				{
-					hid: 'og:description',
 					property: 'og:description',
 					content: this.document.data.meta_description
 				},
 				{
+					hid: 'og:title',
+					name: 'title',
+					property: 'og:title',
+					content: `${this.document.data.meta_title} - Fristouille, la cuisine durable en toute simplicité`
+				},
+				{
 					hid: 'og:image',
+					name: 'image',
 					property: 'og:image',
 					content: this.document.data.facebook_image.url
+				},
+				{
+					hid: 'author',
+					name: 'author',
+					content: 'Fristouille'
 				},
 				{
 					hid: 'og:url',

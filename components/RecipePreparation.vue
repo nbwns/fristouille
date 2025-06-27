@@ -8,7 +8,7 @@
         class="underline inline-flex items-center gap-1 text-sm font-mono font-medium text-accent hover:cursor-pointer hover:underline focus:text-foreground ">
         Vers la publication originale <external-link-icon/>
       </a>
-      <span class="font-mono text-base" v-else>Source : <em class="text-primary-foreground font-light lg:font-light font-mono text-base text-pretty leading-tight">{{ source }}</em></span>
+      <span class="text-primary-foreground font-light lg:font-light font-mono text-base text-pretty leading-tight" v-else>Source : <em>{{ source }}</em></span>
     </div>
   </div>
 </template>

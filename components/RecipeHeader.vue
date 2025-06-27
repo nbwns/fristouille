@@ -21,7 +21,7 @@
 
 
     <div v-if="picture" class="w-full print:hidden">
-      <img :src="picture" :alt="`Photo d'un plat de ${name}`"
+      <img :src="picture"
         class="object-cover max-h-56 md:max-h-64 lg:max-h-72 xl:max-h-96 w-full rounded-[16px] noprint" />
     </div>
     <div v-if="description && description.trim().length > 0"

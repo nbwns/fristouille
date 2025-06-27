@@ -284,22 +284,25 @@ export default {
 				{
 					hid: 'description',
 					name: 'description',
-					content: (this.recipe) ? this.recipe.description : ""
-				},
-				{
-					hid: 'og:title',
-					property: 'og:title',
-					content: (this.recipe) ? `${this.recipe.name} - Fristouille, la cuisine durable en toute simplicité` : ""
-				},
-				{
-					hid: 'og:description',
 					property: 'og:description',
 					content: (this.recipe) ? this.recipe.description : ""
 				},
 				{
+					hid: 'og:title',
+					name: 'title',
+					property: 'og:title',
+					content: (this.recipe) ? `${this.recipe.name} - Fristouille, la cuisine durable en toute simplicité` : ""
+				},
+				{
 					hid: 'og:image',
+					name: 'image',
 					property: 'og:image',
 					content: ogPictureHttp
+				},
+				{
+					hid: 'author',
+					name: 'author',
+					content: this.recipe.authorName
 				},
 				{
 					hid: 'og:url',

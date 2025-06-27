@@ -351,22 +351,19 @@ export default {
 			title: `${this.document.data.meta_title} - Fristouille, la cuisine durable en toute simplicité`,
 			meta: [
 				{
-					hid: 'description',
-					name: 'description',
-					content: this.document.data.meta_description
-				},
-				{
 					hid: 'og:title',
 					name: 'og:title',
 					content: `${this.document.data.meta_title} - Fristouille, la cuisine durable en toute simplicité`
 				},
 				{
 					hid: 'og:description',
-					name: 'og:description',
+					name: 'description',
+					property: 'og:description',
 					content: this.document.data.meta_description
 				},
 				{
 					hid: 'og:image',
+					name: 'image',
 					name: 'og:image',
 					content: this.document.data.facebook_image.url
 				},
