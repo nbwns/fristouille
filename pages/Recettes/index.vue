@@ -356,8 +356,12 @@ export default {
 					content: `${this.document.data.meta_title} - Fristouille, la cuisine durable en toute simplicité`
 				},
 				{
-					hid: 'og:description',
+					hid: 'description',
 					name: 'description',
+					content: this.document.data.meta_description
+				},
+				{
+					hid: 'og:description',
 					property: 'og:description',
 					content: this.document.data.meta_description
 				},

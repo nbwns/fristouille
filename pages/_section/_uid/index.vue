@@ -70,6 +70,10 @@ export default {
 				{
 					hid: 'description',
 					name: 'description',
+					content: this.document.data.meta_description
+				},
+				{
+					hid: 'og:description',
 					property: 'og:description',
 					content: this.document.data.meta_description
 				},

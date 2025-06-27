@@ -284,7 +284,6 @@ export default {
 				{
 					hid: 'description',
 					name: 'description',
-					property: 'og:description',
 					content: (this.recipe) ? this.recipe.description : ""
 				},
 				{
@@ -294,15 +293,15 @@ export default {
 					content: (this.recipe) ? `${this.recipe.name} - Fristouille, la cuisine durable en toute simplicité` : ""
 				},
 				{
+					hid: 'og:description',
+					property: 'og:description',
+					content: (this.recipe) ? this.recipe.description : ""
+				},
+				{
 					hid: 'og:image',
 					name: 'image',
 					property: 'og:image',
 					content: ogPictureHttp
-				},
-				{
-					hid: 'author',
-					name: 'author',
-					content: this.recipe.authorName
 				},
 				{
 					hid: 'og:url',

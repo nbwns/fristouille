@@ -120,8 +120,17 @@ export default {
 					content: `${this.document.data.meta_title}`
 				},
 				{
-					hid: 'og:description',
+					hid: 'description',
 					name: 'description',
+					content: this.document.data.meta_description
+				},
+				{
+					hid: 'description',
+					name: 'description',
+					content: this.document.data.meta_description
+				},
+				{
+					hid: 'og:description',
 					property: 'og:description',
 					content: this.document.data.meta_description
 				},
