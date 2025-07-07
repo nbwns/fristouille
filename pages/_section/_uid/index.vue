@@ -97,9 +97,15 @@ export default {
 				{
 					hid: 'og:url',
 					property: 'og:url',
-					content: `https://www.fristouille.org${this.document.url}`
+					content: `https://www.fristouille.org${this.document.url}/`
 				}
 			],
+			link: [
+				{
+					rel: 'canonical',
+					href: `https://www.fristouille.org${this.document.url}/`
+				}
+			], 
 			script: [
 				{
 				type: 'application/ld+json',

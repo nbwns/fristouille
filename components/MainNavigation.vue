@@ -9,11 +9,11 @@
             to="/" no-prefetch exact>Accueil</nuxt-link>
           <nuxt-link
             class="text-base font-medium font-sans tracking-normal text-alt lowercase hover:text-primary-foreground focus:text-foreground transition-colors duration-300"
-            to="/recettes" no-prefetch>Recettes</nuxt-link>
+            to="/recettes/" no-prefetch>Recettes</nuxt-link>
           <nuxt-link
             class="text-base font-medium font-sans tracking-normal text-alt lowercase hover:text-primary-foreground focus:text-foreground transition-colors duration-300"
-            to="/astuces" no-prefetch>Astuces</nuxt-link>
-          <form class="flex items-center gap-5" action="/Recettes" @submit="checkRoute">
+            to="/astuces/" no-prefetch>Astuces</nuxt-link>
+          <form class="flex items-center gap-5" action="/recettes/" @submit="checkRoute">
             <div class="relative w-full">
               <search-bar placeholder="rechercher des recettes"></search-bar>
             </div>

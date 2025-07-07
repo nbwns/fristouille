@@ -5,7 +5,7 @@ function redirectFromRecettes(route) {
 	
 	if (match) {
 	  const param = match[1];
-	  const redirectUrl = `/recettes?q=${param}`;
+	  const redirectUrl = `/recettes/?q=${param}`;
 	  return redirectUrl;
 	}
 	

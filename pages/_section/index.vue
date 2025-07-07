@@ -54,7 +54,13 @@ export default {
 				{
 					hid: 'og:url',
 					name: 'og:url',
-					content: `https://www.fristouille.org${this.document.url}`
+					content: `https://www.fristouille.org${this.document.url}/`
+				}
+			],
+			link: [
+				{
+					rel: 'canonical',
+					href: `https://www.fristouille.org${this.document.url}/`
 				}
 			]
 		}

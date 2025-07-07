@@ -5,7 +5,7 @@
       <!-- title row -->
       <div class="flex flex-row justify-between items-end">
         <h2 class="text-lg lg:text-xl py-4 text-primary-foreground lowercase leading-none">{{ title }}</h2>
-        <hyper-link v-if="link" :path="`/Recettes${link}`">Tout voir</hyper-link>
+        <hyper-link v-if="link" :path="`/recettes/${link}`">Tout voir</hyper-link>
       </div>
 
       <ssr-carousel loop :slides-per-page='2' :gutter='15' peek-right='10%' show-arrows :responsive='[

@@ -2,7 +2,7 @@
 
 	<div
 		class="flex flex-col flex-grow justify-between w-full rounded-md bg-secondary h-full max-h-80 group border border-primary-foreground/10 hover:border-primary-foreground/20 overflow-clip hover:bg-primary/80 transition-colors duration-300">
-		<nuxt-link class="flex flex-col justify-start h-full" :to='`/Recette/${slug}/${recipeID}`' no-prefetch>
+		<nuxt-link class="flex flex-col justify-start h-full" :to='`/recette/${slug}/${recipeID}/`' no-prefetch>
 			<div class=" bg-center bg-cover h-[37rem]" :class="width" :style="{ backgroundImage: backgroundImage }" />
 			<div class="flex flex-col justify-between p-3 space-y-4 h-full ">
 				<h3

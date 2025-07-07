@@ -14,7 +14,7 @@
 <style></style>
 
 <script>
-import { defineComponent, onMounted, computed } from '@nuxtjs/composition-api'
+import { defineComponent, onMounted, computed  } from '@nuxtjs/composition-api'
 import { useDarkModeStore } from '~/store/darkMode'
 import MainNavigation from '~/components/MainNavigation.vue'
 import MobileNavigation from '~/components/MobileNavigation.vue'
@@ -26,9 +26,10 @@ export default defineComponent({
     MobileNavigation,
     FooterLinks
   },
+  head: {},
   setup() {
+   
     const darkModeStore = useDarkModeStore()
-
     onMounted(() => {
       darkModeStore.initDarkMode()
     })

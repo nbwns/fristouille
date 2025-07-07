@@ -306,9 +306,15 @@ export default {
 				{
 					hid: 'og:url',
 					property: 'og:url',
-					content: (this.recipe) ? `https://www.fristouille.org/Recette/${this.recipe.slug}/${this.recipe.recipeId}` : ""
+					content: (this.recipe) ? `https://www.fristouille.org/recette/${this.recipe.slug}/${this.recipe.recipeId}/` : ""
 				}
 			],
+			link: [
+				{
+					rel: 'canonical',
+					href: `https://www.fristouille.org/recette/${this.recipe.slug}/${this.recipe.recipeId}/` 
+				}
+			], 
 			script: [
 				{
 				type: 'application/ld+json',

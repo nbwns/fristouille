@@ -5,8 +5,8 @@
 		<!-- Navigation items container -->
 		<div class="flex flex-row items-center justify-between gap-5 p-5 ">
 			<NavItem to="/" icon="home" label="accueil" exact="exact" />
-			<NavItem to="/recettes" icon="recipe" label="recettes" />
-			<NavItem to="/astuces" icon="tips" label="astuces" />
+			<NavItem to="/recettes/" icon="recipe" label="recettes" />
+			<NavItem to="/astuces/" icon="tips" label="astuces" />
 			<div class="flex flex-col items-center gap-3">
 				<div @click="popupOpen = !popupOpen" class="cursor-pointer navmobile">
 					<svg class="h-8 mx-auto fill-white-100 dark:fill-black-100" viewBox="0 0 25 25"

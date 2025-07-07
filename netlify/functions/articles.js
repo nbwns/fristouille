@@ -30,7 +30,7 @@ exports.handler = async function(event, context) {
                 { pageSize: 100 }
             )
             routes.push(...astuces.results.map(doc => ({
-                url: `/astuces/${doc.uid}`,
+                url: `/astuces/${doc.uid}/`,
                 changefreq: 'weekly',
                 priority: 0.9,
                 lastmod: doc.last_publication_date

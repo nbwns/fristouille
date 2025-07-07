@@ -59,7 +59,7 @@ export default {
       const to = typeof this.to === 'string' ? this.to : this.to.path;
       
       // Cas spécial pour recettes et recette
-      if (to.toLowerCase() === '/recettes' && currentPath.toLowerCase().startsWith('/recette/')) {
+      if (to.toLowerCase() === '/recettes/' && currentPath.toLowerCase().startsWith('/recette/')) {
         return true;
       }
       

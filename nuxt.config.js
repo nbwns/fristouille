@@ -99,7 +99,7 @@ export default {
         ],
         routes: async () => {
           const { data } = await axios.get(process.env.INGREDIENTS_FUNCTION)
-          return data.map((ingredient) => `Recettes/${ingredient.name}/`)
+          return data.map((ingredient) => `recettes/${ingredient.name}/`)
         }
       }
     ]

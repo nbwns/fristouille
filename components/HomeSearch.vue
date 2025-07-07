@@ -8,13 +8,13 @@
         <div class="flex flex-row justify-between items-center my-3 space-x-6">
           <div class="flex flex-row space-x-2 items-center">
             <!-- seasons tags -->
-            <nuxt-link v-for="s in currentSeasons" :key="s" :to="`/Recettes?${getSeasonQuery(s)}`">
+            <nuxt-link v-for="s in currentSeasons" :key="s" :to="`/recettes/?${getSeasonQuery(s)}`">
               <quick-filter>
                 {{ s }}
               </quick-filter>
             </nuxt-link>
             <!-- quick search tags -->
-            <nuxt-link v-for="(t, index) in quickSearchTags" :key="index" :to="`/Recettes${t.tag_query}`">
+            <nuxt-link v-for="(t, index) in quickSearchTags" :key="index" :to="`/recettes/${t.tag_query}`">
               <quick-filter>
                 {{ t.tag_title }}
               </quick-filter>
@@ -22,7 +22,7 @@
           </div>
           <!-- filters -->
           <span>
-            <hyper-link path="/Recettes"
+            <hyper-link path="/recettes/"
               class="font-mono font-medium text-sm underline hover:underline-offset-2 text-primary-foreground hover:text-underline">
               ou farfouille dans toutes les recettes
             </hyper-link>
