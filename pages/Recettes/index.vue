@@ -103,13 +103,13 @@
 					<div class="flex flex-row gap-2 justify-center items-center">
 						<div
 							class="inline-flex justify-center items-center h-8 px-4 font-mono font-medium text-base w-fit border border-primary-foreground/10 hover:border-primary-foreground/60 rounded whitespace-nowrap ring-offset-primary-foreground/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
-							<nuxt-link to="/recettes/?q=rapide">
+							<nuxt-link to="/Recettes/?q=rapide">
 								rapide
 							</nuxt-link>
 						</div>
 						<div
 							class="inline-flex justify-center items-center h-8 px-4 font-mono font-medium text-base w-fit border border-primary-foreground/10 hover:border-primary-foreground/60 rounded whitespace-nowrap ring-offset-primary-foreground/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
-							<nuxt-link to="/recettes/?diet=Végétarien">
+							<nuxt-link to="/Recettes/?diet=Végétarien">
 								végétarien
 							</nuxt-link>
 						</div>
