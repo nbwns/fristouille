@@ -4,7 +4,7 @@
 
 @font-face {
 	font-family: "Inter";
-	src: url("../fonts/Inter-Light.woff2") format("woff2");
+	src: url("../fonts/Inter-Light-subset.woff2") format("woff2");
 	font-weight: 300;
 	font-style: normal;
 	font-display: swap;
@@ -12,7 +12,7 @@
   
   @font-face {
 	font-family: "Inter";
-	src: url("../fonts/Inter-Bold.woff2") format("woff2");
+	src: url("../fonts/Inter-Bold-subset.woff2") format("woff2");
 	font-weight: 700;
 	font-style: normal;
 	font-display: swap;
@@ -20,7 +20,7 @@
   
   @font-face {
 	font-family: "Inter";
-	src: url("../fonts/Inter-Medium.woff2") format("woff2");
+	src: url("../fonts/Inter-Medium-subset.woff2") format("woff2");
 	font-weight: 500;
 	font-style: normal;
 	font-display: swap;
@@ -29,8 +29,8 @@
 
 @font-face {
   font-family: "Labil";
-  src: url("../fonts/LabilGrotesk-Light.woff2") format("woff2"),
-    url("../fonts/LabilGrotesk-Light.woff") format("woff");
+  src: url("../fonts/LabilGrotesk-Light-subset.woff2") format("woff2"),
+    url("../fonts/LabilGrotesk-Light-subset.woff") format("woff");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -38,8 +38,8 @@
 
 @font-face {
   font-family: "Labil";
-  src: url("../fonts/LabilGrotesk-Bold.woff2") format("woff2"),
-    url("../fonts/LabilGrotesk-Bold.woff") format("woff");
+  src: url("../fonts/LabilGrotesk-Bold-subset.woff2") format("woff2"),
+    url("../fonts/LabilGrotesk-Bold-subset.woff") format("woff");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -47,8 +47,8 @@
 
 @font-face {
   font-family: "Labil";
-  src: url("../fonts/LabilGrotesk-Medium.woff2") format("woff2"),
-    url("../fonts/LabilGrotesk-Medium.woff") format("woff");
+  src: url("../fonts/LabilGrotesk-Medium-subset.woff2") format("woff2"),
+    url("../fonts/LabilGrotesk-Medium-subset.woff") format("woff");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
