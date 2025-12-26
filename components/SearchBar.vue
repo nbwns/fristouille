@@ -7,7 +7,7 @@
 			<button
 				type="submit"
 				class="bg-orange-300 dark:bg-purple-300 hover:bg-orange-600 text-white rounded-full p-2 flex items-center justify-center select-none"
-        ari-label="Chercher des recettes"
+        aria-label="Chercher des recettes"
 				@click="clickButton"
 			>
 			<svg class="w-5 h-5 stroke-white-100" aria-hidden="true" fill="none"

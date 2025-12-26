@@ -107,9 +107,8 @@ export default {
 
   prismic: {
     endpoint: process.env.PRISMIC_ENDPOINT,
-    // clientConfig: {
-    //   accessToken: process.env.PRISMIC_TOKEN,
-    // },
+    preview: false, // Désactive le mode preview
+    toolbar: false,  // Désactive explicitement la toolbar
     linkResolver: "@/plugins/link-resolver",
     htmlSerializer: "@/plugins/html-serializer",
     apiOptions: {
@@ -177,6 +176,7 @@ export default {
         },
       },
     },
+    extractCSS: true,
     optimization: {
       splitChunks: {
         chunks: "all",

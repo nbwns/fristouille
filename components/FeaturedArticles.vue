@@ -3,9 +3,9 @@
     <div class="w-full flex flex-col space-y-3">
       <!-- title row -->
       <div class="w-full flex flex-row justify-between items-end">
-        <title-paragraph>
+        <h2 class="font-sans font-medium text-xl lg:text-2xl text-primary-foreground lowercase">
           {{ title }}
-        </title-paragraph>
+        </h2>
 
         <hyper-link v-if="link" :path="link">Tout voir</hyper-link>
       </div>
@@ -37,7 +37,6 @@
 </template>
 
 <script>
-import TitleParagraph from '~/molecules/TitleParagraph.vue';
 import HyperLink from '~/molecules/HyperLink.vue';
 import SsrCarousel from 'vue-ssr-carousel';
 import CardArticle from './CardArticle.vue';
@@ -45,7 +44,7 @@ import CardArticle from './CardArticle.vue';
 
 export default {
   props: ['title', 'items', 'link'],
-  components: { TitleParagraph, HyperLink, SsrCarousel, CardArticle },
+  components: { HyperLink, SsrCarousel, CardArticle },
 }
 </script>
 

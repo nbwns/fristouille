@@ -62,12 +62,13 @@
 				<ais-hits>
 					<template v-slot="{ items }">
 						<template v-if="items.length > 0">
-							<normal-title v-if="query">
+							<h1 class="font-sans font-medium text-xl lg:text-2xl text-primary-foreground lowercase" v-if="query">
 								Résultats pour '{{ query }}'
-							</normal-title>
-							<normal-title v-else>
+							</h1>
+							<h1 class="font-sans font-medium text-xl lg:text-2xl text-primary-foreground lowercase" v-else>
 								Découvre nos recettes
-							</normal-title>
+							</h1>
+							<h2 class="sr-only">Liste des recettes qui correspondent à ta recherche</h2>
 							<ais-pagination>
 								<template v-slot="{
 									nbHits
@@ -171,7 +172,7 @@ import { AisInstantSearch, AisHits, AisPagination } from 'vue-instantsearch';
 import algoliasearch from 'algoliasearch/lite';
 import CardRecipe from '~/components/CardRecipe.vue';
 import AdvancedSearch from '~/components/AdvancedSearch.vue'
-import NormalTitle from '~/molecules/TitleParagraph.vue';
+import NormalTitle from '~/molecules/Title.vue';
 import GridOfCardsRecipes from '~/components/GridOfCardsRecipes.vue';
 import SearchBar from '~/components/SearchBar.vue'
 import { useSearchStore } from '~/store/search'

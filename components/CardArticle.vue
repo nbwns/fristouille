@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="flex flex-col flex-grow justify-between w-full rounded-md bg-secondary h-full max-h-72 group border border-primary-foreground/10 hover:border-primary-foreground/20 overflow-clip hover:bg-primary/80 transition-colors duration-300">
+		class="flex flex-col flex-grow justify-between w-full rounded-md bg-secondary h-full max-h-72 group border border-primary-foreground/10 hover:border-primary-foreground/20 overflow-clip hover:bg-primary/80 transition-colors duration-300 focus-within:ring-2 focus-within:ring-orange-300 focus-within:ring-offset-2 dark:focus-within:ring-2 dark:focus-within:ring-purple-300 dark:focus-within:ring-offset-2">
 		<nuxt-link :to="path" class="flex flex-col justify-start h-full">
 			<div class="h-[37rem] overflow-hidden">
 				<img class="w-full h-full object-cover" :src="img" alt>

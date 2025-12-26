@@ -1,6 +1,6 @@
 <template>
 	<div class="relative flex justify-between">
-		<button @click.prevent="toggle" id="menu-button" type="button" class="w-full py-4" aria-expanded="true"
+		<button @click.prevent="toggle" id="menu-button" type="button" class="w-full py-4" :aria-expanded="(visible ? 'true' : 'false')"
 			aria-haspopup="true">
 			<div class="flex flex-row justify-center items-center group">
 				<div
@@ -25,7 +25,7 @@
 			enter-to-class="opacity-100 scale-100" leave-active-class="transition ease-in duration-75"
 			leave-class=" opacity-100 scale-100 translate-y-4" leave-to-class="opacity-0 scale-100">
 			<div v-show="visible" class="absolute bg-secondary z-50 p-4 w-auto text-foreground top-4 rounded translate-y-10"
-				role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+				aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
 				<div class="space-y-2 bg-secondary/10" role="none">
 					<slot></slot>
 				</div>
