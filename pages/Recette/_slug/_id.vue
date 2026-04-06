@@ -279,7 +279,7 @@ export default {
 		}	
 		
 		return {
-			title: (this.recipe) ? `${this.recipe.name} - Fristouille, la cuisine durable en toute simplicité` : "",
+			title: (this.recipe) ? `${this.recipe.name} - Fristouille` : "",
 			meta: [
 				{
 					hid: 'description',
@@ -290,7 +290,7 @@ export default {
 					hid: 'og:title',
 					name: 'title',
 					property: 'og:title',
-					content: (this.recipe) ? `${this.recipe.name} - Fristouille, la cuisine durable en toute simplicité` : ""
+					content: (this.recipe) ? `${this.recipe.name} - Fristouille` : ""
 				},
 				{
 					hid: 'og:description',

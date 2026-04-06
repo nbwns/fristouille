@@ -28,12 +28,12 @@ export default {
 	},
 	head() {
 		return {
-			title: `${this.document.data.meta_title} - Fristouille, la cuisine durable en toute simplicité`,
+			title: `${this.document.data.meta_title} - Fristouille`,
 			meta: [
 				{
 					hid: 'og:title',
 					name: 'og:title',
-					content: `${this.document.data.meta_title} - Fristouille, la cuisine durable en toute simplicité`
+					content: `${this.document.data.meta_title} - Fristouille`
 				},
 				{
 					hid: 'description',
