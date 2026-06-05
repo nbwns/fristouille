@@ -11,7 +11,7 @@
 export default {
   data() {
     return {
-      newsletterUrl: 'https://02419efa.sibforms.com/serve/MUIFANEEQaGtCgMgGCIlj2MVYkNzVFJUOIB748mFzklKSTLMB5SqGgeNJGfdWP2nfl5TY1DfHscl4Rho1564zy-CsKAO8fOTDdqL4V00DXsJw3rpUEOYb83wRl5SAmNoHwuKQNYJZPSn5zfCKhJAOF1tnNRe6iXiEyO05SsgpC9hDclYYf0u1A1hw89TBmypEx_lNOwyIBbwmr4s'
+      newsletterUrl: 'https://02419efa.sibforms.com/serve/MUIFAKzCBftJC59sQ2sq-uOi1ulcEwo7WlcPj_2_8YzBItB50NangSBi86zGS8x-hvWBtKOp3lzNpnmNYBLB9DEqYyDK9vLbIIb7TzceWsFnd2FVngLPF9ubb0RU9AbvBrECjrHZ1XwYS5LxW5-nG3iWgDW3pEH5DNmaErC16m54vkJU8x7fpFDj1eVthNeVjzLX7tjKeezt25yb'
     }
   }
 }
