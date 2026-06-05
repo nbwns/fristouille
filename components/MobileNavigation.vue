@@ -39,6 +39,7 @@
 					<PopupMenuItem to="/a-propos" label="À propos" />
 					<PopupMenuItem href="/a-propos/services" label="Formations & ateliers" />
 					<PopupMenuItem href="/a-propos/contact" label="Contact" />
+					<PopupMenuItem target="_blank" href="https://02419efa.sibforms.com/serve/MUIFANEEQaGtCgMgGCIlj2MVYkNzVFJUOIB748mFzklKSTLMB5SqGgeNJGfdWP2nfl5TY1DfHscl4Rho1564zy-CsKAO8fOTDdqL4V00DXsJw3rpUEOYb83wRl5SAmNoHwuKQNYJZPSn5zfCKhJAOF1tnNRe6iXiEyO05SsgpC9hDclYYf0u1A1hw89TBmypEx_lNOwyIBbwmr4s" label="Newsletter" />
 				</ul>
 				<div class="flex-grow"></div>
 				<div class="p-6">

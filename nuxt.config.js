@@ -89,7 +89,12 @@ export default {
           '/preview',
           '/designsystem'
         ],
-        trailingSlash: true
+        filter ({ routes }) {
+          return routes.map(route => {
+            route.url = `${route.url}/`.toLowerCase()
+            return route
+          })
+        }
       },
       {
         hostname: process.env.BASE_URL,
