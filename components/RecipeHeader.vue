@@ -27,10 +27,10 @@
     <div v-if="description && description.trim().length > 0"
       class="flex flex-col md:flex-row justify-between w-full noprint print:hidden">
       <div class="flex flex-col">
-        <h2
+        <p
           class="w-full text-primary-foreground font-light lg:font-light font-sans text-base text-pretty lg:text-lg leading-tight ligatures-none">
           " {{ description }} "
-        </h2>
+      </p>
       </div>
     </div>
   </header>

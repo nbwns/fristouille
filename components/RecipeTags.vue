@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 class="text-primary-foreground text-lg lg:text-xl pb-4 noprint lowercase">Tags</h3>
+    <h2 class="text-primary-foreground text-lg lg:text-xl pb-4 noprint lowercase">Tags</h2>
     <div class="flex flex-row flex-wrap justify-start items-start gap-2 noprint">
       <!-- tags -->
       <tag v-for="t in tagsList" :key="t" :to="`/recettes/?q=${t}`" class="noprint">
