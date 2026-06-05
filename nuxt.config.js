@@ -88,7 +88,8 @@ export default {
         exclude: [
           '/preview',
           '/designsystem'
-        ]
+        ],
+        trailingSlash: true
       },
       {
         hostname: process.env.BASE_URL,
