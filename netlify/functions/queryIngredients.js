@@ -25,6 +25,7 @@ exports.handler = async function(event, context) {
 					return {
 						name: r.fields.Name,
 						aisle: r.fields.Aisle,
+						slug: r.fields.Slug
 					}
 				});
 			}

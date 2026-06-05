@@ -7,14 +7,15 @@
 				:description="recipe.description" :picture="recipe.picture" />
 
 			<div class="flex flex-col space-y-8 lg:space-y-12 w-full">
+				<client-only>
+					<recipe-share class="print:hidden" :name="recipeName"></recipe-share>
+				</client-only>
 				<!-- recipe info section -->
 				<RecipeInfoSection class="print:hidden" v-if="recipe" :preparationTime="recipe.preparationTime / 60" :cookTime="recipe.cookTime / 60"
 					:difficulty="recipe.difficulty" :price="recipe.price" :months="recipe.months"
 					:allYearLongLabel="label('allYearLong')" />
 
-				<client-only>
-					<recipe-share class="print:hidden" :name="recipeName"></recipe-share>
-				</client-only>
+				
 				<!-- ingredients -->
 				<client-only>
 					<RecipeIngredients 
@@ -30,6 +31,7 @@
 			</div>
 
 			<card-tip v-if="article" :article="article" class="print:hidden"/>
+			<newsletter-recipe v-if="!article"></newsletter-recipe>
 
 			<!-- liste des tags -->
 			<RecipeTags v-if="recipe" :tagsList="recipe.tagsList" :baseRecipe="recipe.baseRecipe" :category="recipe.category"
@@ -54,6 +56,7 @@ import RecipePreparation from '~/components/RecipePreparation.vue';
 import RecipeTags from '~/components/RecipeTags.vue';
 import RecipeIngredients from '~/components/RecipeIngredients.vue';
 import RecipeShare from '~/components/RecipeShare.vue';
+import NewsletterRecipe from '~/components/NewsletterRecipe.vue';
 
 export default {
 	components: {

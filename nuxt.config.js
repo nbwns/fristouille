@@ -88,7 +88,13 @@ export default {
         exclude: [
           '/preview',
           '/designsystem'
-        ]
+        ],
+        filter ({ routes }) {
+          return routes.map(route => {
+            route.url = `${route.url}/`.toLowerCase()
+            return route
+          })
+        }
       },
       {
         hostname: process.env.BASE_URL,
@@ -99,7 +105,7 @@ export default {
         ],
         routes: async () => {
           const { data } = await axios.get(process.env.INGREDIENTS_FUNCTION)
-          return data.map((ingredient) => `recettes/${ingredient.name}/`)
+          return data.map((ingredient) => `recettes/${ingredient.slug}/`)
         }
       }
     ]

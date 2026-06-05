@@ -1,6 +1,6 @@
 <template>
   <div class="w-fit noprint">
-    <h3 class="title">l'astuce fristouille</h3>
+    <h2 class="title">l'astuce fristouille</h2>
     <card-tip :img="article.data.cover.url" :imgAlt="article.data.cover.alt" :path="article.url"
       :title="$prismic.asText(article.data.title)" :abstract="article.data.tip_abstract" />
   </div>
