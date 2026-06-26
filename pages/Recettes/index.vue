@@ -63,7 +63,7 @@
 					<template v-slot="{ items }">
 						<template v-if="items.length > 0">
 							<h1 class="font-sans font-medium text-xl lg:text-2xl text-primary-foreground lowercase" v-if="query">
-								Résultats pour '{{ query }}'
+								Recettes avec '{{ query }}'
 							</h1>
 							<h1 class="font-sans font-medium text-xl lg:text-2xl text-primary-foreground lowercase" v-else>
 								Découvre nos recettes

@@ -1,12 +1,12 @@
 <template>
   <div class="flex flex-col gap-5 lg:gap-8">
     <div class="flex w-full justify-between gap-5 lg:gap-8">
-      <RecipeInfoBox label="Préparation" :value="`${preparationTime} min`">
+      <RecipeInfoBox v-if="preparationTime !== null" label="Préparation" :value="`${preparationTime} min`">
         <template #content>
           <time :datetime="toDuration(preparationTime)">{{ preparationTime }} min</time>
         </template>
       </RecipeInfoBox>
-      <RecipeInfoBox label="Cuisson" :value="`${cookTime} min`">
+      <RecipeInfoBox v-if="cookTime !== null" label="Cuisson" :value="`${cookTime} min`">
         <template #content>
           <time :datetime="toDuration(cookTime)">{{ cookTime }} min</time>
         </template>

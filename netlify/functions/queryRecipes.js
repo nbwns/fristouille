@@ -83,6 +83,8 @@ exports.handler = async function(event, context) {
                                 recipeId: r.fields.RecipeID,
                                 recipeName: r.fields.Name,
                                 yield: r.fields.Yield || null,
+                                preparationTime: r.fields.PreparationTime || null,
+                                cookTime: r.fields.CookTime || null,
                                 compositionsJson: r.fields.CompositionsJSON || null
                             }
                         });

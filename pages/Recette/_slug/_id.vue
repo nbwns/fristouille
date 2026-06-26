@@ -7,9 +7,7 @@
 				:description="recipe.description" :picture="recipe.picture" />
 
 			<div class="flex flex-col space-y-8 lg:space-y-12 w-full">
-				<client-only>
-					<recipe-share class="print:hidden" :name="recipeName"></recipe-share>
-				</client-only>
+				
 				<!-- recipe info section -->
 				<RecipeInfoSection class="print:hidden" v-if="recipe" :preparationTime="recipe.preparationTime / 60" :cookTime="recipe.cookTime / 60"
 					:difficulty="recipe.difficulty" :price="recipe.price" :months="recipe.months"
@@ -24,6 +22,10 @@
 						:initialServings="servings" 
 						:recipeYield="recipeYield"
 						@update:servings="updateServings" />
+				</client-only>
+
+				<client-only>
+					<recipe-share class="print:hidden" :name="recipeName"></recipe-share>
 				</client-only>
 
 				<!-- Explication de la recette -->
@@ -315,7 +317,7 @@ export default {
 			link: [
 				{
 					rel: 'canonical',
-					href: `https://www.fristouille.org/recette/${this.recipe.slug}/${this.recipe.recipeId}/` 
+					href: (this.recipe) ? `https://www.fristouille.org/recette/${this.recipe.slug}/${this.recipe.recipeId}/` : ""
 				}
 			], 
 			script: [
