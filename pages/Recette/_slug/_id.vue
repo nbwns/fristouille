@@ -13,6 +13,9 @@
 					:difficulty="recipe.difficulty" :price="recipe.price" :months="recipe.months"
 					:allYearLongLabel="label('allYearLong')" />
 
+				<client-only>
+					<recipe-share class="print:hidden" :name="recipeName"></recipe-share>
+				</client-only>
 				
 				<!-- ingredients -->
 				<client-only>
@@ -23,10 +26,7 @@
 						:recipeYield="recipeYield"
 						@update:servings="updateServings" />
 				</client-only>
-
-				<client-only>
-					<recipe-share class="print:hidden" :name="recipeName"></recipe-share>
-				</client-only>
+				
 
 				<!-- Explication de la recette -->
 				<RecipePreparation v-if="recipe" :procedure="procedure" :source="recipe.source" />
